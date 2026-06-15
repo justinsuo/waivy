@@ -51,6 +51,7 @@ export default function AiChefScreen() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [savedIds, setSavedIds] = useState<Record<string, string>>({});
   const [setupOpen, setSetupOpen] = useState(false);
+  const [chipsOpen, setChipsOpen] = useState(false); // pantry list collapsed by default
 
   const selectedPantryIds = useMemo(
     () => (usePantryItems ? pantry.map((p) => p.ingredientId).filter((id) => !excluded.has(id)) : []),
@@ -65,24 +66,30 @@ export default function AiChefScreen() {
     tap();
   }
 
-  // Pick a coherent "surprise" basket from the pantry (keep those, exclude rest).
+  // Generate from a coherent "surprise" basket — a one-off pick that does NOT
+  // touch the pantry the user curated (their selection/chips stay exactly as-is).
   function surpriseMe() {
-    const allIds = pantry.map((p) => p.ingredientId);
-    const keep = new Set(surprisePantrySelection(allIds));
-    setExcluded(new Set(allIds.filter((id) => !keep.has(id))));
+    const keep = surprisePantrySelection(pantry.map((p) => p.ingredientId));
     tap();
-    toast(`Surprise! Cooking with ${keep.size} ingredient${keep.size === 1 ? "" : "s"} 🎲`, "reward");
+    toast("Surprising you 🎲", "reward");
+    generate({ pantryOverride: keep });
   }
 
-  async function generate(opts?: { creative?: boolean }) {
+  const selectAllPantry = () => { setExcluded(new Set()); tap(); };
+  const deselectAllPantry = () => { setExcluded(new Set(pantry.map((p) => p.ingredientId))); tap(); };
+
+  async function generate(opts?: { creative?: boolean; pantryOverride?: string[] }) {
     // The "creative" path needs a real AI backend (writes original recipes).
     if (opts?.creative && !aiBackendAvailable()) {
       setSetupOpen(true);
       return;
     }
+    // A surprise pass uses its own basket; everything else uses the user's
+    // selected pantry (untouched by Surprise me).
+    const pantryIds = opts?.pantryOverride ?? selectedPantryIds;
     const input = {
-      pantryIngredients: selectedPantryIds.map(ingredientLabel),
-      selectedPantryIngredientIds: selectedPantryIds,
+      pantryIngredients: pantryIds.map(ingredientLabel),
+      selectedPantryIngredientIds: pantryIds,
       cravingText: notes,
       aiNotes: notes,
       budgetPerServing: budget || undefined,
@@ -236,27 +243,51 @@ export default function AiChefScreen() {
             </View>
           </Row>
         </Press>
-        {usePantryItems && pantry.length >= 4 ? (
-          <Row justify="space-between" style={{ marginTop: 2, marginBottom: 2 }}>
-            <Txt variant="caption" muted>{selectedPantryIds.length} of {pantry.length} selected</Txt>
+        {usePantryItems && pantry.length > 0 ? (
+          <>
+            {/* Compact summary + show-all toggle (the full list is collapsed by default). */}
+            <Row justify="space-between" align="center">
+              <Txt variant="caption" muted>Using {selectedPantryIds.length} of {pantry.length} ingredients</Txt>
+              <Press
+                onPress={() => { setChipsOpen((v) => !v); tap(); }}
+                haptic="none"
+                style={{ flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 10, paddingVertical: 6, borderRadius: radius.pill, backgroundColor: colors.oat }}
+              >
+                <Txt variant="label" weight="700" color={colors.basilShadow}>{chipsOpen ? "Hide" : "Show all"}</Txt>
+                <Feather name={chipsOpen ? "chevron-up" : "chevron-down"} size={14} color={colors.basilShadow} />
+              </Press>
+            </Row>
+
+            {/* Surprise me — a separate one-off pick; never edits your pantry. */}
             <Press
               onPress={surpriseMe}
               haptic="selection"
-              style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 12, paddingVertical: 7, borderRadius: radius.pill, backgroundColor: accent["ai-chef"].tint }}
+              style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 7, paddingVertical: 11, borderRadius: radius.md, backgroundColor: accent["ai-chef"].tint }}
             >
-              <Txt style={{ fontSize: 14 }}>🎲</Txt>
-              <Txt variant="label" weight="700" color={accent["ai-chef"].shadow}>Surprise me</Txt>
+              <Txt style={{ fontSize: 16 }}>🎲</Txt>
+              <Txt variant="label" weight="800" color={accent["ai-chef"].shadow}>Surprise me — cook from a random mix</Txt>
             </Press>
-          </Row>
-        ) : null}
-        {usePantryItems && pantry.length > 0 ? (
-          <Row gap={8} wrap>
-            {pantry.map((p) => {
-              const on = !excluded.has(p.ingredientId);
-              return <Pill key={p.ingredientId} label={ingredientLabel(p.ingredientId)} tone="pantry" selected={on}
-                onPress={() => { const n = new Set(excluded); on ? n.add(p.ingredientId) : n.delete(p.ingredientId); setExcluded(n); }} />;
-            })}
-          </Row>
+
+            {chipsOpen ? (
+              <>
+                <Row gap={8}>
+                  <Press onPress={selectAllPantry} haptic="none" style={{ paddingHorizontal: 12, paddingVertical: 7, borderRadius: radius.pill, backgroundColor: colors.basilSoft }}>
+                    <Txt variant="label" weight="700" color={colors.basilShadow}>Select all</Txt>
+                  </Press>
+                  <Press onPress={deselectAllPantry} haptic="none" style={{ paddingHorizontal: 12, paddingVertical: 7, borderRadius: radius.pill, backgroundColor: colors.oat }}>
+                    <Txt variant="label" weight="700" color={colors.textMuted}>Deselect all</Txt>
+                  </Press>
+                </Row>
+                <Row gap={8} wrap>
+                  {pantry.map((p) => {
+                    const on = !excluded.has(p.ingredientId);
+                    return <Pill key={p.ingredientId} label={ingredientLabel(p.ingredientId)} tone="pantry" selected={on}
+                      onPress={() => { const n = new Set(excluded); on ? n.add(p.ingredientId) : n.delete(p.ingredientId); setExcluded(n); }} />;
+                  })}
+                </Row>
+              </>
+            ) : null}
+          </>
         ) : usePantryItems ? <Txt variant="caption" muted>Your pantry is empty — add items or describe what you have below.</Txt> : null}
       </Card>
 
