@@ -21,10 +21,11 @@ export function ScreenshotDriver() {
       seedDemoData();
       await delay(500);
       const rid = demoRecipeId();
-      // The guided-cooking screen is a full-screen takeover that doesn't always
-      // get replaced cleanly by router.replace, so it can "bleed" into whatever
-      // screen is captured next. Keep it LAST so it can never corrupt another
-      // shot, and reset to home before entering it.
+      // router.replace AWAY from a dynamic [id] route (recipe/[id], cook/[id]) to
+      // a static route doesn't navigate cleanly — you stay stuck on the detail
+      // screen, which then "bleeds" into the next shot. So visit both [id]
+      // screens LAST (entered via static→dynamic, which works), and capture
+      // nothing static after them.
       const tour: [string, string][] = [
         ["/", "01-home"],
         ["/ai-chef", "02-ai-chef"],
@@ -32,11 +33,11 @@ export function ScreenshotDriver() {
         ["/nourish", "04-nourish"],
         ["/grocery", "05-grocery"],
         ["/recipes", "06-recipes"],
-        [`/recipe/${rid}`, "07-recipe-detail"],
         ["/cheap", "09-cheap"],
         ["/explore", "10-explore"],
         ["/saved", "11-saved"],
         ["/settings", "12-settings"],
+        [`/recipe/${rid}`, "07-recipe-detail"],
         [`/cook/${rid}`, "08-guided-cooking"],
       ];
       const per = shotsConfig()?.perRouteMs ?? 3400;
