@@ -168,12 +168,20 @@ export default function RecipesHub() {
       return true;
     });
 
+    if (sort === "best") {
+      // Decorate-sort-undecorate: compute each recipe's score ONCE rather than
+      // re-running bestScore on every comparison (matters across thousands of
+      // recipes on each keystroke).
+      return out
+        .map((v) => ({ v, s: bestScore(v) }))
+        .sort((a, b) => b.s - a.s)
+        .map((x) => x.v);
+    }
     const sorted = [...out];
     sorted.sort((a, b) => {
       if (sort === "cheap") return a.costPerServing - b.costPerServing;
       if (sort === "fast") return a.totalTimeMinutes - b.totalTimeMinutes;
-      if (sort === "protein") return (b.nutrition.protein || 0) - (a.nutrition.protein || 0);
-      return bestScore(b) - bestScore(a); // "best" — Waivy's own ranking
+      return (b.nutrition.protein || 0) - (a.nutrition.protein || 0); // "protein"
     });
     return sorted;
   }, [all, query, equip, diet, sort]);
