@@ -92,7 +92,7 @@ export default function GroceryScreen() {
                         </Row>
                       </View>
                       {cost > 0 ? <Txt variant="caption" weight="700" color={colors.basilShadow}>${cost.toFixed(2)}</Txt> : null}
-                      <Press onPress={() => { remove(item.ingredientId); tap(); }}><Feather name="x" size={16} color={colors.textFaint} /></Press>
+                      <Press onPress={() => { remove(item.ingredientId); tap(); }} hitSlop={10} style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}><Feather name="x" size={17} color={colors.textFaint} /></Press>
                     </Press>
                   );
                 })}

@@ -18,6 +18,7 @@ export type SavedPantry = { id: string; name: string; items: PantryItem[] };
 
 const K_LIST = "srf:pantries";
 const K_ACTIVE = "srf:active-pantry";
+const SURPRISE_NAME = "🎲 Surprise";
 
 function read<T>(key: string, fallback: T): T {
   try {
@@ -110,9 +111,21 @@ export function usePantries() {
     }
   }, []);
 
-  // Replace the active pantry with a fresh, meaningful random one.
+  // Roll a fresh, meaningful random pantry into a dedicated "🎲 Surprise" pantry
+  // and switch to it — so your curated pantries are never overwritten. Repeated
+  // shuffles re-roll the same Surprise pantry. Returns its name.
   const shuffle = useCallback(() => {
-    storage.setPantry(randomMeaningfulPantry().map((ingredientId) => ({ ingredientId })));
+    const items = randomMeaningfulPantry().map((ingredientId) => ({ ingredientId }));
+    const list = persistLive(listOrDefault());
+    const existing = list.find((p) => p.name === SURPRISE_NAME);
+    const id = existing ? existing.id : newId();
+    const next = existing
+      ? list.map((p) => (p.id === id ? { ...p, items } : p))
+      : [...list, { id, name: SURPRISE_NAME, items }];
+    write(K_LIST, next);
+    write(K_ACTIVE, id);
+    storage.setPantry(items);
+    return SURPRISE_NAME;
   }, []);
 
   return { pantries, active, switchTo, createPantry, rename, removePantry, shuffle };

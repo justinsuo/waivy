@@ -139,8 +139,12 @@ export function dbCloseness(input: ChefInput): { closeEnough: boolean; matchPerc
   });
   const top = ranked[0];
   if (!top) return { closeEnough: false, matchPercent: 0 };
+  // "Close enough" should also mean cheap to complete — a 60% match that still
+  // needs $6 of groceries isn't an instant win.
+  const maxMissingCost = (input.budgetPerServing && input.budgetPerServing > 0 ? input.budgetPerServing : 5) * 0.6;
   return {
-    closeEnough: top.matchPercent >= 55 && top.missingIngredients.length <= 2,
+    closeEnough:
+      top.matchPercent >= 55 && top.missingIngredients.length <= 2 && top.missingCost <= maxMissingCost,
     matchPercent: Math.round(top.matchPercent),
   };
 }

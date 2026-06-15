@@ -123,7 +123,9 @@ export function rankCheapCatalog(filters: {
       totalCost: costPerServing * recipe.servings,
       pantryMatched: 0,
       pantryTotal: recipe.ingredients.filter((r) => !r.optional).length,
-      missingIngredients: recipe.ingredients.filter((r) => !r.optional),
+      // No pantry context here (cheap = buy-fresh ranking), so nothing is
+      // "missing from the pantry" — keep this empty to match missingCost: 0.
+      missingIngredients: [],
       missingCost: 0,
       matchPercent: 0,
       score,

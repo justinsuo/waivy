@@ -161,7 +161,7 @@ export default function RecipeDetailScreen() {
             <Txt variant="subheading" style={{ marginBottom: 10 }}>Steps</Txt>
             {data.steps.map((s, idx) => (
               <Row key={idx} gap={12} align="flex-start" style={{ marginBottom: 14 }}>
-                <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: accent["ai-chef"].tint, alignItems: "center", justifyContent: "center" }}>
+                <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: accent["ai-chef"].tint, alignItems: "center", justifyContent: "center" }}>
                   <Txt variant="caption" weight="700" color={accent["ai-chef"].shadow}>{idx + 1}</Txt>
                 </View>
                 <Txt variant="body" style={{ flex: 1, lineHeight: 22 }}>{s}</Txt>

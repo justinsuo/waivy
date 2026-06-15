@@ -13,6 +13,7 @@ import {
 } from "@/lib/recipeScoring";
 import { bestEffortNutrition } from "@/lib/nutritionEngine";
 import { ALL_RECIPES, rankPantryCatalog, rankCheapCatalog } from "./catalog";
+import { recipeFitsEquipment } from "@/lib/equipmentFilters";
 import type { Recipe, Equipment, DietTag } from "@/lib/types";
 import type { GeneratedRecipe, GeneratedRecipeOptionSet, OptionLabel } from "@/lib/workerClient";
 
@@ -103,28 +104,95 @@ function recipeToGenerated(r: Recipe, pantry: Set<string>, why: string): Generat
   };
 }
 
-function candidatePool(input: LocalChefInput): Recipe[] {
+// ── Notes / cravings → ranking signal ────────────────────────────────────────
+// The on-device path used to ignore the user's note entirely; now it actually
+// boosts recipes that match what they asked for (keywords + intent).
+const NOTE_STOPWORDS = new Set([
+  "a", "an", "the", "and", "or", "with", "without", "some", "something", "make",
+  "want", "need", "for", "me", "my", "i", "is", "of", "to", "in", "on", "that",
+  "please", "really", "very", "like", "im", "give", "cook", "recipe", "food",
+  "dish", "meal", "would", "love", "can", "you", "have", "got", "use", "using",
+]);
+
+function parseNotes(notes?: string): string[] {
+  if (!notes) return [];
+  return notes
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !NOTE_STOPWORDS.has(w));
+}
+
+function notesBoost(r: Recipe, tokens: string[], rawNotes: string): number {
+  if (!tokens.length) return 0;
+  const hay = `${r.name} ${r.description} ${r.cuisine ?? ""} ${(r.tags ?? []).join(" ")} ${r.dietTags.join(" ")} ${r.mealType}`.toLowerCase();
+  let boost = 0;
+  for (const t of tokens) {
+    if (hay.includes(t)) boost += 26;
+    else if (r.ingredients.some((ri) => ingredientLabel(ri.ingredientId).toLowerCase().includes(t))) boost += 18;
+  }
+  const n = rawNotes.toLowerCase();
+  const nut = bestEffortNutrition(r).estimate;
+  if (/protein/.test(n) && nut.protein >= 25) boost += 22;
+  if (/(spic|chil|\bhot\b|fiery)/.test(n) && /(spic|chil|\bhot\b|sriracha|curry|jalape|cajun|harissa|gochu)/.test(hay)) boost += 22;
+  if (/(health|light|lean|low.?cal|clean)/.test(n) && nut.calories <= 450) boost += 16;
+  if (/(quick|fast|easy|hurry|\b10\b|\b15\b|\b20\b)/.test(n) && r.totalTimeMinutes <= 20) boost += 16;
+  if (/(cheap|budget|broke|afford)/.test(n) && calculateCostPerServing(r) <= 2.5) boost += 16;
+  if (/(vegetarian|veggie|meatless)/.test(n) && r.dietTags.includes("vegetarian")) boost += 22;
+  if (/\bvegan\b/.test(n) && r.dietTags.includes("vegan")) boost += 24;
+  if (/(comfort|cozy|hearty|filling)/.test(n) && nut.calories >= 500) boost += 12;
+  return boost;
+}
+
+function candidatePool(input: LocalChefInput): { recipe: Recipe; score: number }[] {
   const equipment = (input.equipment ?? []) as Equipment[];
   const diet = (input.dietTags ?? []) as DietTag[];
   const budget = input.budgetPerServing && input.budgetPerServing > 0 ? input.budgetPerServing : 999;
 
+  let ranked: { recipe: Recipe; score: number }[] = [];
   if (input.pantryIds.length > 0) {
-    const ranked = rankPantryCatalog(
-      input.pantryIds.map((id) => ({ ingredientId: id })),
-      { equipment, diet },
-    );
-    if (ranked.length) return ranked.map((r) => r.recipe);
+    ranked = rankPantryCatalog(input.pantryIds.map((id) => ({ ingredientId: id })), { equipment, diet })
+      .map((r) => ({ recipe: r.recipe, score: r.score }));
   }
-  const cheap = rankCheapCatalog({ budgetPerServing: budget, equipment, diet });
-  if (cheap.length) return cheap.map((r) => r.recipe);
-  // last resort: whole catalog by cost
-  return [...ALL_RECIPES].sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b));
+  if (!ranked.length) {
+    ranked = rankCheapCatalog({ budgetPerServing: budget, equipment, diet })
+      .map((r) => ({ recipe: r.recipe, score: r.score }));
+  }
+  if (!ranked.length) {
+    // Last resort: still honor equipment + diet (only ignore them if nothing at
+    // all matches, so the UI always has *something* to show).
+    const fits = (r: Recipe) =>
+      (!equipment.length || recipeFitsEquipment(r, equipment)) &&
+      (!diet.length || diet.every((d) => r.dietTags.includes(d)));
+    const filtered = ALL_RECIPES.filter(fits);
+    ranked = (filtered.length ? filtered : ALL_RECIPES)
+      .slice()
+      .sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))
+      .map((recipe) => ({ recipe, score: 0 }));
+  }
+
+  // Apply the note boost + a soft over-budget penalty across the whole pool, so
+  // every lens (best/cheap/fast/protein) is drawn from genuinely relevant dishes.
+  const tokens = parseNotes(input.notes);
+  const raw = input.notes ?? "";
+  for (const x of ranked) {
+    x.score += notesBoost(x.recipe, tokens, raw);
+    if (budget < 999 && calculateCostPerServing(x.recipe) > budget) x.score -= 45;
+  }
+  ranked.sort((a, b) => b.score - a.score);
+  return ranked;
+}
+
+/** Whether the user's note clearly matched the best pick (for an honest summary). */
+function noteMatched(r: Recipe, input: LocalChefInput): boolean {
+  const tokens = parseNotes(input.notes);
+  return notesBoost(r, tokens, input.notes ?? "") >= 18;
 }
 
 /** Build a 4-option set (best-match / cheapest / fastest / high-protein). */
 export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOptionSet {
   const pantry = new Set(input.pantryIds);
-  const pool = candidatePool(input).slice(0, 60);
+  const pool = candidatePool(input).slice(0, 60).map((x) => x.recipe);
   if (pool.length === 0) {
     // truly nothing — synthesize from the cheapest recipe so the UI still works
     const fallback = [...ALL_RECIPES].sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))[0];
@@ -142,14 +210,26 @@ export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOpti
     used.add(r.id);
     picks.push({ recipe: r, label, reason });
   };
-  add(pool[0], "best-match", input.pantryIds.length ? "Best use of what's in your pantry" : "A great all-round pick");
+  const bestReason = input.notes && noteMatched(pool[0], input)
+    ? `Best match for "${input.notes.trim()}"`
+    : input.pantryIds.length ? "Best use of what's in your pantry" : "A great all-round pick";
+  add(pool[0], "best-match", bestReason);
   add(byCost[0], "cheapest", `Cheapest option at $${calculateCostPerServing(byCost[0]).toFixed(2)}/serving`);
   add(byTime[0], "fastest", `Fastest — ready in ${byTime[0].totalTimeMinutes} min`);
   add(byProtein[0], "high-protein", `Highest protein (${Math.round(bestEffortNutrition(byProtein[0]).estimate.protein)}g/serving)`);
-  // fill to 4 from the pool
+  // fill to 4 — prefer a different cuisine first for variety, then anything left
+  const pickedCuisines = new Set(picks.map((p) => (p.recipe.cuisine ?? "").toLowerCase()));
   for (const r of pool) {
     if (picks.length >= 4) break;
-    add(r, "best-match", "Another good match for your pantry");
+    const c = (r.cuisine ?? "").toLowerCase();
+    if (!used.has(r.id) && (!c || !pickedCuisines.has(c))) {
+      add(r, "wildcard", "A tasty change of pace");
+      pickedCuisines.add(c);
+    }
+  }
+  for (const r of pool) {
+    if (picks.length >= 4) break;
+    add(r, "wildcard", "Another good match for your pantry");
   }
 
   const options = picks.slice(0, 4).map((p, i) => ({
@@ -158,7 +238,9 @@ export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOpti
     shortReason: p.reason,
     pantryMatchScore: 0,
     selectedByDefault: i === 0,
-    notesInfluenceSummary: input.notes ? `Considered your note: "${input.notes}"` : "",
+    notesInfluenceSummary: input.notes
+      ? (noteMatched(p.recipe, input) ? `Matches your note: "${input.notes.trim()}"` : `Considered your note: "${input.notes.trim()}"`)
+      : "",
     recipe: recipeToGenerated(p.recipe, pantry, p.reason),
   }));
 
@@ -168,7 +250,7 @@ export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOpti
 /** Local refinement — re-pick from the catalog optimizing for the request. */
 export function refineLocal(base: GeneratedRecipe, request: string, input: LocalChefInput): GeneratedRecipe {
   const pantry = new Set(input.pantryIds);
-  const pool = candidatePool(input).slice(0, 60).filter((r) => r.name !== base.name);
+  const pool = candidatePool(input).slice(0, 60).map((x) => x.recipe).filter((r) => r.name !== base.name);
   if (pool.length === 0) return base;
   const r = request.toLowerCase();
   let pick: Recipe;
