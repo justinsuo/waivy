@@ -93,7 +93,7 @@ export function customNutrition(c: CustomRecipe): NutritionEstimate {
   if (n && (n.calories || n.protein || n.carbs || n.fat)) {
     return { calories: n.calories, protein: n.protein, carbs: n.carbs, fat: n.fat, fiber: n.fiber };
   }
-  return { calories: 0, protein: 0, carbs: 0, fat: 0 };
+  return { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 };
 }
 
 export function customToView(c: CustomRecipe): RecipeView {

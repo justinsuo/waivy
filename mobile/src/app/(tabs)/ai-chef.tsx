@@ -304,9 +304,9 @@ export default function AiChefScreen() {
                       <Txt style={{ fontSize: 10.5, fontWeight: "700", color: fromDb ? accent.cheap.shadow : accent["ai-chef"].shadow }}>{fromDb ? "instant" : "AI"}</Txt>
                     </View>
                   </Row>
-                  <Txt variant="subheading" numberOfLines={2} style={{ minHeight: 44 }}>{o.recipe.name}</Txt>
-                  <Txt variant="caption" muted numberOfLines={2} style={{ minHeight: 32 }}>{o.shortReason}</Txt>
-                  <Row gap={6}><Txt variant="caption" weight="700" color={colors.basilShadow}>${o.recipe.estimatedCostPerServing.toFixed(2)}</Txt><Txt variant="caption" muted>· {o.recipe.totalTimeMinutes}m</Txt></Row>
+                  <Txt variant="subheading" numberOfLines={2} style={{ minHeight: 44 }}>{o.recipe.name || "Recipe"}</Txt>
+                  <Txt variant="caption" muted numberOfLines={2} style={{ minHeight: 32 }}>{o.shortReason || ""}</Txt>
+                  <Row gap={6}><Txt variant="caption" weight="700" color={colors.basilShadow}>${(Number(o.recipe.estimatedCostPerServing) || 0).toFixed(2)}</Txt><Txt variant="caption" muted>· {o.recipe.totalTimeMinutes || 0}m</Txt></Row>
                 </Press>
               );
             })}
@@ -364,7 +364,7 @@ function ResultPanel({ option, saved, refining, onSave, onAddMissing, onLog, onC
         {r.whyThisFits ? <Txt variant="caption" muted style={{ marginTop: 2 }}>{r.whyThisFits}</Txt> : null}
       </View>
       <Row gap={6} wrap>
-        <Badge label={`$${r.estimatedCostPerServing.toFixed(2)}/serving`} tone="cheap" icon="dollar-sign" />
+        <Badge label={`$${(Number(r.estimatedCostPerServing) || 0).toFixed(2)}/serving`} tone="cheap" icon="dollar-sign" />
         <Badge label={`${Math.round(n.calories)} cal`} tone="nourish" icon="zap" />
         <Badge label={`${Math.round(n.protein)}g protein`} tone="ai-chef" />
         <Badge label={`${r.totalTimeMinutes} min`} tone="grocery" icon="clock" />

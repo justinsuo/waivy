@@ -128,7 +128,7 @@ export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOpti
   if (pool.length === 0) {
     // truly nothing — synthesize from the cheapest recipe so the UI still works
     const fallback = [...ALL_RECIPES].sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))[0];
-    pool.push(fallback);
+    if (fallback) pool.push(fallback);
   }
 
   const byCost = [...pool].sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b));

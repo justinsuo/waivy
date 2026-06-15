@@ -71,8 +71,13 @@ export default function GroceryScreen() {
                         toggleChecked(item.ingredientId);
                         if (nowChecked) {
                           hapticMedium();
-                          // last item left → the whole list is done.
-                          if (grocery.filter((g) => !g.checked).length === 1) celebrate("Grocery list done! 🛒");
+                          // If every OTHER item is already checked, checking this one
+                          // completes the list. Computed from the current item set so it
+                          // doesn't depend on the (stale) post-toggle render.
+                          const othersUnchecked = grocery.filter(
+                            (g) => !g.checked && g.ingredientId !== item.ingredientId,
+                          ).length;
+                          if (othersUnchecked === 0) celebrate("Grocery list done! 🛒");
                         } else { tap(); }
                       }}
                       style={{ flexDirection: "row", alignItems: "center", gap: 12, padding: 14, borderTopWidth: idx === 0 ? 0 : 1, borderTopColor: colors.border }}>
