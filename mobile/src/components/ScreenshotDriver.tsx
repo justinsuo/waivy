@@ -45,7 +45,7 @@ export function ScreenshotDriver() {
           // always navigates), giving the reset time to settle before the hop.
           if (path !== "/") {
             router.replace("/" as never);
-            await delay(600);
+            await delay(1200);
           }
           router.replace(path as never);
         } catch {
