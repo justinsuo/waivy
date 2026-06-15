@@ -1,9 +1,8 @@
-// Real food photos for recipes formerly hosted on upload.wikimedia.org, which
-// rate-limits (HTTP 429) under the burst of concurrent requests a recipe grid
-// fires — so some cards fell back to an emoji. These are self-hosted in
-// public/recipe-photos/ and served via the jsDelivr CDN (no rate-limit,
-// permanent, cached), so they always render in both web and the iOS app.
-// getRecipeImage() checks this map FIRST. Regenerate with scripts/rehostRecipeImages.py.
+// Real food photos for recipes whose original URL did not reliably load in the
+// app (Wikimedia rate-limiting, dead/hotlink-protected links). Self-hosted in
+// public/recipe-photos/ and served via jsDelivr (no rate-limit, permanent), so
+// they always render in web + app. getRecipeImage() checks this map FIRST.
+// Regenerate with scripts/rehostRecipeImages.py + validateAllImages.py.
 export const RECIPE_IMAGE_OVERRIDES: Record<string, string> = {
   "air-fryer-potato-wedges-beans": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/air-fryer-potato-wedges-beans.jpg",
   "apple-cinnamon-oats": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/apple-cinnamon-oats.jpg",
@@ -40,6 +39,7 @@ export const RECIPE_IMAGE_OVERRIDES: Record<string, string> = {
   "freezer-burritos": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/freezer-burritos.jpg",
   "garlic-butter-noodles": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/garlic-butter-noodles.jpg",
   "gen-beyaynetu": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/gen-beyaynetu.jpg",
+  "gen-caldo-tlalpe-o": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/gen-caldo-tlalpe-o.jpg",
   "greek-yogurt-granola-bowl": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/greek-yogurt-granola-bowl.jpg",
   "grilled-cheese-tomato-soup": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/grilled-cheese-tomato-soup.jpg",
   "hummus-snack-plate": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/hummus-snack-plate.jpg",
@@ -53,6 +53,9 @@ export const RECIPE_IMAGE_OVERRIDES: Record<string, string> = {
   "lentil-taco-filling": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/lentil-taco-filling.jpg",
   "loaded-baked-potato": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/loaded-baked-potato.jpg",
   "mashed-potato-bowl": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/mashed-potato-bowl.jpg",
+  "mfr-soup2-sweet-potato-black-bean": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/mfr-soup2-sweet-potato-black-bean.jpg",
+  "mfr-soup2-sweet-potato-black-bean-cf": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/mfr-soup2-sweet-potato-black-bean-cf.jpg",
+  "mfr-soup2-sweet-potato-black-bean-pf": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/mfr-soup2-sweet-potato-black-bean-pf.jpg",
   "microwave-bean-burrito": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/microwave-bean-burrito.jpg",
   "microwave-egg-fried-rice": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/microwave-egg-fried-rice.jpg",
   "microwave-mac-and-peas": "https://cdn.jsdelivr.net/gh/justinsuo/waivy@main/public/recipe-photos/microwave-mac-and-peas.jpg",
