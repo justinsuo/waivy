@@ -45,7 +45,9 @@ while [ "$(date +%s)" -lt "$end" ]; do
   if [ -n "$cur" ] && [ "$cur" != "$last" ]; then
     last="$cur"
     if [ "$cur" = "__done__" ]; then echo "  tour complete"; break; fi
-    sleep 0.8
+    # Give the screen's remote recipe images time to load (cold-cache grids) so
+    # the gallery shows real photos, not the loading-tint placeholder.
+    sleep 3
     if xcrun simctl io "$UDID" screenshot "$OUT/$cur.png" >/dev/null 2>&1; then
       count=$((count+1)); echo "  ✓ $cur"
     fi
