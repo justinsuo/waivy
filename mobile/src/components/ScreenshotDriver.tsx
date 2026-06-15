@@ -21,11 +21,6 @@ export function ScreenshotDriver() {
       seedDemoData();
       await delay(500);
       const rid = demoRecipeId();
-      // router.replace AWAY from a dynamic [id] route (recipe/[id], cook/[id]) to
-      // a static route doesn't navigate cleanly — you stay stuck on the detail
-      // screen, which then "bleeds" into the next shot. So visit both [id]
-      // screens LAST (entered via static→dynamic, which works), and capture
-      // nothing static after them.
       const tour: [string, string][] = [
         ["/", "01-home"],
         ["/ai-chef", "02-ai-chef"],
@@ -33,17 +28,25 @@ export function ScreenshotDriver() {
         ["/nourish", "04-nourish"],
         ["/grocery", "05-grocery"],
         ["/recipes", "06-recipes"],
+        [`/recipe/${rid}`, "07-recipe-detail"],
+        [`/cook/${rid}`, "08-guided-cooking"],
         ["/cheap", "09-cheap"],
         ["/explore", "10-explore"],
         ["/saved", "11-saved"],
         ["/settings", "12-settings"],
-        [`/recipe/${rid}`, "07-recipe-detail"],
-        [`/cook/${rid}`, "08-guided-cooking"],
       ];
       const per = shotsConfig()?.perRouteMs ?? 3400;
       for (const [path, name] of tour) {
         if (cancelled) return;
         try {
+          // router.replace between two stack routes (e.g. /recipes → /cheap) or
+          // away from a dynamic [id] route is unreliable — it can stay on the
+          // current screen. Always bounce through the home TAB first (tab→target
+          // always navigates), giving the reset time to settle before the hop.
+          if (path !== "/") {
+            router.replace("/" as never);
+            await delay(600);
+          }
           router.replace(path as never);
         } catch {
           // a route that won't replace cleanly — skip it
