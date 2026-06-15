@@ -189,7 +189,7 @@ export default function ExploreScreen() {
   }
 
   function addToGrocery(r: ExternalRecipe) {
-    const names = r.ingredients.map((i) => i.name).filter(Boolean);
+    const names = (r.ingredients ?? []).map((i) => i.name).filter(Boolean);
     if (!names.length) {
       toast("No ingredients to add", "info");
       return;
@@ -378,9 +378,9 @@ function RecipeSheet({
           <Divider />
 
           <Txt variant="subheading">Ingredients</Txt>
-          {r.ingredients.length ? (
+          {r.ingredients?.length ? (
             <View style={{ gap: 8 }}>
-              {r.ingredients.map((ing, idx) => (
+              {(r.ingredients ?? []).map((ing, idx) => (
                 <Row key={`${ing.name}-${idx}`} gap={10} align="flex-start">
                   <Feather name="circle" size={7} color={colors.basil} style={{ marginTop: 7 }} />
                   <Txt variant="body" style={{ flex: 1 }}>{ingredientLine(ing)}</Txt>
@@ -394,9 +394,9 @@ function RecipeSheet({
           <Divider />
 
           <Txt variant="subheading">Instructions</Txt>
-          {r.instructions.length ? (
+          {r.instructions?.length ? (
             <View style={{ gap: space.md }}>
-              {r.instructions.map((step, idx) => (
+              {(r.instructions ?? []).map((step, idx) => (
                 <Row key={idx} gap={10} align="flex-start">
                   <View style={styles.stepNum}>
                     <Txt variant="caption" color="#fff" weight="800">{idx + 1}</Txt>
