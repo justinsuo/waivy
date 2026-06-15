@@ -99,13 +99,32 @@ const DIET: { label: string; value: string }[] = [
   { label: "Dairy Free", value: "dairy-free" },
 ];
 
-type SortKey = "cheap" | "fast" | "protein";
+type SortKey = "best" | "cheap" | "fast" | "protein";
 
 const SORTS: { label: string; value: SortKey }[] = [
+  { label: "Best", value: "best" },
   { label: "Cheapest", value: "cheap" },
   { label: "Fastest", value: "fast" },
   { label: "Protein", value: "protein" },
 ];
+
+/**
+ * Waivy's own "Best" ranking — a weighted blend tuned for a broke, busy student:
+ * mostly value (protein per dollar) + affordability, with bonuses for being
+ * quick and genuinely high-protein. Each term is normalized to 0–1 so the
+ * weights below are the real knobs. Higher score = surfaced first.
+ */
+function bestScore(v: { costPerServing: number; totalTimeMinutes: number; nutrition: { protein?: number } }): number {
+  const cost = v.costPerServing > 0 ? v.costPerServing : 3;
+  const time = v.totalTimeMinutes > 0 ? v.totalTimeMinutes : 30;
+  const protein = v.nutrition.protein || 0;
+  const proteinPerDollar = protein / Math.max(cost, 0.5);
+  const valueN = Math.min(proteinPerDollar / 25, 1); // ~25 g/$ is excellent
+  const affordN = Math.max(0, 1 - cost / 8); // $0 → 1, $8+ → 0
+  const quickN = Math.max(0, 1 - time / 75); // instant → 1, 75 min+ → 0
+  const proteinN = Math.min(protein / 40, 1); // 40 g/serving → 1
+  return 0.34 * valueN + 0.24 * affordN + 0.2 * quickN + 0.22 * proteinN;
+}
 
 const PAGE = 12;
 
@@ -115,7 +134,7 @@ export default function RecipesHub() {
   const [query, setQuery] = useState("");
   const [equip, setEquip] = useState<string[]>([]);
   const [diet, setDiet] = useState<string[]>([]);
-  const [sort, setSort] = useState<SortKey>("cheap");
+  const [sort, setSort] = useState<SortKey>("best");
   const [visible, setVisible] = useState(PAGE);
 
   const screenW = Dimensions.get("window").width;
@@ -153,7 +172,8 @@ export default function RecipesHub() {
     sorted.sort((a, b) => {
       if (sort === "cheap") return a.costPerServing - b.costPerServing;
       if (sort === "fast") return a.totalTimeMinutes - b.totalTimeMinutes;
-      return (b.nutrition.protein || 0) - (a.nutrition.protein || 0);
+      if (sort === "protein") return (b.nutrition.protein || 0) - (a.nutrition.protein || 0);
+      return bestScore(b) - bestScore(a); // "best" — Waivy's own ranking
     });
     return sorted;
   }, [all, query, equip, diet, sort]);
@@ -223,6 +243,7 @@ export default function RecipesHub() {
       <Spacer h={space.lg} />
 
       {/* Sort */}
+      <Txt variant="label" style={{ marginBottom: 8 }}>SORT BY</Txt>
       <SegmentedControl
         options={SORTS}
         value={sort}
