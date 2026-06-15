@@ -100,6 +100,7 @@ export default function PantryScreen() {
   }
 
   return (
+    <View style={{ flex: 1 }}>
     <Screen>
       <Row justify="space-between" style={{ marginBottom: space.lg }}>
         <View>
@@ -171,11 +172,6 @@ export default function PantryScreen() {
       )}
       {pantry.length > 0 ? <Txt variant="caption" muted>Tap an item to flag it "use soon" ⏱ · tap ✕ to remove.</Txt> : null}
 
-      <Press onPress={() => setAddOpen(true)} haptic="light"
-        style={{ position: "absolute", right: space.lg, bottom: 30, width: 58, height: 58, borderRadius: 29, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center", shadowColor: colors.basilShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
-        <Feather name="plus" size={26} color="#fff" />
-      </Press>
-
       <Sheet visible={addOpen} onClose={() => { setAddOpen(false); setQuery(""); }} title="Add to pantry">
         <Field placeholder="Search ingredients…" value={query} onChangeText={setQuery} autoFocus />
         {matches.map((i) => (
@@ -210,5 +206,13 @@ export default function PantryScreen() {
         ) : null}
       </Sheet>
     </Screen>
+
+      {/* Floating add button — outside the scroll so it stays put. */}
+      <Press onPress={() => setAddOpen(true)} haptic="light"
+        containerStyle={{ position: "absolute", right: space.lg, bottom: 30 }}
+        style={{ width: 58, height: 58, borderRadius: 29, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center", shadowColor: colors.basilShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
+        <Feather name="plus" size={26} color="#fff" />
+      </Press>
+    </View>
   );
 }

@@ -10,6 +10,7 @@ import { colors, space, radius, accent } from "~/theme";
 import { usePantry, useGrocery } from "~/lib/stores/app";
 import { logFood } from "~/lib/stores/nourish";
 import { ingredientLabel } from "~/lib/recipes";
+import { surprisePantrySelection } from "~/lib/surprise";
 import {
   aiBackendAvailable, aiMode, instantOptions, generateAiOnly, dbCloseness, refine, persistGenerated, generateAndStoreImage,
   type GeneratedRecipe, type GeneratedRecipeOptionSet,
@@ -62,6 +63,15 @@ export default function AiChefScreen() {
     next.has(val) ? next.delete(val) : next.add(val);
     setter(next);
     tap();
+  }
+
+  // Pick a coherent "surprise" basket from the pantry (keep those, exclude rest).
+  function surpriseMe() {
+    const allIds = pantry.map((p) => p.ingredientId);
+    const keep = new Set(surprisePantrySelection(allIds));
+    setExcluded(new Set(allIds.filter((id) => !keep.has(id))));
+    tap();
+    toast(`Surprise! Cooking with ${keep.size} ingredient${keep.size === 1 ? "" : "s"} 🎲`, "reward");
   }
 
   async function generate(opts?: { creative?: boolean }) {
@@ -226,6 +236,19 @@ export default function AiChefScreen() {
             </View>
           </Row>
         </Press>
+        {usePantryItems && pantry.length >= 4 ? (
+          <Row justify="space-between" style={{ marginTop: 2, marginBottom: 2 }}>
+            <Txt variant="caption" muted>{selectedPantryIds.length} of {pantry.length} selected</Txt>
+            <Press
+              onPress={surpriseMe}
+              haptic="selection"
+              style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 12, paddingVertical: 7, borderRadius: radius.pill, backgroundColor: accent["ai-chef"].tint }}
+            >
+              <Txt style={{ fontSize: 14 }}>🎲</Txt>
+              <Txt variant="label" weight="700" color={accent["ai-chef"].shadow}>Surprise me</Txt>
+            </Press>
+          </Row>
+        ) : null}
         {usePantryItems && pantry.length > 0 ? (
           <Row gap={8} wrap>
             {pantry.map((p) => {
@@ -249,9 +272,9 @@ export default function AiChefScreen() {
         <View style={{ gap: 6 }}>
           <Txt variant="label">Servings</Txt>
           <Row gap={8}>
-            <Press onPress={() => setServings((s) => Math.max(1, s - 1))} style={stepBtn}><Feather name="minus" size={16} color={colors.text} /></Press>
-            <Txt variant="heading" style={{ minWidth: 22, textAlign: "center" }}>{servings}</Txt>
-            <Press onPress={() => setServings((s) => Math.min(8, s + 1))} style={stepBtn}><Feather name="plus" size={16} color={colors.text} /></Press>
+            <Press onPress={() => setServings((s) => Math.max(1, s - 1))} style={stepBtn}><Feather name="minus" size={18} color={colors.text} /></Press>
+            <Txt variant="heading" style={{ minWidth: 26, textAlign: "center" }}>{servings}</Txt>
+            <Press onPress={() => setServings((s) => Math.min(8, s + 1))} style={stepBtn}><Feather name="plus" size={18} color={colors.text} /></Press>
           </Row>
         </View>
       </Row>
@@ -432,4 +455,4 @@ function ResultPanel({ option, saved, refining, onSave, onAddMissing, onLog, onC
   );
 }
 
-const stepBtn = { width: 36, height: 36, borderRadius: 18, backgroundColor: colors.oat, alignItems: "center" as const, justifyContent: "center" as const };
+const stepBtn = { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.oat, alignItems: "center" as const, justifyContent: "center" as const };

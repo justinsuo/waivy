@@ -184,17 +184,20 @@ export function Press({
   haptic = "light",
   scaleTo = 0.96,
   style,
+  containerStyle,
   children,
   disabled,
   ...rest
 }: PressableProps & {
   haptic?: HapticKind;
   scaleTo?: number;
+  /** Layout style for the animated wrapper (e.g. flex:1 so the item stretches). */
+  containerStyle?: any;
 }) {
   const s = useSharedValue(1);
   const aStyle = useAnimatedStyle(() => ({ transform: [{ scale: s.value }] }));
   return (
-    <Animated.View style={aStyle}>
+    <Animated.View style={[aStyle, containerStyle]}>
       <Pressable
         {...rest}
         disabled={disabled}
@@ -469,9 +472,11 @@ export function SegmentedControl<T extends string>({
             haptic="selection"
             scaleTo={0.98}
             onPress={() => onChange(o.value)}
+            containerStyle={{ flex: 1 }}
             style={[styles.segmentItem, active && styles.segmentItemActive]}
           >
             <Text
+              numberOfLines={1}
               style={{
                 fontWeight: "700",
                 fontSize: font.sizes.sm,

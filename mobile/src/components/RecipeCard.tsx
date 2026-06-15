@@ -54,6 +54,7 @@ export function RecipeCard({ view, width }: { view: RecipeView; width?: number }
         <Press
           haptic="selection"
           onPress={() => toggleSaved(view.id)}
+          containerStyle={styles.saveBtnPos}
           style={styles.saveBtn}
         >
           <Feather name="bookmark" size={16} color={saved ? colors.pink : colors.textMuted} />
@@ -111,13 +112,18 @@ const styles = StyleSheet.create({
     ...shadow.sm,
   },
   imageWrap: { position: "relative" },
-  saveBtn: {
+  // Positioning lives on the Press *wrapper* (containerStyle); the visual pill is
+  // the Pressable itself. (Putting position:absolute on the inner Pressable left
+  // the normal-flow wrapper below the image, dropping the button onto the title.)
+  saveBtnPos: {
     position: "absolute",
     top: 10,
     right: 10,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+  },
+  saveBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     backgroundColor: "rgba(255,255,255,0.92)",
     alignItems: "center",
     justifyContent: "center",

@@ -39,6 +39,7 @@ export default function NourishScreen() {
   const waterPct = water.entry.goalMl ? water.entry.mlConsumed / water.entry.goalMl : 0;
 
   return (
+    <View style={{ flex: 1 }}>
     <Screen>
       <Row justify="space-between" style={{ marginBottom: space.lg }}>
         <View><Txt variant="label">NOURISH · TODAY</Txt><Txt variant="title">{new Date().toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" })}</Txt></View>
@@ -88,14 +89,14 @@ export default function NourishScreen() {
         <View style={{ height: 10, borderRadius: 5, backgroundColor: colors.oat, overflow: "hidden" }}>
           <View style={{ width: `${Math.min(100, waterPct * 100)}%`, height: "100%", backgroundColor: colors.sky }} />
         </View>
-        <Row gap={8}>
+        <Row gap={10}>
           {[250, 500].map((ml) => (
-            <Press key={ml} onPress={() => { water.addMl(ml); tap(); }} style={{ flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: radius.md, backgroundColor: colors.skyTint }}>
-              <Txt variant="caption" weight="700" color={colors.skyShadow}>+{ml} ml</Txt>
+            <Press key={ml} onPress={() => { water.addMl(ml); tap(); }} style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 14, paddingHorizontal: 10, borderRadius: radius.md, backgroundColor: colors.skyTint }}>
+              <Txt variant="body" weight="800" color={colors.skyShadow}>+{ml} ml</Txt>
             </Press>
           ))}
-          <Press onPress={() => { water.addMl(-250); tap(); }} style={{ width: 44, alignItems: "center", paddingVertical: 9, borderRadius: radius.md, backgroundColor: colors.oat }}>
-            <Feather name="minus" size={16} color={colors.textMuted} />
+          <Press onPress={() => { water.addMl(-250); tap(); }} style={{ width: 56, alignItems: "center", justifyContent: "center", paddingVertical: 14, borderRadius: radius.md, backgroundColor: colors.oat }}>
+            <Feather name="minus" size={20} color={colors.textMuted} />
           </Press>
         </Row>
       </Card>
@@ -131,11 +132,15 @@ export default function NourishScreen() {
         })
       )}
 
+    </Screen>
+
+      {/* Floating log button — outside the scroll so it stays put. */}
       <Press onPress={() => router.push("/nourish/log-food")} haptic="light"
-        style={{ position: "absolute", right: space.lg, bottom: 30, width: 58, height: 58, borderRadius: 29, backgroundColor: colors.carrot, alignItems: "center", justifyContent: "center", shadowColor: colors.carrotShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
+        containerStyle={{ position: "absolute", right: space.lg, bottom: 30 }}
+        style={{ width: 58, height: 58, borderRadius: 29, backgroundColor: colors.carrot, alignItems: "center", justifyContent: "center", shadowColor: colors.carrotShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
         <Feather name="plus" size={26} color="#fff" />
       </Press>
-    </Screen>
+    </View>
   );
 }
 
