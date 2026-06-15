@@ -18,6 +18,8 @@
 export const SYNCED_KEYS: readonly string[] = [
   // Core app
   "srf:pantry",
+  "srf:pantries",
+  "srf:active-pantry",
   "srf:grocery",
   "srf:saved",
   "srf:custom-recipes",

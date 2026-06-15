@@ -10,7 +10,6 @@ import { colors, space, radius, accent } from "~/theme";
 import { usePantry, useGrocery } from "~/lib/stores/app";
 import { logFood } from "~/lib/stores/nourish";
 import { ingredientLabel } from "~/lib/recipes";
-import { surprisePantrySelection } from "~/lib/surprise";
 import {
   aiBackendAvailable, aiMode, instantOptions, generateAiOnly, dbCloseness, refine, persistGenerated, generateAndStoreImage,
   type GeneratedRecipe, type GeneratedRecipeOptionSet,
@@ -64,15 +63,6 @@ export default function AiChefScreen() {
     next.has(val) ? next.delete(val) : next.add(val);
     setter(next);
     tap();
-  }
-
-  // Generate from a coherent "surprise" basket — a one-off pick that does NOT
-  // touch the pantry the user curated (their selection/chips stay exactly as-is).
-  function surpriseMe() {
-    const keep = surprisePantrySelection(pantry.map((p) => p.ingredientId));
-    tap();
-    toast("Surprising you 🎲", "reward");
-    generate({ pantryOverride: keep });
   }
 
   const selectAllPantry = () => { setExcluded(new Set()); tap(); };
@@ -257,16 +247,6 @@ export default function AiChefScreen() {
                 <Feather name={chipsOpen ? "chevron-up" : "chevron-down"} size={14} color={colors.basilShadow} />
               </Press>
             </Row>
-
-            {/* Surprise me — a separate one-off pick; never edits your pantry. */}
-            <Press
-              onPress={surpriseMe}
-              haptic="selection"
-              style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 7, paddingVertical: 11, borderRadius: radius.md, backgroundColor: accent["ai-chef"].tint }}
-            >
-              <Txt style={{ fontSize: 16 }}>🎲</Txt>
-              <Txt variant="label" weight="800" color={accent["ai-chef"].shadow}>Surprise me — cook from a random mix</Txt>
-            </Press>
 
             {chipsOpen ? (
               <>

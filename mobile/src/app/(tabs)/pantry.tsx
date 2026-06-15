@@ -9,6 +9,7 @@ import { Txt, Row, Card, Button, Field, Press, Badge, IconButton, EmptyState, Se
 import { toast } from "~/components/Toast";
 import { colors, space, radius, accent } from "~/theme";
 import { usePantry } from "~/lib/stores/app";
+import { usePantries } from "~/lib/stores/pantries";
 import { ingredientLabel, categoryLabel } from "~/lib/recipes";
 import { parsePantryText, aiAvailable } from "~/lib/ai";
 import { tap } from "~/lib/haptics";
@@ -22,12 +23,17 @@ const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "cann
 
 export default function PantryScreen() {
   const { pantry, add, addMany, remove, toggleUseSoon, clear, has } = usePantry();
+  const { pantries, active, switchTo, createPantry, rename, removePantry, shuffle } = usePantries();
   const [addOpen, setAddOpen] = useState(false);
   const [pasteOpen, setPasteOpen] = useState(false);
   const [presetConfirm, setPresetConfirm] = useState<(typeof PANTRY_PRESETS)[number] | null>(null);
+  const [manageOpen, setManageOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [nameDraft, setNameDraft] = useState("");
   const [query, setQuery] = useState("");
   const [pasteText, setPasteText] = useState("");
   const [busy, setBusy] = useState(false);
+  const activePantry = pantries.find((p) => p.id === active);
 
   const grouped = useMemo(() => {
     const g: Record<string, typeof pantry> = {};
@@ -102,13 +108,44 @@ export default function PantryScreen() {
   return (
     <View style={{ flex: 1 }}>
     <Screen>
-      <Row justify="space-between" style={{ marginBottom: space.lg }}>
-        <View>
-          <Txt variant="label">YOUR PANTRY</Txt>
-          <Txt variant="title">{pantry.length} ingredient{pantry.length === 1 ? "" : "s"}</Txt>
+      <Row justify="space-between" align="flex-start" style={{ marginBottom: space.md }}>
+        <View style={{ flex: 1 }}>
+          <Txt variant="label">PANTRY</Txt>
+          <Txt variant="title" numberOfLines={1}>{activePantry?.name ?? "My Pantry"}</Txt>
+          <Txt variant="caption" muted>{pantry.length} ingredient{pantry.length === 1 ? "" : "s"}</Txt>
         </View>
         {pantry.length > 0 ? <IconButton icon="trash-2" onPress={() => { clear(); tap(); toast("Pantry cleared", "info"); }} bg={colors.tomatoTint} color={colors.tomato} /> : null}
       </Row>
+
+      {/* Pantry switcher — multiple saved pantries; tap the active one to manage. */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ gap: 8, paddingRight: space.lg }}
+        style={{ marginHorizontal: -space.lg, paddingHorizontal: space.lg, marginBottom: space.md }}>
+        {pantries.map((p) => {
+          const on = p.id === active;
+          return (
+            <Press key={p.id} haptic="selection"
+              onPress={() => { if (on) { setNameDraft(p.name); setManageOpen(true); } else switchTo(p.id); }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, backgroundColor: on ? colors.basil : colors.surface, borderWidth: 1.5, borderColor: on ? colors.basil : colors.border }}>
+              <Feather name="archive" size={13} color={on ? "#fff" : colors.textMuted} />
+              <Txt variant="label" weight="700" color={on ? "#fff" : colors.text}>{p.name}</Txt>
+              {on ? <Feather name="more-horizontal" size={14} color="rgba(255,255,255,0.85)" /> : null}
+            </Press>
+          );
+        })}
+        <Press haptic="selection" onPress={() => { setNameDraft(""); setCreateOpen(true); }}
+          style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, backgroundColor: colors.basilSoft }}>
+          <Feather name="plus" size={14} color={colors.basilShadow} />
+          <Txt variant="label" weight="700" color={colors.basilShadow}>New</Txt>
+        </Press>
+      </ScrollView>
+
+      {/* Shuffle the active pantry into a fresh, meaningful random one. */}
+      <Press haptic="selection" onPress={() => { shuffle(); tap(); toast("Shuffled a fresh random pantry 🎲", "reward"); }}
+        style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 7, paddingVertical: 12, borderRadius: radius.md, backgroundColor: accent["ai-chef"].tint, marginBottom: space.lg }}>
+        <Txt style={{ fontSize: 16 }}>🎲</Txt>
+        <Txt variant="label" weight="800" color={accent["ai-chef"].shadow}>Surprise me — shuffle a random pantry</Txt>
+      </Press>
 
       {readyCount > 0 ? (
         <Press onPress={() => router.push("/recipes")}>
@@ -204,6 +241,33 @@ export default function PantryScreen() {
               onPress={() => { addMany(presetConfirm.ingredientIds); toast(`Loaded ${presetConfirm.name}`, "reward"); setPresetConfirm(null); }} />
           </View>
         ) : null}
+      </Sheet>
+
+      <Sheet visible={createOpen} onClose={() => { setCreateOpen(false); setNameDraft(""); }} title="New pantry" scroll={false}>
+        <View style={{ gap: space.md }}>
+          <Txt variant="caption" muted>Keep separate pantries for different situations — e.g. "Vegan week", "Camping", "Mom's house".</Txt>
+          <Field placeholder="Pantry name…" value={nameDraft} onChangeText={setNameDraft} autoFocus />
+          <Row gap={10}>
+            <Button title="Create empty" icon="plus" accentKey="pantry" variant="accent" style={{ flex: 1 }}
+              onPress={() => { createPantry(nameDraft); toast("New pantry created", "reward"); setCreateOpen(false); setNameDraft(""); }} />
+            <Button title="Copy current" icon="copy" variant="secondary" style={{ flex: 1 }}
+              onPress={() => { createPantry(nameDraft, true); toast("Pantry duplicated", "reward"); setCreateOpen(false); setNameDraft(""); }} />
+          </Row>
+        </View>
+      </Sheet>
+
+      <Sheet visible={manageOpen} onClose={() => setManageOpen(false)} title="Manage pantry" scroll={false}>
+        <View style={{ gap: space.md }}>
+          <Field label="Name" value={nameDraft} onChangeText={setNameDraft} />
+          <Button title="Save name" icon="check" accentKey="pantry" variant="accent" full
+            onPress={() => { rename(active, nameDraft); toast("Renamed", "success"); setManageOpen(false); }} />
+          {pantries.length > 1 ? (
+            <Button title="Delete this pantry" icon="trash-2" variant="danger" full
+              onPress={() => { removePantry(active); toast("Pantry deleted", "info"); setManageOpen(false); }} />
+          ) : (
+            <Txt variant="caption" muted center>This is your only pantry — create another to delete this one.</Txt>
+          )}
+        </View>
       </Sheet>
     </Screen>
 

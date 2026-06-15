@@ -8,6 +8,30 @@
  * a sensible recipe.
  */
 import { INGREDIENT_MAP } from "@/data/ingredients";
+import { CATALOG_RECIPES } from "@/data/recipes";
+
+// The most-used ingredients across the recipe catalog are exactly the everyday
+// ones — a data-driven "common" pool, bucketed by category. Computed once.
+let _commonByCat: Record<string, string[]> | null = null;
+function commonByCategory(): Record<string, string[]> {
+  if (_commonByCat) return _commonByCat;
+  const freq = new Map<string, number>();
+  for (const r of CATALOG_RECIPES) {
+    for (const ing of r.ingredients) freq.set(ing.ingredientId, (freq.get(ing.ingredientId) ?? 0) + 1);
+  }
+  const ranked = [...freq.entries()]
+    .filter(([id]) => INGREDIENT_MAP.has(id))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 140)
+    .map(([id]) => id);
+  const byCat: Record<string, string[]> = {};
+  for (const id of ranked) {
+    const cat = INGREDIENT_MAP.get(id)?.category ?? "other";
+    (byCat[cat] ||= []).push(id);
+  }
+  _commonByCat = byCat;
+  return byCat;
+}
 
 // Alliums/aromatics live in the "vegetable" category but act as a flavor base.
 const AROMATIC_IDS = new Set([
@@ -32,6 +56,32 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+/**
+ * Build a fresh, *meaningful* random pantry from the curated catalog — a
+ * realistic, cookable stock rather than random noise: everyday staples plus a
+ * spread across proteins, grains, vegetables, condiments, dairy, canned goods,
+ * a fruit and a frozen item. ~16-22 ingredients. Each shuffle differs.
+ */
+export function randomMeaningfulPantry(): string[] {
+  const byCat = commonByCategory();
+  const out = new Set<string>();
+  // Staples almost any kitchen has.
+  ["oil", "olive-oil", "evoo", "salt", "pepper", "garlic", "onion", "butter", "eggs"].forEach((id) => {
+    if (INGREDIENT_MAP.has(id)) out.add(id);
+  });
+  const pick = (cat: string, n: number) => shuffle(byCat[cat] ?? []).slice(0, n).forEach((id) => out.add(id));
+  pick("protein", 3);
+  pick("grain", 3);
+  pick("vegetable", 5);
+  pick("condiment", 3);
+  pick("dairy", 2);
+  pick("canned", 2);
+  pick("spice", 2);
+  pick("fruit", 1);
+  pick("frozen", 1);
+  return [...out];
 }
 
 /**
