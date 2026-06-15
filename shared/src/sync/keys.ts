@@ -21,6 +21,7 @@ export const SYNCED_KEYS: readonly string[] = [
   "srf:pantries",
   "srf:active-pantry",
   "srf:grocery",
+  "srf:recipe-cart",
   "srf:saved",
   "srf:custom-recipes",
   "srf:custom-ingredients",

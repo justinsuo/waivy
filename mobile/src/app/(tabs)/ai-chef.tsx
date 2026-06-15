@@ -8,6 +8,7 @@ import { Txt, Row, Card, Button, Field, Press, Badge, Pill, SegmentedControl, Em
 import { toast } from "~/components/Toast";
 import { colors, space, radius, accent } from "~/theme";
 import { usePantry, useGrocery } from "~/lib/stores/app";
+import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logFood } from "~/lib/stores/nourish";
 import { ingredientLabel } from "~/lib/recipes";
 import {
@@ -33,6 +34,7 @@ function mealSlotNow(): MealSlot {
 export default function AiChefScreen() {
   const { pantry } = usePantry();
   const grocery = useGrocery();
+  const { addGenerated } = useRecipeCart();
 
   const [usePantryItems, setUsePantryItems] = useState(true);
   const [excluded, setExcluded] = useState<Set<string>>(new Set());
@@ -330,9 +332,9 @@ export default function AiChefScreen() {
               const fromDb = o.id.startsWith("local");
               return (
                 <Press key={o.id} onPress={() => setSelectedId(o.id)} scaleTo={0.97}
-                  style={{ width: 172, padding: 13, borderRadius: radius.lg, borderWidth: 2, borderColor: o.id === selectedId ? accent[OPTION_TONE[o.optionLabel] ?? "ai-chef"].main : colors.border, backgroundColor: o.id === selectedId ? accent[OPTION_TONE[o.optionLabel] ?? "ai-chef"].tint : colors.surface, gap: 8 }}>
+                  style={{ width: 172, padding: 13, borderRadius: radius.lg, borderWidth: 2, borderColor: o.id === selectedId ? accent[(OPTION_TONE[o.optionLabel] ?? "ai-chef") as keyof typeof accent].main : colors.border, backgroundColor: o.id === selectedId ? accent[(OPTION_TONE[o.optionLabel] ?? "ai-chef") as keyof typeof accent].tint : colors.surface, gap: 8 }}>
                   <Row justify="space-between" align="center">
-                    <Badge label={o.optionLabel.replace("-", " ")} tone={OPTION_TONE[o.optionLabel] ?? "ai-chef"} />
+                    <Badge label={o.optionLabel.replace("-", " ")} tone={(OPTION_TONE[o.optionLabel] ?? "ai-chef") as keyof typeof accent} />
                     <View style={{ flexDirection: "row", alignItems: "center", gap: 3 }}>
                       <Feather name={fromDb ? "zap" : "feather"} size={12} color={fromDb ? accent.cheap.shadow : accent["ai-chef"].shadow} />
                       <Txt style={{ fontSize: 10.5, fontWeight: "700", color: fromDb ? accent.cheap.shadow : accent["ai-chef"].shadow }}>{fromDb ? "instant" : "AI"}</Txt>
@@ -358,6 +360,7 @@ export default function AiChefScreen() {
             refining={refiningId === selectedOption.id}
             onSave={() => onSave(selectedOption.id, selectedOption.recipe)}
             onAddMissing={() => onAddMissing(selectedOption.recipe)}
+            onAddToPlan={() => { if (addGenerated(selectedOption.recipe, savedIds[selectedOption.id])) toast(`Added ${selectedOption.recipe.name} to grocery plan 🛒`, "reward"); else router.push("/grocery"); }}
             onLog={() => onLog(selectedOption.recipe)}
             onCook={() => { const id = ensureSaved(selectedOption.id, selectedOption.recipe); router.push(`/cook/${id}`); }}
             onAsk={() => { const id = ensureSaved(selectedOption.id, selectedOption.recipe); router.push(`/chat?recipe=${id}`); }}
@@ -388,7 +391,7 @@ export default function AiChefScreen() {
   );
 }
 
-function ResultPanel({ option, saved, refining, onSave, onAddMissing, onLog, onCook, onAsk, onRefine }: any) {
+function ResultPanel({ option, saved, refining, onSave, onAddMissing, onAddToPlan, onLog, onCook, onAsk, onRefine }: any) {
   const r: GeneratedRecipe = option.recipe;
   const n = r.estimatedNutrition;
   return (
@@ -458,7 +461,7 @@ function ResultPanel({ option, saved, refining, onSave, onAddMissing, onLog, onC
         <Button title={saved ? "Saved ✓" : "Save"} icon="bookmark" variant="secondary" style={{ flex: 1 }} onPress={onSave} />
       </Row>
       <Row gap={10}>
-        <Button title="Add to grocery" icon="shopping-cart" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onAddMissing} />
+        <Button title="Add to grocery plan" icon="shopping-cart" accentKey="grocery" variant="accent" size="sm" style={{ flex: 1 }} onPress={onAddToPlan} />
         <Button title="Log to Nourish" icon="heart" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onLog} />
       </Row>
       <Button title="Ask AI Chef about this recipe" icon="message-circle" variant="ghost" full onPress={onAsk} />

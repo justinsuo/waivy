@@ -7,8 +7,10 @@ import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { colors, radius, space, shadow, accent, font } from "~/theme";
 import { Txt, Row, Press, Badge } from "./ui";
+import { toast } from "./Toast";
 import type { RecipeView } from "~/lib/recipes";
 import { useSaved } from "~/lib/stores/app";
+import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 
 function money(n: number) {
   return `$${(n || 0).toFixed(2)}`;
@@ -42,7 +44,9 @@ function ImageOrGradient({ view, height }: { view: RecipeView; height: number })
 
 export function RecipeCard({ view, width }: { view: RecipeView; width?: number }) {
   const { isSaved, toggleSaved } = useSaved();
+  const { has: inCart, addById } = useRecipeCart();
   const saved = isSaved(view.id);
+  const planned = inCart(view.id);
   return (
     <Press
       onPress={() => router.push(`/recipe/${encodeURIComponent(view.id)}`)}
@@ -58,6 +62,14 @@ export function RecipeCard({ view, width }: { view: RecipeView; width?: number }
           style={styles.saveBtn}
         >
           <Feather name="bookmark" size={16} color={saved ? colors.pink : colors.textMuted} />
+        </Press>
+        <Press
+          haptic="selection"
+          onPress={() => { if (!planned && addById(view.id)) toast(`Added ${view.name} to grocery plan 🛒`, "reward"); }}
+          containerStyle={styles.cartBtnPos}
+          style={styles.saveBtn}
+        >
+          <Feather name={planned ? "check" : "shopping-cart"} size={15} color={planned ? accent.grocery.shadow : colors.textMuted} />
         </Press>
         <View style={styles.costBadge}>
           <Txt variant="caption" color="#fff" weight="700">{money(view.costPerServing)}/serving</Txt>
@@ -119,6 +131,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
+  },
+  cartBtnPos: {
+    position: "absolute",
+    top: 10,
+    right: 52,
   },
   saveBtn: {
     width: 34,

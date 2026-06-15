@@ -12,6 +12,7 @@ import { toast } from "~/components/Toast";
 import { colors, space, radius, accent } from "~/theme";
 import { getSeedRecipe, getCustom, getAnyView, ingredientLabel } from "~/lib/recipes";
 import { useSaved, usePantry, useGrocery } from "~/lib/stores/app";
+import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logRecipeAsMeal } from "~/lib/actions";
 import {
   calculateCostPerServing, ingredientCostBreakdown, pantrySetFromItems, calculateMissingIngredients,
@@ -28,6 +29,7 @@ export default function RecipeDetailScreen() {
   const { isSaved, toggleSaved } = useSaved();
   const { pantry } = usePantry();
   const grocery = useGrocery();
+  const { has: inCart, addById: addToCart } = useRecipeCart();
   const targets = useTargets();
 
   const seed = getSeedRecipe(recipeId);
@@ -85,6 +87,7 @@ export default function RecipeDetailScreen() {
   const a = accent[view.accent];
 
   function addToGrocery() {
+    if (!data) return;
     if (seed && data.missingIds.length) grocery.addRecipeMissing(seed, data.missingIds);
     else if (data.missingNames.length) grocery.addNames(data.missingNames, recipeId);
     else { toast("You have everything already 🎉", "info"); return; }
@@ -128,6 +131,9 @@ export default function RecipeDetailScreen() {
             <Button title="Start cooking" icon="play" accentKey="ai-chef" variant="accent" style={{ flex: 1 }} onPress={() => router.push(`/cook/${encodeURIComponent(recipeId)}`)} />
             <Button title="Ask AI Chef" icon="message-circle" variant="secondary" style={{ flex: 1 }} onPress={() => router.push(`/chat?recipe=${encodeURIComponent(recipeId)}`)} />
           </Row>
+          <Button title={inCart(recipeId) ? "In your grocery plan ✓" : "Add to grocery plan"} icon="shopping-cart"
+            accentKey="grocery" variant={inCart(recipeId) ? "secondary" : "accent"} full
+            onPress={() => { if (!inCart(recipeId) && addToCart(recipeId)) toast(`Added ${data.name} to grocery plan 🛒`, "reward"); else router.push("/grocery"); }} />
 
           {/* Ingredients */}
           <Card>

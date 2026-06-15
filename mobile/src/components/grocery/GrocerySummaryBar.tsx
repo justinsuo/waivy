@@ -1,0 +1,28 @@
+/** Compact stats for the Recipe Cart: recipes, ingredients to buy, est. cost, protein. */
+import React from "react";
+import { View } from "react-native";
+import { Card, Row, Txt } from "~/components/ui";
+import { colors, space } from "~/theme";
+import type { CartSummary } from "~/lib/grocery/recipeIngredientAggregator";
+
+function Stat({ value, label, tone }: { value: string | number; label: string; tone?: string }) {
+  return (
+    <View style={{ alignItems: "center", flex: 1 }}>
+      <Txt variant="title" color={tone}>{value}</Txt>
+      <Txt variant="caption" muted numberOfLines={1}>{label}</Txt>
+    </View>
+  );
+}
+
+export function GrocerySummaryBar({ summary }: { summary: CartSummary }) {
+  return (
+    <Card style={{ marginBottom: space.lg }}>
+      <Row justify="space-between" align="flex-start">
+        <Stat value={summary.recipes} label="recipes" />
+        <Stat value={summary.ingredientsNeeded} label="to buy" tone={summary.ingredientsNeeded ? colors.tomato : colors.basilShadow} />
+        <Stat value={`$${summary.totalCost.toFixed(2)}`} label="est. cost" tone={colors.basilShadow} />
+        {summary.protein ? <Stat value={`${summary.protein}g`} label="protein" /> : null}
+      </Row>
+    </Card>
+  );
+}

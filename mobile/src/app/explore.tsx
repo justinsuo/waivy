@@ -29,6 +29,7 @@ import { toast } from "~/components/Toast";
 import { tap, selection, success } from "~/lib/haptics";
 import { colors, space, radius, shadow } from "~/theme";
 import { useGrocery } from "~/lib/stores/app";
+import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logRecipeAsMeal } from "~/lib/actions";
 
 import { GLOBAL_RECIPES } from "@/data/globalRecipes";
@@ -133,6 +134,7 @@ function GridCard({ recipe, onOpen, width }: { recipe: ExternalRecipe; onOpen: (
 export default function ExploreScreen() {
   const { width } = useWindowDimensions();
   const grocery = useGrocery();
+  const { addExternal } = useRecipeCart();
 
   const [query, setQuery] = useState("");
   const [cuisine, setCuisine] = useState<string | null>(null);
@@ -318,6 +320,7 @@ export default function ExploreScreen() {
         recipe={active}
         onClose={() => setActive(null)}
         onAddGrocery={addToGrocery}
+        onAddPlan={(r) => { toast(addExternal(r) ? `Added ${r.title} to grocery plan 🛒` : `${r.title} is already in your plan`, "reward"); }}
         onLog={logToNourish}
       />
     </Screen>
@@ -328,11 +331,13 @@ function RecipeSheet({
   recipe,
   onClose,
   onAddGrocery,
+  onAddPlan,
   onLog,
 }: {
   recipe: ExternalRecipe | null;
   onClose: () => void;
   onAddGrocery: (r: ExternalRecipe) => void;
+  onAddPlan: (r: ExternalRecipe) => void;
   onLog: (r: ExternalRecipe) => void;
 }) {
   // Keep the rendered recipe stable through the close animation.
@@ -411,12 +416,12 @@ function RecipeSheet({
 
           <View style={{ gap: space.sm, marginTop: space.sm }}>
             <Button
-              title="Add to grocery"
+              title="Add to grocery plan"
               icon="shopping-cart"
               variant="accent"
               accentKey="grocery"
               full
-              onPress={() => onAddGrocery(r)}
+              onPress={() => onAddPlan(r)}
             />
             <Button
               title="Log to Nourish"

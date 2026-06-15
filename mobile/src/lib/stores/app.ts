@@ -83,7 +83,7 @@ export function groceryItemName(id: string): string {
 }
 
 /** Resolve a free-text ingredient name to a catalog id, or a stable ff: id. */
-function resolveGroceryId(name: string): string {
+export function resolveGroceryId(name: string): string {
   const matched = matchIngredientByName(name);
   if (matched) return matched;
   const slug = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -141,6 +141,22 @@ export function useGrocery() {
     storage.setGrocery(Array.from(map.values()));
   }, []);
 
+  /** Promote planned ingredients (from the Recipe Cart) onto the shopping list. */
+  const addPlanned = useCallback((items: { ingredientId: string; quantity?: number; recipes?: string[] }[]) => {
+    const cur = storage.getGrocery();
+    const map = new Map(cur.map((g) => [g.ingredientId, g]));
+    for (const it of items) {
+      const ex = map.get(it.ingredientId);
+      if (ex) {
+        const recipeIds = Array.from(new Set([...ex.recipeIds, ...(it.recipes ?? [])]));
+        map.set(it.ingredientId, { ...ex, recipeIds });
+      } else {
+        map.set(it.ingredientId, { ingredientId: it.ingredientId, quantity: it.quantity ?? 1, recipeIds: it.recipes ?? [], checked: false });
+      }
+    }
+    storage.setGrocery(Array.from(map.values()));
+  }, []);
+
   const toggleChecked = useCallback((id: string) => {
     storage.setGrocery(storage.getGrocery().map((g) => (g.ingredientId === id ? { ...g, checked: !g.checked } : g)));
   }, []);
@@ -155,5 +171,5 @@ export function useGrocery() {
 
   const clear = useCallback(() => storage.setGrocery([]), []);
 
-  return { grocery, addStaple, addRecipeMissing, addNames, toggleChecked, remove, clearChecked, clear };
+  return { grocery, addStaple, addRecipeMissing, addNames, addPlanned, toggleChecked, remove, clearChecked, clear };
 }
