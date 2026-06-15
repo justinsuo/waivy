@@ -43,10 +43,6 @@ export function ScreenshotDriver() {
       for (const [path, name] of tour) {
         if (cancelled) return;
         try {
-          // Reset to home first so any open modal/full-screen route is dismissed
-          // before we navigate to the next screen (prevents shot bleed).
-          router.replace("/" as never);
-          await delay(250);
           router.replace(path as never);
         } catch {
           // a route that won't replace cleanly — skip it
