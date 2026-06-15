@@ -47,7 +47,7 @@ function resolveId(name: string): string | null {
 
 function parseQty(measure: string, unit: string): number {
   if (!measure) return 1;
-  let s = measure.toLowerCase().trim();
+  const s = measure.toLowerCase().trim();
   // sum simple "a b/c" like "2 1/2"
   let total = 0; let found = false;
   for (const tok of s.split(/\s+/)) {
@@ -63,7 +63,7 @@ function parseQty(measure: string, unit: string): number {
   // engine's per-unit macros; cups/each/etc. use the number directly.
   const kg = /\bkg\b/.test(s) ? 1000 : 1;
   const isMass = /\b(g|gram|grams|ml|kg|l|litre)\b/.test(s) || total > 30;
-  let q = isMass ? (total * kg) / 28 : total;
+  const q = isMass ? (total * kg) / 28 : total;
   return Math.max(0.5, Math.min(20, q));
 }
 

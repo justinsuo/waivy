@@ -154,7 +154,7 @@ async function bravePhoto(title: string): Promise<string | null> {
     );
     if (res.status === 429) { await sleep(10_000); return bravePhoto(title); }
     if (!res.ok) return null;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const data = (await res.json()) as any;
     for (const r of (data.results ?? [])) {
       const url: string = r.properties?.url ?? r.thumbnail?.original ?? "";
@@ -177,7 +177,7 @@ async function googlePhoto(title: string): Promise<string | null> {
     const res = await fetch(`https://www.googleapis.com/customsearch/v1?${params}`,
       { headers: { "User-Agent": USER_AGENT } });
     if (!res.ok) return null;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const data = (await res.json()) as any;
     for (const item of (data.items ?? [])) {
       const url: string = item.link ?? "";
@@ -199,10 +199,10 @@ async function wikimediaPhoto(query: string): Promise<string | null> {
     const res = await fetch(`${COMMONS_API}?${params}`, { headers: { "User-Agent": USER_AGENT } });
     if (res.status === 429) { await sleep(5_000); return wikimediaPhoto(query); }
     if (!res.ok) return null;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const data = (await res.json()) as any;
     for (const page of Object.values(data.query?.pages ?? {})) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       const p = page as any;
       if (!isGoodUrl(p.title ?? "")) continue;
       const thumb: string = p.imageinfo?.[0]?.thumburl ?? "";
@@ -220,7 +220,7 @@ async function mealdbPhoto(title: string): Promise<string | null> {
       const res = await fetch(`${MEALDB_API}/search.php?s=${encodeURIComponent(q)}`,
         { headers: { "User-Agent": USER_AGENT } });
       if (!res.ok) { await sleep(200); continue; }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       const data = (await res.json()) as any;
       const thumb: string = data.meals?.[0]?.strMealThumb ?? "";
       if (thumb) return thumb;

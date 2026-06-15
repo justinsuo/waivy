@@ -71,14 +71,14 @@ check("cheap ranking returns results", cheap.length > 0, `${cheap.length} under 
 check("cheap results sorted cheapest-first", cheap.length < 2 || cheap[0].costPerServing <= cheap[cheap.length - 1].costPerServing, `top = $${cheap[0]?.costPerServing.toFixed(2)}`);
 
 const pantry = [ { ingredientId: "eggs" }, { ingredientId: "rice" }, { ingredientId: "onion" }, { ingredientId: "garlic" }, { ingredientId: "soy-sauce" } ];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const ranked = rankPantryRecipes(pantry as any);
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const groups = groupPantryResults(ranked, pantry as any);
 check("pantry matching returns recipes", ranked.length > 0, `${ranked.length} matched, ${groups.canMakeNow.length} cook-now`);
 
 console.log("\n── Storage round-trip (what persists/syncs) ──");
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 storage.setPantry(pantry as any);
 check("pantry persists & reads back", storage.getPantry().length === 5);
 const r = emptyUserRecipe();
