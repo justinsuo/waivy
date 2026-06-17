@@ -722,6 +722,12 @@ NEXT_PUBLIC_EDAMAM_BASE_URL=https://api.edamam.com
 | `NEXT_PUBLIC_EDAMAM_APP_ID` | when source = edamam | `/explore` |  |
 | `NEXT_PUBLIC_EDAMAM_APP_KEY` | when source = edamam | `/explore` |  |
 | `NEXT_PUBLIC_EDAMAM_BASE_URL` | when source = edamam | `/explore` |  |
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | optional | Accounts (`/login`, `/account`, nav) | **Public web config — not a secret.** All six gate the auth UI together; unset = sign-in hidden, app runs fully local. |
+| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | optional | Accounts | e.g. `your-project.firebaseapp.com` |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | optional | Accounts |  |
+| `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET` | optional | Accounts |  |
+| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | optional | Accounts |  |
+| `NEXT_PUBLIC_FIREBASE_APP_ID` | optional | Accounts |  |
 | `GH_PAGES` | build-only | `next.config.ts` | When `true`, applies `basePath: "/waivy"` for GitHub Pages. |
 | `OPENAI_API_KEY` | worker secret | Worker | **Server-side only.** Never put in `.env.local`. |
 | `ALLOWED_ORIGIN` | worker secret | Worker CORS | Set to your frontend origin to lock down. |
@@ -729,6 +735,32 @@ NEXT_PUBLIC_EDAMAM_BASE_URL=https://api.edamam.com
 | `DEFAULT_IMAGE_MODEL` / `IMAGE_MODEL_FALLBACK` | worker var | Worker | Override image model. Defaults to `dall-e-3` / `gpt-image-1`. |
 
 `.env.local.example` documents these.
+
+### Accounts (Firebase Authentication) — manual setup
+
+Auth is **optional**: with no Firebase env, the sign-in UI is hidden and Waivy
+works exactly as before (all data local). To turn it on:
+
+1. **Firebase console** → create/select a project → **Authentication** → get
+   started. Enable the **Google** provider (set a support email) and the
+   **Email/Password** provider.
+2. **Authentication → Settings → Authorized domains** → add `localhost` and
+   `justinsuo.github.io`. (The allowlist is by host; the `/waivy` basePath
+   doesn't affect it.)
+3. **Project settings → Your apps → Web app** → copy the config into
+   `.env.local` as the six `NEXT_PUBLIC_FIREBASE_*` vars above.
+4. **Deploy:** add the same six as repo secrets so the build inlines them —
+   `gh secret set FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`,
+   `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID`
+   (already wired into `.github/workflows/deploy.yml`).
+
+Notes: Google sign-in uses `signInWithPopup` (works on GitHub Pages without a
+server, unlike redirect which breaks under third-party-cookie blocking). The
+`apiKey` is **public by design** — never a secret. This scope is **auth only**:
+it adds account identity, not cloud data — `srf:*` data stays device-local and
+sign-out does **not** wipe it. `user.uid` is exposed for a future sync layer;
+the moment cloud data is added, Firestore/RTDB **Security Rules become
+mandatory** (none needed yet — no cloud data).
 
 ---
 
