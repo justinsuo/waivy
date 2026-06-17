@@ -29,12 +29,31 @@ const cfg = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
 };
 
-/** Optional Google OAuth iOS client id (enables the Google button). */
+/**
+ * Google OAuth client ids (enable the Google button on iOS).
+ *  - WEB client id: the OAuth "web" client Firebase auto-created when Google
+ *    sign-in was turned on. It's the *audience* of the id_token, so Firebase
+ *    will only accept the credential when this is set — it's the critical one.
+ *  - IOS client id: the OAuth "iOS" client (bundle com.waivy.app) used by the
+ *    native Google Sign-In SDK. Its reversed form is also the URL scheme in
+ *    app.json (the @react-native-google-signin config plugin).
+ * Both are public (they ship inside the app binary), so they live in env.
+ */
+export const GOOGLE_WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID || "";
 export const GOOGLE_IOS_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID || "";
 
 /** True only when the Firebase config is present — gates all auth UI. */
 export function isAuthEnabled(): boolean {
   return !!(cfg.apiKey && cfg.authDomain && cfg.projectId && cfg.appId);
+}
+
+/**
+ * True when both Google OAuth client ids are present. Gates the Google button —
+ * stays false (button hidden) until the env is set and the app is rebuilt with
+ * the iOS URL scheme, so there's never a dead button.
+ */
+export function isGoogleSignInConfigured(): boolean {
+  return !!(GOOGLE_WEB_CLIENT_ID && GOOGLE_IOS_CLIENT_ID);
 }
 
 let cachedAuth: Auth | null = null;

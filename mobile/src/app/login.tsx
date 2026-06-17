@@ -60,10 +60,12 @@ export default function LoginScreen() {
     setError(null);
     setBusy(true);
     try {
-      await signInWithGoogle();
+      const ok = await signInWithGoogle();
+      // On success keep the form frozen — the useEffect on `user` dismisses the
+      // screen. Only re-enable if the user cancelled the Google sheet.
+      if (!ok) setBusy(false);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Google sign-in failed.");
-    } finally {
       setBusy(false);
     }
   }

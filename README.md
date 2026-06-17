@@ -771,14 +771,37 @@ Firebase project via **`EXPO_PUBLIC_FIREBASE_*`** (set them in
 
 - **Email/password works out of the box** — pure-JS Firebase Auth, no native
   rebuild needed.
-- **Google sign-in is a follow-up** on mobile: it needs an **iOS OAuth client
-  id** (`EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`), the reversed-client-id URL scheme in
-  `app.json`, and a dev-client rebuild (it uses native modules). `expo-auth-session`
-  + `expo-crypto` are already installed for this; until it's wired, the Google
-  button is hidden and `signInWithGoogle` is a no-op. To enable: add an iOS app
-  in the Firebase console, copy the client id + reversed-client URL scheme, set
-  the env var, re-add the `expo-auth-session` Google flow in
-  `mobile/src/lib/firebase/auth.tsx`, then `npx expo run:ios`.
+- **Google sign-in** uses [`@react-native-google-signin/google-signin`](https://github.com/react-native-google-signin/google-signin)
+  (native Google SDK) to fetch an id_token, then exchanges it for a Firebase
+  credential (`GoogleAuthProvider.credential` → `signInWithCredential`). It's
+  wired in `mobile/src/lib/firebase/auth.tsx` and **gated** by
+  `isGoogleSignInConfigured()` — the button only appears once both OAuth client
+  ids are set, so there's never a dead button. The native module is loaded with a
+  lazy `require()` inside `signInWithGoogle` (its TurboModule spec throws at
+  module-load if the native side isn't compiled), so email/password keeps working
+  on any build.
+
+  **To turn it on (one-time):**
+  1. **Firebase console → Project settings → Add app → iOS.** Bundle id
+     `com.waivy.app`. Register, **download `GoogleService-Info.plist`**. It
+     contains `CLIENT_ID` (the iOS OAuth client id) and `REVERSED_CLIENT_ID`
+     (the URL scheme).
+  2. **Authentication → Sign-in method → Google → Web SDK configuration** — copy
+     the **Web client id** (Firebase auto-created it when Google was enabled).
+  3. Set in `mobile/.env.local`:
+     ```bash
+     EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=<web client id>.apps.googleusercontent.com
+     EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=<CLIENT_ID from the plist>
+     ```
+  4. Add the config plugin to `mobile/app.json` `plugins`:
+     ```json
+     ["@react-native-google-signin/google-signin", { "iosUrlScheme": "<REVERSED_CLIENT_ID>" }]
+     ```
+  5. Rebuild the dev client: `cd mobile && npx expo run:ios` (a config-plugin,
+     `mobile/plugins/withGoogleSignInModularHeaders.js`, marks the GoogleSignin
+     pod deps with `:modular_headers => true` so the static-library build links).
+     The "Continue with Google" button now appears on the login screen (which the
+     Settings → Account and Account screens route to).
 
 ---
 
