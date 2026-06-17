@@ -6,6 +6,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { bootstrap } from "~/lib/bootstrap";
+import { AuthProvider } from "~/lib/firebase/auth";
 import { ToastHost } from "~/components/Toast";
 import { CelebrationHost } from "~/components/Celebration";
 import { ScreenshotDriver } from "~/components/ScreenshotDriver";
@@ -35,6 +36,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <StatusBar style="dark" />
+        <AuthProvider>
         <Stack
           screenOptions={{
             headerShown: false,
@@ -43,6 +45,8 @@ export default function RootLayout() {
           }}
         >
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="login" options={{ presentation: "modal", animation: "slide_from_bottom" }} />
+          <Stack.Screen name="account" />
           <Stack.Screen name="recipe/[id]" />
           <Stack.Screen name="cook/[id]" options={{ animation: "fade", gestureEnabled: false }} />
           <Stack.Screen name="chat" options={{ presentation: "modal", animation: "slide_from_bottom" }} />
@@ -61,6 +65,7 @@ export default function RootLayout() {
         <ToastHost />
         <CelebrationHost />
         <ScreenshotDriver />
+        </AuthProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

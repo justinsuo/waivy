@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Share, View } from "react-native";
+import { Share, View, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { Screen, ScreenHeader } from "~/components/Screen";
+import { useAuth } from "~/lib/firebase/auth";
 import { Txt, Row, Card, Button, Field, Press, Badge, Divider, Pill } from "~/components/ui";
 import { toast } from "~/components/Toast";
 import { colors, space, radius, accent } from "~/theme";
@@ -23,6 +25,7 @@ function saveSetting(key: string, value: string) {
 
 export default function SettingsScreen() {
   const sync = useSync();
+  const auth = useAuth();
   useKVRaw(SETTINGS_KEYS.workerUrl);
   useKVRaw(SETTINGS_KEYS.anthropic); // re-render the AI status badge live when a key is pasted
   useKVRaw("srf:location");
@@ -38,6 +41,49 @@ export default function SettingsScreen() {
   return (
     <Screen>
       <ScreenHeader title="Settings" back />
+
+      {auth.enabled ? (
+        <>
+          <Txt variant="label" style={{ marginBottom: 8 }}>ACCOUNT</Txt>
+          <Card style={{ gap: 12, marginBottom: space.xl }}>
+            {auth.loading ? (
+              <Txt variant="caption" muted>Checking sign-in…</Txt>
+            ) : auth.user ? (
+              <Press onPress={() => router.push("/account")} haptic="selection">
+                <Row gap={12} align="center">
+                  {auth.user.photoURL ? (
+                    <Image source={{ uri: auth.user.photoURL }} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: colors.oat }} />
+                  ) : (
+                    <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: colors.basilSoft, alignItems: "center", justifyContent: "center" }}>
+                      <Txt variant="subheading" color={colors.basilShadow}>
+                        {(auth.user.displayName || auth.user.email || "?").trim().slice(0, 2).toUpperCase()}
+                      </Txt>
+                    </View>
+                  )}
+                  <View style={{ flex: 1 }}>
+                    <Txt variant="subheading" numberOfLines={1}>{auth.user.displayName || "Your account"}</Txt>
+                    <Txt variant="caption" muted numberOfLines={1}>{auth.user.email}</Txt>
+                  </View>
+                  <Feather name="chevron-right" size={20} color={colors.textFaint} />
+                </Row>
+              </Press>
+            ) : (
+              <>
+                <Row gap={10}>
+                  <View style={{ width: 40, height: 40, borderRadius: 14, backgroundColor: accent.grocery.tint, alignItems: "center", justifyContent: "center" }}>
+                    <Feather name="user" size={18} color={accent.grocery.shadow} />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Txt variant="subheading">Sign in</Txt>
+                    <Txt variant="caption" muted>Create an account or sign in to Waivy.</Txt>
+                  </View>
+                </Row>
+                <Button title="Sign in or create account" icon="log-in" accentKey="grocery" variant="accent" full onPress={() => router.push("/login")} />
+              </>
+            )}
+          </Card>
+        </>
+      ) : null}
 
       <Txt variant="label" style={{ marginBottom: 8 }}>CROSS-DEVICE SYNC</Txt>
       <Card style={{ gap: 14 }}>

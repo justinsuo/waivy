@@ -762,6 +762,24 @@ sign-out does **not** wipe it. `user.uid` is exposed for a future sync layer;
 the moment cloud data is added, Firestore/RTDB **Security Rules become
 mandatory** (none needed yet — no cloud data).
 
+#### Accounts on the iPhone app (`mobile/`)
+
+The Expo app has its own auth (`mobile/src/lib/firebase/`, screens `login.tsx` /
+`account.tsx`, plus an Account section in mobile Settings). It uses the same
+Firebase project via **`EXPO_PUBLIC_FIREBASE_*`** (set them in
+`mobile/.env.local`, or EAS build secrets), with **AsyncStorage** persistence.
+
+- **Email/password works out of the box** — pure-JS Firebase Auth, no native
+  rebuild needed.
+- **Google sign-in is a follow-up** on mobile: it needs an **iOS OAuth client
+  id** (`EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`), the reversed-client-id URL scheme in
+  `app.json`, and a dev-client rebuild (it uses native modules). `expo-auth-session`
+  + `expo-crypto` are already installed for this; until it's wired, the Google
+  button is hidden and `signInWithGoogle` is a no-op. To enable: add an iOS app
+  in the Firebase console, copy the client id + reversed-client URL scheme, set
+  the env var, re-add the `expo-auth-session` Google flow in
+  `mobile/src/lib/firebase/auth.tsx`, then `npx expo run:ios`.
+
 ---
 
 ## Scripts
