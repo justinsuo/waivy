@@ -141,4 +141,5 @@ A new key is only needed if the current one is invalid, scoped to the wrong proj
 - `gpt-4o` (the high-quality default for multi-option generation) is ~10× the price but produces noticeably better creative recipes.
 - Image route uses `dall-e-3` by default — works on every org without verification. ~$0.04 per image.
 - `gpt-image-1` (fallback) requires org verification; better photorealism when available.
+- TTS route (`POST /tts`) uses `gpt-4o-mini-tts` and is billed per input **character** (~$0.015 per 1K characters of text, roughly $0.001 for a typical cooking step). It's the premium guided-cooking voice; the app caches audio client-side and falls back to the browser's free Web Speech voice when the worker is unreachable, so spend only accrues when a user actively cooks with premium voice on. Swap to `tts-1` (cheaper) via `TTS_MODEL` if needed.
 - Set a monthly spend cap at https://platform.openai.com/account/limits.

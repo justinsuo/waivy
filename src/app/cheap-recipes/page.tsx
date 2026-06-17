@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Coins, Filter, RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useSettings } from "@/lib/settings/SettingsStore";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
@@ -12,6 +13,7 @@ import {
   isAirFryerRecipe,
   isMicrowaveRecipe,
   isNoStoveRecipe,
+  profileEquipment,
 } from "@/lib/equipmentFilters";
 import { Microwave, Wind, Home } from "lucide-react";
 import { LocationSetup } from "@/components/pricing/LocationSetup";
@@ -81,6 +83,25 @@ const PAGE_SIZE = 12;
 export default function CheapRecipesPage() {
   const [filters, setFilters] = useState<CheapFilters>(DEFAULTS);
   const [sort, setSort] = useState<Sort>("best");
+
+  // Prefill budget / servings / diet / equipment from the user's saved
+  // cooking defaults once settings hydrate (Settings → Cooking defaults).
+  const { settings, ready: settingsReady } = useSettings();
+  const defaultsAppliedRef = useRef(false);
+  useEffect(() => {
+    if (!settingsReady || defaultsAppliedRef.current) return;
+    defaultsAppliedRef.current = true;
+    const c = settings.cooking;
+    setFilters((f) => ({
+      ...f,
+      budgetPerServing: c.budgetPerServing,
+      servings: c.servings,
+      diet: c.diet,
+      equipment:
+        c.equipmentProfile === "any" ? [] : profileEquipment(c.equipmentProfile),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settingsReady]);
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [scope, setScope] = useState<SearchScope>("all");

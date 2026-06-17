@@ -16,8 +16,10 @@ import {
   Menu,
   X,
   Apple,
+  Settings,
 } from "lucide-react";
 import { clsx } from "clsx";
+import { AccountMenu } from "@/components/auth/AccountMenu";
 
 // Primary nav items shown in the desktop bar (core actions).
 // Secondary items are reachable via the "More" menu (hamburger) at all sizes.
@@ -32,6 +34,7 @@ const links = [
   { href: "/explore", label: "Explore", icon: Globe, primary: false },
   { href: "/grocery-list", label: "Grocery List", icon: ShoppingBasket, primary: false },
   { href: "/saved", label: "Saved", icon: Bookmark, primary: false },
+  { href: "/settings", label: "Settings", icon: Settings, primary: false },
   { href: "/about", label: "About", icon: Info, primary: false },
 ];
 
@@ -137,18 +140,21 @@ export function Navbar() {
             })}
         </nav>
 
-        {/* "More" / hamburger — visible at all sizes; opens the full drawer */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-nav-drawer"
-          aria-label={open ? "Close menu" : "More navigation"}
-          className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-          <span className="hidden text-sm md:inline">{open ? "" : "More"}</span>
-        </button>
+        {/* Right group: account control + "More" drawer */}
+        <div className="flex items-center gap-1.5">
+          <AccountMenu />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav-drawer"
+            aria-label={open ? "Close menu" : "More navigation"}
+            className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+            <span className="hidden text-sm md:inline">{open ? "" : "More"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}

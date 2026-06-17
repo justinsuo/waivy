@@ -10,6 +10,7 @@
  *   POST /ingredients/match     — semantic recipe ↔ pantry match check
  *   POST /generate-recipe       — AI Chef recipe generator
  *   POST /generate-recipe-image — auto image generation for recipes
+ *   POST /tts                   — premium text-to-speech (OpenAI speech → audio)
  *   GET  /health                — health check
  */
 
@@ -30,6 +31,10 @@ interface Env {
   PRICING_MODEL?: string;
   INGREDIENT_MODEL?: string;
   WEB_RECIPE_MODEL?: string;
+  // Text-to-speech (premium guided-cooking voice). Optional — when the worker
+  // is reachable and OPENAI_API_KEY is set, /tts serves OpenAI speech audio.
+  TTS_MODEL?: string;
+  TTS_DEFAULT_VOICE?: string;
 }
 
 // Real, currently-available OpenAI models (June 2026 lineup).
@@ -85,6 +90,136 @@ function imageModelFor(env: Env): { primary: string; fallback: string } {
     primary: env.DEFAULT_IMAGE_MODEL || IMAGE_MODEL_DEFAULT,
     fallback: env.IMAGE_MODEL_FALLBACK || IMAGE_MODEL_FALLBACK_DEFAULT,
   };
+}
+
+// ---------- Text-to-speech (OpenAI /v1/audio/speech) ----------
+// gpt-4o-mini-tts is OpenAI's current steerable speech model (June 2026); it
+// accepts an `instructions` field to shape tone. tts-1 / tts-1-hd are the
+// older, cheaper-but-not-steerable models. nova is a warm, clear default.
+const TTS_MODEL_DEFAULT = "gpt-4o-mini-tts";
+const TTS_VOICE_DEFAULT = "nova";
+// The model caps around ~2k input chars; the frontend chunks longer text into
+// sentence-sized requests, but we guard here too so one request can't blow up.
+const TTS_MAX_CHARS = 2000;
+// Valid voices for the speech endpoint. tts-1/tts-1-hd support a subset; the
+// steerable gpt-4o-mini-tts supports all of these.
+const TTS_VOICES = new Set([
+  "alloy", "ash", "ballad", "coral", "echo", "fable",
+  "nova", "onyx", "sage", "shimmer", "verse", "marin", "cedar",
+]);
+// response_format → Content-Type for the binary audio reply.
+const TTS_FORMAT_CT: Record<string, string> = {
+  mp3: "audio/mpeg",
+  opus: "audio/ogg",
+  aac: "audio/aac",
+  flac: "audio/flac",
+  wav: "audio/wav",
+  pcm: "audio/pcm",
+};
+
+function ttsModelFor(env: Env): string {
+  return env.TTS_MODEL || TTS_MODEL_DEFAULT;
+}
+function ttsVoiceFor(env: Env): string {
+  return env.TTS_DEFAULT_VOICE || TTS_VOICE_DEFAULT;
+}
+
+async function handleTts(req: Request, env: Env): Promise<Response> {
+  const origin = req.headers.get("Origin");
+  if (!env.OPENAI_API_KEY) {
+    return jsonResponse({ error: "TTS not configured" }, 503, env, origin);
+  }
+
+  let body: {
+    text?: string;
+    voice?: string;
+    model?: string;
+    format?: string;
+    speed?: number;
+    instructions?: string;
+  };
+  try {
+    body = await req.json();
+  } catch {
+    return jsonResponse({ error: "Invalid JSON" }, 400, env, origin);
+  }
+
+  const text = String(body.text ?? "").trim();
+  if (!text) {
+    return jsonResponse({ error: "Missing text" }, 400, env, origin);
+  }
+  if (text.length > TTS_MAX_CHARS) {
+    return jsonResponse(
+      { error: `Text too long (max ${TTS_MAX_CHARS} characters)` },
+      413,
+      env,
+      origin,
+    );
+  }
+
+  const format = String(body.format ?? "mp3").toLowerCase();
+  const responseFormat = format in TTS_FORMAT_CT ? format : "mp3";
+  const contentType = TTS_FORMAT_CT[responseFormat];
+  const voice =
+    body.voice && TTS_VOICES.has(body.voice) ? body.voice : ttsVoiceFor(env);
+  const model = body.model || ttsModelFor(env);
+
+  const payload: Record<string, unknown> = {
+    model,
+    voice,
+    input: text,
+    response_format: responseFormat,
+  };
+  // OpenAI speed range is 0.25–4.0.
+  if (typeof body.speed === "number" && body.speed >= 0.25 && body.speed <= 4) {
+    payload.speed = body.speed;
+  }
+  // `instructions` (tone steering) only applies to the gpt-4o-* speech models.
+  if (body.instructions && model.includes("gpt-4o")) {
+    payload.instructions = String(body.instructions).slice(0, 600);
+  }
+
+  let res: Response;
+  try {
+    res = await fetch("https://api.openai.com/v1/audio/speech", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    return jsonResponse(
+      { error: e instanceof Error ? e.message : "TTS request failed" },
+      502,
+      env,
+      origin,
+    );
+  }
+
+  if (!res.ok) {
+    const detail = await res.text();
+    console.log(`[tts] error model=${model} voice=${voice} status=${res.status}`);
+    return jsonResponse(
+      { error: `OpenAI ${res.status}: ${detail.slice(0, 200)}` },
+      res.status,
+      env,
+      origin,
+    );
+  }
+
+  console.log(`[tts] ok model=${model} voice=${voice} chars=${text.length}`);
+  const audio = await res.arrayBuffer();
+  return new Response(audio, {
+    status: 200,
+    headers: {
+      "Content-Type": contentType,
+      // Same (text, voice, speed) → same audio, so let the browser/CDN cache it.
+      "Cache-Control": "public, max-age=86400",
+      ...corsHeaders(env, origin),
+    },
+  });
 }
 
 // ---------- CORS ----------
@@ -1637,6 +1772,8 @@ export default {
             webRecipe: modelFor(env, "webRecipe"),
             image: img.primary,
             imageFallback: img.fallback,
+            tts: ttsModelFor(env),
+            ttsVoice: ttsVoiceFor(env),
           },
           envOverrides: {
             DEFAULT_TEXT_MODEL: !!env.DEFAULT_TEXT_MODEL,
@@ -1648,6 +1785,8 @@ export default {
             PRICING_MODEL: !!env.PRICING_MODEL,
             INGREDIENT_MODEL: !!env.INGREDIENT_MODEL,
             WEB_RECIPE_MODEL: !!env.WEB_RECIPE_MODEL,
+            TTS_MODEL: !!env.TTS_MODEL,
+            TTS_DEFAULT_VOICE: !!env.TTS_DEFAULT_VOICE,
           },
           warnings: [],
           note: "All model defaults are current OpenAI model aliases (June 2026). OpenAI resolves aliases like 'gpt-4o-mini' to the latest dated snapshot — that's why the dashboard shows a dated form. The worker is not pinned to any snapshot.",
@@ -1679,6 +1818,8 @@ export default {
         return handleGenerateRecipeOptions(req, env);
       case "/generate-recipe-image":
         return handleGenerateImage(req, env);
+      case "/tts":
+        return handleTts(req, env);
       case "/recipes/import-url":
         return handleImportUrl(req, env);
       case "/recipes/import-text":

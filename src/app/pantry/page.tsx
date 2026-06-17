@@ -119,9 +119,16 @@ export default function PantryPage() {
     const customMap = new Map(
       getCustomIngredients().map((c) => [c.id, c]),
     );
+    // A pantry can hold an alias *and* its canonical (e.g. "kosher-salt" +
+    // "salt"), both of which INGREDIENT_MAP resolves to the same ingredient.
+    // Track resolved ids so the same chip isn't rendered twice (which also
+    // tripped a duplicate-React-key warning).
+    const seen = new Set<string>();
     for (const item of pantry) {
       const ing = INGREDIENT_MAP.get(item.ingredientId);
       if (ing) {
+        if (seen.has(ing.id)) continue;
+        seen.add(ing.id);
         const list = map.get(ing.category) ?? [];
         list.push(ing);
         map.set(ing.category, list);
@@ -131,6 +138,8 @@ export default function PantryPage() {
       // doesn't need to change.
       const c = customMap.get(item.ingredientId);
       if (!c) continue;
+      if (seen.has(c.id)) continue;
+      seen.add(c.id);
       const proxy: Ingredient = {
         id: c.id,
         name: c.displayName || c.canonicalName,

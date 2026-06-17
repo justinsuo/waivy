@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Nunito, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppStoreProvider } from "@/lib/AppStore";
+import { SettingsProvider } from "@/lib/settings/SettingsStore";
+import { AuthProvider } from "@/lib/firebase/AuthProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { BottomNav } from "@/components/layout/BottomNav";
-import { Chatbot } from "@/components/layout/Chatbot";
+import { ChatbotGate } from "@/components/layout/ChatbotGate";
 import { ToastProvider } from "@/components/ui/Toast";
 import { AppMotionProvider } from "@/components/motion/AppMotionProvider";
 
@@ -48,18 +50,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} ${inter.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-[#FFF8ED] text-[#241A12] antialiased">
-        <AppStoreProvider>
-          <ToastProvider>
-            <AppMotionProvider>
-              <Navbar />
-              <main className="app-main mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
-                {children}
-              </main>
-              <BottomNav />
-              <Chatbot />
-            </AppMotionProvider>
-          </ToastProvider>
-        </AppStoreProvider>
+        <AuthProvider>
+          <SettingsProvider>
+            <AppStoreProvider>
+              <ToastProvider>
+                <AppMotionProvider>
+                  <Navbar />
+                  <main className="app-main mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
+                    {children}
+                  </main>
+                  <BottomNav />
+                  <ChatbotGate />
+                </AppMotionProvider>
+              </ToastProvider>
+            </AppStoreProvider>
+          </SettingsProvider>
+        </AuthProvider>
       </body>
     </html>
   );

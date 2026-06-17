@@ -52,6 +52,8 @@ import { PantrySmartAdd } from "@/components/pantry/PantrySmartAdd";
 import { Refrigerator } from "lucide-react";
 import { calculateNutritionForFreeForm } from "@/lib/nutritionEngine";
 import { generateRecipeQuick, generateRecipeQuickOptions, isAiEnabled } from "@/lib/anthropic";
+import { useSettings } from "@/lib/settings/SettingsStore";
+import { profileEquipment } from "@/lib/equipmentFilters";
 import { useToast } from "@/components/ui/Toast";
 import { AIChefSteppedLoader } from "@/components/ai/AIChefSteppedLoader";
 import { RecipeStatsRow } from "@/components/recipe/RecipeStatsRow";
@@ -248,6 +250,28 @@ function AIChefPage() {
   const [timeLimit, setTimeLimit] = useState("any");
   const [creativity, setCreativity] = useState<"practical" | "balanced" | "creative">("balanced");
   const [autoImage, setAutoImage] = useState(true);
+
+  // Prefill filters from the user's saved cooking defaults (Settings →
+  // Cooking defaults), and seed the auto-image toggle from the AI image
+  // setting, once settings have hydrated. Runs once so it never clobbers
+  // edits the user makes afterward.
+  const { settings, ready: settingsReady } = useSettings();
+  const defaultsAppliedRef = useRef(false);
+  useEffect(() => {
+    if (!settingsReady || defaultsAppliedRef.current) return;
+    defaultsAppliedRef.current = true;
+    const c = settings.cooking;
+    setBudget(c.budgetPerServing);
+    setServings(c.servings);
+    setDiet(c.diet);
+    setEquipment(
+      c.equipmentProfile === "any"
+        ? [...EQUIPMENT_OPTS]
+        : profileEquipment(c.equipmentProfile),
+    );
+    setAutoImage(settings.ai.recipeImages && settings.ai.enabled);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settingsReady]);
 
   const [loading, setLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);

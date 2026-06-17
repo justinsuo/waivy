@@ -58,7 +58,11 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
       if (c) return { id: c.id, name: c.name, useSoon: !!p.useSoon, custom: true };
       return null;
     })
-    .filter((x): x is NonNullable<typeof x> => !!x);
+    .filter((x): x is NonNullable<typeof x> => !!x)
+    // A pantry can hold an alias *and* its canonical (e.g. "kosher-salt" +
+    // "salt"), which INGREDIENT_MAP resolves to the same ingredient. Dedupe by
+    // the resolved id so we don't render two identical chips / duplicate keys.
+    .filter((it, i, arr) => arr.findIndex((x) => x.id === it.id) === i);
 
   if (!hydrated) {
     return (

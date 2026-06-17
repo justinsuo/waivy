@@ -18,6 +18,10 @@ import {
   ArrowRight,
   Timer,
   Play,
+  Pause,
+  RotateCcw,
+  Volume2,
+  VolumeX,
   CheckCircle2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
@@ -26,6 +30,10 @@ import { Card } from "@/components/ui/Card";
 import { ThreeDButton } from "@/components/ui/ThreeDButton";
 import { useToast } from "@/components/ui/Toast";
 import { hapticSuccess } from "@/lib/haptics";
+import { useStepVoice } from "@/components/recipe/useStepVoice";
+import { AI_VOICE_DISCLOSURE } from "@/lib/tts";
+import { useSettings } from "@/lib/settings/SettingsStore";
+import { playTimerEndSound } from "@/lib/sound";
 import { bumpProgress, milestoneMessage } from "@/lib/userProgress";
 import { RecipeImage } from "@/components/recipe/RecipeImage";
 import { CookingMethodCard } from "@/components/recipe/CookingMethodCard";
@@ -598,6 +606,14 @@ function CookingMode({
   const total = recipe.steps.length;
   const isLast = step === total - 1;
 
+  // Voice guidance — auto-reads each step (+ cues) on advance, prefetches the
+  // next step, and stops on exit. Honors the global Voice settings.
+  const voice = useStepVoice(recipe, step, total);
+  const exit = () => {
+    voice.stop();
+    onExit();
+  };
+
   // A custom recipe authored in /recipe-studio/new can legitimately
   // have zero steps. Guarding here keeps cooking mode from rendering
   // an undefined heading + a width:Infinity% progress bar.
@@ -610,7 +626,7 @@ function CookingMode({
         <p className="text-sm text-stone-500">
           Add steps in Recipe Studio, or come back to the recipe page.
         </p>
-        <Button onClick={onExit} variant="primary">
+        <Button onClick={exit} variant="primary">
           Back to recipe
         </Button>
       </div>
@@ -627,7 +643,7 @@ function CookingMode({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <button
-          onClick={onExit}
+          onClick={exit}
           className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
         >
           <ArrowLeft size={14} /> Back to recipe
@@ -671,6 +687,69 @@ function CookingMode({
         )}
       </div>
 
+      {/* Voice controls — only when a speech tier exists on this device */}
+      {voice.available && (
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {voice.enabled ? (
+            <>
+              <button
+                type="button"
+                onClick={() =>
+                  voice.speaking || voice.paused ? voice.togglePause() : voice.replay()
+                }
+                aria-label={
+                  voice.speaking && !voice.paused
+                    ? "Pause voice"
+                    : voice.paused
+                      ? "Resume voice"
+                      : "Read this step aloud"
+                }
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                {voice.speaking && !voice.paused ? <Pause size={16} /> : <Play size={16} />}
+                {voice.speaking && !voice.paused
+                  ? "Pause"
+                  : voice.paused
+                    ? "Resume"
+                    : "Read step"}
+              </button>
+              <button
+                type="button"
+                onClick={voice.replay}
+                aria-label="Replay this step"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-stone-200 bg-white px-4 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <RotateCcw size={15} /> Replay
+              </button>
+              <button
+                type="button"
+                onClick={() => voice.setEnabled(false)}
+                aria-label="Turn voice guidance off"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-500 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <Volume2 size={16} />
+              </button>
+              {voice.usingPremium && (
+                <span
+                  className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2.5 py-1 text-[11px] font-semibold text-violet-700"
+                  title={`${AI_VOICE_DISCLOSURE} — synthesized, not a real person`}
+                >
+                  <Sparkles size={11} /> AI voice
+                </span>
+              )}
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={() => voice.setEnabled(true)}
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-stone-200 bg-white px-5 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            >
+              <VolumeX size={16} /> Voice off — tap to read steps aloud
+            </button>
+          )}
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <Button
           variant="outline"
@@ -684,7 +763,7 @@ function CookingMode({
           Previous
         </Button>
         {isLast ? (
-          <Button onClick={onExit} leftIcon={<CheckCircle2 size={16} />} variant="primary">
+          <Button onClick={exit} leftIcon={<CheckCircle2 size={16} />} variant="primary">
             Done cooking
           </Button>
         ) : (
@@ -710,14 +789,21 @@ function CountdownTimer({
   seconds: number;
   onDone: () => void;
 }) {
+  const { settings } = useSettings();
   const [remaining, setRemaining] = useState(seconds);
   // Keep the latest onDone in a ref so the tick effect doesn't re-run
   // whenever the parent passes a fresh inline arrow.
   const onDoneRef = useRef(onDone);
   const firedRef = useRef(false);
+  // Same idea for the timer-sound preference so the countdown effect stays
+  // keyed only on `remaining`.
+  const timerSoundRef = useRef(settings.feedback.timerSound);
   useEffect(() => {
     onDoneRef.current = onDone;
   }, [onDone]);
+  useEffect(() => {
+    timerSoundRef.current = settings.feedback.timerSound;
+  }, [settings.feedback.timerSound]);
   // If the parent reuses this timer for a new step (seconds changes),
   // restart the countdown cleanly.
   useEffect(() => {
@@ -729,6 +815,7 @@ function CountdownTimer({
     if (remaining <= 0) {
       if (!firedRef.current) {
         firedRef.current = true;
+        if (timerSoundRef.current) playTimerEndSound();
         onDoneRef.current();
       }
       return;

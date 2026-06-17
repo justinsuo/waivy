@@ -50,3 +50,10 @@ WEB_RECIPE_MODEL = "gpt-4o-mini"
 # those accounts dall-e-2 is the safe last-resort fallback.
 DEFAULT_IMAGE_MODEL = "gpt-image-1"
 IMAGE_MODEL_FALLBACK = "dall-e-2"
+
+# Text-to-speech (premium guided-cooking voice via POST /tts). gpt-4o-mini-tts
+# is OpenAI's current steerable speech model and accepts an `instructions`
+# field to shape tone. Swap to tts-1 (cheaper) or tts-1-hd (higher fidelity)
+# here without code changes. nova is warm + clear; alloy is a neutral default.
+TTS_MODEL = "gpt-4o-mini-tts"
+TTS_DEFAULT_VOICE = "nova"

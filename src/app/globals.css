@@ -55,6 +55,27 @@ body {
   color: var(--foreground);
 }
 
+/* ─── Appearance settings (driven by SettingsProvider via <html> data-attrs) ──
+   Text size scales the root font-size; because the UI is built in rem/em units
+   this enlarges the whole app proportionally. */
+:root[data-text-size="large"] {
+  font-size: 112.5%;
+}
+:root[data-text-size="xlarge"] {
+  font-size: 125%;
+}
+
+/* Manual "Reduce motion" toggle — complements the prefers-reduced-motion media
+   query below for users whose OS setting isn't enabled but who still want calm. */
+:root[data-reduce-motion="true"] *,
+:root[data-reduce-motion="true"] *::before,
+:root[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
