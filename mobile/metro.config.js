@@ -21,4 +21,22 @@ config.resolver.nodeModulesPaths = [
   path.resolve(repoRoot, "node_modules"),
 ];
 
+// Force a SINGLE copy of React. Shared web files live in ../src and import
+// "react"; Metro would otherwise resolve that to the *web* app's
+// node_modules/react (a second React instance whose hooks dispatcher is null
+// under the RN renderer) — which crashed shared hooks like useFoodSearch with
+// "Cannot read property 'useState' of null". Resolving "react"/"react/*" as if
+// from the mobile project guarantees the one React the renderer initialized.
+const baseResolveRequest = config.resolver.resolveRequest;
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName === "react" || moduleName.startsWith("react/")) {
+    return context.resolveRequest(
+      { ...context, originModulePath: path.join(projectRoot, "metro.config.js") },
+      moduleName,
+      platform,
+    );
+  }
+  return (baseResolveRequest ?? context.resolveRequest)(context, moduleName, platform);
+};
+
 module.exports = config;

@@ -73,9 +73,15 @@ export default function PantryScreen() {
     let added = 0;
     const parsed = await parsePantryText(text);
     const ids: string[] = [];
-    if (parsed && parsed.ingredients?.length) {
-      for (const ing of parsed.ingredients) {
-        const id = matchIngredientByName(ing.canonicalName || ing.displayName);
+    if (parsed && parsed.recognized?.length) {
+      // AI mapped each item to a catalog id already; fall back to name match.
+      for (const ing of parsed.recognized) {
+        const id = ing.id || matchIngredientByName(ing.name);
+        if (id) ids.push(id);
+      }
+      // Try to salvage anything the AI saw but couldn't map to a catalog id.
+      for (const label of parsed.unrecognized ?? []) {
+        const id = matchIngredientByName(label);
         if (id) ids.push(id);
       }
     } else {

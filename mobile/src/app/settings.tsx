@@ -24,6 +24,7 @@ function saveSetting(key: string, value: string) {
 export default function SettingsScreen() {
   const sync = useSync();
   useKVRaw(SETTINGS_KEYS.workerUrl);
+  useKVRaw(SETTINGS_KEYS.anthropic); // re-render the AI status badge live when a key is pasted
   useKVRaw("srf:location");
   useKVRaw("srf:haptics-enabled");
 

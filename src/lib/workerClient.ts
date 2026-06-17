@@ -7,20 +7,23 @@
 
 import { config } from "@shared/platform/config";
 
-const WORKER_URL = config().workerUrl;
-
+// Read fresh each call — mobile sets the Worker URL at RUNTIME via Settings
+// (setConfig). A module-load snapshot (`const WORKER_URL = …`) captured the
+// empty boot value, so a pasted Worker URL never took effect (same bug as the
+// Anthropic key).
 export function isWorkerConfigured(): boolean {
-  return WORKER_URL.length > 0;
+  return config().workerUrl.length > 0;
 }
 
 export function workerUrl(): string {
-  return WORKER_URL;
+  return config().workerUrl;
 }
 
 const WORKER_TIMEOUT_MS = 60_000;
 
 async function postJson<T>(path: string, body: unknown): Promise<T> {
-  if (!WORKER_URL) {
+  const base = config().workerUrl;
+  if (!base) {
     throw new Error(
       "AI is not configured. NEXT_PUBLIC_WORKER_URL is not set on this build.",
     );
@@ -32,7 +35,7 @@ async function postJson<T>(path: string, body: unknown): Promise<T> {
   const timeout = setTimeout(() => controller.abort(), WORKER_TIMEOUT_MS);
   let res: Response;
   try {
-    res = await fetch(`${WORKER_URL}${path}`, {
+    res = await fetch(`${base}${path}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

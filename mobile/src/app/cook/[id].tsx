@@ -114,10 +114,13 @@ export default function GuidedCookScreen() {
         <IconButton icon="volume-2" onPress={() => { tap(); Speech.stop(); Speech.speak(step.instruction); }} bg={colors.surface} />
       </Row>
 
-      {/* Step card */}
-      <Animated.View key={i} entering={FadeIn.duration(220)} exiting={FadeOut.duration(120)} style={{ flex: 1, paddingHorizontal: space.lg, justifyContent: "center" }}>
-        {step.title ? <Txt variant="label" color={colors.basilShadow} style={{ marginBottom: 10 }}>{step.title.toUpperCase()}</Txt> : null}
-        <Txt style={{ fontSize: 26, fontWeight: "700", color: colors.text, lineHeight: 36 }}>{step.instruction}</Txt>
+      {/* Step card — top-aligned with generous breathing room so short steps
+          read from a natural position instead of floating dead-center. */}
+      <Animated.View key={i} entering={FadeIn.duration(220)} exiting={FadeOut.duration(120)} style={{ flex: 1, paddingHorizontal: space.lg, paddingTop: space.xl, justifyContent: "flex-start" }}>
+        <Txt variant="caption" weight="800" color={accent["ai-chef"].shadow} style={{ marginBottom: 8, letterSpacing: 0.5 }}>
+          {step.title ? step.title.toUpperCase() : `STEP ${i + 1}`}
+        </Txt>
+        <Txt style={{ fontSize: 28, fontWeight: "800", color: colors.text, lineHeight: 38 }}>{step.instruction}</Txt>
 
         {step.timerMinutes ? (
           <View style={{ marginTop: space.xxl, alignItems: "center", gap: 14 }}>

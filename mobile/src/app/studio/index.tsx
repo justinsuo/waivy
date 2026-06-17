@@ -50,6 +50,10 @@ function ActionCard({
         onPress();
       }}
       scaleTo={0.97}
+      // flex must live on the Press *wrapper* (containerStyle); the inner
+      // Pressable then fills it. Putting flex on `style` alone left the
+      // normal-flow wrapper content-sized, overflowing the two-card row.
+      containerStyle={{ flex: 1 }}
       style={[
         {
           flex: 1,
@@ -142,7 +146,7 @@ export default function StudioHub() {
         back
       />
 
-      <Row gap={space.md} align="stretch">
+      <Row gap={space.md} align="stretch" style={{ width: "100%" }}>
         <ActionCard
           tone="ai-chef"
           icon="zap"

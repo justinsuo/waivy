@@ -59,6 +59,7 @@ function toLocalInput(input: ChefInput): LocalChefInput {
     equipment: input.equipment,
     dietTags: input.dietTags,
     notes: [input.cravingText, input.aiNotes].filter(Boolean).join(". "),
+    surprise: input.creativityLevel === "creative",
   };
 }
 

@@ -11,6 +11,9 @@ import { usePantry, useGrocery } from "~/lib/stores/app";
 import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logFood } from "~/lib/stores/nourish";
 import { ingredientLabel } from "~/lib/recipes";
+import { Image } from "expo-image";
+import { localImageUri } from "~/lib/imageStore";
+import { isWorkerConfigured } from "@/lib/workerClient";
 import {
   aiBackendAvailable, aiMode, instantOptions, generateAiOnly, dbCloseness, refine, persistGenerated, generateAndStoreImage,
   type GeneratedRecipe, type GeneratedRecipeOptionSet,
@@ -51,6 +54,8 @@ export default function AiChefScreen() {
   const [results, setResults] = useState<GeneratedRecipeOptionSet | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [savedIds, setSavedIds] = useState<Record<string, string>>({});
+  const [optionImages, setOptionImages] = useState<Record<string, string>>({});
+  const [imageLoadingId, setImageLoadingId] = useState<string | null>(null);
   const [setupOpen, setSetupOpen] = useState(false);
   const [chipsOpen, setChipsOpen] = useState(false); // pantry list collapsed by default
 
@@ -71,11 +76,9 @@ export default function AiChefScreen() {
   const deselectAllPantry = () => { setExcluded(new Set(pantry.map((p) => p.ingredientId))); tap(); };
 
   async function generate(opts?: { creative?: boolean; pantryOverride?: string[] }) {
-    // The "creative" path needs a real AI backend (writes original recipes).
-    if (opts?.creative && !aiBackendAvailable()) {
-      setSetupOpen(true);
-      return;
-    }
+    // "Surprise me" always produces a recipe — an AI original when a key is
+    // set, otherwise a creative surprise pick from the on-device catalog.
+    // (No more dead-end "Open Settings" prompt.)
     // A surprise pass uses its own basket; everything else uses the user's
     // selected pantry (untouched by Surprise me).
     const pantryIds = opts?.pantryOverride ?? selectedPantryIds;
@@ -150,13 +153,39 @@ export default function AiChefScreen() {
     if (savedIds[optId]) return savedIds[optId];
     const custom = persistGenerated(recipe);
     setSavedIds((s) => ({ ...s, [optId]: custom.id }));
-    generateAndStoreImage(custom.id, recipe);
+    // Surface an image immediately if one was already generated for this recipe.
+    const existing = localImageUri(custom.id);
+    if (existing) setOptionImages((s) => ({ ...s, [optId]: existing }));
     return custom.id;
   }
 
   function onSave(optId: string, recipe: GeneratedRecipe) {
     ensureSaved(optId, recipe);
     toast("Saved to Recipe Studio", "reward");
+  }
+
+  // Opt-in AI image generation ("if wanted"). Needs the Worker (OpenAI); the
+  // recipe is saved first so the image attaches to it everywhere it appears.
+  async function onGenerateImage(optId: string, recipe: GeneratedRecipe) {
+    const id = ensureSaved(optId, recipe);
+    if (!isWorkerConfigured()) {
+      toast("Add your Worker URL in Settings to generate AI images", "info");
+      return;
+    }
+    setImageLoadingId(optId);
+    try {
+      const uri = await generateAndStoreImage(id, recipe);
+      if (uri) {
+        setOptionImages((s) => ({ ...s, [optId]: uri }));
+        toast("Image generated ✨", "reward");
+      } else {
+        toast("Couldn't generate image — check your Worker URL", "error");
+      }
+    } catch {
+      toast("Couldn't generate image — try again", "error");
+    } finally {
+      setImageLoadingId(null);
+    }
   }
 
   function onAddMissing(recipe: GeneratedRecipe) {
@@ -310,14 +339,21 @@ export default function AiChefScreen() {
         style={{ marginTop: space.lg }} onPress={() => generate()} />
 
       <Press onPress={() => generate({ creative: true })} disabled={loading} style={{ marginTop: space.sm }}>
-        <View style={{ borderWidth: 1.5, borderColor: accent["ai-chef"].main, borderStyle: "dashed", borderRadius: radius.md, paddingVertical: 13, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 8, backgroundColor: accent["ai-chef"].tint }}>
+        <View style={{ borderWidth: 1.5, borderColor: accent["ai-chef"].main, borderStyle: "dashed", borderRadius: radius.md, paddingVertical: 13, paddingHorizontal: 12, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 8, backgroundColor: accent["ai-chef"].tint }}>
           <Feather name="feather" size={17} color={accent["ai-chef"].shadow} />
-          <Txt weight="700" color={accent["ai-chef"].shadow}>Surprise me — make something creative with AI</Txt>
+          <Txt weight="700" color={accent["ai-chef"].shadow} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} style={{ flexShrink: 1, textAlign: "center" }}>Surprise me — get creative with AI</Txt>
         </View>
       </Press>
-      <Txt variant="caption" muted center style={{ marginTop: 6 }}>
-        {aiBackendAvailable() ? "Writes an original recipe with AI ✨" : "Needs an AI key — tap to set it up (the buttons above always work offline)"}
-      </Txt>
+      {aiBackendAvailable() ? (
+        <Txt variant="caption" muted center style={{ marginTop: 6 }}>Writes a fresh original recipe with AI ✨</Txt>
+      ) : (
+        <Press onPress={() => setSetupOpen(true)} haptic="selection" style={{ marginTop: 6, alignSelf: "center" }}>
+          <Txt variant="caption" muted center>
+            Surprises you from 1,200+ recipes ·{" "}
+            <Txt variant="caption" weight="700" color={accent["ai-chef"].shadow}>add an AI key</Txt> for GPT originals
+          </Txt>
+        </Press>
+      )}
 
       {results ? (
         <View style={{ marginTop: space.xl }}>
@@ -358,6 +394,10 @@ export default function AiChefScreen() {
             option={selectedOption}
             saved={!!savedIds[selectedOption.id]}
             refining={refiningId === selectedOption.id}
+            image={optionImages[selectedOption.id]}
+            imageLoading={imageLoadingId === selectedOption.id}
+            canMakeImage={isWorkerConfigured()}
+            onGenerateImage={() => onGenerateImage(selectedOption.id, selectedOption.recipe)}
             onSave={() => onSave(selectedOption.id, selectedOption.recipe)}
             onAddMissing={() => onAddMissing(selectedOption.recipe)}
             onAddToPlan={() => { if (addGenerated(selectedOption.recipe, savedIds[selectedOption.id])) toast(`Added ${selectedOption.recipe.name} to grocery plan 🛒`, "reward"); else router.push("/grocery"); }}
@@ -391,11 +431,21 @@ export default function AiChefScreen() {
   );
 }
 
-function ResultPanel({ option, saved, refining, onSave, onAddMissing, onAddToPlan, onLog, onCook, onAsk, onRefine }: any) {
+function ResultPanel({ option, saved, refining, image, imageLoading, canMakeImage, onGenerateImage, onSave, onAddMissing, onAddToPlan, onLog, onCook, onAsk, onRefine }: any) {
   const r: GeneratedRecipe = option.recipe;
   const n = r.estimatedNutrition;
   return (
     <Card style={{ gap: 14 }}>
+      {/* Recipe image — generated on demand via the Worker (OpenAI). */}
+      {image ? (
+        <Image source={{ uri: image }} style={{ width: "100%", height: 180, borderRadius: radius.md, backgroundColor: colors.oat }} contentFit="cover" transition={200} />
+      ) : imageLoading ? (
+        <View style={{ width: "100%", height: 180, borderRadius: radius.md, backgroundColor: accent["ai-chef"].tint, alignItems: "center", justifyContent: "center", gap: 8 }}>
+          <ActivityIndicator color={accent["ai-chef"].main} />
+          <Txt variant="caption" color={accent["ai-chef"].shadow} weight="700">Generating image…</Txt>
+        </View>
+      ) : null}
+
       <View>
         <Txt variant="heading">{r.name}</Txt>
         {r.whyThisFits ? <Txt variant="caption" muted style={{ marginTop: 2 }}>{r.whyThisFits}</Txt> : null}
@@ -464,6 +514,17 @@ function ResultPanel({ option, saved, refining, onSave, onAddMissing, onAddToPla
         <Button title="Add to grocery plan" icon="shopping-cart" accentKey="grocery" variant="accent" size="sm" style={{ flex: 1 }} onPress={onAddToPlan} />
         <Button title="Log to Nourish" icon="heart" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onLog} />
       </Row>
+      <Button
+        title={imageLoading ? "Generating image…" : image ? "Regenerate image" : "Generate image"}
+        icon="image"
+        variant="secondary"
+        full
+        disabled={imageLoading}
+        onPress={onGenerateImage}
+      />
+      {!canMakeImage && !image ? (
+        <Txt variant="caption" muted center>AI images need your Worker URL (Settings → AI & connection).</Txt>
+      ) : null}
       <Button title="Ask AI Chef about this recipe" icon="message-circle" variant="ghost" full onPress={onAsk} />
     </Card>
   );

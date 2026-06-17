@@ -8,13 +8,18 @@ const MODEL = "claude-haiku-4-5-20251001";
 const API_VERSION = "2023-06-01";
 
 /**
- * The API key is injected at build time from a GitHub Actions secret
- * (NEXT_PUBLIC_ANTHROPIC_API_KEY). All AI calls run directly in the browser.
+ * Read the key fresh on every call. Web injects it at build time
+ * (NEXT_PUBLIC_ANTHROPIC_API_KEY), but MOBILE sets it at RUNTIME from the
+ * Settings screen (setConfig). A module-load snapshot (`const API_KEY = …`)
+ * captured the empty boot value, so a pasted key never took effect — that was
+ * the "keys not working" bug. All AI calls run directly in the browser/device.
  */
-const API_KEY = config().anthropicApiKey;
+function apiKey(): string {
+  return config().anthropicApiKey;
+}
 
 export function isAiEnabled(): boolean {
-  return API_KEY.length > 0;
+  return apiKey().length > 0;
 }
 
 interface MessageBlock {
@@ -46,7 +51,8 @@ async function callAnthropic(opts: {
   maxTokens?: number;
   temperature?: number;
 }): Promise<string> {
-  if (!API_KEY) {
+  const key = apiKey();
+  if (!key) {
     throw new Error("AI is not configured");
   }
   // Cap the request so a hung connection doesn't leave the UI spinning
@@ -59,7 +65,7 @@ async function callAnthropic(opts: {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": API_KEY,
+        "x-api-key": key,
         "anthropic-version": API_VERSION,
         "anthropic-dangerous-direct-browser-access": "true",
       },

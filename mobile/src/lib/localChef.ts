@@ -28,6 +28,8 @@ export interface LocalChefInput {
   equipment?: string[];
   dietTags?: string[];
   notes?: string;
+  /** "Surprise me" — lead with a random, unexpected pick instead of the top match. */
+  surprise?: boolean;
 }
 
 function mapDifficulty(d: Recipe["difficulty"]): GeneratedRecipe["difficulty"] {
@@ -210,6 +212,12 @@ export function generateOptionsLocal(input: LocalChefInput): GeneratedRecipeOpti
     used.add(r.id);
     picks.push({ recipe: r, label, reason });
   };
+  // "Surprise me" leads with a random, unexpected pick so it feels different
+  // from "Generate recipes" (which leads with the best pantry match).
+  if (input.surprise && pool.length > 1) {
+    const idx = 1 + Math.floor(Math.random() * Math.min(pool.length - 1, 24));
+    add(pool[idx], "wildcard", "A creative surprise pick ✨");
+  }
   const bestReason = input.notes && noteMatched(pool[0], input)
     ? `Best match for "${input.notes.trim()}"`
     : input.pantryIds.length ? "Best use of what's in your pantry" : "A great all-round pick";

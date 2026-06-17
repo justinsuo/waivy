@@ -6,6 +6,7 @@
 import { useCallback } from "react";
 import { useKVRaw } from "../store";
 import * as N from "@/lib/nourish/storage";
+import type { WaterEntry } from "@/lib/nourish/storage";
 import { sumTotals } from "@/lib/nourish/types";
 import { celebrate } from "~/components/Celebration";
 import { recordActivity } from "~/lib/streak";
@@ -15,7 +16,6 @@ import type {
   MealSlot,
   TargetSnapshot,
   UserProfile,
-  WaterEntry,
 } from "@/lib/nourish/types";
 
 const KEYS = {

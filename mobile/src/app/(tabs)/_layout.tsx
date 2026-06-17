@@ -1,12 +1,12 @@
 import { Tabs } from "expo-router";
-import { Platform } from "react-native";
+import { Platform, type ColorValue } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "~/theme";
 import { selection as hapticSelection } from "~/lib/haptics";
 
-function TabIcon({ name, color, focused }: { name: any; color: string; focused: boolean }) {
+function TabIcon({ name, color, focused }: { name: any; color: ColorValue; focused: boolean }) {
   // Active icon springs up a touch when selected — small, satisfying.
   const s = useSharedValue(focused ? 1 : 0.92);
   useEffect(() => {
