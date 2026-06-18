@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { useKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
@@ -51,6 +51,16 @@ export default function GuidedCookScreen() {
   const [secsLeft, setSecsLeft] = useState<number | null>(null);
   const [running, setRunning] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const notifId = useRef<string | null>(null);
+
+  // Cancel the previously-scheduled timer notification so Start/Pause/Resume
+  // cycles (and step changes) don't queue duplicate "timer is done" banners.
+  const cancelTimerNotif = useCallback(async () => {
+    if (notifId.current) {
+      try { await Notifications.cancelScheduledNotificationAsync(notifId.current); } catch {}
+      notifId.current = null;
+    }
+  }, []);
 
   const step = data?.steps[i];
   const total = data?.steps.length ?? 0;
@@ -59,7 +69,11 @@ export default function GuidedCookScreen() {
   useEffect(() => {
     setSecsLeft(step?.timerMinutes ? step.timerMinutes * 60 : null);
     setRunning(false);
-  }, [i]);
+    cancelTimerNotif(); // drop any pending notification from the previous step
+  }, [i, cancelTimerNotif]);
+
+  // Stop narration + cancel any pending timer notification when leaving the screen.
+  useEffect(() => () => { Speech.stop(); cancelTimerNotif(); }, [cancelTimerNotif]);
 
   useEffect(() => {
     if (running && secsLeft != null && secsLeft > 0) {
@@ -68,11 +82,12 @@ export default function GuidedCookScreen() {
     }
     if (secsLeft === 0 && running) {
       setRunning(false);
+      cancelTimerNotif(); // the in-app banner fired; drop the scheduled one
       hapticSuccess();
       toast("⏰ Timer done!", "reward");
       Speech.speak("Timer finished");
     }
-  }, [running, secsLeft]);
+  }, [running, secsLeft, cancelTimerNotif]);
 
   if (!data || !step) {
     return <View style={styles.bg}><EmptyState emoji="🍳" title="Nothing to cook" subtitle="This recipe has no steps." action={<Button title="Back" onPress={() => router.back()} />} /></View>;
@@ -85,7 +100,8 @@ export default function GuidedCookScreen() {
       const perm = await Notifications.getPermissionsAsync();
       if (!perm.granted) await Notifications.requestPermissionsAsync();
       if (step?.timerMinutes) {
-        await Notifications.scheduleNotificationAsync({
+        await cancelTimerNotif(); // never stack with a prior Start/Resume
+        notifId.current = await Notifications.scheduleNotificationAsync({
           content: { title: `${data!.name}`, body: `Step ${i + 1} timer is done ⏰`, sound: true },
           trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: (secsLeft ?? step.timerMinutes * 60) || 1 },
         });
@@ -133,7 +149,7 @@ export default function GuidedCookScreen() {
                 <Button title={secsLeft && secsLeft > 0 ? "Start timer" : "Restart"} icon="play" accentKey="pantry" variant="accent"
                   onPress={() => { if (!secsLeft) setSecsLeft(step.timerMinutes! * 60); startTimer(); }} />
               ) : (
-                <Button title="Pause" icon="pause" variant="secondary" onPress={() => { setRunning(false); tap(); }} />
+                <Button title="Pause" icon="pause" variant="secondary" onPress={() => { setRunning(false); tap(); cancelTimerNotif(); }} />
               )}
             </Row>
           </View>
@@ -141,7 +157,7 @@ export default function GuidedCookScreen() {
       </Animated.View>
 
       {/* Ask about step */}
-      <Press onPress={() => router.push(`/chat?recipe=${encodeURIComponent(recipeId)}&step=${i + 1}`)} haptic="selection"
+      <Press onPress={() => { Speech.stop(); router.push(`/chat?recipe=${encodeURIComponent(recipeId)}&step=${i + 1}`); }} haptic="selection"
         style={{ flexDirection: "row", alignItems: "center", gap: 8, alignSelf: "center", backgroundColor: accent["ai-chef"].tint, paddingHorizontal: 16, paddingVertical: 10, borderRadius: radius.pill, marginBottom: space.md }}>
         <Feather name="message-circle" size={16} color={accent["ai-chef"].shadow} />
         <Txt variant="caption" weight="700" color={accent["ai-chef"].shadow}>Ask AI Chef about this step</Txt>

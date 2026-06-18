@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -58,6 +58,7 @@ export default function AiChefScreen() {
   const [imageLoadingId, setImageLoadingId] = useState<string | null>(null);
   const [setupOpen, setSetupOpen] = useState(false);
   const [chipsOpen, setChipsOpen] = useState(false); // pantry list collapsed by default
+  const genRef = useRef(0); // generation token — discards a superseded run's results
 
   const selectedPantryIds = useMemo(
     () => (usePantryItems ? pantry.map((p) => p.ingredientId).filter((id) => !excluded.has(id)) : []),
@@ -76,6 +77,8 @@ export default function AiChefScreen() {
   const deselectAllPantry = () => { setExcluded(new Set(pantry.map((p) => p.ingredientId))); tap(); };
 
   async function generate(opts?: { creative?: boolean; pantryOverride?: string[] }) {
+    if (loading || aiLoading) return; // ignore taps while a generation is in flight
+    const myGen = ++genRef.current;   // this run's token; a newer run supersedes it
     // "Surprise me" always produces a recipe — an AI original when a key is
     // set, otherwise a creative surprise pick from the on-device catalog.
     // (No more dead-end "Open Settings" prompt.)
@@ -127,6 +130,7 @@ export default function AiChefScreen() {
 
     try {
       const ai = await generateAiOnly(input);
+      if (genRef.current !== myGen) return; // a newer run replaced this one — drop stale results
       const merged = [...db.options.slice(0, keep), ...ai.options].slice(0, 4);
       if (merged.length) {
         setResults({ mainOptionId: merged[0].id, options: merged });
@@ -136,6 +140,7 @@ export default function AiChefScreen() {
         toast("No matches — try fewer filters", "info");
       }
     } catch {
+      if (genRef.current !== myGen) return;
       // AI failed — fall back to the on-device set if we have one.
       if (db.options.length) {
         setResults(db);
@@ -145,7 +150,7 @@ export default function AiChefScreen() {
         toast("Couldn't generate — try fewer filters", "error");
       }
     } finally {
-      setAiLoading(false);
+      if (genRef.current === myGen) setAiLoading(false); // only the latest run clears the spinner
     }
   }
 
@@ -209,6 +214,7 @@ export default function AiChefScreen() {
   }
 
   async function onRefine(optId: string, recipe: GeneratedRecipe, request: string) {
+    if (refiningId) return; // a refine is already in flight — ignore until it finishes
     setRefiningId(optId);
     try {
       const refined = await refine(recipe, request, {
@@ -335,10 +341,10 @@ export default function AiChefScreen() {
       <SegmentedControl value={creativity} onChange={setCreativity}
         options={[{ label: "Practical", value: "practical" }, { label: "Balanced", value: "balanced" }, { label: "Creative", value: "creative" }]} />
 
-      <Button title={loading ? "Cooking up ideas…" : "Generate recipes"} icon="zap" accentKey="ai-chef" variant="accent" full loading={loading}
+      <Button title={loading ? "Cooking up ideas…" : "Generate recipes"} icon="zap" accentKey="ai-chef" variant="accent" full loading={loading || aiLoading}
         style={{ marginTop: space.lg }} onPress={() => generate()} />
 
-      <Press onPress={() => generate({ creative: true })} disabled={loading} style={{ marginTop: space.sm }}>
+      <Press onPress={() => generate({ creative: true })} disabled={loading || aiLoading} style={{ marginTop: space.sm }}>
         <View style={{ borderWidth: 1.5, borderColor: accent["ai-chef"].main, borderStyle: "dashed", borderRadius: radius.md, paddingVertical: 13, paddingHorizontal: 12, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 8, backgroundColor: accent["ai-chef"].tint }}>
           <Feather name="feather" size={17} color={accent["ai-chef"].shadow} />
           <Txt weight="700" color={accent["ai-chef"].shadow} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} style={{ flexShrink: 1, textAlign: "center" }}>Surprise me — get creative with AI</Txt>
@@ -500,7 +506,7 @@ function ResultPanel({ option, saved, refining, image, imageLoading, canMakeImag
       <Txt variant="label">REFINE</Txt>
       <Row gap={8} wrap>
         {[["Make it cheaper", "make it cheaper"], ["Higher protein", "make it higher protein"], ["Faster", "make it faster"], ["Fewer missing", "use fewer ingredients I don't have"]].map(([label, req]) => (
-          <Pill key={label} label={label} tone="grocery" onPress={() => onRefine(req)} />
+          <Pill key={label} label={label} tone="grocery" disabled={refining} onPress={() => onRefine(req)} />
         ))}
       </Row>
       {refining ? <Txt variant="caption" muted center>Refining…</Txt> : null}

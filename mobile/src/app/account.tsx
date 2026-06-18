@@ -28,8 +28,10 @@ export default function AccountScreen() {
   const [out, setOut] = useState(false);
 
   useEffect(() => {
-    if (enabled && !loading && !user) router.replace("/login");
-  }, [enabled, loading, user]);
+    // `!out` so an in-progress sign-out (which nulls `user`) doesn't race the
+    // handler's router.replace("/") and strand the user on the login modal.
+    if (enabled && !loading && !user && !out) router.replace("/login");
+  }, [enabled, loading, user, out]);
 
   if (!enabled) {
     return (

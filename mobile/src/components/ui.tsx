@@ -413,18 +413,21 @@ export function Pill({
   onPress,
   tone = "pantry",
   icon,
+  disabled,
 }: {
   label: string;
   selected?: boolean;
   onPress?: () => void;
   tone?: AccentKey;
   icon?: FeatherName;
+  disabled?: boolean;
 }) {
   const a = accent[tone];
   return (
     <Press
       haptic="selection"
       onPress={onPress}
+      disabled={disabled}
       style={{
         flexDirection: "row",
         alignItems: "center",
@@ -435,6 +438,7 @@ export function Pill({
         backgroundColor: selected ? a.main : colors.surface,
         borderWidth: 1.5,
         borderColor: selected ? a.main : colors.border,
+        opacity: disabled ? 0.5 : 1,
       }}
     >
       {icon ? (

@@ -32,9 +32,13 @@ function safeWrite(key: string, value: unknown) {
 }
 
 function rawHas(key: string): boolean {
-  if (typeof window === "undefined") return false;
+  // Must read through the kv() facade — on React Native `window` exists (RN
+  // aliases it to global) but `window.localStorage` does not, so reading it
+  // directly throws and this always returned false, re-seeding/clobbering the
+  // pantry on every getPantry() call. On web kv() is the localStorage wrapper,
+  // so `getItem(key) !== null` is identical to the old check.
   try {
-    return window.localStorage.getItem(key) !== null;
+    return kv().getItem(key) !== null;
   } catch {
     return false;
   }

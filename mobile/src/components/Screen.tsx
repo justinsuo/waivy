@@ -63,6 +63,8 @@ export function Screen({
       contentContainerStyle={[pad, contentStyle]}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
+      automaticallyAdjustKeyboardInsets // lift the focused field/CTA above the keyboard
+
       refreshControl={
         onRefresh ? (
           <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={colors.basil} />

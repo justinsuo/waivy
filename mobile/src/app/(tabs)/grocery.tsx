@@ -77,9 +77,13 @@ export default function GroceryScreen() {
     toast(`Flattened ${recipe.name} into your list`, "reward");
   };
   const addAllNeeded = () => {
-    addPlanned(needed.map((a) => ({ ingredientId: a.ingredientId, quantity: a.quantity, recipes: a.recipes })));
+    // Skip items already on the list (their per-item rows are likewise disabled)
+    // so the pre-aggregated quantities here don't stack on top of what's there.
+    const fresh = needed.filter((a) => !onList.has(a.ingredientId));
+    if (!fresh.length) { toast("Everything needed is already on your list", "info"); return; }
+    addPlanned(fresh.map((a) => ({ ingredientId: a.ingredientId, quantity: a.quantity, recipes: a.recipes })));
     hapticMedium();
-    toast(`Added ${needed.length} ingredient${needed.length === 1 ? "" : "s"} to your list`, "reward");
+    toast(`Added ${fresh.length} ingredient${fresh.length === 1 ? "" : "s"} to your list`, "reward");
   };
 
   const isEmpty = cart.length === 0 && grocery.length === 0;

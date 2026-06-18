@@ -202,11 +202,21 @@ export function recomputeNutrition(gen: GeneratedRecipe): GeneratedRecipe["estim
 }
 
 function repairOptionNutrition(set: GeneratedRecipeOptionSet): GeneratedRecipeOptionSet {
+  // Worker (OpenAI) output reaches us as a raw cast with no runtime coercion,
+  // so a recipe missing `ingredients`/`steps` (partial/old worker build) would
+  // crash ResultPanel's r.ingredients.map / r.steps.map at render time. Coerce
+  // both to arrays here (the single choke point all consumers pass through), and
+  // guard `options` itself in case the worker omits it. (CLAUDE.md §11.)
   return {
     ...set,
-    options: set.options.map((o) => ({
+    options: (set.options ?? []).map((o) => ({
       ...o,
-      recipe: { ...o.recipe, estimatedNutrition: recomputeNutrition(o.recipe) },
+      recipe: {
+        ...o.recipe,
+        ingredients: Array.isArray(o.recipe?.ingredients) ? o.recipe.ingredients : [],
+        steps: Array.isArray(o.recipe?.steps) ? o.recipe.steps : [],
+        estimatedNutrition: recomputeNutrition(o.recipe),
+      },
     })),
   };
 }

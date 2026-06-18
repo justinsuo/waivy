@@ -148,8 +148,12 @@ export function useGrocery() {
     for (const it of items) {
       const ex = map.get(it.ingredientId);
       if (ex) {
+        // Sum the incoming quantity (a per-recipe delta from promote/flatten) so
+        // folding a second recipe's needs in doesn't silently drop them. Callers
+        // that pass an already-aggregated quantity (addAllNeeded) skip items
+        // already on the list, so this can't double-count.
         const recipeIds = Array.from(new Set([...ex.recipeIds, ...(it.recipes ?? [])]));
-        map.set(it.ingredientId, { ...ex, recipeIds });
+        map.set(it.ingredientId, { ...ex, quantity: ex.quantity + (it.quantity ?? 0), recipeIds });
       } else {
         map.set(it.ingredientId, { ingredientId: it.ingredientId, quantity: it.quantity ?? 1, recipeIds: it.recipes ?? [], checked: false });
       }

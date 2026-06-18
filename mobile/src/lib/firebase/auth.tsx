@@ -21,6 +21,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useReducer,
   useState,
   type ReactNode,
 } from "react";
@@ -117,6 +118,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const googleEnabled = enabled && isGoogleSignInConfigured();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(enabled);
+  // Firebase mutates the User object in place, so setUser(currentUser) is a
+  // same-reference no-op. bump() forces a provider re-render so consumers see
+  // in-place changes (e.g. an updated displayName).
+  const [, bump] = useReducer((n: number) => n + 1, 0);
 
   useEffect(() => {
     if (!enabled) return;
@@ -221,6 +226,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await updateProfile(auth.currentUser, { displayName: name });
       setUser(auth.currentUser);
+      bump(); // same object reference — force the provider to re-render
     } catch (e) {
       throw new Error(friendlyAuthError(e));
     }
