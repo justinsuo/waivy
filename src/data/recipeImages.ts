@@ -2,6 +2,7 @@ import type { RecipeImage } from "@/lib/types";
 import { MACRO_RECIPE_PHOTOS } from "@/data/macroRecipePhotos";
 import { RECIPE_IMAGE_OVERRIDES } from "@/data/recipeImageOverrides";
 import { GEN_RECIPE_PHOTOS } from "@/data/genRecipes";
+import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
 
 /**
  * Curated real food photographs for every recipe.
@@ -9,6 +10,7 @@ import { GEN_RECIPE_PHOTOS } from "@/data/genRecipes";
  * or public-domain licenses. Attribution is rendered on recipe detail pages.
  */
 export const RECIPE_IMAGES: Record<string, RecipeImage> = {
+  ...SOCIAL_RECIPE_PHOTOS,
   "egg-fried-rice": {
     src: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Yangzhou_fried_rice_and_drinks_25-09-2019.jpg",
     alt: "Photo of egg fried rice",

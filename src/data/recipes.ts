@@ -4,6 +4,7 @@ import { MICROWAVE_RECIPES } from "./microwaveRecipes";
 import { MACRO_RECIPES } from "./macroRecipes";
 import { WEB_RECIPES } from "./webRecipes";
 import { GEN_RECIPES } from "./genRecipes";
+import { SOCIAL_RECIPES } from "./socialRecipes";
 
 const BASE_RECIPES: Recipe[] = [
   {
@@ -4587,6 +4588,7 @@ export const CATALOG_RECIPES: Recipe[] = dedupeByName([
   ...originalVariantsOnly(MACRO_RECIPES),
   ...WEB_RECIPES,
   ...GEN_RECIPES,
+  ...SOCIAL_RECIPES,
 ]);
 
 export const ALL_RECIPES: Recipe[] = [
@@ -4594,6 +4596,7 @@ export const ALL_RECIPES: Recipe[] = [
   ...MACRO_RECIPES,
   ...WEB_RECIPES,
   ...GEN_RECIPES,
+  ...SOCIAL_RECIPES,
 ];
 
 export const RECIPE_MAP = new Map<string, Recipe>(
