@@ -135,7 +135,7 @@ export function RecipeShoppingBlock({
           ) : null}
 
           <Row gap={8}>
-            <Button title="Cook later" icon="play" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onCookLater} />
+            <Button title="Cook" icon="play" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onCookLater} />
             <Button title="Flatten" icon="layers" variant="secondary" size="sm" style={{ flex: 1 }} onPress={onFlatten} />
             <Button title="Remove" icon="trash-2" variant="danger" size="sm" style={{ flex: 1 }} onPress={onRemove} />
           </Row>

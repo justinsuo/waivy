@@ -151,7 +151,7 @@ export default function SettingsScreen() {
         <Field label="Worker URL" placeholder="https://waivy-api.you.workers.dev" autoCapitalize="none" autoCorrect={false}
           value={workerUrl} onChangeText={setWorkerUrl} onEndEditing={() => { saveSetting(SETTINGS_KEYS.workerUrl, workerUrl); toast("Saved"); }} />
         <Field label="Anthropic key (optional, for fast on-device AI)" placeholder="sk-ant-…" autoCapitalize="none" autoCorrect={false} secureTextEntry
-          value={anthropic} onChangeText={setAnthropic} onEndEditing={() => saveSetting(SETTINGS_KEYS.anthropic, anthropic)} />
+          value={anthropic} onChangeText={setAnthropic} onEndEditing={() => { saveSetting(SETTINGS_KEYS.anthropic, anthropic); toast("Saved"); }} />
       </Card>
 
       <Txt variant="label" style={{ marginTop: space.xl, marginBottom: 8 }}>REGION (PRICING)</Txt>

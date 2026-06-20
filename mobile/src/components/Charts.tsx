@@ -80,18 +80,22 @@ export function WeeklyBars({
   target,
   height = 120,
   color = colors.basil,
+  anchor = "zero",
 }: {
   data: { label: string; value: number }[];
   target?: number;
   height?: number;
   color?: string;
+  anchor?: "zero" | "min";
 }) {
   const max = Math.max(target ?? 0, ...data.map((d) => d.value), 1);
+  const min = anchor === "min" ? Math.min(...data.map((d) => d.value)) : 0;
+  const span = Math.max(max - min, 1);
   return (
     <View>
       <Row gap={8} align="flex-end" style={{ height }}>
         {data.map((d, i) => {
-          const h = Math.max(3, (d.value / max) * (height - 24));
+          const h = Math.max(3, ((d.value - min) / span) * (height - 24));
           return (
             <View key={i} style={{ flex: 1, alignItems: "center", gap: 5 }}>
               <View

@@ -425,7 +425,7 @@ function RecipeSheet({
             />
             <Button
               title="Log to Nourish"
-              icon="book-open"
+              icon="heart"
               variant="accent"
               accentKey="nourish"
               full

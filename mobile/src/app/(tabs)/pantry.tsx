@@ -156,9 +156,9 @@ export default function PantryScreen() {
           return (
             <Press key={p.id} haptic="selection"
               onPress={() => { if (on) { setNameDraft(p.name); setManageOpen(true); } else switchTo(p.id); }}
-              style={{ flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, backgroundColor: on ? colors.basil : colors.surface, borderWidth: 1.5, borderColor: on ? colors.basil : colors.border }}>
+              style={{ flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, maxWidth: 180, backgroundColor: on ? colors.basil : colors.surface, borderWidth: 1.5, borderColor: on ? colors.basil : colors.border }}>
               <Feather name="archive" size={13} color={on ? "#fff" : colors.textMuted} />
-              <Txt variant="label" weight="700" color={on ? "#fff" : colors.text}>{p.name}</Txt>
+              <Txt variant="label" weight="700" color={on ? "#fff" : colors.text} numberOfLines={1} style={{ flexShrink: 1 }}>{p.name}</Txt>
               {on ? <Feather name="more-horizontal" size={14} color="rgba(255,255,255,0.85)" /> : null}
             </Press>
           );
@@ -204,7 +204,7 @@ export default function PantryScreen() {
             <Txt variant="heading">Your ingredients</Txt>
             <Button title="Add" icon="plus" accentKey="pantry" variant="accent" size="sm" onPress={() => setAddOpen(true)} />
           </Row>
-          {pantry.length >= 8 ? (
+          {pantry.length >= 8 || itemQuery ? (
             <Field placeholder="Search your items…" value={itemQuery} onChangeText={setItemQuery} style={{ marginBottom: space.md }} />
           ) : null}
 

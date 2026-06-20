@@ -199,11 +199,21 @@ export default function Progress() {
             </Txt>
             {previous ? (
               <View style={{ marginBottom: 6, marginLeft: "auto" }}>
-                <Badge
-                  label={`${deltaDisplay > 0 ? "+" : ""}${fmt(deltaDisplay)} ${unit}`}
-                  tone={deltaDisplay <= 0 ? "pantry" : "nourish"}
-                  icon={deltaDisplay > 0 ? "trending-up" : "trending-down"}
-                />
+                {(() => {
+                  const towardGoal =
+                    targets.mode === "bulk"
+                      ? deltaDisplay >= 0
+                      : targets.mode === "cut"
+                        ? deltaDisplay <= 0
+                        : null;
+                  return (
+                    <Badge
+                      label={`${deltaDisplay > 0 ? "+" : ""}${fmt(deltaDisplay)} ${unit}`}
+                      tone={towardGoal == null ? "nourish" : towardGoal ? "pantry" : "saved"}
+                      icon={deltaDisplay > 0 ? "trending-up" : "trending-down"}
+                    />
+                  );
+                })()}
               </View>
             ) : null}
           </Row>
@@ -234,7 +244,7 @@ export default function Progress() {
             <Txt variant="label" style={{ marginBottom: space.sm }}>
               Recent trend
             </Txt>
-            <WeeklyBars data={weightBars} color={colors.carrot} height={96} />
+            <WeeklyBars data={weightBars} color={colors.carrot} height={96} anchor="min" />
           </>
         ) : null}
 
@@ -338,7 +348,7 @@ export default function Progress() {
           <>
             <Spacer h={space.md} />
             <Txt variant="caption" muted center>
-              Hit your protein target today to start a streak 🔥
+              Hit ≥85% of your protein target to build a streak 🔥
             </Txt>
           </>
         ) : null}

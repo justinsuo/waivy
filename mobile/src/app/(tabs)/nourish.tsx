@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Screen } from "~/components/Screen";
-import { Txt, Row, Card, Press, Badge, IconButton, SectionHeading, EmptyState } from "~/components/ui";
+import { Txt, Row, Card, Press, Badge, IconButton, SectionHeading, EmptyState, Button } from "~/components/ui";
 import { ProgressRing, MacroBar } from "~/components/Charts";
 import { toast } from "~/components/Toast";
 import { colors, space, radius, accent, AccentKey } from "~/theme";
@@ -26,9 +26,10 @@ const QUICK: { label: string; icon: any; tone: AccentKey; href: string }[] = [
 ];
 
 export default function NourishScreen() {
-  const { totals, target, entries, remaining } = useToday();
+  const { totals, target, entries } = useToday();
   const water = useWater();
   const calPct = target.calorieTarget ? totals.kcal / target.calorieTarget : 0;
+  const diff = target.calorieTarget - totals.kcal; // >0 remaining, <0 over
 
   const byMeal = useMemo(() => {
     const g: Record<string, typeof entries> = {};
@@ -55,8 +56,8 @@ export default function NourishScreen() {
           </ProgressRing>
           <View style={{ flex: 1, gap: 12 }}>
             <View>
-              <Txt variant="heading" color={remaining > 0 ? colors.basilShadow : colors.tomato}>{Math.round(remaining)}</Txt>
-              <Txt variant="caption" muted>calories {remaining > 0 ? "remaining" : "over"}</Txt>
+              <Txt variant="heading" color={diff >= 0 ? colors.basilShadow : colors.tomato}>{Math.round(Math.abs(diff))}</Txt>
+              <Txt variant="caption" muted>calories {diff >= 0 ? "remaining" : "over"}</Txt>
             </View>
             <MacroBar label="Protein" value={totals.proteinG} target={target.proteinG} color={colors.grape} />
             <MacroBar label="Carbs" value={totals.carbG} target={target.carbG} color={colors.sky} />
@@ -105,7 +106,7 @@ export default function NourishScreen() {
       <SectionHeading title="Today's diary" action="Full diary" onAction={() => router.push("/nourish/diary")} />
       {entries.length === 0 ? (
         <EmptyState emoji="🍽️" title="Nothing logged yet" subtitle="Log a meal, a food, or a Waivy recipe to track your day."
-          action={<Button label="Log food" />} />
+          action={<Button title="Log food" icon="plus" accentKey="nourish" variant="accent" onPress={() => router.push("/nourish/log-food")} />} />
       ) : (
         MEALS.filter((m) => byMeal[m.slot]?.length).map((m) => {
           const mealKcal = (byMeal[m.slot] ?? []).reduce((s, e) => s + entryTotals(e).kcal, 0);
@@ -141,14 +142,5 @@ export default function NourishScreen() {
         <Feather name="plus" size={26} color="#fff" />
       </Press>
     </View>
-  );
-}
-
-// local helper to avoid importing Button just for one empty-state CTA label
-function Button({ label }: { label: string }) {
-  return (
-    <Press onPress={() => router.push("/nourish/log-food")} style={{ backgroundColor: colors.carrot, paddingHorizontal: 18, paddingVertical: 12, borderRadius: radius.md }}>
-      <Txt weight="700" color="#fff">{label}</Txt>
-    </Press>
   );
 }

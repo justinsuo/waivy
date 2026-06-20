@@ -343,6 +343,8 @@ export function IconButton({
   size = 42,
   iconSize = 20,
   style,
+  disabled,
+  accessibilityLabel,
 }: {
   icon: FeatherName;
   onPress?: () => void;
@@ -351,10 +353,15 @@ export function IconButton({
   size?: number;
   iconSize?: number;
   style?: any;
+  disabled?: boolean;
+  accessibilityLabel?: string;
 }) {
   return (
     <Press
       onPress={onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
       style={[
         {
           width: size,
@@ -363,6 +370,7 @@ export function IconButton({
           backgroundColor: bg,
           alignItems: "center",
           justifyContent: "center",
+          opacity: disabled ? 0.5 : 1,
         },
         shadow.sm,
         style,
@@ -560,9 +568,7 @@ export function SectionHeading({
       <Txt variant="heading">{title}</Txt>
       {action ? (
         <Press onPress={onAction} haptic="selection">
-          <Text style={{ color: colors.basilShadow, fontWeight: "700", fontSize: font.sizes.sm }}>
-            {action}
-          </Text>
+          <Txt variant="label" color={colors.basilShadow} weight="700">{action}</Txt>
         </Press>
       ) : null}
     </Row>

@@ -345,7 +345,7 @@ export default function AiChefScreen() {
         style={{ marginTop: space.lg }} onPress={() => generate()} />
 
       <Press onPress={() => generate({ creative: true })} disabled={loading || aiLoading} style={{ marginTop: space.sm }}>
-        <View style={{ borderWidth: 1.5, borderColor: accent["ai-chef"].main, borderStyle: "dashed", borderRadius: radius.md, paddingVertical: 13, paddingHorizontal: 12, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 8, backgroundColor: accent["ai-chef"].tint }}>
+        <View style={{ borderWidth: 1.5, borderColor: accent["ai-chef"].main, borderStyle: "dashed", borderRadius: radius.md, paddingVertical: 13, paddingHorizontal: 12, alignItems: "center", flexDirection: "row", justifyContent: "center", gap: 8, backgroundColor: accent["ai-chef"].tint, opacity: loading || aiLoading ? 0.5 : 1 }}>
           <Feather name="feather" size={17} color={accent["ai-chef"].shadow} />
           <Txt weight="700" color={accent["ai-chef"].shadow} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} style={{ flexShrink: 1, textAlign: "center" }}>Surprise me — get creative with AI</Txt>
         </View>

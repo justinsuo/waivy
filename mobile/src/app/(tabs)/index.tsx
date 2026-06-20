@@ -51,9 +51,9 @@ export default function HomeScreen() {
   return (
     <Screen>
       <Row justify="space-between" style={{ marginBottom: space.lg }}>
-        <View>
-          <Txt variant="label">{greeting()} 👋</Txt>
-          <Txt variant="title">What should we cook?</Txt>
+        <View style={{ flex: 1, marginRight: space.md }}>
+          <Txt variant="label" numberOfLines={1}>{greeting()} 👋</Txt>
+          <Txt variant="title" numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>What should we cook?</Txt>
         </View>
         <Row gap={8}>
           {streak.count > 0 ? (
@@ -83,7 +83,7 @@ export default function HomeScreen() {
               <View style={{ width: 54, height: 54, borderRadius: 18, backgroundColor: a.tint, alignItems: "center", justifyContent: "center", ...shadow.sm }}>
                 <Feather name={q.icon} size={22} color={a.shadow} />
               </View>
-              <Txt variant="caption" center numberOfLines={1} style={{ fontSize: 10.5 }}>{q.label}</Txt>
+              <Txt variant="caption" center numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85} style={{ fontSize: 10.5 }}>{q.label}</Txt>
             </Press>
           );
         })}

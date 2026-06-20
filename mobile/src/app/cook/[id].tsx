@@ -158,7 +158,7 @@ export default function GuidedCookScreen() {
 
       {/* Ask about step */}
       <Press onPress={() => { Speech.stop(); router.push(`/chat?recipe=${encodeURIComponent(recipeId)}&step=${i + 1}`); }} haptic="selection"
-        style={{ flexDirection: "row", alignItems: "center", gap: 8, alignSelf: "center", backgroundColor: accent["ai-chef"].tint, paddingHorizontal: 16, paddingVertical: 10, borderRadius: radius.pill, marginBottom: space.md }}>
+        style={{ flexDirection: "row", alignItems: "center", gap: 8, alignSelf: "center", backgroundColor: accent["ai-chef"].tint, paddingHorizontal: 16, paddingVertical: 12, borderRadius: radius.pill, marginBottom: space.md }}>
         <Feather name="message-circle" size={16} color={accent["ai-chef"].shadow} />
         <Txt variant="caption" weight="700" color={accent["ai-chef"].shadow}>Ask AI Chef about this step</Txt>
       </Press>

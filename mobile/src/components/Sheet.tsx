@@ -43,6 +43,10 @@ export function Sheet({
 
   useEffect(() => {
     if (visible) {
+      // Re-seed off-screen so the slide-up + fade replays on every open, even
+      // when the previous close bypassed the internal close() (external close).
+      translate.value = 600;
+      backdrop.value = 0;
       translate.value = withTiming(0, { duration: 240 });
       backdrop.value = withTiming(1, { duration: 240 });
     }
@@ -83,7 +87,7 @@ export function Sheet({
             {title ? (
               <Row justify="space-between" style={{ marginBottom: space.md, paddingHorizontal: space.lg }}>
                 <Txt variant="heading">{title}</Txt>
-                <IconButton icon="x" onPress={close} size={34} iconSize={18} bg={colors.oat} />
+                <IconButton icon="x" onPress={close} size={34} iconSize={18} bg={colors.oat} accessibilityLabel="Close" />
               </Row>
             ) : null}
             <Body

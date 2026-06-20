@@ -21,7 +21,7 @@ export function ScreenHeader({
     <Row justify="space-between" align="flex-start" style={{ marginBottom: space.lg }}>
       <Row gap={10} align="center" style={{ flex: 1 }}>
         {back ? (
-          <IconButton icon="chevron-left" onPress={() => router.back()} size={40} bg={colors.surface} />
+          <IconButton icon="chevron-left" onPress={() => router.back()} size={40} bg={colors.surface} accessibilityLabel="Go back" />
         ) : null}
         <View style={{ flex: 1 }}>
           <Txt variant="title">{title}</Txt>

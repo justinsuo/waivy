@@ -1,6 +1,6 @@
 /** Global toast — call toast("Saved!") from anywhere; <ToastHost/> renders it. */
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import Animated, { FadeInUp, FadeOutDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
@@ -51,16 +51,23 @@ export function ToastHost() {
 
   if (!current) return null;
   return (
-    <View pointerEvents="none" style={[styles.host, { bottom: insets.bottom + 90 }]}>
-      <Animated.View entering={FadeInUp.springify()} exiting={FadeOutDown} style={styles.toast}>
-        <View style={[styles.dot, { backgroundColor: TINT[current.kind] }]}>
-          <Feather name={ICON[current.kind]} size={15} color="#fff" />
-        </View>
-        <View style={{ flex: 1 }}>
-          <Animated.Text style={styles.text} numberOfLines={2}>
-            {current.message}
-          </Animated.Text>
-        </View>
+    <View pointerEvents="box-none" style={[styles.host, { bottom: insets.bottom + 90 }]}>
+      <Animated.View entering={FadeInUp.springify()} exiting={FadeOutDown}>
+        <Pressable
+          onPress={() => setCurrent(null)}
+          accessibilityRole="button"
+          accessibilityLabel="Dismiss notification"
+          style={styles.toast}
+        >
+          <View style={[styles.dot, { backgroundColor: TINT[current.kind] }]}>
+            <Feather name={ICON[current.kind]} size={15} color="#fff" />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Animated.Text style={styles.text} numberOfLines={2}>
+              {current.message}
+            </Animated.Text>
+          </View>
+        </Pressable>
       </Animated.View>
     </View>
   );

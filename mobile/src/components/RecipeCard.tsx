@@ -72,7 +72,7 @@ export function RecipeCard({ view, width }: { view: RecipeView; width?: number }
           <Feather name={planned ? "check" : "shopping-cart"} size={15} color={planned ? accent.grocery.shadow : colors.textMuted} />
         </Press>
         <View style={styles.costBadge}>
-          <Txt variant="caption" color="#fff" weight="700">{money(view.costPerServing)}/serving</Txt>
+          <Txt variant="caption" color="#fff" weight="700" numberOfLines={1} adjustsFontSizeToFit>{money(view.costPerServing)}/serving</Txt>
         </View>
       </View>
       <View style={{ padding: space.md, gap: 8 }}>

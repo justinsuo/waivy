@@ -112,7 +112,7 @@ export default function ChatScreen() {
         {/* Quick prompts */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: space.lg, paddingBottom: 8 }} style={{ maxHeight: 48 }} keyboardShouldPersistTaps="handled">
           {quickPrompts.map((q) => (
-            <Press key={q} onPress={() => send(q)} haptic="selection" style={{ backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.pill, paddingHorizontal: 14, paddingVertical: 9 }}>
+            <Press key={q} onPress={() => send(q)} haptic="selection" disabled={busy} style={{ backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.pill, paddingHorizontal: 14, paddingVertical: 9, opacity: busy ? 0.5 : 1 }}>
               <Txt variant="caption" weight="600">{q}</Txt>
             </Press>
           ))}
@@ -121,9 +121,9 @@ export default function ChatScreen() {
         {/* Input */}
         <Row gap={8} style={{ paddingHorizontal: space.lg, paddingBottom: insets.bottom + space.sm, paddingTop: space.sm }}>
           <View style={{ flex: 1 }}>
-            <Field placeholder="Ask anything…" value={input} onChangeText={setInput} onSubmitEditing={() => send(input)} returnKeyType="send" />
+            <Field placeholder="Ask anything…" value={input} onChangeText={setInput} onSubmitEditing={() => send(input)} returnKeyType="send" multiline blurOnSubmit style={{ maxHeight: 120 }} />
           </View>
-          <Press onPress={() => send(input)} style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center" }}>
+          <Press onPress={() => send(input)} disabled={busy} accessibilityRole="button" accessibilityLabel="Send message" style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center", opacity: busy ? 0.5 : 1 }}>
             <Feather name="arrow-up" size={22} color="#fff" />
           </Press>
         </Row>

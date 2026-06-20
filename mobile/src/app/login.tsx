@@ -103,10 +103,10 @@ export default function LoginScreen() {
         {mode === "signup" ? (
           <Field label="Name (optional)" placeholder="Your name" autoCapitalize="words" value={name} onChangeText={setName} editable={!busy} />
         ) : null}
-        <Field label="Email" placeholder="you@example.com" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} autoComplete="email" value={email} onChangeText={setEmail} editable={!busy} />
-        <Field label="Password" placeholder={mode === "signup" ? "8+ characters" : "Password"} secureTextEntry autoCapitalize="none" value={pw} onChangeText={setPw} editable={!busy} />
+        <Field label="Email" placeholder="you@example.com" keyboardType="email-address" autoCapitalize="none" autoCorrect={false} textContentType="username" autoComplete="email" value={email} onChangeText={setEmail} editable={!busy} />
+        <Field label="Password" placeholder={mode === "signup" ? "8+ characters" : "Password"} secureTextEntry autoCapitalize="none" textContentType={mode === "signup" ? "newPassword" : "password"} autoComplete={mode === "signup" ? "password-new" : "password"} value={pw} onChangeText={setPw} editable={!busy} />
         {mode === "signup" ? (
-          <Field label="Confirm password" placeholder="Re-enter password" secureTextEntry autoCapitalize="none" value={confirm} onChangeText={setConfirm} editable={!busy} />
+          <Field label="Confirm password" placeholder="Re-enter password" secureTextEntry autoCapitalize="none" textContentType="newPassword" autoComplete="password-new" value={confirm} onChangeText={setConfirm} editable={!busy} />
         ) : null}
 
         {error ? (
@@ -124,7 +124,7 @@ export default function LoginScreen() {
         ) : null}
       </Card>
 
-      <Press onPress={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); }} style={{ marginTop: space.lg }} haptic="selection">
+      <Press onPress={() => { const next = mode === "signin" ? "signup" : "signin"; setMode(next); setError(null); if (next === "signin") setConfirm(""); }} style={{ marginTop: space.lg }} haptic="selection">
         <Txt variant="caption" muted center>
           {mode === "signin" ? "New to Waivy? " : "Already have an account? "}
           <Txt variant="caption" weight="800" color={colors.basilShadow}>{mode === "signin" ? "Create an account" : "Sign in"}</Txt>

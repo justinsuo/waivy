@@ -105,7 +105,8 @@ export default function SavedScreen() {
             <EmptyState
               emoji="🍽️"
               title="None in this tab"
-              subtitle="You haven't saved any recipes from this source yet. Try another tab."
+              subtitle="You haven't saved any recipes from this source yet."
+              action={<Button title="See all saved" variant="ghost" onPress={() => { tap(); setTab("all"); }} />}
             />
           ) : (
             <Row wrap gap={gap} align="flex-start" justify="space-between">
