@@ -5,6 +5,7 @@ import { MACRO_RECIPES } from "./macroRecipes";
 import { WEB_RECIPES } from "./webRecipes";
 import { GEN_RECIPES } from "./genRecipes";
 import { SOCIAL_RECIPES } from "./socialRecipes";
+import { RICE_COOKER_RECIPES } from "./riceCookerRecipes";
 
 const BASE_RECIPES: Recipe[] = [
   {
@@ -4555,6 +4556,7 @@ export const RECIPES: Recipe[] = [
   ...BASE_RECIPES,
   ...AIR_FRYER_RECIPES,
   ...MICROWAVE_RECIPES,
+  ...RICE_COOKER_RECIPES,
 ];
 
 function originalVariantsOnly(recipes: Recipe[]): Recipe[] {

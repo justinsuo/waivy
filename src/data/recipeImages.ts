@@ -3,6 +3,7 @@ import { MACRO_RECIPE_PHOTOS } from "@/data/macroRecipePhotos";
 import { RECIPE_IMAGE_OVERRIDES } from "@/data/recipeImageOverrides";
 import { GEN_RECIPE_PHOTOS } from "@/data/genRecipes";
 import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
+import { RICE_COOKER_RECIPE_PHOTOS } from "@/data/riceCookerRecipePhotos";
 
 /**
  * Curated real food photographs for every recipe.
@@ -11,6 +12,7 @@ import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
  */
 export const RECIPE_IMAGES: Record<string, RecipeImage> = {
   ...SOCIAL_RECIPE_PHOTOS,
+  ...RICE_COOKER_RECIPE_PHOTOS,
   "egg-fried-rice": {
     src: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Yangzhou_fried_rice_and_drinks_25-09-2019.jpg",
     alt: "Photo of egg fried rice",
