@@ -195,5 +195,185 @@ export const RICE_COOKER_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "attributionRequired": true,
     "attributionText": "Photo: dbgg1979 on flickr — CC BY 2.0 via Wikimedia Commons",
     "verifiedMatch": true
+  },
+  "rice-cooker-arroz-con-pollo": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Arroz-con-Pollo.jpg/1280px-Arroz-con-Pollo.jpg",
+    "alt": "Photo of Rice Cooker Arroz con Pollo",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arroz-con-Pollo.jpg",
+    "license": "CC BY-SA 2.5",
+    "attributionRequired": true,
+    "attributionText": "Photo: Kobako — CC BY-SA 2.5 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-japanese-curry": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Beef_curry_rice_003.jpg/1280px-Beef_curry_rice_003.jpg",
+    "alt": "Photo of Rice Cooker Japanese Curry Rice",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Beef_curry_rice_003.jpg",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: Ocdp — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-kimchi-fried-rice": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Kimchi_Fried_Rice%2C_Farm_Egg.jpg/1280px-Kimchi_Fried_Rice%2C_Farm_Egg.jpg",
+    "alt": "Photo of Rice Cooker Kimchi Fried Rice",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kimchi_Fried_Rice,_Farm_Egg.jpg",
+    "license": "CC BY 2.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: T.Tseng — CC BY 2.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-vegetable-pulao": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Vegetable_Pulao_as_served_in_South_India.jpg/1280px-Vegetable_Pulao_as_served_in_South_India.jpg",
+    "alt": "Photo of Rice Cooker Vegetable Pulao",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vegetable_Pulao_as_served_in_South_India.jpg",
+    "license": "CC BY-SA 4.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Vardhankoshal — CC BY-SA 4.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-chana-masala": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg/1280px-Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+    "alt": "Photo of Rice Cooker Chana Masala",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: Andy Li — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-steamed-fish": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/GD_%E5%BB%A3%E6%9D%B1_Guangdong_%E5%BB%A3%E5%B7%9E_Guangzhou_%E6%82%85%E5%8C%AF%E5%9F%8E_Yue_City_Shopping_Mall_shop_%E5%BB%A3%E5%B7%9E%E9%99%B6%E9%99%B6%E5%B1%85_To_To_Kui_Restaurant_%E7%BE%8E%E9%A3%9F_cuisine_food_%E8%96%91%E8%94%A5%E8%92%B8%E9%AD%9A_steamed_fish_June_2025_R12S_01.jpg/1280px-thumbnail.jpg",
+    "alt": "Photo of Rice Cooker Ginger-Soy Steamed Fish",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GD_%E5%BB%A3%E6%9D%B1_Guangdong_%E5%BB%A3%E5%B7%9E_Guangzhou_%E6%82%85%E5%8C%AF%E5%9F%8E_Yue_City_Shopping_Mall_shop_%E5%BB%A3%E5%B7%9E%E9%99%B6%E9%99%B6%E5%B1%85_To_To_Kui_Restaurant_%E7%BE%8E%E9%A3%9F_cuisine_food_%E8%96%91%E8%94%A5%E8%92%B8%E9%AD%9A_steamed_fish_June_2025_R12S_01.jpg",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: MeiOLA 2290 WMENSZ — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-beef-broccoli": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Broccoli_beef_%285457397534%29.jpg/1280px-Broccoli_beef_%285457397534%29.jpg",
+    "alt": "Photo of Rice Cooker Beef &amp; Broccoli Rice Bowl",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Broccoli_beef_(5457397534).jpg",
+    "license": "CC BY 2.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: jeffreyw — CC BY 2.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-cuban-picadillo": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Picadillo_and_rice.jpg/1280px-Picadillo_and_rice.jpg",
+    "alt": "Photo of Rice Cooker Cuban Picadillo",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Picadillo_and_rice.jpg",
+    "license": "CC BY-SA 3.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Cary Bass — CC BY-SA 3.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-hoppin-john": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Hoppin%27_John_peas%26rice.JPG/1280px-Hoppin%27_John_peas%26rice.JPG",
+    "alt": "Photo of Rice Cooker Hoppin' John",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hoppin%27_John_peas%26rice.JPG",
+    "license": "CC BY-SA 4.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Bubba73 (Jud McCranie) — CC BY-SA 4.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-cilantro-lime-rice": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cooked_cilantro_lime_dish_basmati_rice_India.jpg/1280px-Cooked_cilantro_lime_dish_basmati_rice_India.jpg",
+    "alt": "Photo of Rice Cooker Cilantro Lime Rice",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cooked_cilantro_lime_dish_basmati_rice_India.jpg",
+    "license": "CC BY-SA 2.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Brian Child — CC BY-SA 2.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-lemon-herb-chicken": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/0959Filipino_chicken_adobo_with_potatoes_in_lemon_grass_02.jpg/1280px-0959Filipino_chicken_adobo_with_potatoes_in_lemon_grass_02.jpg",
+    "alt": "Photo of Rice Cooker Lemon Herb Chicken & Potatoes",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:0959Filipino_chicken_adobo_with_potatoes_in_lemon_grass_02.jpg",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: JFVelasquez Floro — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-thai-green-curry": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Thai_green_chicken_curry_and_roti.jpg/1280px-Thai_green_chicken_curry_and_roti.jpg",
+    "alt": "Photo of Rice Cooker Thai Green Curry Chicken",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thai_green_chicken_curry_and_roti.jpg",
+    "license": "CC BY-SA 3.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Takeaway — CC BY-SA 3.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-apple-cinnamon-oats": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Apple_cinnamon_oatmeal_5.jpg/1280px-Apple_cinnamon_oatmeal_5.jpg",
+    "alt": "Photo of Rice Cooker Apple Cinnamon Steel-Cut Oats",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apple_cinnamon_oatmeal_5.jpg",
+    "license": "CC BY 4.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Shisma — CC BY 4.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-castella-cake": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Taiwanese_Castella_3.png",
+    "alt": "Photo of Rice Cooker Castella Sponge Cake",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Taiwanese_Castella_3.png",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: 御輿大命 — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-tuscan-bean-soup": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Collard_Greens_and_White_Bean_Soup.jpg/1280px-Collard_Greens_and_White_Bean_Soup.jpg",
+    "alt": "Photo of Rice Cooker Tuscan White Bean & Kale Soup",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Collard_Greens_and_White_Bean_Soup.jpg",
+    "license": "CC BY 2.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Thriving Vegetarian — CC BY 2.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-south-indian-lemon-rice": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Lemon_Rice_in_Kerala.jpg/1280px-Lemon_Rice_in_Kerala.jpg",
+    "alt": "Photo of Rice Cooker South Indian Lemon Rice",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lemon_Rice_in_Kerala.jpg",
+    "license": "CC BY-SA 4.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Ganesh Gore — CC BY-SA 4.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-deep-dish-pizza": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Deep_Dish_Pizza_PD.jpg/1280px-Deep_Dish_Pizza_PD.jpg",
+    "alt": "Photo of Rice Cooker Deep-Dish Pizza",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Deep_Dish_Pizza_PD.jpg",
+    "license": "CC BY-SA 3.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: Telluride — CC BY-SA 3.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "rice-cooker-japanese-cheesecake": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Souffl%C3%A9-style_cheesecake_001.jpg/1280px-Souffl%C3%A9-style_cheesecake_001.jpg",
+    "alt": "Photo of Rice Cooker Japanese Cheesecake",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Souffl%C3%A9-style_cheesecake_001.jpg",
+    "license": "CC0",
+    "attributionRequired": false,
+    "attributionText": "Photo: Ocdp — CC0 via Wikimedia Commons",
+    "verifiedMatch": true
   }
 };

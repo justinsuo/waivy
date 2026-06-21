@@ -24,6 +24,10 @@ export interface NutritionPerUnit {
 const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   // ===== Grains / starches =====
   rice: { calories: 205, protein: 4.3, carbs: 45, fat: 0.4, fiber: 0.6, confidence: "high" }, // 1 cup cooked
+  "jasmine-rice": { calories: 675, protein: 13, carbs: 148, fat: 1.2, fiber: 2.4, confidence: "high" }, // 1 cup dry
+  "basmati-rice": { calories: 660, protein: 13, carbs: 146, fat: 1.5, fiber: 2, confidence: "high" }, // 1 cup dry
+  cod: { calories: 26, protein: 5.8, carbs: 0, fat: 0.2, confidence: "high" }, // 1 oz
+  "cannellini-beans": { calories: 320, protein: 22, carbs: 57, fat: 1, fiber: 15, confidence: "high" }, // 1 can drained
   pasta: { calories: 200, protein: 7.5, carbs: 42, fat: 1.2, fiber: 2.5, confidence: "high" }, // 1 serving (2 oz dry)
   ramen: { calories: 380, protein: 8, carbs: 52, fat: 14, fiber: 2, confidence: "high" }, // 1 pack w/ seasoning
   bread: { calories: 80, protein: 3, carbs: 14, fat: 1, fiber: 1, confidence: "high" }, // 1 slice
