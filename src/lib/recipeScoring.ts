@@ -275,7 +275,7 @@ export function groupPantryResults(
     if (r.missingIngredients.length === 0) canMakeNow.push(r);
     else if (r.missingIngredients.length === 1) buyOneUnlock.push(r);
     else if (r.missingIngredients.length <= 2) needFewItems.push(r);
-    else if (r.missingCost < 3) buyOneUnlock.push(r);
+    // recipes missing 3+ items are not "buy one thing" / "few items" — omit them
   }
 
   return { canMakeNow, needFewItems, buyOneUnlock, useSoon };
@@ -307,20 +307,15 @@ export function recommendSmartBuys(pantry: PantryItem[]): {
       probe.add(id);
       const unlocks: number[] = [];
       for (const recipe of CATALOG_RECIPES) {
-        const before = recipe.ingredients.filter(
-          (ri) => !ri.optional && effective.has(ri.ingredientId),
-        ).length;
-        const after = recipe.ingredients.filter(
-          (ri) => !ri.optional && probe.has(ri.ingredientId),
-        ).length;
-        // Newly unlocked: now zero missing where before there was one needed item
+        // Newly unlocked: was un-makeable (>=1 required missing), now fully
+        // makeable (0 required missing) thanks to this single candidate buy.
         const missingBefore = recipe.ingredients.filter(
           (ri) => !ri.optional && !effective.has(ri.ingredientId),
         ).length;
         const missingAfter = recipe.ingredients.filter(
           (ri) => !ri.optional && !probe.has(ri.ingredientId),
         ).length;
-        if (after > before && missingAfter <= 1 && missingBefore > 1) {
+        if (missingBefore >= 1 && missingAfter === 0) {
           unlocks.push(calculateCostPerServing(recipe));
         }
       }

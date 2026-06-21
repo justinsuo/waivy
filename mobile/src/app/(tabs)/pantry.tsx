@@ -76,7 +76,7 @@ export default function PantryScreen() {
     if (parsed && parsed.recognized?.length) {
       // AI mapped each item to a catalog id already; fall back to name match.
       for (const ing of parsed.recognized) {
-        const id = ing.id || matchIngredientByName(ing.name);
+        const id = ing.id && INGREDIENT_MAP.has(ing.id) ? ing.id : matchIngredientByName(ing.name);
         if (id) ids.push(id);
       }
       // Try to salvage anything the AI saw but couldn't map to a catalog id.

@@ -13,19 +13,16 @@ export function editDistance(a: string, b: string): number {
   const dp = new Array(bl + 1);
   for (let j = 0; j <= bl; j++) dp[j] = j;
   for (let i = 1; i <= al; i++) {
-    let prev = i - 1;
-    let curr = i;
+    let prev = dp[0]; // diagonal (i-1, j-1)
+    dp[0] = i; // column 0 of row i
     for (let j = 1; j <= bl; j++) {
-      const next = dp[j];
-      curr =
+      const temp = dp[j]; // (i-1, j) before overwrite — becomes the next diagonal
+      dp[j] =
         a.charCodeAt(i - 1) === b.charCodeAt(j - 1)
           ? prev
           : 1 + Math.min(prev, dp[j], dp[j - 1]);
-      dp[j - 1] = prev;
-      prev = next;
-      dp[j] = curr;
+      prev = temp;
     }
-    dp[bl] = curr;
   }
   return dp[bl];
 }

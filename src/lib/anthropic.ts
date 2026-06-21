@@ -1,6 +1,7 @@
 "use client";
 
 import { INGREDIENTS } from "@/data/ingredients";
+import { calculateNutritionForFreeForm } from "@/lib/nutritionEngine";
 import { config } from "@shared/platform/config";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
@@ -483,6 +484,14 @@ import type { GeneratedRecipe } from "@/lib/workerClient";
 function expandToFullRecipe(slim: SlimHaikuRecipe): GeneratedRecipe {
   // Fill in defaults so the existing AI Chef render code keeps working
   // without needing to be aware that this recipe came from Haiku.
+  // Compute real macros from the ingredients (the model returns no usable macros
+  // on this path), and derive the missing-to-buy items from userAlreadyHas.
+  const ns = calculateNutritionForFreeForm(
+    (slim.ingredients ?? []).map((i) => ({ name: i.name, quantity: Number(i.quantity) || 0, unit: i.unit ?? "" })),
+    slim.servings || 1,
+  ).perServing;
+  const missing = (slim.ingredients ?? []).filter((i) => !i.userAlreadyHas && !i.optional);
+  const missingCost = Number(missing.reduce((s, i) => s + (Number(i.estimatedCost) || 0), 0).toFixed(2));
   return {
     name: slim.name,
     description: slim.description,
@@ -500,7 +509,7 @@ function expandToFullRecipe(slim: SlimHaikuRecipe): GeneratedRecipe {
     noStovetopRequired: !slim.equipment?.includes("stovetop"),
     estimatedTotalCost: Number(slim.estimatedTotalCost) || 0,
     estimatedCostPerServing: Number(slim.estimatedCostPerServing) || 0,
-    estimatedMissingIngredientCost: 0,
+    estimatedMissingIngredientCost: missingCost,
     ingredients: (slim.ingredients ?? []).map((i) => {
       // A non-finite or non-positive quantity from the model would
       // propagate zero macros and zero cost downstream — fall back to
@@ -520,7 +529,12 @@ function expandToFullRecipe(slim: SlimHaikuRecipe): GeneratedRecipe {
         category: i.category ?? "other",
       };
     }),
-    missingIngredients: [],
+    missingIngredients: missing.map((i) => ({
+      name: i.name,
+      estimatedCost: Number(i.estimatedCost) || 0,
+      importance: "required" as const,
+      cheapSubstitute: null,
+    })),
     steps: slim.steps ?? [],
     guidedCookingSteps: [],
     cheapTips: slim.cheapTips ?? [],
@@ -534,7 +548,13 @@ function expandToFullRecipe(slim: SlimHaikuRecipe): GeneratedRecipe {
     storageInstructions: "",
     reheatingInstructions: "",
     safetyNotes: [],
-    estimatedNutrition: { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 },
+    estimatedNutrition: {
+      calories: ns.calories,
+      protein: ns.protein,
+      carbs: ns.carbs,
+      fat: ns.fat,
+      fiber: ns.fiber ?? 0,
+    },
     tags: slim.tags ?? [],
     imagePromptHint: slim.imagePromptHint,
   };

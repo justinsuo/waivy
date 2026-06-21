@@ -108,7 +108,12 @@ export function applyEstimateToUnit(
   // Try simple package-fallback math: if package unit matches catalog unit,
   // use package price ÷ package size.
   const pkg = estimate.selectedBudgetEstimate;
-  if (pkg.packageUnit.toLowerCase() === u && pkg.packageSize > 0) {
+  if (
+    pkg &&
+    typeof pkg.packageUnit === "string" &&
+    pkg.packageUnit.toLowerCase() === u &&
+    (pkg.packageSize ?? 0) > 0
+  ) {
     return pkg.packagePrice / pkg.packageSize;
   }
   return null;

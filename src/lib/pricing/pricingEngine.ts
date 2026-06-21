@@ -70,7 +70,7 @@ export function quoteIngredient(
           multiplier: region.multiplier,
           source: "ai-estimate",
           confidence: cached.estimate.confidence,
-          note: cached.estimate.selectedBudgetEstimate.reasoning,
+          note: cached.estimate.selectedBudgetEstimate?.reasoning,
         };
       }
     }
