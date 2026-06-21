@@ -1356,6 +1356,10 @@ const INGREDIENT_ALIASES: Record<string, string> = {
   "soda-water": "club-soda",
   "sparkling-water": "club-soda",
   "orange-bitters": "bitters",
+  // More cooking synonyms
+  "chives-fresh": "scallion",
+  "thyme-dried": "thyme",
+  "kashmiri-chili": "paprika",
   // Eggs
   "egg": "eggs",
   "egg-whites": "eggs",

@@ -2,11 +2,11 @@ import type { Recipe } from "@/lib/types";
 
 /**
  * Curated, quality-gated recipes — faithful versions of well-known dishes across
- * cuisines (comfort food, Italian, Mexican, Asian, Mediterranean, breakfast,
- * soups, vegetarian, desserts, seafood). Each was authored to be authentic, then
- * adversarially judged by a strict chef (kept only score >= 7 / avg 8.6) to reject
- * AI slop. Real catalog ingredient ids, quantities in catalog units. Photos are in
- * curatedRecipePhotos.ts (freely licensed, hand-verified to match the dish).
+ * world cuisines. Each was authored to be authentic, then adversarially judged by
+ * a strict chef that REJECTS AI slop (inauthentic ingredients, implausible
+ * quantities, generic templates); only score >= 7 keepers made it in (avg ~8.5).
+ * Real catalog ingredient ids, quantities in catalog units. Photos are in
+ * curatedRecipePhotos.ts (freely licensed, hand-verified to depict the dish).
  */
 export const CURATED_RECIPES: Recipe[] = [
   {
@@ -8790,6 +8790,9676 @@ export const CURATED_RECIPES: Recipe[] = [
       "high-protein",
       "comfort-food",
       "meal-prep-friendly"
+    ]
+  },
+  {
+    "id": "cur2-cajun-jambalaya",
+    "name": "Cajun Jambalaya",
+    "description": "A one-pot Louisiana classic: smoky andouille-style sausage and browned chicken thighs simmered with the Cajun \"holy trinity,\" then rice cooked right in the same pot so every grain soaks up the deeply seasoned, slightly browned stock. This is the rustic Cajun \"brown\" style — no cream, no tomato sauce drowning it out, just real fond, cayenne heat, and bay.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "smoked-sausage",
+        "quantity": 4,
+        "note": "andouille sausage, sliced into coins"
+      },
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "boneless skinless, cut into chunks"
+      },
+      {
+        "ingredientId": "rice",
+        "quantity": 4,
+        "note": "long-grain white rice, uncooked"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 0.75,
+        "note": "about 3 cups"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 1,
+        "note": "green, for the holy trinity"
+      },
+      {
+        "ingredientId": "celery",
+        "quantity": 0.4,
+        "note": "2 stalks"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.3,
+        "note": "4 cloves, minced"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.2,
+        "note": "1 tbsp, for color and depth"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.05,
+        "note": "2 tbsp for browning"
+      },
+      {
+        "ingredientId": "smoked-paprika",
+        "quantity": 0.2
+      },
+      {
+        "ingredientId": "cayenne",
+        "quantity": 0.1,
+        "note": "adjust to heat preference"
+      },
+      {
+        "ingredientId": "dried-thyme",
+        "quantity": 0.15
+      },
+      {
+        "ingredientId": "dried-oregano",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "bay-leaves",
+        "quantity": 0.1,
+        "note": "2 leaves"
+      },
+      {
+        "ingredientId": "garlic-powder",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "onion-powder",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "kosher-salt",
+        "quantity": 0.1,
+        "note": "to taste"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 0.5,
+        "note": "sliced, to finish"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.2,
+        "note": "chopped, to finish",
+        "optional": true
+      },
+      {
+        "ingredientId": "hot-sauce",
+        "quantity": 0.1,
+        "note": "at the table",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Make a Cajun seasoning by combining the smoked paprika, cayenne, dried thyme, dried oregano, garlic powder, onion powder, black pepper, and a big pinch of kosher salt. Season the chicken chunks with about half of it.",
+      "Heat the oil in a heavy Dutch oven or deep skillet over medium-high. Brown the sausage coins until the edges crisp and render fat, 3-4 minutes, then scoop out. Add the chicken and sear until browned on all sides (it doesn't need to cook through), then remove. Leave the dark fond on the bottom of the pot.",
+      "Lower the heat to medium. Add the onion, green bell pepper, and celery (the holy trinity) and cook, scraping up the browned bits, until softened and starting to color, about 6-8 minutes. Stir in the garlic and tomato paste and cook 1 minute until rusty and fragrant.",
+      "Return the sausage and chicken to the pot with the rest of the Cajun seasoning and the bay leaves. Stir to coat everything.",
+      "Add the uncooked long-grain rice and stir for a minute so the grains toast slightly and pick up the fat and seasoning.",
+      "Pour in the chicken broth, scrape the bottom once more, and bring to a boil. Taste the liquid and adjust salt and cayenne now — it should taste assertive.",
+      "Cover, reduce to low, and simmer undisturbed for 20-25 minutes until the rice is tender and the liquid is absorbed. Resist stirring, which makes it gummy.",
+      "Kill the heat and let it stand covered for 10 minutes, then fluff gently with a fork. Discard the bay leaves, fold in scallions and parsley, and serve with hot sauce on the side."
+    ],
+    "totalTimeMinutes": 65,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 45,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Chicken thighs are cheaper than breasts and stay juicy in the long simmer — buy a bulk pack and freeze what you don't use.",
+      "No andouille? Any smoked sausage or even kielbasa works; the smoke and fat are what matter, and you make up heat with extra cayenne.",
+      "Build your own Cajun spice blend from pantry staples instead of buying a pricey jar — the recipe already lists every spice you need."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Use bone-in drumsticks or leftover rotisserie chicken (add it at the end so it doesn't dry out)",
+        "savings": "~$1.50/lb vs boneless thighs"
+      },
+      {
+        "forIngredientId": "smoked-sausage",
+        "swap": "Any kielbasa or smoked pork sausage on sale",
+        "savings": "~$3 vs specialty andouille"
+      },
+      {
+        "forIngredientId": "chicken-broth",
+        "swap": "Water plus a crumbled chicken bouillon cube",
+        "savings": "~$1.50 per batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 620,
+      "protein": 38,
+      "carbs": 58,
+      "fat": 26,
+      "fiber": 3
+    },
+    "emoji": "🍚",
+    "accentColor": "bg-red-100",
+    "cuisine": "Cajun",
+    "tags": [
+      "one-pot",
+      "cajun",
+      "louisiana",
+      "spicy",
+      "comfort-food",
+      "rice",
+      "chicken-and-sausage",
+      "dairy-free"
+    ]
+  },
+  {
+    "id": "cur2-cornbread-dressing",
+    "name": "Southern Cornbread Dressing",
+    "description": "The real Thanksgiving-table version: a skillet of buttermilk cornbread baked, crumbled, and mixed with day-old bread, the holy trinity of onion-celery-bell pepper sweated in butter, lots of sage and poultry seasoning, and enough chicken broth to make it spoonably moist. Bound with egg and baked until the edges go crisp and golden while the inside stays custardy. This is dressing, baked in a dish — not stuffing crammed in a bird.",
+    "mealType": "dinner",
+    "servings": 8,
+    "ingredients": [
+      {
+        "ingredientId": "cornmeal",
+        "quantity": 0.5,
+        "note": "yellow cornmeal for the cornbread base (about 2 cups)"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.25,
+        "note": "all-purpose, about 1 cup, for the cornbread"
+      },
+      {
+        "ingredientId": "buttermilk",
+        "quantity": 0.4,
+        "note": "about 1.5 cups for the cornbread batter"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "1 in the cornbread batter, 3 to bind the dressing"
+      },
+      {
+        "ingredientId": "baking-powder",
+        "quantity": 0.15,
+        "note": "1 tbsp for the cornbread"
+      },
+      {
+        "ingredientId": "baking-soda",
+        "quantity": 0.05,
+        "note": "1/2 tsp for the cornbread"
+      },
+      {
+        "ingredientId": "bread",
+        "quantity": 0.4,
+        "note": "3-4 slices day-old white bread or 2 leftover biscuits, torn"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.6,
+        "note": "1 stick: part for the skillet, rest to sweat the vegetables"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "yellow onion, finely diced"
+      },
+      {
+        "ingredientId": "celery",
+        "quantity": 0.5,
+        "note": "about 3 ribs, finely diced"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 0.5,
+        "note": "optional but traditional in much of the South"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 1.25,
+        "note": "about 4-5 cups; add until the mix is wet and loose"
+      },
+      {
+        "ingredientId": "sage-dried",
+        "quantity": 0.3,
+        "note": "rubbed sage, the defining flavor — about 1 tbsp"
+      },
+      {
+        "ingredientId": "poultry-seasoning",
+        "quantity": 0.15,
+        "note": "about 2 tsp"
+      },
+      {
+        "ingredientId": "thyme-dried",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.1,
+        "note": "lots of black pepper"
+      }
+    ],
+    "steps": [
+      "Make the cornbread first, ideally a day ahead so it dries out. Heat oven to 425F. Put 2 tbsp of the butter in a cast-iron skillet or 8-inch pan and slide it into the oven to melt and get hot. Whisk together the cornmeal, flour, baking powder, baking soda, and a big pinch of salt; in another bowl whisk the buttermilk with 1 egg, then stir the wet into the dry until just combined.",
+      "Swirl the hot butter to coat the pan, pour in the batter, and bake 20-22 minutes until golden and set. Cool, then crumble the whole cornbread into a very large bowl along with the torn day-old bread. Leave it uncovered for a few hours or overnight to stale — dressing made with fresh, soft bread turns to mush.",
+      "Lower the oven to 350F and butter a 9x13 baking dish. Melt the remaining butter in a skillet over medium heat and add the onion, celery, and bell pepper with a pinch of salt. Sweat 8-10 minutes until completely soft and translucent but not browned — this is the backbone of the flavor, so don't rush it.",
+      "Scrape the vegetables and all their butter into the bowl of crumbled bread. Add the sage, poultry seasoning, thyme, 1 tsp salt, and plenty of black pepper, and toss until the bread is evenly coated. Taste a pinch of the seasoned crumbs — it should taste a touch too salty and sage-forward, because the broth will mellow it.",
+      "Pour in about 4 cups of the warm chicken broth and the 3 remaining beaten eggs, then fold gently. The mixture should be very wet and loose, almost soupy — like thick oatmeal. Add more broth as needed; under-moistened dressing bakes out dry, so err wet.",
+      "Spread the dressing into the buttered dish without packing it down. Dot the top with a little extra butter if you have it. Bake uncovered at 350F for 40-50 minutes, until the top is golden brown and crisp and the center is set but still moist when you press it.",
+      "Let it rest 10 minutes before serving so it firms up enough to scoop. Serve hot, ideally with turkey or chicken and a ladle of gravy over the top."
+    ],
+    "totalTimeMinutes": 110,
+    "prepTimeMinutes": 35,
+    "cookTimeMinutes": 75,
+    "difficulty": "medium",
+    "equipment": [
+      "oven",
+      "stovetop"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Bake the cornbread a day or two ahead from a bag of cornmeal — it costs a fraction of buying a cornbread mix and stales perfectly for dressing.",
+      "Save the heel ends and stale slices of any sandwich bread in the freezer; this recipe is the perfect place to use them up instead of buying fresh.",
+      "Make your own broth by simmering the turkey or chicken carcass with the celery tops and onion skins — it deepens the flavor for free and is the most authentic move."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "buttermilk",
+        "swap": "Regular milk soured with a tablespoon of vinegar or lemon juice, left 5 minutes",
+        "savings": "Skips buying a whole carton of buttermilk you won't finish"
+      },
+      {
+        "forIngredientId": "poultry-seasoning",
+        "swap": "Extra sage plus a pinch each of thyme and marjoram you already have",
+        "savings": "Avoids a single-use spice blend, saves ~$4"
+      },
+      {
+        "forIngredientId": "chicken-broth",
+        "swap": "Veggie broth or water with a bouillon cube (and keeps it vegetarian)",
+        "savings": "Bouillon is pennies per cup vs boxed broth"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 320,
+      "protein": 9,
+      "carbs": 38,
+      "fat": 14,
+      "fiber": 3
+    },
+    "emoji": "🍞",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Southern American",
+    "tags": [
+      "thanksgiving",
+      "holiday",
+      "side-dish",
+      "soul-food",
+      "comfort-food",
+      "cornbread",
+      "baked",
+      "potluck"
+    ]
+  },
+  {
+    "id": "cur2-country-fried-steak",
+    "name": "Country Fried Steak",
+    "description": "Tender cube steak double-dredged in seasoned flour, fried golden and crisp, then smothered in a peppery skillet milk gravy made right in the drippings. Classic Southern comfort food done the honest way.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "cube-steak",
+        "quantity": 4,
+        "note": "4 cube steaks, about 6 oz each"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.18,
+        "note": "about 1.5 cups all-purpose for dredge + gravy"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "buttermilk",
+        "quantity": 0.15,
+        "note": "about 2/3 cup for the egg wash"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.2,
+        "note": "about 2 cups whole milk for the gravy"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.12,
+        "note": "about 1/2 cup for shallow frying"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.04
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.05,
+        "note": "be generous, gravy should be peppery"
+      },
+      {
+        "ingredientId": "garlic-powder",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "onion-powder",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "paprika",
+        "quantity": 0.015
+      },
+      {
+        "ingredientId": "cayenne",
+        "quantity": 0.01,
+        "optional": true
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.05,
+        "note": "1 tbsp to enrich the gravy if drippings run thin"
+      }
+    ],
+    "steps": [
+      "Pat the cube steaks dry and season both sides with salt and pepper. In one shallow dish whisk the eggs with the buttermilk; in a second dish combine the flour with garlic powder, onion powder, paprika, cayenne, 1 tsp salt and a heavy 1 tsp black pepper.",
+      "Dredge each steak in the seasoned flour, dip fully into the buttermilk-egg wash, then press firmly back into the flour a second time for a thick, craggy crust. Set on a rack and let sit 10 minutes so the coating adheres.",
+      "Heat about 1/2 inch of oil in a large heavy skillet (cast iron is ideal) over medium-high until it shimmers, around 350F. Lay in the steaks without crowding and fry 3-4 minutes per side until deep golden brown and crisp; work in batches if needed.",
+      "Transfer the fried steaks to a paper-towel-lined rack and keep warm. Carefully pour off all but about 3 tablespoons of the oil and browned bits, adding the butter if the drippings look sparse.",
+      "Whisk 3 tablespoons of the seasoned flour into the hot drippings and cook 1-2 minutes, stirring constantly, until the roux smells nutty and turns light tan.",
+      "Slowly pour in the milk while whisking to keep it smooth, scraping up the fond. Simmer 3-5 minutes until the gravy thickens enough to coat a spoon.",
+      "Season the gravy aggressively with black pepper and salt to taste; loosen with a splash more milk if it gets too thick.",
+      "Plate each steak and ladle the hot peppery gravy generously over the top. Serve immediately while the crust is still crisp."
+    ],
+    "totalTimeMinutes": 40,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 20,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [],
+    "cheapTips": [
+      "Cube steak is one of the cheapest cuts at the butcher; buy a family pack and freeze portions flat for fast weeknight dinners.",
+      "The gravy uses the same seasoned flour and the pan drippings, so nothing goes to waste and you skip buying a gravy mix.",
+      "Buttermilk substitute: stir 1 tsp vinegar into the milk and let it sit 5 minutes instead of buying a whole carton."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "cube-steak",
+        "swap": "Pound thin sirloin or round steak with a meat mallet until tenderized",
+        "savings": "Uses a cut you may already have; tenderizing at home saves the butcher markup"
+      },
+      {
+        "forIngredientId": "buttermilk",
+        "swap": "Whole milk soured with 1 tsp vinegar or lemon juice",
+        "savings": "Avoids buying a full carton of buttermilk for ~$0.50 of milk"
+      },
+      {
+        "forIngredientId": "vegetable-oil",
+        "swap": "Canola or any neutral high-smoke-point oil",
+        "savings": "Use whatever frying oil is cheapest in bulk"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 560,
+      "protein": 38,
+      "carbs": 30,
+      "fat": 31,
+      "fiber": 1
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Southern American",
+    "tags": [
+      "comfort-food",
+      "southern",
+      "fried",
+      "beef",
+      "gravy",
+      "dinner",
+      "skillet"
+    ]
+  },
+  {
+    "id": "cur2-monte-cristo-sandwich",
+    "name": "Monte Cristo Sandwich",
+    "description": "A decadent griddled ham-and-turkey sandwich layered with Gruyère and Dijon, dipped in seasoned egg batter like French toast, pan-fried golden in butter, then dusted with powdered sugar and served with jam. Sweet, savory, and gloriously gooey.",
+    "mealType": "lunch",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "bread",
+        "quantity": 0.4,
+        "note": "4 slices white sandwich or brioche bread"
+      },
+      {
+        "ingredientId": "ham",
+        "quantity": 2,
+        "note": "thin-sliced deli ham, ~3 oz total"
+      },
+      {
+        "ingredientId": "deli-turkey",
+        "quantity": 2,
+        "note": "thin-sliced roast turkey, ~3 oz total"
+      },
+      {
+        "ingredientId": "gruyere",
+        "quantity": 0.25,
+        "note": "4 slices Gruyère; Swiss works too"
+      },
+      {
+        "ingredientId": "dijon",
+        "quantity": 0.1,
+        "note": "thin spread on the inside"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.1,
+        "note": "about 1/4 cup for the batter"
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 0.02,
+        "note": "pinch, warms the batter"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.01
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.1,
+        "note": "for griddling"
+      },
+      {
+        "ingredientId": "powdered-sugar",
+        "quantity": 0.05,
+        "note": "for dusting"
+      },
+      {
+        "ingredientId": "jam",
+        "quantity": 0.1,
+        "note": "raspberry or strawberry, for serving",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Whisk the eggs, milk, a pinch of nutmeg, and a little salt in a wide shallow dish until fully blended; set aside.",
+      "Lay out 4 slices of bread. Spread a thin layer of Dijon on the two inner-facing slices.",
+      "Build two sandwiches: on each, layer a slice of Gruyère, the ham, the turkey, then a second slice of Gruyère so the cheese sits against both bread faces and glues everything together. Press firmly so they hold.",
+      "Melt the butter in a nonstick skillet or griddle over medium-low heat. Low and slow is key so the cheese melts before the outside burns.",
+      "Dip each assembled sandwich into the egg batter, letting it soak 5-10 seconds per side until coated but not soggy.",
+      "Griddle the sandwiches 3-4 minutes per side, pressing gently with a spatula, until deep golden brown and the cheese is fully melted through.",
+      "Transfer to a board and rest 1 minute, then slice each on the diagonal.",
+      "Dust generously with powdered sugar and serve hot with a small dish of raspberry or strawberry jam for dipping."
+    ],
+    "totalTimeMinutes": 20,
+    "prepTimeMinutes": 8,
+    "cookTimeMinutes": 12,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Buy ham and turkey from the deli counter end-cuts bin, often half price, and slice or chop them yourself.",
+      "Use regular Swiss cheese instead of Gruyère to cut the cost without losing the classic nutty melt.",
+      "Day-old or slightly stale bread soaks up the egg batter better and won't fall apart in the pan."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "gruyere",
+        "swap": "Swiss cheese or even American singles",
+        "savings": "Saves about $2-3 per build versus Gruyère"
+      },
+      {
+        "forIngredientId": "ham",
+        "swap": "extra deli turkey or leftover roast chicken",
+        "savings": "Saves ~$1.50 and uses up leftovers"
+      },
+      {
+        "forIngredientId": "jam",
+        "swap": "a spoon of any fruit preserve or even cranberry sauce",
+        "savings": "Free if you have an open jar in the fridge"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 560,
+      "protein": 34,
+      "carbs": 38,
+      "fat": 30,
+      "fiber": 2
+    },
+    "emoji": "🥪",
+    "accentColor": "bg-amber-100",
+    "cuisine": "American (French-inspired)",
+    "tags": [
+      "sandwich",
+      "ham",
+      "turkey",
+      "griddled",
+      "comfort-food",
+      "brunch",
+      "classic"
+    ]
+  },
+  {
+    "id": "cur2-buttermilk-pie",
+    "name": "Buttermilk Pie",
+    "description": "A classic Southern custard pie with a tangy-sweet buttermilk filling.",
+    "mealType": "snack",
+    "servings": 8,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.5,
+        "note": "all-purpose: ~1 1/4 cups for the crust plus 3 tbsp to thicken the filling"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.55,
+        "note": "1/2 cup cold cubed for crust; 6 tbsp melted for filling"
+      },
+      {
+        "ingredientId": "buttermilk",
+        "quantity": 0.5,
+        "note": "1 cup full-fat, well shaken"
+      },
+      {
+        "ingredientId": "white-sugar",
+        "quantity": 0.3,
+        "note": "1 1/2 cups granulated"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "quantity": 0.05,
+        "note": "2 tsp"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 1,
+        "note": "1 tbsp juice + 1 tsp zest for brightness"
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 0.05,
+        "note": "1/4 tsp, freshly grated, plus extra for the top"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02,
+        "note": "1/2 tsp total, split between crust and filling"
+      }
+    ],
+    "steps": [
+      "Make the crust: cut 1/2 cup cold cubed butter into 1 1/4 cups flour with a pinch of salt until pea-sized, then add 3-4 tbsp ice water just until it comes together. Shape into a disk, wrap, and chill 30 minutes.",
+      "Roll the dough into a 12-inch round, fit it into a 9-inch pie plate, crimp the edge, and freeze 15 minutes. Heat the oven to 350F.",
+      "Blind-bake the crust: line with parchment and pie weights or dried beans, bake 15 minutes, remove the weights, and bake 5 minutes more until pale gold. Keep the oven at 350F.",
+      "Whisk 1 1/2 cups sugar with 3 tbsp flour and 1/4 tsp salt, then whisk in 6 tbsp melted (cooled) butter until smooth.",
+      "Whisk in the 3 eggs one at a time, then stream in 1 cup buttermilk along with the vanilla, lemon juice, and lemon zest until the custard is uniform and pourable.",
+      "Pour the filling into the warm par-baked crust, grate a little fresh nutmeg over the top, and tent the crust edge with foil if it browns too fast.",
+      "Bake 45-55 minutes until the top is golden and the center jiggles only slightly like set Jell-O; a knife 1 inch from the edge should come out clean.",
+      "Cool completely on a rack for at least 2 hours so the custard sets, then chill at least 1 hour before slicing for the cleanest wedges."
+    ],
+    "totalTimeMinutes": 220,
+    "prepTimeMinutes": 40,
+    "cookTimeMinutes": 70,
+    "difficulty": "medium",
+    "equipment": [
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Skip pie weights and use a cup of dried beans or rice you already own to blind-bake; save and reuse them indefinitely.",
+      "Buttermilk is the cheapest tang in baking, but if you only need a cup, make your own by stirring 1 tbsp lemon juice into 1 cup milk and resting 5 minutes.",
+      "Buy a whole lemon for the zest and juice instead of bottled extracts; one lemon does both jobs and adds fresher flavor."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "buttermilk",
+        "swap": "1 cup milk soured with 1 tbsp lemon juice or vinegar, rested 5 min",
+        "savings": "Saves buying a whole carton of buttermilk you won't finish"
+      },
+      {
+        "forIngredientId": "lemon",
+        "swap": "1 tbsp bottled lemon juice (skip the zest)",
+        "savings": "About $0.50 cheaper than a fresh lemon"
+      },
+      {
+        "forIngredientId": "nutmeg",
+        "swap": "a pinch of cinnamon",
+        "savings": "Use a warm spice you likely already have"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 395,
+      "protein": 6,
+      "carbs": 48,
+      "fat": 21,
+      "fiber": 1
+    },
+    "emoji": "🥧",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "Southern American",
+    "tags": [
+      "dessert",
+      "pie",
+      "custard",
+      "buttermilk",
+      "southern",
+      "baking",
+      "vegetarian",
+      "make-ahead"
+    ]
+  },
+  {
+    "id": "cur2-cinnamon-rolls",
+    "name": "Cinnamon Rolls",
+    "description": "Soft, pillowy yeast rolls swirled with brown sugar and cinnamon, baked until golden and finished with a tangy cream cheese frosting that melts into every layer. The dough is enriched with milk, butter, and egg for that signature tender, fluffy crumb.",
+    "mealType": "breakfast",
+    "servings": 12,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.6,
+        "note": "about 4 cups all-purpose flour"
+      },
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 0.5,
+        "note": "1 cup, warmed to ~110F"
+      },
+      {
+        "ingredientId": "instant-yeast",
+        "quantity": 1,
+        "note": "2 1/4 tsp (one packet)"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.2,
+        "note": "1/4 cup granulated, for the dough"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.75,
+        "note": "1/3 cup softened for dough + 1/3 cup softened for filling"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "2 large, room temperature"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "brown-sugar",
+        "quantity": 0.45,
+        "note": "3/4 cup packed, for the filling"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.5,
+        "note": "2 1/2 tbsp ground cinnamon"
+      },
+      {
+        "ingredientId": "cream-cheese",
+        "quantity": 0.5,
+        "note": "4 oz softened, for frosting"
+      },
+      {
+        "ingredientId": "powdered-sugar",
+        "quantity": 0.35,
+        "note": "1 1/2 cups, for frosting"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.15,
+        "note": "2 tsp total (dough + frosting)"
+      }
+    ],
+    "steps": [
+      "Warm the milk to about 110F (just above body temp), stir in the instant yeast and a pinch of the granulated sugar, and let sit 5 minutes until foamy. In a large bowl whisk together the foamed milk, remaining granulated sugar, eggs, 1/3 cup softened butter, 1 tsp vanilla, and salt.",
+      "Add the flour about a cup at a time, mixing until a shaggy dough forms, then knead by hand on a floured surface (or with a stand mixer dough hook) for 8-10 minutes until smooth, elastic, and only slightly tacky. Place in a greased bowl, cover, and let rise in a warm spot for about 1 hour, until doubled.",
+      "Make the filling: mash together the remaining 1/3 cup softened butter, the packed brown sugar, and the cinnamon into a thick spreadable paste.",
+      "Punch down the risen dough and roll it out on a floured surface into a roughly 16x12 inch rectangle, about 1/4 inch thick.",
+      "Spread the cinnamon-sugar filling evenly over the dough, leaving a 1/2 inch border along the far long edge. Starting from the long edge nearest you, roll the dough up tightly into a log and pinch the seam to seal.",
+      "Using unflavored dental floss or a sharp serrated knife, cut the log into 12 even rolls and arrange them cut-side up in a greased 9x13 inch baking dish. Cover loosely and let rise again for 30-45 minutes until puffy and touching.",
+      "Bake at 350F for 22-28 minutes, until the tops are golden and the centers register about 190F. If they brown too fast, tent loosely with foil.",
+      "While they bake, beat the softened cream cheese with the remaining 2-3 tbsp softened butter until smooth, then beat in the powdered sugar and remaining 1 tsp vanilla until creamy.",
+      "Let the rolls cool for 5-10 minutes, then spread the cream cheese frosting over the warm rolls so it melts into the swirls. Serve warm."
+    ],
+    "totalTimeMinutes": 150,
+    "prepTimeMinutes": 35,
+    "cookTimeMinutes": 25,
+    "difficulty": "medium",
+    "equipment": [
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Buy yeast in a jar instead of single packets — it is a fraction of the per-use cost and keeps for months in the fridge.",
+      "Plain all-purpose flour, store-brand butter, and granulated sugar make up most of the cost; skip bread flour, AP works great for soft rolls.",
+      "Cut the rolls with a piece of dental floss instead of a knife — it gives clean rounds without squashing the dough and costs nothing."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "whole-milk",
+        "swap": "Use oat-milk plus an extra tsp of butter for richness",
+        "savings": "About the same, but lets you use shelf-stable milk you already have"
+      },
+      {
+        "forIngredientId": "cream-cheese",
+        "swap": "Make a simple powdered-sugar + milk glaze instead of cream cheese frosting",
+        "savings": "Saves ~$2 by skipping the cream cheese"
+      },
+      {
+        "forIngredientId": "instant-yeast",
+        "swap": "Use active-dry-yeast, just proof it fully in the warm milk first",
+        "savings": "No cost difference; use whichever you have"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 380,
+      "protein": 6,
+      "carbs": 56,
+      "fat": 15,
+      "fiber": 2
+    },
+    "emoji": "🥐",
+    "accentColor": "bg-amber-100",
+    "cuisine": "American",
+    "tags": [
+      "cinnamon rolls",
+      "baking",
+      "breakfast",
+      "brunch",
+      "yeast dough",
+      "sweet",
+      "cream cheese frosting",
+      "from scratch"
+    ]
+  },
+  {
+    "id": "cur2-beef-barbacoa",
+    "name": "Beef Barbacoa",
+    "description": "Mexican-style shredded beef braised low and slow until fall-apart tender in a smoky, tangy adobo of chipotle, dried chiles, cumin, clove, and lime. The hallmark of real barbacoa: a tough, well-marbled cut cooked for hours until it pulls apart with a fork, then bathed in its own rich braising liquid. Pile it into warm tortillas with onion and cilantro.",
+    "mealType": "dinner",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "beef-chuck",
+        "quantity": 6,
+        "note": "boneless chuck roast, cut into large 2-inch chunks"
+      },
+      {
+        "ingredientId": "chipotle-in-adobo",
+        "quantity": 0.75,
+        "note": "3-4 chipotles plus 2 tbsp adobo sauce"
+      },
+      {
+        "ingredientId": "ancho-chili-powder",
+        "quantity": 2,
+        "note": "stands in for 2 dried ancho chiles"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "white onion, quartered for the braise"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "5 cloves"
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 2,
+        "note": "juice of 2 limes"
+      },
+      {
+        "ingredientId": "apple-cider-vinegar",
+        "quantity": 0.1,
+        "note": "3 tbsp"
+      },
+      {
+        "ingredientId": "beef-broth",
+        "quantity": 1,
+        "note": "about 1.5 cups"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1,
+        "note": "1 tbsp ground"
+      },
+      {
+        "ingredientId": "oregano",
+        "quantity": 1,
+        "note": "Mexican oregano, 2 tsp"
+      },
+      {
+        "ingredientId": "cloves-ground",
+        "quantity": 0.5,
+        "note": "1/4 tsp"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 1,
+        "note": "2 leaves"
+      },
+      {
+        "ingredientId": "smoked-paprika",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "2 tsp kosher salt, to taste"
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.3
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.1,
+        "note": "2 tbsp for searing"
+      },
+      {
+        "ingredientId": "corn-tortilla-chips",
+        "quantity": 0,
+        "optional": true,
+        "note": "ignore"
+      },
+      {
+        "ingredientId": "tortilla",
+        "quantity": 1,
+        "note": "warm corn tortillas, for serving"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "for serving"
+      },
+      {
+        "ingredientId": "white-onion",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "finely diced, for serving"
+      }
+    ],
+    "steps": [
+      "Pat the beef chunks dry and season all over with the salt and pepper. Heat the olive oil in a large heavy pot or Dutch oven over medium-high heat and sear the beef in batches until deeply browned on all sides, about 8-10 minutes total. Transfer to a plate.",
+      "Make the adobo: in a blender, combine the chipotles in adobo, ancho chili powder, quartered onion, garlic, lime juice, apple cider vinegar, cumin, Mexican oregano, ground cloves, smoked paprika, and about half the beef broth. Blend until smooth.",
+      "Return the seared beef and any juices to the pot. Pour the adobo over it, add the remaining broth and the bay leaves, and stir to coat. The liquid should come about two-thirds up the meat.",
+      "Bring to a gentle simmer, then cover and braise low and slow: either keep at a bare simmer on the stovetop or transfer to a 300F oven. Cook 3 to 3.5 hours, turning the meat once or twice, until completely fork-tender and falling apart.",
+      "Discard the bay leaves. Lift the beef out and shred it with two forks, removing any large pockets of fat.",
+      "Return the shredded beef to the pot and toss with the braising liquid. Simmer uncovered 10-15 minutes to concentrate the sauce so the meat stays juicy but not soupy. Taste and adjust salt and lime.",
+      "Warm the corn tortillas. Serve the barbacoa piled into tortillas, topped with finely diced white onion and chopped cilantro, with extra braising juices spooned over."
+    ],
+    "totalTimeMinutes": 220,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 195,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "oven",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Chuck roast is one of the cheapest cuts and the long braise turns its connective tissue into rich, tender meat - never buy a pricier cut for barbacoa.",
+      "Make a double batch and freeze the extra in its braising liquid; it reheats better than fresh and the flavor deepens.",
+      "Stretch leftovers into tacos, burrito bowls, quesadillas, or nachos through the week - one roast feeds you for days."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "beef-chuck",
+        "swap": "Boneless beef short ribs or beef cheeks for an even richer, more traditional texture",
+        "savings": "Costs more but cheeks are the authentic cut; chuck is the budget pick"
+      },
+      {
+        "forIngredientId": "ancho-chili-powder",
+        "swap": "Regular chili powder plus an extra chipotle",
+        "savings": "Saves ~$2 using a pantry staple you likely already own"
+      },
+      {
+        "forIngredientId": "beef-broth",
+        "swap": "Water plus a bouillon cube",
+        "savings": "Saves ~$2 over boxed broth"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 42,
+      "carbs": 14,
+      "fat": 22,
+      "fiber": 3
+    },
+    "emoji": "🌮",
+    "accentColor": "bg-red-100",
+    "cuisine": "Mexican",
+    "tags": [
+      "barbacoa",
+      "shredded-beef",
+      "tacos",
+      "braised",
+      "slow-cooked",
+      "meal-prep",
+      "spicy",
+      "chipotle",
+      "gluten-free",
+      "dairy-free"
+    ]
+  },
+  {
+    "id": "cur2-colombian-bandeja-paisa",
+    "name": "Colombian Bandeja Paisa",
+    "description": "The legendary Antioquian feast on one plate: slow-simmered red beans, fluffy white rice, seasoned carne molida, crispy chicharrón, grilled chorizo, a fried egg, sweet plantain, a warm arepa, and creamy avocado. A complete celebration of paisa country cooking.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "red-beans",
+        "quantity": 1,
+        "note": "dried cargamanto/red beans, soaked overnight (about 1.5 cups)"
+      },
+      {
+        "ingredientId": "pork-belly",
+        "quantity": 1,
+        "note": "skin-on, cut into chicharrón strips"
+      },
+      {
+        "ingredientId": "ground-beef",
+        "quantity": 4,
+        "note": "carne molida"
+      },
+      {
+        "ingredientId": "chorizo",
+        "quantity": 4,
+        "note": "fresh Colombian-style chorizo, 1 link per person"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "1 fried egg per plate"
+      },
+      {
+        "ingredientId": "rice",
+        "quantity": 4,
+        "note": "white rice, cooked"
+      },
+      {
+        "ingredientId": "plantain",
+        "quantity": 2,
+        "note": "ripe (yellow-black) for sweet tajadas"
+      },
+      {
+        "ingredientId": "avocado",
+        "quantity": 2,
+        "note": "Hass, sliced"
+      },
+      {
+        "ingredientId": "masarepa",
+        "quantity": 0.4,
+        "note": "pre-cooked white corn flour for arepas"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 2,
+        "note": "for the hogao sofrito"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 0.5,
+        "note": "cebolla larga, key to hogao"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "cloves"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "grated into the beans for body"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "sazon",
+        "quantity": 1,
+        "note": "color/seasoning for beans and carne (achiote-based)"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 1,
+        "note": "for frying chicharrón and plantain"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "garnish"
+      }
+    ],
+    "steps": [
+      "Drain the soaked red beans and add to a large pot with fresh water, the grated carrot, half the chopped onion, 1 clove crushed garlic, and a pinch of cumin. Simmer 1.5-2 hours (or 35 min in a pressure cooker) until very tender, adding hot water as needed and salting near the end.",
+      "Make the hogao: gently cook the chopped tomato, scallion, remaining onion, and 2 cloves minced garlic in a little oil over low heat for 12-15 minutes until jammy. Stir half into the cooked beans with a teaspoon of sazon and simmer 10 more minutes so they thicken into a stew; reserve the rest of the hogao.",
+      "Score the pork belly skin and cut into thick strips. Place in a pan with a splash of water and a pinch of salt; cook until the water evaporates, then fry in its own rendered fat over medium heat until the skin blisters and the meat is deeply crisp, about 20-25 minutes. Drain on paper towels.",
+      "Season the ground beef with salt, pepper, cumin, and a little sazon. Brown in a skillet, breaking it up, then stir in a spoonful of the reserved hogao and cook until juicy and well seasoned.",
+      "Grill or pan-sear the chorizo links over medium heat, turning, until browned and cooked through, 10-12 minutes. Form the masarepa with warm salted water into 4 patties and griddle the arepas until golden with toasty spots on each side.",
+      "Peel and slice the ripe plantains on a bias; fry in hot oil until caramelized and tender, then drain. Just before serving, fry the eggs sunny-side up in a little hot oil so the whites crisp at the edges.",
+      "Plate each bandeja: a mound of white rice, a ladle of red beans, a portion of carne molida, a piece of chicharrón, a chorizo, a fried egg, sweet plantain tajadas, an arepa, and slices of avocado. Garnish with cilantro and serve immediately while everything is hot."
+    ],
+    "totalTimeMinutes": 150,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 120,
+    "difficulty": "hard",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Dried red beans soaked overnight cost a fraction of canned and give a far better, creamier stew for this dish.",
+      "Buy one slab of skin-on pork belly and cut your own chicharron strips instead of pre-cut pork rinds.",
+      "Make a big batch of beans and hogao; both freeze beautifully and turn weeknight leftovers into a fast second bandeja."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "red-beans",
+        "swap": "Canned kidney or pinto beans simmered with hogao",
+        "savings": "Skips overnight soak; costs a bit more but saves ~2 hours"
+      },
+      {
+        "forIngredientId": "pork-belly",
+        "swap": "Thick-cut bacon for a quicker, leaner chicharron",
+        "savings": "Saves about $3 and 20 minutes of frying"
+      },
+      {
+        "forIngredientId": "masarepa",
+        "swap": "Store-bought arepas or skip and add extra rice",
+        "savings": "Saves ~$2 and 10 minutes"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 920,
+      "protein": 52,
+      "carbs": 68,
+      "fat": 50,
+      "fiber": 14
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Colombian",
+    "tags": [
+      "colombian",
+      "antioquian",
+      "paisa",
+      "platter",
+      "pork",
+      "beans",
+      "comfort-food",
+      "feast"
+    ]
+  },
+  {
+    "id": "cur2-argentine-milanesa",
+    "name": "Argentine Milanesa",
+    "description": "The crown jewel of Argentine home cooking: thin beef cutlets marinated in garlicky, parsley-flecked egg, breaded, and shallow-fried until impossibly crisp and golden. Served with lemon wedges to cut the richness. Tender inside, shatteringly crunchy outside.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "cube-steak",
+        "quantity": 4,
+        "note": "thin beef milanesa cutlets (nalga/peceto), pounded to 1/4 inch"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3
+      },
+      {
+        "ingredientId": "breadcrumbs",
+        "quantity": 2,
+        "note": "fine dry breadcrumbs (pan rallado)"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 4,
+        "note": "cloves, finely minced"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.3,
+        "note": "finely chopped, stirred into the egg"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 1,
+        "note": "cut into wedges for serving"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 1,
+        "note": "for shallow frying"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "oregano",
+        "quantity": 1,
+        "optional": true,
+        "note": "pinch in the egg, common in Argentine homes"
+      }
+    ],
+    "steps": [
+      "Pat the beef cutlets dry and pound them between sheets of plastic wrap to an even 1/4-inch thickness so they cook fast and stay tender. Season lightly with salt and pepper on both sides.",
+      "In a wide shallow dish, beat the eggs with the minced garlic, chopped parsley, a pinch of oregano, 1/2 teaspoon salt, and several grinds of pepper. For the best flavor, submerge the cutlets in this egg mixture and let them marinate 30 minutes (or up to overnight in the fridge).",
+      "Spread the breadcrumbs in a second wide dish. Lift each cutlet from the egg, letting excess drip off, then press firmly into the breadcrumbs on both sides, packing the crumbs on so the entire surface is fully coated. Press a second time for a thick crust.",
+      "Pour oil into a large skillet to a depth of about 1/4 inch and heat over medium-high until shimmering (a breadcrumb should sizzle on contact, around 350F).",
+      "Fry the milanesas one or two at a time, without crowding, for about 2 to 3 minutes per side until deep golden brown and crisp. Flip only once.",
+      "Transfer to a wire rack or paper-towel-lined plate to drain; never stack them or the crust softens. Sprinkle immediately with a little flaky salt.",
+      "Serve hot with lemon wedges to squeeze over the top, alongside a green salad or mashed potatoes."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 40,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Cube steak is already tenderized and is the cheapest cut that works perfectly for milanesa, so you skip buying a premium cut.",
+      "Make your own breadcrumbs by blitzing stale bread or leftover heels in a blender instead of buying a box.",
+      "Bread a big batch and freeze the raw cutlets between parchment; fry straight from frozen later, so nothing goes to waste."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "cube-steak",
+        "swap": "Use thin-pounded chicken-breast for milanesa de pollo",
+        "savings": "Often a bit cheaper per serving and just as authentic"
+      },
+      {
+        "forIngredientId": "breadcrumbs",
+        "swap": "Stale bread blitzed in a blender",
+        "savings": "Basically free vs buying a box"
+      },
+      {
+        "forIngredientId": "vegetable-oil",
+        "swap": "Air-fry at 400F, spritzing with cooking spray",
+        "savings": "Uses a fraction of the oil"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 38,
+      "carbs": 24,
+      "fat": 26,
+      "fiber": 2
+    },
+    "emoji": "🥩",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Argentine",
+    "tags": [
+      "argentine",
+      "beef",
+      "fried",
+      "breaded",
+      "comfort-food",
+      "latin-american",
+      "dinner",
+      "kid-friendly"
+    ]
+  },
+  {
+    "id": "cur2-brazilian-brigadeiro",
+    "name": "Brazilian Brigadeiro",
+    "description": "Brazil's beloved chocolate fudge truffle: sweetened condensed milk slow-cooked with cocoa and butter until thick and glossy, then rolled into bite-sized balls and coated in chocolate sprinkles. Soft, chewy, and impossibly rich — the star of every Brazilian birthday party.",
+    "mealType": "snack",
+    "servings": 12,
+    "ingredients": [
+      {
+        "ingredientId": "sweetened-condensed-milk",
+        "quantity": 1,
+        "note": "1 standard 14 oz / 395 g can"
+      },
+      {
+        "ingredientId": "cocoa",
+        "quantity": 0.25,
+        "note": "about 3-4 tbsp unsweetened cocoa powder, sifted"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.1,
+        "note": "1 tbsp unsalted butter, plus a little extra for greasing hands"
+      },
+      {
+        "ingredientId": "chocolate-chips",
+        "quantity": 0.5,
+        "note": "stand-in for chocolate sprinkles (granulado) for rolling; finely chop if using chips"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02,
+        "optional": true,
+        "note": "tiny pinch to balance sweetness"
+      }
+    ],
+    "steps": [
+      "Add the full can of sweetened condensed milk to a small heavy-bottomed nonstick saucepan. Sift in the cocoa powder and whisk smooth so there are no lumps, then add the butter and a tiny pinch of salt.",
+      "Cook over medium-low heat, stirring constantly with a spatula and scraping the bottom and sides so it never scorches.",
+      "Continue stirring for 8 to 12 minutes as it thickens. It is ready when the mixture pulls away from the bottom in a single mass and you can briefly see the pan bottom when you drag the spatula across.",
+      "Scrape the mixture onto a lightly greased plate or shallow dish, spread it out, and let it cool to room temperature, then chill at least 30 minutes until firm enough to handle.",
+      "Grease your hands with a little butter. Scoop roughly 1 teaspoon portions and roll each between your palms into a smooth ball about 1 inch wide.",
+      "Roll each ball in the chocolate sprinkles (or finely chopped chocolate) until fully coated.",
+      "Place each brigadeiro in a small paper candy cup and serve, or chill until ready."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 40,
+    "cookTimeMinutes": 12,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "One can of sweetened condensed milk makes about 20-25 candies, so the cost per piece is tiny — perfect for parties.",
+      "Chocolate sprinkles are the traditional coating, but cocoa powder, finely chopped nuts, or shredded coconut all work and may already be in your pantry.",
+      "Use a nonstick pan and a silicone spatula so almost nothing sticks and cleanup is easy."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chocolate-chips",
+        "swap": "Roll in cocoa powder or unsweetened shredded coconut instead of sprinkles",
+        "savings": "Uses a pantry staple you likely already have"
+      },
+      {
+        "forIngredientId": "cocoa",
+        "swap": "Melt in 2 oz finely chopped dark chocolate during cooking",
+        "savings": "Skip if you only have a chocolate bar on hand"
+      },
+      {
+        "forIngredientId": "butter",
+        "swap": "Plant butter or a neutral coconut oil",
+        "savings": "Makes it dairy-lighter using what you have"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 110,
+      "protein": 2,
+      "carbs": 18,
+      "fat": 4,
+      "fiber": 1
+    },
+    "emoji": "🍫",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Brazilian",
+    "tags": [
+      "dessert",
+      "chocolate",
+      "no-bake",
+      "party",
+      "candy",
+      "brazilian",
+      "truffle",
+      "kid-friendly"
+    ]
+  },
+  {
+    "id": "cur2-cuban-ropa-vieja",
+    "name": "Cuban Ropa Vieja",
+    "description": "Cuban Ropa Vieja",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flank-steak",
+        "quantity": 4,
+        "note": "or skirt steak; the classic cut for ropa vieja"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "large, halved then sliced"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 2,
+        "note": "one red and one green, sliced into strips"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "about 5-6 cloves, minced"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.5,
+        "note": "about 2 tbsp"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 0.75,
+        "note": "or one 14oz can"
+      },
+      {
+        "ingredientId": "beef-broth",
+        "quantity": 0.5,
+        "note": "for braising the steak, about 2 cups"
+      },
+      {
+        "ingredientId": "white-wine",
+        "quantity": 0.15,
+        "note": "dry white wine, about 1/2 cup"
+      },
+      {
+        "ingredientId": "green-olives",
+        "quantity": 0.4,
+        "note": "manzanilla olives, sliced, about 1/2 cup"
+      },
+      {
+        "ingredientId": "capers",
+        "quantity": 0.25,
+        "note": "drained, about 2 tbsp"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 0.3,
+        "note": "ground"
+      },
+      {
+        "ingredientId": "oregano",
+        "quantity": 0.2,
+        "note": "dried"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 0.2,
+        "note": "2 leaves"
+      },
+      {
+        "ingredientId": "smoked-paprika",
+        "quantity": 0.15,
+        "note": "or sweet pimenton"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "roasted-red-peppers",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "pimientos, for garnish"
+      }
+    ],
+    "steps": [
+      "Season the flank steak generously with salt and pepper. Heat olive oil in a heavy Dutch oven over medium-high heat and sear the steak hard on both sides until deeply browned, about 4 minutes per side, then remove to a plate.",
+      "Pour the dry white wine into the pot to deglaze, scraping up the browned bits, then add the beef broth and bay leaves. Return the steak, cover, and gently simmer over low heat for about 1.5 to 2 hours until the meat is fork-tender and shreds easily. Remove the steak and reserve the braising liquid.",
+      "While the steak braises, slice the onions and bell peppers into thin strips and mince the garlic. Once the steak is done, shred it into thin strands with two forks (this is the 'old clothes' look the dish is named for).",
+      "In a large skillet or the cleaned Dutch oven, heat a little olive oil over medium heat and build the sofrito: cook the onions and bell peppers until soft and lightly caramelized, 8 to 10 minutes, then add the garlic and cook 1 minute more until fragrant.",
+      "Stir in the tomato paste, cumin, dried oregano, and smoked paprika; cook for 2 minutes to toast the spices and caramelize the paste.",
+      "Add the crushed tomatoes and about 1 cup of the reserved braising liquid. Bring to a gentle simmer and let it cook for 5 minutes to meld.",
+      "Fold in the shredded beef along with the sliced green olives and capers. Simmer uncovered for 15 to 20 minutes, adding more braising liquid as needed, until the sauce clings to the meat and is rich and glossy.",
+      "Taste and adjust with salt and pepper (the olives and capers are salty, so go easy). Discard the bay leaves, garnish with strips of roasted red pepper, and serve over white rice."
+    ],
+    "totalTimeMinutes": 150,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 130,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Use chuck or beef stew meat instead of flank steak — it's cheaper and braises just as tender into shreds.",
+      "Make a double batch; ropa vieja tastes even better the next day and freezes beautifully for up to 3 months.",
+      "Don't toss the braising liquid — it's pure flavor. Reduce any leftovers and use it to moisten reheated portions instead of water."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "flank-steak",
+        "swap": "beef-chuck or beef-stew-meat",
+        "savings": "Save about 40% per pound while getting equally tender shreds"
+      },
+      {
+        "forIngredientId": "white-wine",
+        "swap": "extra beef broth plus a splash of red-wine-vinegar",
+        "savings": "Avoids buying a whole bottle; uses pantry staples"
+      },
+      {
+        "forIngredientId": "crushed-tomato",
+        "swap": "tomato-sauce thinned with a little water",
+        "savings": "Often cheaper per can and usually already on hand"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 360,
+      "protein": 34,
+      "carbs": 14,
+      "fat": 19,
+      "fiber": 3
+    },
+    "emoji": "🥩",
+    "accentColor": "bg-red-100",
+    "cuisine": "Cuban",
+    "tags": [
+      "braised",
+      "beef",
+      "shredded-beef",
+      "latin",
+      "comfort-food",
+      "make-ahead",
+      "one-pot",
+      "gluten-free"
+    ]
+  },
+  {
+    "id": "cur2-korean-bibim-guksu",
+    "name": "Korean Bibim Guksu (Spicy Cold Noodles)",
+    "description": "Springy thin wheat noodles chilled in ice water and tossed in a punchy gochujang sauce that's sweet, sour, spicy, and nutty all at once. Topped with crisp julienned cucumber, tangy kimchi, and a jammy egg, it's the ultimate fast, refreshing Korean summer noodle dish.",
+    "mealType": "lunch",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "soba-noodles",
+        "quantity": 2,
+        "note": "somyeon (thin Korean wheat noodles); use 2 bundles"
+      },
+      {
+        "ingredientId": "gochujang",
+        "quantity": 0.25,
+        "note": "Korean red chili paste"
+      },
+      {
+        "ingredientId": "gochugaru",
+        "quantity": 0.5,
+        "note": "Korean chili flakes for color and gentle heat"
+      },
+      {
+        "ingredientId": "rice-vinegar",
+        "quantity": 0.2,
+        "note": "or apple cider vinegar"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "toasted-sesame-oil",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.1,
+        "note": "1 clove, grated"
+      },
+      {
+        "ingredientId": "honey",
+        "quantity": 0.05,
+        "note": "balances the vinegar; optional",
+        "optional": true
+      },
+      {
+        "ingredientId": "kimchi",
+        "quantity": 0.25,
+        "note": "chopped, plus a splash of its brine"
+      },
+      {
+        "ingredientId": "cucumber",
+        "quantity": 0.5,
+        "note": "julienned"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "soft- or hard-boiled, halved"
+      },
+      {
+        "ingredientId": "sesame-seeds",
+        "quantity": 0.1,
+        "note": "toasted, for garnish"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 0.25,
+        "note": "thinly sliced, for garnish"
+      }
+    ],
+    "steps": [
+      "Bring a small pot of water to a boil for the eggs. Gently lower in 2 eggs and cook 8-9 minutes for a just-set yolk, then transfer to ice water, peel, and halve.",
+      "Make the sauce: in a bowl whisk together the gochujang, gochugaru, rice vinegar, sugar, soy sauce, toasted sesame oil, grated garlic, honey, and a splash of kimchi brine until smooth. Taste and adjust the sweet-sour-spicy balance.",
+      "Julienne the cucumber and roughly chop the kimchi; set aside.",
+      "Bring a separate pot of water to a rolling boil and cook the somyeon noodles 3-4 minutes, stirring so they don't clump. Add a splash of cold water if the pot threatens to boil over.",
+      "Drain the noodles and immediately rinse under cold running water, rubbing with your hands to wash off surface starch until they feel cool and springy. Drain very well so the sauce isn't watered down.",
+      "Add the drained noodles to the sauce and toss thoroughly with tongs or hands until every strand is evenly coated and glossy.",
+      "Divide between two bowls. Top with the cucumber, chopped kimchi, and a halved egg on each.",
+      "Garnish with toasted sesame seeds and sliced scallion, then toss everything together just before eating."
+    ],
+    "totalTimeMinutes": 20,
+    "prepTimeMinutes": 12,
+    "cookTimeMinutes": 8,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "A standard pack of somyeon yields many servings for a few dollars, making this one of the cheapest noodle meals you can make.",
+      "Use the brine at the bottom of your kimchi jar instead of buying extra vinegar; it adds acidity and depth for free.",
+      "Skip store-bought sauces; the gochujang base mixed at home costs pennies per serving and tastes far fresher."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "soba-noodles",
+        "swap": "Regular thin spaghetti or capellini, cooked then rinsed cold",
+        "savings": "Save ~$1 using pantry pasta instead of a Korean noodle pack"
+      },
+      {
+        "forIngredientId": "honey",
+        "swap": "An extra pinch of sugar",
+        "savings": "Save ~$0.20 by skipping honey entirely"
+      },
+      {
+        "forIngredientId": "toasted-sesame-oil",
+        "swap": "Regular sesame oil or a few drops of vegetable oil",
+        "savings": "Save ~$0.50 per use"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 17,
+      "carbs": 78,
+      "fat": 11,
+      "fiber": 4
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-red-100",
+    "cuisine": "Korean",
+    "tags": [
+      "korean",
+      "cold-noodles",
+      "spicy",
+      "summer",
+      "quick",
+      "vegetarian",
+      "gochujang",
+      "noodles"
+    ]
+  },
+  {
+    "id": "cur2-korean-corn-dogs",
+    "name": "Korean Corn Dogs",
+    "description": "Korean street-food corn dogs (gamja-hotdog style) with a chewy, lightly sweet yeasted rice-flour batter wrapped around a half-mozzarella, half-hot-dog skewer, rolled in panko, deep-fried golden, then dusted with sugar and finished with ketchup and mustard. The signature cheese pull and crackly-soft crust are the whole point.",
+    "mealType": "snack",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "hot-dog",
+        "quantity": 2,
+        "note": "2 full-size hot dogs, each cut in half crosswise for 4 dogs"
+      },
+      {
+        "ingredientId": "mozzarella",
+        "quantity": 0.4,
+        "note": "low-moisture block mozzarella cut into 4 thick batons"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.3,
+        "note": "about 1 cup all-purpose flour for the batter"
+      },
+      {
+        "ingredientId": "rice-flour",
+        "quantity": 0.15,
+        "note": "about 3 tbsp; gives the signature chewy crust"
+      },
+      {
+        "ingredientId": "instant-yeast",
+        "quantity": 0.15,
+        "note": "about 1 tsp"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.05,
+        "note": "about 1.5 tbsp in batter, plus extra for dusting"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.4,
+        "note": "warm, about 3/4 cup to bind the batter"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 1,
+        "note": "1 egg in the batter"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "panko",
+        "quantity": 0.3,
+        "note": "for coating"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.4,
+        "note": "for deep frying, about 4 cups in a deep pot"
+      },
+      {
+        "ingredientId": "ketchup",
+        "quantity": 0.1,
+        "note": "for drizzling"
+      },
+      {
+        "ingredientId": "mustard",
+        "quantity": 0.05,
+        "note": "yellow mustard for drizzling"
+      }
+    ],
+    "steps": [
+      "Make the batter: whisk together the flour, rice flour, instant yeast, the 1.5 tbsp sugar, and salt. Stir in the egg and warm milk until you have a thick, smooth batter that ribbons off the spoon (add a splash more milk or flour to adjust). Cover and rest 40-60 minutes in a warm spot until visibly puffed and bubbly.",
+      "Meanwhile, cut each hot dog in half crosswise and cut the mozzarella into 4 batons the same thickness as the dogs. Pat everything very dry with paper towels so the batter grips.",
+      "Skewer each piece: push a wooden skewer up through a mozzarella baton and then into a hot-dog half (or do a full hot-dog skewer for one classic version). Dust every skewer lightly all over with a little flour so the wet batter sticks.",
+      "Spread the panko on a plate. Transfer the rested batter to a tall narrow glass or jar so it's deep enough to dip into.",
+      "Heat the oil in a deep pot to 340-350F (170-175C); it should bubble steadily around a wooden chopstick.",
+      "Dip each skewer into the batter, twirling to coat fully and letting excess drip off, then immediately roll in panko to coat all over.",
+      "Carefully lower into the oil and fry, turning often, 3-4 minutes until deep golden and the crust is set and crisp; cheese should be just melted inside. Work in small batches so the oil stays hot.",
+      "Drain on a rack or paper towels for a minute, then dust generously with sugar while hot and finish with zigzags of ketchup and mustard. Eat immediately for the cheese pull."
+    ],
+    "totalTimeMinutes": 80,
+    "prepTimeMinutes": 65,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Block mozzarella and store-brand hot dogs cost a fraction of specialty Korean ingredients and give the same cheese pull and snap.",
+      "Reuse the frying oil: cool it, strain through a coffee filter, and store in a jar for the next batch of fries or corn dogs.",
+      "Skip the panko on half the batch for the smooth gamja-style crust; you only need flour, rice flour, and yeast for the classic version, so no extra spend."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "rice-flour",
+        "swap": "Use cornstarch or just extra all-purpose flour",
+        "savings": "Saves buying a separate bag of rice flour"
+      },
+      {
+        "forIngredientId": "hot-dog",
+        "swap": "Use cut-up sausage or even all-mozzarella skewers for cheese-only corn dogs",
+        "savings": "All-cheese version skips meat cost entirely"
+      },
+      {
+        "forIngredientId": "panko",
+        "swap": "Crush plain cornflakes or use regular breadcrumbs",
+        "savings": "Cuts the cost of a panko box"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 15,
+      "carbs": 42,
+      "fat": 22,
+      "fiber": 1
+    },
+    "emoji": "🌭",
+    "accentColor": "bg-red-100",
+    "cuisine": "Korean",
+    "tags": [
+      "korean",
+      "street-food",
+      "deep-fried",
+      "cheese-pull",
+      "snack",
+      "hot-dog",
+      "kid-friendly"
+    ]
+  },
+  {
+    "id": "cur2-pad-kra-pao",
+    "name": "Pad Kra Pao Gai (Thai Holy Basil Chicken)",
+    "description": "Thailand's most beloved street-food plate: minced chicken flash-fried over screaming-high heat with pounded garlic and Thai chilies, seasoned with oyster sauce, fish sauce, soy, and a pinch of sugar, then folded through a fistful of holy basil for that peppery, anise-like perfume. Served over jasmine rice with a crispy, runny-yolk fried egg.",
+    "mealType": "dinner",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "ground-chicken",
+        "quantity": 2,
+        "note": "minced chicken (gai); hand-chop for better texture if you can"
+      },
+      {
+        "ingredientId": "jasmine-rice",
+        "quantity": 2,
+        "note": "steamed, to serve"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "one crispy fried egg (kai dao) per plate"
+      },
+      {
+        "ingredientId": "thai-basil",
+        "quantity": 1,
+        "note": "holy basil (bai kra pao) preferred; Thai basil is the common stand-in"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 6,
+        "note": "cloves, pounded"
+      },
+      {
+        "ingredientId": "thai-chili",
+        "quantity": 6,
+        "note": "pounded with the garlic; adjust to heat tolerance"
+      },
+      {
+        "ingredientId": "oyster-sauce",
+        "quantity": 0.15,
+        "note": "about 1.5 tbsp"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 0.1,
+        "note": "about 1 tbsp"
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 0.07,
+        "note": "light soy, about 2 tsp"
+      },
+      {
+        "ingredientId": "dark-soy",
+        "quantity": 0.03,
+        "note": "scant 1 tsp, for color"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.05,
+        "note": "1 tsp, to balance"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.1,
+        "note": "high smoke point, for stir-frying and frying the egg"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 1,
+        "optional": true,
+        "note": "thinly sliced; common addition"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "long beans are traditional; bell pepper is an easy swap for crunch"
+      }
+    ],
+    "steps": [
+      "Start the jasmine rice steaming so it's hot and ready when the stir-fry is done.",
+      "Pound the garlic and Thai chilies together in a mortar to a coarse paste (or chop very finely) — leaving texture, not a puree.",
+      "Mix the sauce in a small bowl: oyster sauce, fish sauce, light soy, dark soy, and sugar with 1 tablespoon water; stir to dissolve the sugar.",
+      "Fry the eggs first: heat a thin film of oil over high heat and slip in each egg; baste the edges until lacy and crispy but the yolk stays runny, then set aside.",
+      "Get a wok or wide skillet ripping hot, add oil, and stir-fry the garlic-chili paste (and shallot, if using) for 15-20 seconds until fragrant — don't let it brown.",
+      "Add the minced chicken and press it flat; let it sear undisturbed for 30 seconds, then break it up and stir-fry until just cooked, about 3-4 minutes.",
+      "Pour in the sauce (and bell pepper, if using), tossing hard to coat and let it sizzle and reduce for about 1 minute.",
+      "Kill the heat, throw in the holy basil, and toss just until wilted so it keeps its aroma.",
+      "Spoon over jasmine rice, top each plate with a crispy fried egg, and serve immediately."
+    ],
+    "totalTimeMinutes": 25,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 15,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop",
+      "rice-cooker"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Ground chicken or pork are the cheapest authentic proteins — both are traditional, so buy whatever's on sale.",
+      "A bunch of basil and a head of garlic cost little and go a long way; one batch of chilies frozen whole lasts months.",
+      "Skip the fried egg and add a splash more sauce if you're stretching the meal — it's still legit and even cheaper."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ground-chicken",
+        "swap": "Ground pork (pad kra pao moo) or ground beef — all classic versions",
+        "savings": "Pork is often cheaper per pound and just as authentic"
+      },
+      {
+        "forIngredientId": "thai-basil",
+        "swap": "Regular sweet basil in a pinch (loses the peppery edge but works)",
+        "savings": "Grab whatever basil is cheapest at the store"
+      },
+      {
+        "forIngredientId": "oyster-sauce",
+        "swap": "Extra soy sauce plus a pinch more sugar, or vegetarian mushroom 'oyster' sauce",
+        "savings": "Avoids buying a whole bottle for one dish"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 640,
+      "protein": 42,
+      "carbs": 58,
+      "fat": 25,
+      "fiber": 3
+    },
+    "emoji": "🌿",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Thai",
+    "tags": [
+      "thai",
+      "stir-fry",
+      "spicy",
+      "holy-basil",
+      "street-food",
+      "one-plate",
+      "quick",
+      "weeknight",
+      "rice-bowl"
+    ]
+  },
+  {
+    "id": "cur2-thai-drunken-noodles",
+    "name": "Thai Drunken Noodles (Pad Kee Mao)",
+    "description": "Wide rice noodles seared hard in a screaming-hot wok with garlic, Thai chiles, and a salty-sweet soy-and-fish-sauce glaze, finished with a flood of fragrant Thai basil. Smoky, spicy, and built to be eaten the moment it hits the plate.",
+    "mealType": "dinner",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "rice-noodles",
+        "quantity": 2,
+        "note": "wide fresh sen yai rice noodles, or dried wide rice noodles soaked"
+      },
+      {
+        "ingredientId": "chicken-breast",
+        "quantity": 2,
+        "note": "sliced thin against the grain; chicken thighs or tofu also traditional"
+      },
+      {
+        "ingredientId": "thai-basil",
+        "quantity": 0.5,
+        "note": "1 large packed cup leaves, stems stripped"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 5,
+        "note": "5 cloves, roughly chopped"
+      },
+      {
+        "ingredientId": "thai-chili",
+        "quantity": 4,
+        "note": "3-4 fresh, pounded or minced; adjust to heat"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 0.04,
+        "note": "1.5 tbsp"
+      },
+      {
+        "ingredientId": "oyster-sauce",
+        "quantity": 0.06,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "dark-soy",
+        "quantity": 0.03,
+        "note": "1 tbsp, for color"
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 0.03,
+        "note": "1 tbsp light soy"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.02,
+        "note": "1.5 tsp"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 0.5,
+        "note": "half, sliced"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 0.25,
+        "note": "quarter onion, sliced; or use 2 shallots"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.06,
+        "note": "2 tbsp, high smoke point"
+      }
+    ],
+    "steps": [
+      "In a small bowl stir together the fish sauce, oyster sauce, dark soy, light soy, and sugar until the sugar dissolves; set this sauce aside.",
+      "If using dried wide rice noodles, soak in warm water until pliable but not fully soft, then drain well; fresh noodles only need to be gently separated by hand.",
+      "Pound or mince the garlic and Thai chiles together into a coarse paste so they release their aroma when they hit the oil.",
+      "Heat the oil in a wok or wide skillet over the highest heat until it just begins to shimmer and smoke, then add the garlic-chile mixture and stir for about 10 seconds until fragrant.",
+      "Add the sliced chicken and stir-fry until it loses its raw color and starts to brown at the edges, about 2 minutes, then toss in the onion and bell pepper for 30 seconds.",
+      "Push everything to one side, add the noodles, and let them sit undisturbed for 20-30 seconds to catch some char before tossing.",
+      "Pour the sauce around the edge of the wok so it sizzles, then fold everything together until the noodles are evenly coated and glossy, about 1 minute.",
+      "Kill the heat, throw in the Thai basil, and toss just until the leaves wilt; serve immediately while smoky and hot."
+    ],
+    "totalTimeMinutes": 25,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 10,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Chicken thighs cost less than breast and stay juicier under high-heat wok cooking.",
+      "Buy a bunch of Thai basil and stem it yourself instead of pricey clamshell packs; freeze leftover leaves flat.",
+      "A bag of dried wide rice noodles is a fraction of the price of fresh and keeps for months in the pantry."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-breast",
+        "swap": "Firm tofu or thinly sliced beef sirloin",
+        "savings": "Tofu cuts the protein cost roughly in half and makes it vegetarian"
+      },
+      {
+        "forIngredientId": "thai-basil",
+        "swap": "Regular sweet basil plus a pinch of extra chile",
+        "savings": "Use basil you already have instead of a special trip; saves ~$3"
+      },
+      {
+        "forIngredientId": "dark-soy",
+        "swap": "Regular soy sauce with a tiny splash of molasses",
+        "savings": "Skip buying a dedicated bottle, saves ~$4"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 590,
+      "protein": 38,
+      "carbs": 72,
+      "fat": 16,
+      "fiber": 4
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Thai",
+    "tags": [
+      "thai",
+      "pad-kee-mao",
+      "stir-fry",
+      "spicy",
+      "noodles",
+      "wok",
+      "dinner",
+      "30-minute"
+    ]
+  },
+  {
+    "id": "cur2-vietnamese-bun-cha",
+    "name": "Vietnamese Bun Cha",
+    "description": "Hanoi's iconic grilled pork dish: smoky caramelized pork belly and seasoned pork patties served in a warm sweet-and-sour fish sauce broth with pickled carrot and daikon, alongside a heap of cool rice vermicelli and a mountain of fresh herbs. You assemble each bite at the table by dipping noodles and herbs into the broth.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "ground-pork",
+        "quantity": 2,
+        "note": "for the seasoned pork patties (cha)"
+      },
+      {
+        "ingredientId": "pork-belly",
+        "quantity": 2,
+        "note": "thinly sliced, for the grilled pork strips"
+      },
+      {
+        "ingredientId": "vermicelli-rice-noodles",
+        "quantity": 4,
+        "note": "bun - dried rice vermicelli"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 0.4,
+        "note": "split between marinade and dipping broth"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.15,
+        "note": "for caramel notes in marinade and nuoc cham"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 3,
+        "note": "minced, for marinade"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "minced, for marinade and dipping sauce"
+      },
+      {
+        "ingredientId": "lemongrass",
+        "quantity": 2,
+        "note": "finely minced, optional but traditional",
+        "optional": true
+      },
+      {
+        "ingredientId": "white-pepper",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.1,
+        "note": "for grilling/pan"
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 2,
+        "note": "fresh juice for the dipping broth"
+      },
+      {
+        "ingredientId": "rice-vinegar",
+        "quantity": 0.1,
+        "note": "for quick pickle and broth balance"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "julienned for the pickle"
+      },
+      {
+        "ingredientId": "daikon",
+        "quantity": 0.4,
+        "note": "julienned for the pickle"
+      },
+      {
+        "ingredientId": "thai-chili",
+        "quantity": 2,
+        "note": "sliced, for the dipping broth",
+        "optional": true
+      },
+      {
+        "ingredientId": "lettuce",
+        "quantity": 0.5,
+        "note": "soft leaf lettuce for the herb plate"
+      },
+      {
+        "ingredientId": "mint-fresh",
+        "quantity": 1,
+        "note": "fresh mint leaves"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "thai-basil",
+        "quantity": 0.5,
+        "optional": true
+      },
+      {
+        "ingredientId": "bean-sprouts",
+        "quantity": 0.3,
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Make the marinade: combine minced shallot, half the garlic, the minced lemongrass, 2 tbsp fish sauce, 1 tbsp sugar, the white pepper, and 1 tbsp oil. Divide between two bowls. Mix the ground pork into one bowl and form into small flat patties; toss the thinly sliced pork belly in the other. Marinate both at least 30 minutes (or overnight).",
+      "Quick-pickle: toss the julienned carrot and daikon with the rice vinegar, 1 tbsp sugar, and a pinch of salt. Let sit at least 20 minutes, then squeeze lightly.",
+      "Make the nuoc cham dipping broth: dissolve 3 tbsp sugar in 1 cup warm water, then stir in 3 tbsp fish sauce and the lime juice. Taste and balance so it is sweet, sour, and savory but light enough to sip. Stir in the remaining minced garlic and sliced thai chili. Add a small handful of the pickled vegetables to each serving bowl.",
+      "Cook the rice vermicelli in boiling water until just tender, about 4-5 minutes, then drain and rinse under cold water. Loosen into loose nests and set aside at room temperature.",
+      "Grill the pork over high heat (charcoal, grill pan, or broiler) until deeply caramelized and lightly charred on the edges — about 3-4 minutes per side for the patties and 2-3 minutes for the belly slices. Char is essential for authentic smoky flavor.",
+      "Warm the dipping broth gently if it has cooled — it should be served warm, not hot. Drop the hot grilled pork patties and belly directly into the warm broth so the juices mingle.",
+      "Arrange the herb plate: lettuce, mint, cilantro, thai basil, and bean sprouts.",
+      "Serve family-style: each person gets a bowl of warm pork broth and a plate of vermicelli and herbs. To eat, dip noodles and herbs into the broth, grab some pork and pickles, and enjoy bite by bite."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 40,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Pork shoulder is cheaper than belly and works great sliced thin — partially freeze it first for clean slices.",
+      "Buy one big bunch of mixed herbs at an Asian market instead of separate plastic clamshells; it's a fraction of the price.",
+      "Make a double batch of nuoc cham and pickled veg — both keep for a week and turn any leftover protein into another meal."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "pork-belly",
+        "swap": "pork shoulder or pork chop, sliced thin",
+        "savings": "~40% cheaper per pound than belly"
+      },
+      {
+        "forIngredientId": "vermicelli-rice-noodles",
+        "swap": "thin rice noodles or even angel hair pasta in a pinch",
+        "savings": "saves ~$1 vs specialty bun"
+      },
+      {
+        "forIngredientId": "lemongrass",
+        "swap": "a strip of lime zest plus extra shallot",
+        "savings": "skip a $2 stalk you may not finish"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 620,
+      "protein": 34,
+      "carbs": 58,
+      "fat": 28,
+      "fiber": 4
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Vietnamese",
+    "tags": [
+      "vietnamese",
+      "grilled",
+      "pork",
+      "noodles",
+      "hanoi",
+      "fresh-herbs",
+      "dairy-free",
+      "high-protein",
+      "dinner"
+    ]
+  },
+  {
+    "id": "cur2-vietnamese-banh-xeo",
+    "name": "Vietnamese Banh Xeo (Sizzling Crepes)",
+    "description": "Crispy, lacy turmeric-coconut rice crepes that sizzle when the batter hits the hot pan — hence the name. Folded over shrimp, pork belly, and crunchy bean sprouts, then torn into lettuce with fresh herbs and dunked in nuoc cham. Crackly edges, savory filling, bright dipping sauce: the full Southern Vietnamese experience.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "rice-flour",
+        "quantity": 0.5,
+        "note": "2 cups rice flour for the batter"
+      },
+      {
+        "ingredientId": "cornstarch",
+        "quantity": 0.2,
+        "note": "2 tbsp, for extra crisp edges"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.3,
+        "note": "1 tsp ground turmeric for the signature golden color"
+      },
+      {
+        "ingredientId": "coconut-milk",
+        "quantity": 0.75,
+        "note": "about 1 cup; thin the rest with water"
+      },
+      {
+        "ingredientId": "water",
+        "quantity": 1,
+        "note": "roughly 1.5 cups to reach a thin, pourable batter"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 0.5,
+        "note": "green parts thinly sliced, stirred into batter"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.1,
+        "note": "1 tsp, for batter"
+      },
+      {
+        "ingredientId": "pork-belly",
+        "quantity": 0.4,
+        "note": "about 1/2 lb, thinly sliced"
+      },
+      {
+        "ingredientId": "shrimp",
+        "quantity": 4,
+        "note": "peeled, deveined, halved lengthwise"
+      },
+      {
+        "ingredientId": "bean-sprouts",
+        "quantity": 1,
+        "note": "about 3 cups, a generous handful per crepe"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.4,
+        "note": "for frying the crepes"
+      },
+      {
+        "ingredientId": "lettuce",
+        "quantity": 1,
+        "note": "soft leaf lettuce for wrapping"
+      },
+      {
+        "ingredientId": "mint",
+        "quantity": 0.5,
+        "note": "fresh leaves for the herb plate"
+      },
+      {
+        "ingredientId": "cilantro",
+        "quantity": 0.5,
+        "note": "fresh sprigs for the herb plate"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 0.25,
+        "note": "for nuoc cham dipping sauce"
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 1,
+        "note": "juiced for nuoc cham"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.1,
+        "note": "3 tbsp, for nuoc cham"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.3,
+        "note": "2 cloves minced for nuoc cham"
+      },
+      {
+        "ingredientId": "thai-chili",
+        "quantity": 1,
+        "note": "minced, to taste, for nuoc cham"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "julienned into the nuoc cham"
+      }
+    ],
+    "steps": [
+      "Make the batter: whisk 2 cups rice flour, 2 tbsp cornstarch, 1 tsp turmeric, and 1 tsp salt, then whisk in 1 cup coconut milk and about 1.5 cups water until smooth and thin like heavy cream. Stir in the sliced scallion greens and let it rest at least 30 minutes (or overnight in the fridge) for the crispest crepes.",
+      "Make nuoc cham: stir 3 tbsp sugar into 6 tbsp warm water until dissolved, then add the lime juice, fish sauce, minced garlic, and Thai chili. Taste and balance sweet-sour-salty; toss in the julienned carrot. Set aside.",
+      "Prep the fillings: thinly slice the pork belly and season with a pinch of salt; halve the shrimp lengthwise. Wash and dry the lettuce, mint, and cilantro and arrange on a platter for wrapping.",
+      "Heat a nonstick or well-seasoned skillet over medium-high. Add a little oil, then a few slices of pork belly and a few shrimp pieces; cook until the pork renders and the shrimp turn pink, 2 to 3 minutes.",
+      "Stir the batter (it settles), then ladle a thin layer into the hot pan and immediately swirl to coat the bottom in a lacy round — it should sizzle loudly. Drizzle a little oil around the edges.",
+      "Scatter a generous handful of bean sprouts over one half, cover the pan, and steam 1 to 2 minutes to cook the sprouts and set the crepe.",
+      "Uncover and let the crepe fry until the edges turn deep golden, crisp, and lift away from the pan, another 2 to 3 minutes — patience here is what makes it crackly.",
+      "Fold the crepe in half over the filling and slide onto a plate. Repeat with the remaining batter, oiling the pan between crepes.",
+      "To eat, tear a piece of crepe, tuck it into a lettuce leaf with mint and cilantro, roll it up, and dip generously in nuoc cham. Serve immediately while crisp."
+    ],
+    "totalTimeMinutes": 75,
+    "prepTimeMinutes": 45,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "dairy-free",
+      "gluten-free",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Rest the batter (even overnight) instead of buying anything special — hydration is what makes the edges shatter-crisp, and it costs nothing.",
+      "Pork belly and a few shrimp go a long way here since the crepe, sprouts, and herbs do most of the bulk — stretch the protein across all four crepes.",
+      "Buy a big bag of bean sprouts and a head of leaf lettuce; they're cheap, add real volume, and make the dish feel abundant."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "pork-belly",
+        "swap": "Use thinly sliced pork shoulder or even ground pork pressed thin",
+        "savings": "Saves about $2 per batch"
+      },
+      {
+        "forIngredientId": "shrimp",
+        "swap": "Skip the shrimp and double the pork, or use sliced mushrooms for a budget version",
+        "savings": "Saves about $3 per batch"
+      },
+      {
+        "forIngredientId": "coconut-milk",
+        "swap": "Use all water plus a splash of any milk; the crepe is slightly less rich but still crisp",
+        "savings": "Saves about $1.50 per batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 540,
+      "protein": 22,
+      "carbs": 58,
+      "fat": 25,
+      "fiber": 4
+    },
+    "emoji": "🥞",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "Vietnamese",
+    "tags": [
+      "vietnamese",
+      "crepe",
+      "street-food",
+      "shrimp",
+      "pork",
+      "turmeric",
+      "dairy-free",
+      "gluten-free",
+      "dinner",
+      "wrap"
+    ]
+  },
+  {
+    "id": "cur2-summer-rolls",
+    "name": "Vietnamese Summer Rolls (Gỏi Cuốn)",
+    "description": "Fresh, unfried Vietnamese rice paper rolls packed with poached shrimp, soft rice vermicelli, crisp lettuce, cucumber, and a fistful of mint, cilantro, and Thai basil — served with a creamy hoisin-peanut dipping sauce. Cool, light, and built for hot days.",
+    "mealType": "lunch",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "rice-paper",
+        "quantity": 0.5,
+        "note": "12 round rice paper wrappers (banh trang), ~22cm"
+      },
+      {
+        "ingredientId": "vermicelli-rice-noodles",
+        "quantity": 0.5,
+        "note": "dried rice vermicelli (bun)"
+      },
+      {
+        "ingredientId": "shrimp",
+        "quantity": 4,
+        "note": "medium shrimp, poached and halved lengthwise"
+      },
+      {
+        "ingredientId": "lettuce",
+        "quantity": 0.5,
+        "note": "soft green/butter lettuce, ribs removed"
+      },
+      {
+        "ingredientId": "cucumber",
+        "quantity": 1,
+        "note": "cut into thin matchsticks"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "julienned"
+      },
+      {
+        "ingredientId": "mint-fresh",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "thai-basil",
+        "quantity": 0.5,
+        "optional": true
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 2,
+        "optional": true,
+        "note": "green tops, optional for tying"
+      },
+      {
+        "ingredientId": "hoisin",
+        "quantity": 0.4,
+        "note": "base of the peanut dipping sauce"
+      },
+      {
+        "ingredientId": "peanut-butter",
+        "quantity": 0.1,
+        "note": "smooth, thins and enriches the sauce"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "sriracha",
+        "quantity": 0.1,
+        "optional": true,
+        "note": "to taste in the dipping sauce"
+      },
+      {
+        "ingredientId": "peanuts",
+        "quantity": 0.15,
+        "note": "roasted, crushed for garnish on the sauce"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05
+      }
+    ],
+    "steps": [
+      "Bring a small pot of lightly salted water to a boil. Drop in the shrimp and poach 2-3 minutes until just pink and curled, then transfer to ice water. Drain, peel, and slice each shrimp in half lengthwise so they lie flat; set aside cut-side up.",
+      "Cook the rice vermicelli in the same pot per package directions (3-5 minutes) until tender but not mushy. Drain, rinse under cold water to stop cooking and remove starch, then drain well and loosen into a bowl.",
+      "Make the dipping sauce: simmer the hoisin, peanut butter, grated garlic, sugar, a squeeze of lime, and a splash of water in a small pan over low heat, whisking, until smooth and pourable (1-2 minutes). Stir in sriracha to taste, pour into a bowl, and top with crushed peanuts.",
+      "Prep the fillings into separate piles: lettuce torn into wrapper-sized pieces, cucumber and carrot in fine matchsticks, and the mint, cilantro, and Thai basil leaves picked.",
+      "Fill a wide shallow dish or pie plate with warm water. Dip one rice paper wrapper in for 5-10 seconds until just pliable — it will keep softening on the board, so don't oversoak — and lay it flat on a clean damp surface.",
+      "On the lower third of the wrapper, layer a piece of lettuce, a small mound of vermicelli, some cucumber, carrot, and a generous pinch of herbs. Keep the pile compact and leave a clear border on the sides.",
+      "Lay 3 shrimp halves cut-side down in a neat row on the bare strip just above the filling, so they show through the finished roll.",
+      "Fold the bottom edge up over the filling, fold in both sides, then roll up snugly and firmly to the shrimp, pressing as you go so the roll seals on itself. Repeat with the remaining wrappers.",
+      "Serve immediately, whole or halved on the diagonal, with the peanut dipping sauce. If holding, cover with a damp towel so the wrappers don't dry out and stick."
+    ],
+    "totalTimeMinutes": 40,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 10,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy a big bag of dried rice vermicelli and a pack of rice paper — both are pennies per roll and keep for months in the pantry.",
+      "Shrimp is the priciest part: stretch it by slicing each shrimp in half lengthwise, or skip it entirely and use extra herbs plus tofu for a vegetarian roll.",
+      "Herbs go far if you buy one big bunch and use the stems too; grow mint on a windowsill and it pays for itself."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "shrimp",
+        "swap": "Poached shredded chicken breast or pan-fried tofu strips",
+        "savings": "Saves ~$3-4 per batch vs. shrimp"
+      },
+      {
+        "forIngredientId": "peanut-butter",
+        "swap": "Skip and use plain hoisin thinned with water plus crushed peanuts on top",
+        "savings": "Saves about $0.30"
+      },
+      {
+        "forIngredientId": "thai-basil",
+        "swap": "Extra regular mint and cilantro",
+        "savings": "Saves ~$2 on a specialty herb"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 14,
+      "carbs": 48,
+      "fat": 6,
+      "fiber": 4
+    },
+    "emoji": "🥬",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Vietnamese",
+    "tags": [
+      "fresh",
+      "no-bake",
+      "shrimp",
+      "rice-paper",
+      "summer",
+      "light",
+      "meal-prep-friendly",
+      "dairy-free",
+      "peanut-sauce"
+    ]
+  },
+  {
+    "id": "cur2-indonesian-beef-rendang",
+    "name": "Indonesian Beef Rendang",
+    "description": "Indonesian Beef Rendang",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "beef-chuck",
+        "quantity": 4,
+        "note": "cut into 1.5-inch cubes"
+      },
+      {
+        "ingredientId": "coconut-milk",
+        "quantity": 2,
+        "note": "full-fat"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 6,
+        "note": "for the rempah spice paste"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 6,
+        "note": "cloves, for the rempah"
+      },
+      {
+        "ingredientId": "ginger",
+        "quantity": 1,
+        "note": "2-inch piece"
+      },
+      {
+        "ingredientId": "galangal",
+        "quantity": 1,
+        "note": "2-inch piece, blended into the rempah"
+      },
+      {
+        "ingredientId": "lemongrass",
+        "quantity": 3,
+        "note": "2 stalks bruised whole, 1 blended into paste"
+      },
+      {
+        "ingredientId": "dried-chili",
+        "quantity": 10,
+        "note": "soaked in hot water; adjust for heat"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "kaffir-lime-leaves",
+        "quantity": 4
+      },
+      {
+        "ingredientId": "coriander",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "palm-sugar",
+        "quantity": 1,
+        "note": "or substitute brown sugar"
+      },
+      {
+        "ingredientId": "tamarind-paste",
+        "quantity": 1,
+        "note": "small spoonful"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 1,
+        "note": "for frying the paste"
+      },
+      {
+        "ingredientId": "unsweetened-shredded-coconut",
+        "quantity": 1,
+        "optional": true,
+        "note": "toasted into kerisik for authentic body"
+      }
+    ],
+    "steps": [
+      "Soak the dried chilies in hot water for 10 minutes until softened, then drain. Blend the chilies with shallots, garlic, ginger, galangal, one lemongrass stalk, turmeric, and coriander into a smooth rempah paste, adding a splash of water if needed.",
+      "If using shredded coconut, toast it in a dry pan over medium heat, stirring constantly, until deep golden brown, then grind it into a coarse paste (kerisik) for nutty depth.",
+      "Heat the oil in a heavy pot over medium heat and fry the rempah paste, stirring often, for 5-8 minutes until darkened and intensely fragrant and the raw smell is gone.",
+      "Add the beef cubes and stir to coat in the paste, searing for a few minutes. Pour in the coconut milk, add the two bruised lemongrass stalks, kaffir lime leaves, tamarind, and salt.",
+      "Bring to a gentle simmer, then lower the heat. Cook uncovered, stirring occasionally so the bottom does not catch, for about 2 to 2.5 hours.",
+      "As the sauce reduces and thickens, stir more frequently and add the palm sugar and the toasted coconut kerisik. The mixture will go from soupy to a thick, clinging gravy.",
+      "Keep cooking and stirring until the coconut oil separates out and the sauce turns dark brown and almost dry, coating the now fork-tender beef. This caramelization is the signature of a true rendang.",
+      "Taste and adjust salt and sugar. Discard the lemongrass stalks and lime leaves, and rest off the heat for a few minutes before serving with steamed rice."
+    ],
+    "totalTimeMinutes": 170,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 145,
+    "difficulty": "hard",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Beef chuck is one of the cheapest cuts and is exactly what rendang wants — the long, slow simmer breaks down the connective tissue into tenderness, so don't waste money on a premium cut.",
+      "Make a big batch; rendang keeps for a week in the fridge and actually tastes better the next day as the spices deepen, making it ideal meal prep.",
+      "Dried whole chilies and a single block of palm sugar go a very long way and store for ages, so the up-front spice cost spreads across many future batches."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "palm-sugar",
+        "swap": "Use brown sugar, which has a similar molasses note",
+        "savings": "Save about $3 versus buying specialty palm sugar"
+      },
+      {
+        "forIngredientId": "galangal",
+        "swap": "Use extra fresh ginger plus a pinch of white pepper if galangal is hard to find",
+        "savings": "Avoid a $4 specialty-store trip"
+      },
+      {
+        "forIngredientId": "beef-chuck",
+        "swap": "Use beef stew meat, which is usually pre-cut chuck",
+        "savings": "Often $1-2 cheaper per pound on sale"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 540,
+      "protein": 38,
+      "carbs": 12,
+      "fat": 38,
+      "fiber": 3
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-orange-100",
+    "cuisine": "Indonesian",
+    "tags": [
+      "beef",
+      "curry",
+      "slow-cooked",
+      "spicy",
+      "coconut",
+      "west-sumatran",
+      "dairy-free",
+      "gluten-free",
+      "meal-prep"
+    ]
+  },
+  {
+    "id": "cur2-gado-gado",
+    "name": "Gado Gado",
+    "description": "The Indonesian \"mix-mix\" salad: a platter of blanched vegetables, boiled egg, and crisp-fried tofu and tempeh, all blanketed in a warm, tangy-sweet peanut sauce built on tamarind, palm sugar, and kecap manis. Finished with cucumber, fried shallots, and crackers for crunch.",
+    "mealType": "lunch",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "tofu",
+        "quantity": 2,
+        "note": "firm tofu, cut into cubes and fried until golden"
+      },
+      {
+        "ingredientId": "tempeh",
+        "quantity": 1.5,
+        "note": "sliced and fried until crisp"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "hard-boiled, halved"
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 2,
+        "note": "boiled and sliced"
+      },
+      {
+        "ingredientId": "cabbage",
+        "quantity": 0.25,
+        "note": "shredded and blanched"
+      },
+      {
+        "ingredientId": "green-beans",
+        "quantity": 0.4,
+        "note": "long beans ideal; trimmed and blanched"
+      },
+      {
+        "ingredientId": "bean-sprouts",
+        "quantity": 0.5,
+        "note": "quickly blanched"
+      },
+      {
+        "ingredientId": "spinach",
+        "quantity": 0.4,
+        "note": "kangkung/water spinach ideal; blanched"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "julienned and blanched"
+      },
+      {
+        "ingredientId": "cucumber",
+        "quantity": 1,
+        "note": "raw, sliced"
+      },
+      {
+        "ingredientId": "peanut-butter",
+        "quantity": 0.5,
+        "note": "natural; stand-in for fresh-ground roasted peanuts"
+      },
+      {
+        "ingredientId": "peanuts",
+        "quantity": 0.3,
+        "note": "roasted, coarsely ground into the sauce for texture"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "cloves, fried"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 2,
+        "note": "fried into the sauce base"
+      },
+      {
+        "ingredientId": "thai-chili",
+        "quantity": 3,
+        "note": "to taste, fried with the aromatics"
+      },
+      {
+        "ingredientId": "palm-sugar",
+        "quantity": 0.3,
+        "note": "gula jawa; brown sugar works"
+      },
+      {
+        "ingredientId": "tamarind",
+        "quantity": 0.2,
+        "note": "tamarind paste loosened with warm water"
+      },
+      {
+        "ingredientId": "kecap-manis",
+        "quantity": 0.15,
+        "note": "Indonesian sweet soy"
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 1,
+        "note": "kaffir lime ideal; juice into sauce and to serve"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.15,
+        "note": "for frying tofu, tempeh, and aromatics"
+      },
+      {
+        "ingredientId": "crackers",
+        "quantity": 1,
+        "optional": true,
+        "note": "krupuk/shrimp crackers, served on the side"
+      }
+    ],
+    "steps": [
+      "Cube the tofu and slice the tempeh. Pat dry, then shallow-fry both in hot oil until deep golden and crisp; drain on paper towels. Hard-boil the eggs (about 9 minutes), cool, peel, and halve.",
+      "Boil the potatoes until fork-tender, then slice. In the same pot of salted boiling water, blanch each vegetable separately just until crisp-tender: green beans and carrot about 2 minutes, cabbage about 1 minute, spinach and bean sprouts 30-45 seconds. Shock in cold water and drain well.",
+      "Make the sauce base: fry the garlic, shallot, and chilies in a little oil until fragrant and softened, then pound or blend to a coarse paste.",
+      "Return the paste to the pan over low heat and stir in the peanut butter and ground roasted peanuts. Add a splash of water to loosen.",
+      "Stir in the palm sugar, tamarind water, kecap manis, and a good pinch of salt. Simmer gently, adding water as needed, until the sauce is glossy and coats a spoon. Finish with lime juice and adjust salt, sweet, sour, and heat until balanced.",
+      "Arrange the blanched vegetables, cucumber, sliced potato, fried tofu and tempeh, and halved eggs on a platter.",
+      "Spoon the warm peanut sauce generously over everything, or serve it alongside for dipping.",
+      "Top with fried shallots, a few crushed peanuts, and lime wedges. Serve with krupuk crackers on the side."
+    ],
+    "totalTimeMinutes": 50,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 25,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "high-protein",
+      "dairy-free",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Tofu, tempeh, and eggs make this filling and high-protein for very little money, so you can skip pricier proteins entirely.",
+      "Use whatever sturdy vegetables you have on hand for blanching, this dish is built to use up odds and ends of cabbage, carrots, and greens.",
+      "Natural peanut butter thinned with water is a great budget swap for grinding your own roasted peanuts, just add a handful of crushed peanuts for texture."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "kecap-manis",
+        "swap": "Soy sauce simmered with an extra spoon of brown sugar",
+        "savings": "Skips a specialty bottle for about $3"
+      },
+      {
+        "forIngredientId": "tamarind",
+        "swap": "A splash of lime juice plus a little brown sugar",
+        "savings": "Saves around $2 on tamarind paste"
+      },
+      {
+        "forIngredientId": "peanuts",
+        "swap": "Extra peanut butter (just use it all in the sauce)",
+        "savings": "Saves about $1.50 and one ingredient"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 26,
+      "carbs": 34,
+      "fat": 29,
+      "fiber": 8
+    },
+    "emoji": "🥗",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Indonesian",
+    "tags": [
+      "indonesian",
+      "peanut sauce",
+      "salad",
+      "vegetarian",
+      "high-protein",
+      "tofu",
+      "tempeh",
+      "street food"
+    ]
+  },
+  {
+    "id": "cur2-singaporean-char-kway-teow",
+    "name": "Singaporean Char Kway Teow",
+    "description": "Smoky stir-fried flat rice noodles in a sweet-savory dark soy glaze, loaded with Chinese sausage, prawns, fish cake, egg, bean sprouts and garlic chives. The hawker-stall classic — all about high heat and wok hei.",
+    "mealType": "dinner",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "rice-noodles",
+        "quantity": 2,
+        "note": "Fresh wide flat rice noodles (kway teow / ho fun); separate strands gently before cooking"
+      },
+      {
+        "ingredientId": "chinese-sausage",
+        "quantity": 0.5,
+        "note": "Lap cheong, thinly sliced on the diagonal"
+      },
+      {
+        "ingredientId": "shrimp",
+        "quantity": 1,
+        "note": "Prawns, peeled and deveined"
+      },
+      {
+        "ingredientId": "fish-cake",
+        "quantity": 0.5,
+        "note": "Sliced thin"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "bean-sprouts",
+        "quantity": 1,
+        "note": "Large handful, tails optional"
+      },
+      {
+        "ingredientId": "chives",
+        "quantity": 0.4,
+        "note": "Garlic chives (ku chai), cut into 2-inch lengths"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "Finely minced"
+      },
+      {
+        "ingredientId": "dark-soy",
+        "quantity": 1,
+        "note": "For color and smoky depth"
+      },
+      {
+        "ingredientId": "kecap-manis",
+        "quantity": 1,
+        "note": "Sweet soy sauce for the signature glaze"
+      },
+      {
+        "ingredientId": "low-sodium-soy",
+        "quantity": 1,
+        "note": "Light soy for seasoning"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "sambal-oelek",
+        "quantity": 1,
+        "note": "Or chili paste, to taste",
+        "optional": true
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.3,
+        "note": "Traditionally rendered pork lard for authentic flavor"
+      }
+    ],
+    "steps": [
+      "Mix the sauce: stir together the dark soy, kecap manis, light soy and fish sauce in a small bowl. Gently loosen the fresh rice noodle strands by hand so they don't tear in the wok.",
+      "Heat a wok over the highest heat until smoking. Add half the oil, then the sliced Chinese sausage. Stir-fry 30-45 seconds until the fat renders and the edges crisp, then add the garlic and prawns; cook just until the prawns turn pink. Add the fish cake and toss 30 seconds.",
+      "Push everything to one side, add the rest of the oil to the clear space, crack in the eggs and let them set for a few seconds before scrambling lightly, then fold into the other ingredients.",
+      "Add the rice noodles and pour the sauce around the edge of the wok. Toss and fold constantly with a flat spatula, lifting and turning, for about 1-2 minutes so the noodles char slightly and pick up smoky wok hei. Avoid stirring too gently — let them sit against the hot metal a moment between tosses.",
+      "Add the sambal/chili paste if using and toss to coat evenly.",
+      "Throw in the bean sprouts and garlic chives. Toss hard for just 30-45 seconds so they wilt but stay crunchy.",
+      "Taste and adjust with a splash more light soy if needed. Serve immediately straight from the wok while smoky and hot."
+    ],
+    "totalTimeMinutes": 25,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 10,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy fresh wide rice noodles from an Asian grocery — they're cheap and far better than dried; if using dried, soak just until pliable so they don't turn mushy in the wok.",
+      "One Chinese sausage and a few prawns go a long way; bulk it up with extra bean sprouts and fish cake to feed more for less.",
+      "No lap cheong? A bit of bacon plus a pinch of sugar mimics the sweet-savory rendered fat at a lower cost."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "shrimp",
+        "swap": "Sliced chicken thigh or extra fish cake",
+        "savings": "Save ~$2 per serving"
+      },
+      {
+        "forIngredientId": "kecap-manis",
+        "swap": "Regular dark soy + a teaspoon of brown sugar",
+        "savings": "Save ~$3 buying one bottle instead of two"
+      },
+      {
+        "forIngredientId": "chives",
+        "swap": "Regular scallions cut into batons",
+        "savings": "Save ~$1, usually already on hand"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 590,
+      "protein": 28,
+      "carbs": 68,
+      "fat": 23,
+      "fiber": 4
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-orange-100",
+    "cuisine": "Singaporean",
+    "tags": [
+      "stir-fry",
+      "noodles",
+      "wok",
+      "hawker",
+      "street food",
+      "high-heat",
+      "seafood",
+      "spicy"
+    ]
+  },
+  {
+    "id": "cur2-hainanese-curry-rice",
+    "name": "Hainanese Curry Rice",
+    "description": "A Singapore hawker classic: fluffy rice drowned in a fragrant Hainanese-style curry gravy, piled with a crackly-crusted fried pork chop, sweet char siu, soft braised cabbage, and a runny fried egg. Comfort food chaos on one plate, in the best way.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "jasmine-rice",
+        "quantity": 4,
+        "note": "steamed, for serving"
+      },
+      {
+        "ingredientId": "pork-chop",
+        "quantity": 4,
+        "note": "boneless, pounded thin"
+      },
+      {
+        "ingredientId": "char-siu",
+        "quantity": 1,
+        "optional": true,
+        "note": "store-bought or leftover, sliced"
+      },
+      {
+        "ingredientId": "cabbage",
+        "quantity": 0.5,
+        "note": "green cabbage, roughly chopped for braising"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "fried, one per serving"
+      },
+      {
+        "ingredientId": "curry-powder",
+        "quantity": 3,
+        "note": "Malaysian/Singapore-style meat curry powder, tablespoons"
+      },
+      {
+        "ingredientId": "coconut-milk",
+        "quantity": 0.5,
+        "note": "for the gravy"
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 2,
+        "note": "cubed, simmered in the curry"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 4,
+        "note": "cloves"
+      },
+      {
+        "ingredientId": "ginger",
+        "quantity": 1,
+        "note": "thumb, minced"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 0.75,
+        "note": "for the curry base"
+      },
+      {
+        "ingredientId": "cornstarch",
+        "quantity": 4,
+        "note": "tablespoons, for dredging pork (split with flour)"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.25,
+        "note": "for the pork chop batter/dredge"
+      },
+      {
+        "ingredientId": "white-pepper",
+        "quantity": 1,
+        "note": "teaspoons, for marinade and gravy"
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 2,
+        "note": "tablespoons, split marinade + gravy"
+      },
+      {
+        "ingredientId": "oyster-sauce",
+        "quantity": 1,
+        "note": "tablespoon, for braised cabbage"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 1,
+        "note": "teaspoon, balances the gravy"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.2,
+        "note": "for shallow frying the pork"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      }
+    ],
+    "steps": [
+      "Marinate the pork: pound the pork chops to even 1cm thickness, then rub with 1 tbsp soy sauce, half the white pepper, a pinch of salt, and a little minced garlic. Let sit 20 minutes while you build the gravy.",
+      "Make the curry gravy: heat oil in a pot and fry the diced onion, shallots, ginger, and garlic until soft and fragrant. Add the curry powder and stir 1 minute to bloom the spices into a thick paste.",
+      "Add the cubed potato, chicken broth, and a pinch of sugar; simmer 12-15 minutes until the potato is tender, then stir in the coconut milk and a splash of soy sauce. Simmer gently 5 more minutes until silky and lightly thickened, and season with salt and white pepper.",
+      "Braise the cabbage: in a separate pan, fry a little garlic, add the chopped cabbage with the oyster sauce and a splash of water, cover and braise 6-8 minutes until soft and sweet.",
+      "Dredge and fry the pork: pat the chops dry, coat in a 1:1 mix of cornstarch and flour, pressing firmly for a craggy crust. Shallow-fry in 1cm of hot oil over medium-high heat, about 3-4 minutes per side, until deep golden and crisp. Rest on a rack, then slice into strips.",
+      "Fry the eggs in a little of the same oil, keeping the yolks runny with crisp lacy edges.",
+      "Assemble each plate: mound the steamed jasmine rice, lay over the sliced pork chop, braised cabbage, and char siu, then top with a fried egg.",
+      "Ladle the curry gravy generously over the rice and around the pork (so the crust stays partly crisp). Serve hot, mixing everything together as you eat."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 35,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "rice-cooker"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "dairy-free",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Skip the char siu and just add an extra pork chop or use leftover roast pork — the curry gravy carries the whole plate.",
+      "Buy a whole boneless pork loin and slice your own chops; it is far cheaper per portion than pre-cut chops.",
+      "Make a double batch of curry gravy and freeze half — it reheats beautifully and turns any plain rice-and-egg into a full meal."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "pork-chop",
+        "swap": "Boneless chicken thighs, pounded and breaded the same way",
+        "savings": "~$2 per lb cheaper and just as juicy"
+      },
+      {
+        "forIngredientId": "char-siu",
+        "swap": "Skip it, or use leftover roast pork / a little extra fried pork chop",
+        "savings": "Saves $4-6 on store-bought char siu"
+      },
+      {
+        "forIngredientId": "coconut-milk",
+        "swap": "Evaporated milk plus an extra splash of broth",
+        "savings": "Roughly half the cost per serving"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 720,
+      "protein": 38,
+      "carbs": 78,
+      "fat": 28,
+      "fiber": 5
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "Singaporean",
+    "tags": [
+      "hawker",
+      "curry",
+      "pork chop",
+      "rice bowl",
+      "comfort food",
+      "Hainanese",
+      "fried egg"
+    ]
+  },
+  {
+    "id": "cur2-malaysian-mee-goreng",
+    "name": "Malaysian Mee Goreng",
+    "description": "A bold Malaysian street-food classic: springy yellow egg noodles stir-fried in a sweet-savory-spicy sauce of kecap manis, sambal, tomato and tamarind, tossed with tofu puffs, fluffy egg, bean sprouts and greens, then brightened with a squeeze of lime. Smoky, tangy, and addictive.",
+    "mealType": "dinner",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "ramen",
+        "quantity": 2,
+        "note": "fresh yellow Hokkien/egg noodles (mee), blanched"
+      },
+      {
+        "ingredientId": "tofu-puffs",
+        "quantity": 6,
+        "note": "tau pok, halved"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 1,
+        "note": "boiled, cubed"
+      },
+      {
+        "ingredientId": "bean-sprouts",
+        "quantity": 1,
+        "note": "large handful"
+      },
+      {
+        "ingredientId": "bok-choy",
+        "quantity": 1,
+        "note": "or choy sum / mustard greens, chopped"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "cloves, minced"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 2,
+        "note": "thinly sliced"
+      },
+      {
+        "ingredientId": "kecap-manis",
+        "quantity": 2,
+        "note": "sweet soy sauce, tablespoons"
+      },
+      {
+        "ingredientId": "sambal",
+        "quantity": 2,
+        "note": "sambal oelek, tablespoons"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 1,
+        "note": "tablespoon, for color and tang"
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 1,
+        "note": "tablespoon"
+      },
+      {
+        "ingredientId": "tamarind",
+        "quantity": 1,
+        "note": "tamarind paste, teaspoon"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 2,
+        "note": "tablespoons"
+      },
+      {
+        "ingredientId": "lime",
+        "quantity": 1,
+        "note": "calamansi if available, cut into wedges"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 1,
+        "note": "for garnish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "optional": true
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 1,
+        "optional": true,
+        "note": "pinch, to balance"
+      }
+    ],
+    "steps": [
+      "In a small bowl, whisk the kecap manis, sambal, tomato paste, soy sauce and tamarind paste with a splash of water to make a loose stir-fry sauce; taste and adjust with a pinch of sugar or salt.",
+      "Briefly blanch the yellow noodles in boiling water just to loosen (30-60 seconds), then drain and toss with a little oil so they don't stick.",
+      "Heat 1 tablespoon oil in a wok or large pan over high heat, pour in the beaten eggs, scramble until just set, then push to the side or remove.",
+      "Add the remaining oil and fry the sliced shallot and garlic until fragrant and lightly golden, about 1 minute, keeping the heat high.",
+      "Add the tofu puffs and boiled potato cubes and stir-fry 1-2 minutes to pick up color and crisp slightly at the edges.",
+      "Add the noodles and the sauce, tossing constantly so every strand is coated and the sauce caramelizes and chars a little against the hot wok.",
+      "Toss in the bok choy and bean sprouts and stir-fry just 1 minute so they wilt but stay crunchy, then fold the egg back in.",
+      "Garnish with scallions, plate up, and serve hot with lime wedges to squeeze over each portion."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Tofu puffs (tau pok) are cheap, freeze well, and soak up sauce like a sponge - buy a bag and keep them frozen for quick stir-fries.",
+      "A boiled potato bulks out the dish authentically and for pennies, so you need less noodle and protein per serving.",
+      "Make your own kecap manis by simmering equal parts soy sauce and brown sugar until syrupy instead of buying a bottle."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "tofu-puffs",
+        "swap": "Use cubed firm tofu pan-fried until golden, or sliced fish cake",
+        "savings": "Often cheaper and easier to find than tau pok"
+      },
+      {
+        "forIngredientId": "kecap-manis",
+        "swap": "Mix regular soy sauce with brown sugar (2:1) or use hoisin",
+        "savings": "Saves buying a specialty bottle, ~$4"
+      },
+      {
+        "forIngredientId": "ramen",
+        "swap": "Use any fresh or dried wheat noodle, or even rinsed instant ramen noodles",
+        "savings": "Dried noodles cost a fraction of fresh"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 540,
+      "protein": 19,
+      "carbs": 72,
+      "fat": 21,
+      "fiber": 6
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-red-100",
+    "cuisine": "Malaysian",
+    "tags": [
+      "malaysian",
+      "noodles",
+      "stir-fry",
+      "street-food",
+      "spicy",
+      "vegetarian",
+      "mamak",
+      "wok",
+      "sweet-and-spicy"
+    ]
+  },
+  {
+    "id": "cur2-chicken-vindaloo",
+    "name": "Chicken Vindaloo",
+    "description": "A fiery, tangy Goan curry where chicken thighs are marinated in a garlic-and-vinegar paste, then simmered in a deeply spiced gravy of Kashmiri chile, cumin, coriander, and warm spices. Sharp from the vinegar, mellowed with a little sugar — bold, layered, and nothing like a generic curry.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "boneless skinless, cut into large chunks"
+      },
+      {
+        "ingredientId": "apple-cider-vinegar",
+        "quantity": 0.3,
+        "note": "traditional vinho d'alho marinade base"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "finely sliced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.8,
+        "note": "about 10 cloves, half for marinade half for gravy"
+      },
+      {
+        "ingredientId": "ginger",
+        "quantity": 0.4,
+        "note": "thumb-sized piece"
+      },
+      {
+        "ingredientId": "kashmiri-chili",
+        "quantity": 1.5,
+        "note": "no exact id; use chili-powder, ideally Kashmiri for color not heat",
+        "optional": false
+      },
+      {
+        "ingredientId": "chili-powder",
+        "quantity": 1.5,
+        "note": "Kashmiri-style for deep red color and mild heat"
+      },
+      {
+        "ingredientId": "cumin-seeds",
+        "quantity": 0.5,
+        "note": "toasted and ground"
+      },
+      {
+        "ingredientId": "coriander-seed",
+        "quantity": 0.5,
+        "note": "toasted and ground"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.2
+      },
+      {
+        "ingredientId": "cloves",
+        "quantity": 0.1,
+        "note": "ground, about 6 whole"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.15,
+        "note": "1-inch stick, ground"
+      },
+      {
+        "ingredientId": "cardamom-green",
+        "quantity": 0.15,
+        "note": "4 pods, seeds ground"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.2
+      },
+      {
+        "ingredientId": "tamarind",
+        "quantity": 0.15,
+        "note": "small piece for extra tang, optional",
+        "optional": true
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.4
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.2,
+        "note": "to balance the vinegar"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.3
+      }
+    ],
+    "steps": [
+      "Grind the spices: toast cumin and coriander seeds in a dry pan until fragrant, then grind with the cloves, cinnamon, cardamom seeds, black pepper, turmeric, and chili/Kashmiri chili powder. Blend half the garlic and all the ginger with the vinegar and ground spices into a smooth, thick marinade paste.",
+      "Toss the chicken thigh chunks with the spice-vinegar paste and 1 teaspoon salt. Cover and marinate at least 30 minutes (ideally a few hours or overnight) so the vinegar and garlic penetrate the meat.",
+      "Heat the oil in a heavy pot over medium heat. Add the sliced onions and cook slowly, stirring often, until deeply golden brown — about 12-15 minutes. This caramelized base is the backbone of the gravy.",
+      "Add the remaining minced garlic and cook 1 minute until fragrant, then scrape in the marinated chicken along with all its marinade. Turn the heat up and sear the chicken, stirring, for 4-5 minutes until the paste darkens and smells toasty.",
+      "Pour in about 1.5 cups water (plus the soaked tamarind and its liquid if using), scraping up any browned bits. Stir in the sugar to balance the vinegar's sharpness. Bring to a gentle simmer.",
+      "Cover and simmer 20-25 minutes, stirring occasionally, until the chicken is tender and cooked through and the gravy clings to the meat.",
+      "Uncover and simmer 5-8 minutes more to reduce the sauce until glossy and the oil just starts to separate at the edges — the sign of a properly cooked vindaloo.",
+      "Taste and adjust salt, sugar, and vinegar; the dish should be punchy and tangy. Rest 10 minutes off heat to deepen the flavor, then serve hot with basmati rice or naan."
+    ],
+    "totalTimeMinutes": 75,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 55,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Bone-in chicken thighs or drumsticks are cheaper than boneless and stay juicier through the long simmer — just simmer 5-10 minutes longer.",
+      "Buy whole cumin and coriander seeds and toast/grind them yourself; they're far cheaper per use and far more aromatic than pre-ground.",
+      "Marinate overnight and the cheaper cut tastes restaurant-quality — the acid tenderizes the meat for free."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Bone-in drumsticks or pork shoulder (the original protein)",
+        "savings": "~$1.50/lb cheaper than boneless thighs"
+      },
+      {
+        "forIngredientId": "apple-cider-vinegar",
+        "swap": "Plain white or malt vinegar",
+        "savings": "Saves about $1 a bottle"
+      },
+      {
+        "forIngredientId": "cardamom-green",
+        "swap": "A pinch of garam masala covers the warm spices",
+        "savings": "Avoids buying a $6 jar of pods"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 360,
+      "protein": 33,
+      "carbs": 12,
+      "fat": 21,
+      "fiber": 2
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-red-100",
+    "cuisine": "Indian (Goan)",
+    "tags": [
+      "curry",
+      "spicy",
+      "goan",
+      "chicken",
+      "vinegar",
+      "high-protein",
+      "dairy-free",
+      "gluten-free"
+    ]
+  },
+  {
+    "id": "cur2-idli-sambar",
+    "name": "Idli Sambar",
+    "description": "Pillowy steamed South Indian rice-and-lentil cakes served with sambar — a tangy, tamarind-spiked toor dal stew loaded with vegetables and finished with a sizzling mustard-seed and curry-leaf tempering. Comfort food that's naturally light, protein-rich, and deeply savory.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "rice",
+        "quantity": 2,
+        "note": "idli rice or parboiled rice, soaked for the batter"
+      },
+      {
+        "ingredientId": "urad-dal",
+        "quantity": 0.5,
+        "note": "skinned split black gram for the idli batter"
+      },
+      {
+        "ingredientId": "fenugreek",
+        "quantity": 0.05,
+        "note": "fenugreek seeds, soaked with the urad dal for fermentation"
+      },
+      {
+        "ingredientId": "toor-dal",
+        "quantity": 0.6,
+        "note": "split pigeon peas, the base of the sambar"
+      },
+      {
+        "ingredientId": "tamarind-paste",
+        "quantity": 0.5,
+        "note": "soak a walnut-size piece or use 2 tsp concentrate"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 0.5,
+        "note": "small sambar onions or pearl onions, halved"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "okra",
+        "quantity": 0.5,
+        "note": "or use drumstick (moringa) pieces if available"
+      },
+      {
+        "ingredientId": "garam-masala",
+        "quantity": 0.15,
+        "note": "use sambar powder if you have it"
+      },
+      {
+        "ingredientId": "coriander",
+        "quantity": 0.1,
+        "note": "ground coriander, backbone of sambar powder"
+      },
+      {
+        "ingredientId": "dried-chili",
+        "quantity": 0.1,
+        "note": "dried red chilies for heat and the tempering"
+      },
+      {
+        "ingredientId": "mustard-seeds",
+        "quantity": 0.05,
+        "note": "black mustard seeds for the tadka"
+      },
+      {
+        "ingredientId": "curry-leaves",
+        "quantity": 0.3,
+        "note": "fresh curry leaves, essential for aroma"
+      },
+      {
+        "ingredientId": "ghee",
+        "quantity": 0.15,
+        "note": "or coconut oil for the tempering"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.3,
+        "note": "fresh coriander leaves to finish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.1
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "a pinch of hing/asafoetida is traditional here if you have it"
+      }
+    ],
+    "steps": [
+      "Make the batter (start a day ahead): rinse the rice and soak it separately from the urad dal and fenugreek seeds for 4-6 hours. Grind the urad dal and fenugreek to a fluffy, airy paste, grind the rice to a slightly grainy paste, then combine with 1 tsp salt. Cover and ferment in a warm spot 8-12 hours until doubled and bubbly.",
+      "Steam the idli: lightly grease idli molds, pour in the fermented batter to fill each cup three-quarters, and steam over simmering water for 10-12 minutes until a toothpick comes out clean. Let rest 2 minutes before unmolding so they release cleanly.",
+      "Cook the dal: rinse the toor dal and pressure-cook (or simmer) with turmeric and water until completely soft and creamy, about 15 minutes in a pressure cooker. Mash smooth and set aside.",
+      "Soak the tamarind paste in 1 cup warm water, then strain to get a tangy extract (skip the straining if using smooth concentrate).",
+      "Build the sambar: in a pot, simmer the chopped carrot, okra, tomato, and halved shallots with the tamarind extract, ground coriander, garam masala/sambar powder, a broken dried chili, and salt until the vegetables are tender, 8-10 minutes.",
+      "Stir the mashed dal into the vegetables, add water to a pourable, soupy consistency, and simmer gently 5-7 minutes so the flavors meld. Taste and balance salt and tang.",
+      "Make the tempering (tadka): heat the ghee in a small pan until shimmering, add the mustard seeds and let them pop, then add the remaining dried chili and the curry leaves and fry a few seconds until fragrant.",
+      "Pour the sizzling tempering over the sambar and stir it through. Finish with chopped fresh coriander.",
+      "Serve the hot idli alongside generous bowls of sambar, ladling extra sambar over the idli so they soak it up."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 35,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Make the idli batter in a big batch and freeze portions — it keeps for weeks and gives you instant breakfasts.",
+      "Toor dal and rice are pennies per serving in bulk; this is one of the cheapest high-protein meals you can make.",
+      "Use whatever vegetables are on sale — carrot, okra, pumpkin, eggplant, and drumstick all work beautifully in sambar."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ghee",
+        "swap": "Use coconut oil or any neutral oil for the tempering",
+        "savings": "~$0.40/batch"
+      },
+      {
+        "forIngredientId": "tamarind-paste",
+        "swap": "A squeeze of lemon plus a pinch of sugar approximates the sour-tangy note",
+        "savings": "~$0.30/batch"
+      },
+      {
+        "forIngredientId": "garam-masala",
+        "swap": "Make a quick sambar powder from extra coriander, cumin, dried chili and a pinch of fenugreek",
+        "savings": "~$0.50/batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 340,
+      "protein": 13,
+      "carbs": 62,
+      "fat": 6,
+      "fiber": 9
+    },
+    "emoji": "🍲",
+    "accentColor": "bg-amber-100",
+    "cuisine": "South Indian",
+    "tags": [
+      "south-indian",
+      "fermented",
+      "vegetarian",
+      "lentils",
+      "steamed",
+      "comfort-food",
+      "high-protein",
+      "gluten-free"
+    ]
+  },
+  {
+    "id": "cur2-chicken-chettinad",
+    "name": "Chicken Chettinad",
+    "description": "A fiery, deeply aromatic chicken curry from the Chettinad region of Tamil Nadu, built on a freshly dry-roasted-and-ground spice blend of peppercorns, fennel, coriander, dried red chiles and whole warm spices, finished with curry leaves and roasted coconut. Bold, peppery and intensely fragrant — nothing like a generic curry.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "bone-in, skinless, cut into curry pieces"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "finely sliced"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 2,
+        "note": "chopped"
+      },
+      {
+        "ingredientId": "ginger-paste",
+        "quantity": 1.5,
+        "note": "fresh ginger-garlic paste (half ginger, half garlic)"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "ground into the ginger-garlic paste"
+      },
+      {
+        "ingredientId": "curry-leaves",
+        "quantity": 0.5,
+        "note": "two sprigs, divided"
+      },
+      {
+        "ingredientId": "dried-chili",
+        "quantity": 6,
+        "note": "Kashmiri/dried red chiles, for the roasted masala"
+      },
+      {
+        "ingredientId": "whole-peppercorns",
+        "quantity": 1,
+        "note": "black peppercorns, the defining spice"
+      },
+      {
+        "ingredientId": "fennel-seeds",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "coriander-seed",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "cumin-seeds",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "poppy-seeds",
+        "quantity": 0.5,
+        "note": "white khus khus, thickener"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.2,
+        "note": "one small stick"
+      },
+      {
+        "ingredientId": "cloves",
+        "quantity": 0.2,
+        "note": "3-4 whole cloves"
+      },
+      {
+        "ingredientId": "cardamom-green",
+        "quantity": 0.2,
+        "note": "2-3 pods"
+      },
+      {
+        "ingredientId": "star-anise",
+        "quantity": 0.2,
+        "note": "one small piece"
+      },
+      {
+        "ingredientId": "fenugreek",
+        "quantity": 0.1,
+        "note": "a small pinch of methi seeds"
+      },
+      {
+        "ingredientId": "unsweetened-shredded-coconut",
+        "quantity": 0.4,
+        "note": "dry-roasted, ground into the masala"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.3
+      },
+      {
+        "ingredientId": "coconut-oil",
+        "quantity": 0.3,
+        "note": "or gingelly/sesame oil"
+      },
+      {
+        "ingredientId": "mustard-seeds",
+        "quantity": 0.3,
+        "note": "for the tempering"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.3
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.5,
+        "note": "juice, to finish"
+      }
+    ],
+    "steps": [
+      "Make the Chettinad masala: in a dry skillet over medium heat, separately toast the dried red chiles, peppercorns, fennel, coriander, cumin, poppy seeds, cinnamon, cloves, cardamom, star anise and fenugreek until fragrant and a shade darker, 3-4 minutes. Add the shredded coconut and toast until golden. Cool, then grind to a fine powder (add a splash of water to make a paste if your grinder prefers).",
+      "Pound or blend the ginger and garlic into a smooth paste. Toss the chicken with turmeric and a little salt while you build the base.",
+      "Heat the coconut oil in a heavy pot over medium heat. Add the mustard seeds and let them pop, then add half the curry leaves and the sliced onions. Fry, stirring, until the onions are deep golden brown, 8-10 minutes — this color is the backbone of the flavor.",
+      "Stir in the ginger-garlic paste and cook until the raw smell is gone, about 2 minutes. Add the chopped tomatoes and cook down until jammy and the oil starts to separate, 5-6 minutes.",
+      "Add the ground Chettinad masala and salt; fry for 2-3 minutes so the spices bloom in the oil and lose any rawness.",
+      "Add the chicken and turn to coat every piece in the masala. Sear for 4-5 minutes, then pour in about 1 cup hot water to make a thick gravy.",
+      "Cover and simmer on low until the chicken is tender and the gravy clings to the pieces and oil pools at the edges, 20-25 minutes, stirring occasionally.",
+      "Finish with the remaining curry leaves and a squeeze of lemon juice. Rest 5 minutes off the heat, then serve hot with rice, dosa or parotta."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 40,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy whole spices in bulk from an Indian grocer — a single peppercorn/fennel/coriander purchase makes this masala many times over for pennies per batch.",
+      "Bone-in thighs cost far less than breast, stay juicy through the long simmer, and add body to the gravy.",
+      "Skip pre-ground masala blends; dry-roasting and grinding your own whole spices is cheaper and tastes dramatically fresher."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "coconut-oil",
+        "swap": "Use sesame or vegetable oil instead",
+        "savings": "~$0.40/batch"
+      },
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Use bone-in drumsticks",
+        "savings": "~$1.50/batch"
+      },
+      {
+        "forIngredientId": "poppy-seeds",
+        "swap": "Use a handful of cashews to thicken instead",
+        "savings": "~$0.30/batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 410,
+      "protein": 34,
+      "carbs": 14,
+      "fat": 25,
+      "fiber": 4
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-red-100",
+    "cuisine": "South Indian (Tamil Nadu / Chettinad)",
+    "tags": [
+      "spicy",
+      "curry",
+      "chicken",
+      "south-indian",
+      "chettinad",
+      "dairy-free",
+      "gluten-free",
+      "high-protein",
+      "dinner"
+    ]
+  },
+  {
+    "id": "cur2-egg-curry",
+    "name": "Egg Curry (Anda Curry)",
+    "description": "Hard-boiled eggs simmered in a rich onion-tomato masala bloomed with whole cumin, ginger-garlic, turmeric, coriander and Kashmiri chili, then finished in coconut milk. A comforting North-Indian classic that's cheap, fast, and deeply savory over rice or with naan.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "eggs",
+        "quantity": 8,
+        "note": "hard-boiled, 2 per serving"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "finely chopped"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 3,
+        "note": "pureed or finely chopped"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 5,
+        "note": "cloves, minced"
+      },
+      {
+        "ingredientId": "ginger-paste",
+        "quantity": 1,
+        "note": "1 tbsp fresh ginger"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.15,
+        "note": "3 tbsp neutral oil or ghee"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 0.5,
+        "note": "1 tsp whole cumin seeds plus ground"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.25,
+        "note": "3/4 tsp"
+      },
+      {
+        "ingredientId": "coriander",
+        "quantity": 0.5,
+        "note": "1.5 tsp ground coriander"
+      },
+      {
+        "ingredientId": "chili-powder",
+        "quantity": 0.4,
+        "note": "Kashmiri chili powder for color and mild heat"
+      },
+      {
+        "ingredientId": "garam-masala",
+        "quantity": 0.3,
+        "note": "1 tsp, added at the end"
+      },
+      {
+        "ingredientId": "coconut-milk",
+        "quantity": 0.5,
+        "note": "half a can, full-fat"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.4,
+        "note": "small handful, chopped, to finish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.2,
+        "note": "to taste"
+      }
+    ],
+    "steps": [
+      "Hard-boil the eggs: cover with water, bring to a boil, then simmer 9 minutes. Cool in cold water, peel, and lightly score or prick each egg so the masala soaks in.",
+      "Heat the oil in a wide pan over medium. Add the whole cumin seeds and let them sizzle for 20-30 seconds until fragrant. Optionally fry the peeled eggs in a little oil with a pinch of turmeric until golden, then set aside.",
+      "Add the chopped onion and cook 8-10 minutes, stirring often, until deeply golden brown. This caramelization is the backbone of the gravy.",
+      "Stir in the minced garlic and ginger and cook 1-2 minutes until raw smell disappears. Add turmeric, ground coriander, ground cumin, and Kashmiri chili powder; toast 30 seconds with a splash of water so the spices don't burn.",
+      "Add the pureed tomato and salt. Cook 8-10 minutes until the masala thickens and oil starts to separate at the edges.",
+      "Pour in the coconut milk plus about 1/2 cup water to loosen to a sauce. Bring to a gentle simmer.",
+      "Slide in the eggs, spoon gravy over them, cover, and simmer 8-10 minutes so they absorb the flavor.",
+      "Stir in the garam masala, taste and adjust salt, then finish with chopped cilantro. Rest 5 minutes off heat and serve hot with rice or naan."
+    ],
+    "totalTimeMinutes": 45,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Eggs are one of the cheapest complete proteins — this whole curry feeds four for a few dollars.",
+      "Use a half can of coconut milk and freeze the rest, or skip it and finish with a spoon of yogurt for an even cheaper, tangier gravy.",
+      "Buy whole spices (cumin, coriander) in bulk and grind as needed; they're far cheaper per use and stay potent much longer."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ginger-paste",
+        "swap": "Fresh grated ginger or a pinch of ground ginger",
+        "savings": "Avoids buying a jar if you already keep fresh ginger"
+      },
+      {
+        "forIngredientId": "coconut-milk",
+        "swap": "Plain yogurt whisked in off-heat, or just water for a leaner tomato gravy",
+        "savings": "Saves about $1 per batch and uses a fridge staple"
+      },
+      {
+        "forIngredientId": "garam-masala",
+        "swap": "A pinch each of cinnamon, clove, and extra cumin",
+        "savings": "Use spices you already own instead of a dedicated blend"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 15,
+      "carbs": 12,
+      "fat": 21,
+      "fiber": 3
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Indian",
+    "tags": [
+      "egg curry",
+      "anda curry",
+      "north indian",
+      "high-protein",
+      "gluten-free",
+      "budget",
+      "weeknight",
+      "coconut",
+      "comfort food"
+    ]
+  },
+  {
+    "id": "cur2-kadai-chicken",
+    "name": "Kadai Chicken",
+    "description": "A North Indian dhaba classic cooked karahi-style: bone-in chicken simmered in a thick, clinging masala of freshly pounded coriander seeds and dried red chiles, with onions, tomatoes, and capsicum kept just-tender for bite. Finished with garam masala, crushed kasoori methi, and julienned ginger for a fragrant, semi-dry curry that hugs every piece.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "bone-in, skinless preferred, cut into curry pieces"
+      },
+      {
+        "ingredientId": "coriander-seed",
+        "quantity": 2,
+        "note": "2 tbsp, dry-roasted and coarsely crushed — the signature kadai masala"
+      },
+      {
+        "ingredientId": "dried-chili",
+        "quantity": 4,
+        "note": "4 whole dried red chiles (e.g. Kashmiri), pounded with the coriander"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "1 finely chopped for the base, 1 cut into petals to toss in at the end"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 3,
+        "note": "ripe, finely chopped or pureed"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 1,
+        "note": "capsicum, cut into 1-inch squares"
+      },
+      {
+        "ingredientId": "ginger-paste",
+        "quantity": 1,
+        "note": "1 tbsp ginger-garlic paste"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 6,
+        "note": "6 cloves, crushed"
+      },
+      {
+        "ingredientId": "ghee",
+        "quantity": 3,
+        "note": "3 tbsp (or mustard/veg oil)"
+      },
+      {
+        "ingredientId": "cumin-seeds",
+        "quantity": 1,
+        "note": "1 tsp for tempering"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 1,
+        "note": "1/2 tsp"
+      },
+      {
+        "ingredientId": "chili-powder",
+        "quantity": 1,
+        "note": "1 tsp Kashmiri red chili powder, for color"
+      },
+      {
+        "ingredientId": "garam-masala",
+        "quantity": 1,
+        "note": "1 tsp, added near the end"
+      },
+      {
+        "ingredientId": "kasoori-methi",
+        "quantity": 1,
+        "note": "1 tbsp dried fenugreek leaves, crushed between palms"
+      },
+      {
+        "ingredientId": "ginger",
+        "quantity": 1,
+        "note": "a 1-inch knob, julienned for garnish"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.25,
+        "note": "small handful, chopped, to finish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "to taste"
+      },
+      {
+        "ingredientId": "plain-yogurt",
+        "quantity": 0.25,
+        "optional": true,
+        "note": "2 tbsp, whisked — optional for a slightly richer gravy"
+      }
+    ],
+    "steps": [
+      "Dry-roast the coriander seeds and whole dried red chiles in a hot pan for 1-2 minutes until fragrant, then pound coarsely in a mortar (or pulse) into a chunky kadai masala. Set aside.",
+      "Heat the ghee in a kadai or heavy wok over medium-high heat. Add the cumin seeds and let them crackle, then add the crushed garlic and finely chopped onion. Cook 5-6 minutes until the onion is soft and golden at the edges.",
+      "Stir in the ginger-garlic paste and cook 1 minute, then add the turmeric, Kashmiri chili powder, and about two-thirds of the pounded kadai masala; fry 30 seconds until it smells toasty.",
+      "Add the chopped tomatoes and salt. Cook down 6-8 minutes, mashing, until the tomatoes break into a thick pulpy masala and the ghee starts to separate at the sides. (Stir in the optional whisked yogurt now for a richer gravy.)",
+      "Add the chicken pieces and turn to coat in the masala. Sear 3-4 minutes, then cover and cook 12-15 minutes over medium heat, stirring occasionally, until the chicken is cooked through and the masala is thick and clinging. Add a splash of water only if it sticks.",
+      "Raise the heat, add the capsicum squares and onion petals, and toss for 3-4 minutes so they soften slightly but keep their crunch and the gravy reduces to a semi-dry coat.",
+      "Sprinkle in the garam masala and the remaining kadai masala, crush the kasoori methi between your palms over the pan, and stir through for 1 minute.",
+      "Taste for salt and chili, finish with julienned ginger and chopped cilantro, and serve hot with naan or jeera rice."
+    ],
+    "totalTimeMinutes": 50,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 35,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Bone-in thighs cost less than breast and stay juicy through the longer simmer — and the bones add body to the masala.",
+      "Pounding your own coriander-and-chile kadai masala from whole spices is far cheaper and far more aromatic than buying a kadai masala blend.",
+      "Use whatever tomatoes are ripest and on sale; a tablespoon of tomato paste can stand in for one fresh tomato if they're pale and pricey."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Boneless chicken breast cut into chunks (reduce simmer to ~8-10 min so it stays tender)",
+        "savings": "Often cheaper per lb on sale; cooks faster, saving gas"
+      },
+      {
+        "forIngredientId": "ghee",
+        "swap": "Vegetable or mustard oil",
+        "savings": "Saves about $0.40 per batch vs ghee"
+      },
+      {
+        "forIngredientId": "dried-chili",
+        "swap": "1 tsp extra chili powder plus a pinch of red pepper flakes",
+        "savings": "Uses pantry staples instead of buying whole dried chiles"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 410,
+      "protein": 34,
+      "carbs": 14,
+      "fat": 25,
+      "fiber": 4
+    },
+    "emoji": "🍛",
+    "accentColor": "bg-orange-100",
+    "cuisine": "North Indian",
+    "tags": [
+      "indian",
+      "curry",
+      "chicken",
+      "kadai",
+      "karahi",
+      "semi-dry",
+      "spicy",
+      "dinner",
+      "gluten-free",
+      "high-protein"
+    ]
+  },
+  {
+    "id": "cur2-jeera-rice",
+    "name": "Jeera Rice",
+    "description": "Fragrant North Indian cumin rice: fluffy long-grain basmati studded with whole cumin seeds tempered in ghee until they crackle and turn nutty. A bay leaf, a couple of cloves and a stick of cinnamon perfume the rice as it steams. Simple, aromatic, and the ideal partner to dal, curry, or rajma.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "basmati-rice",
+        "quantity": 4,
+        "note": "long-grain basmati, ~1.5 cups dry"
+      },
+      {
+        "ingredientId": "ghee",
+        "quantity": 2,
+        "note": "2 tbsp; sub neutral oil to make it vegan"
+      },
+      {
+        "ingredientId": "cumin-seeds",
+        "quantity": 2,
+        "note": "2 tsp whole jeera"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 1,
+        "note": "1 dried bay leaf"
+      },
+      {
+        "ingredientId": "cloves",
+        "quantity": 1,
+        "note": "3 whole cloves"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 1,
+        "note": "1 small stick / 1-inch piece"
+      },
+      {
+        "ingredientId": "cardamom-green",
+        "quantity": 1,
+        "optional": true,
+        "note": "2 lightly crushed green pods"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "about 1 tsp, to taste"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.15,
+        "optional": true,
+        "note": "2 tbsp chopped, for garnish"
+      },
+      {
+        "ingredientId": "water",
+        "quantity": 3,
+        "note": "about 2.25 cups for the absorption method"
+      }
+    ],
+    "steps": [
+      "Rinse the basmati in 2-3 changes of cool water until it runs nearly clear, then soak in fresh water for 20-30 minutes. Drain well in a sieve and let sit a few minutes.",
+      "Heat the ghee in a heavy pot over medium heat. Add the cumin seeds, bay leaf, cloves, cinnamon stick and crushed cardamom; let them sizzle for 20-30 seconds until the cumin darkens slightly and smells nutty and fragrant. Do not let it burn.",
+      "Add the drained rice and stir gently for about 1 minute to coat every grain in the spiced ghee, toasting lightly.",
+      "Pour in 2 1/4 cups water, add the salt, and stir once. Bring to a brisk boil over high heat.",
+      "As soon as it boils and the water level drops to the surface of the rice, reduce the heat to the lowest setting, cover with a tight-fitting lid, and steam undisturbed for 12-15 minutes until the water is fully absorbed.",
+      "Turn off the heat and let the rice rest, still covered, for 5 minutes so the grains firm up and finish steaming.",
+      "Fluff gently with a fork, separating the grains without mashing them. Discard the whole cinnamon, bay leaf and cloves if you like.",
+      "Garnish with chopped cilantro and serve hot alongside dal, rajma, or any curry."
+    ],
+    "totalTimeMinutes": 45,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Buy whole cumin seeds in bulk from an Indian grocer or the international aisle - they cost a fraction of small supermarket jars and stay fragrant far longer.",
+      "No need for premium aged basmati for an everyday batch; any decent long-grain basmati fluffs up beautifully when rinsed and soaked.",
+      "Cook a double batch and freeze flat in portions - jeera rice reheats perfectly with a splash of water in the microwave."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ghee",
+        "swap": "Use vegetable or coconut oil instead of ghee to make it fully vegan and dairy-free",
+        "savings": "Saves about $0.40 per batch and is usually already in your pantry"
+      },
+      {
+        "forIngredientId": "basmati-rice",
+        "swap": "Regular long-grain white rice works in a pinch (adjust water slightly)",
+        "savings": "Saves roughly $0.50 per batch"
+      },
+      {
+        "forIngredientId": "cardamom-green",
+        "swap": "Skip it - the cumin, clove and cinnamon already carry the aroma",
+        "savings": "Saves about $0.30 per batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 245,
+      "protein": 4,
+      "carbs": 45,
+      "fat": 6,
+      "fiber": 1
+    },
+    "emoji": "🍚",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Indian",
+    "tags": [
+      "rice",
+      "cumin",
+      "basmati",
+      "side-dish",
+      "north-indian",
+      "vegetarian",
+      "gluten-free",
+      "aromatic",
+      "weeknight"
+    ]
+  },
+  {
+    "id": "cur2-mango-kulfi",
+    "name": "Mango Kulfi",
+    "description": "Indian frozen dessert made the traditional way: whole milk slowly reduced until thick and caramel-sweet, enriched with condensed milk, then blended with ripe mango pulp, cardamom, saffron, and crushed pistachios. No churning needed, just freeze in molds for a dense, creamy kulfi with a clean mango finish.",
+    "mealType": "snack",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 1,
+        "note": "about 4 cups / 1 liter full-fat milk for reducing"
+      },
+      {
+        "ingredientId": "sweetened-condensed-milk",
+        "quantity": 0.5,
+        "note": "about half a 14 oz can"
+      },
+      {
+        "ingredientId": "heavy-cream",
+        "quantity": 0.3,
+        "note": "about 1/2 cup for richness"
+      },
+      {
+        "ingredientId": "mango-fresh",
+        "quantity": 2,
+        "note": "ripe Alphonso/Kesar if possible, pureed to ~1 cup pulp"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.05,
+        "note": "about 2 tbsp, adjust to mango sweetness"
+      },
+      {
+        "ingredientId": "cardamom-green",
+        "quantity": 0.02,
+        "note": "seeds from 4-5 pods, finely ground"
+      },
+      {
+        "ingredientId": "saffron",
+        "quantity": 0.01,
+        "optional": true,
+        "note": "a pinch, bloomed in 1 tbsp warm milk"
+      },
+      {
+        "ingredientId": "pistachios",
+        "quantity": 0.15,
+        "note": "about 3 tbsp, finely chopped, plus extra to garnish"
+      },
+      {
+        "ingredientId": "almonds",
+        "quantity": 0.1,
+        "optional": true,
+        "note": "about 2 tbsp, finely chopped"
+      },
+      {
+        "ingredientId": "cornstarch",
+        "quantity": 0.02,
+        "optional": true,
+        "note": "1 tsp slurry to thicken and prevent ice crystals"
+      }
+    ],
+    "steps": [
+      "Pour the whole milk into a heavy-bottomed pan and bring to a gentle boil, then lower to a steady simmer. Cook 30-40 minutes, stirring often and scraping the sides down, until reduced by nearly half and thickened. Bloom the saffron in 1 tbsp of the warm milk.",
+      "Stir in the condensed milk, sugar, ground cardamom, and bloomed saffron. If using, whisk the cornstarch with a splash of cold milk and stir it in, then simmer 3-4 minutes until the base coats the back of a spoon. Remove from heat and let cool fully to room temperature.",
+      "Peel and chop the ripe mangoes and puree until completely smooth; you want about 1 cup of thick pulp with no chunks. Strain if fibrous.",
+      "Stir the heavy cream and most of the chopped pistachios and almonds into the cooled milk base, then fold in the mango puree only after the base is cool so the mango stays bright and the dairy does not split.",
+      "Taste and adjust sweetness, keeping in mind freezing dulls sweetness slightly. Pour the mixture into kulfi molds, popsicle molds, or small paper cups, leaving a little headroom.",
+      "Top each mold with a few reserved chopped pistachios. Cover with foil and insert sticks through the foil so they stand upright, or seal the molds with their lids.",
+      "Freeze at least 6-8 hours or overnight until solid. To unmold, dip the mold briefly in warm water for 10-15 seconds, then twist gently to release.",
+      "Serve straight away, garnished with extra pistachios. For a classic falooda-style plate, slice and serve over soaked vermicelli with a drizzle of rose syrup."
+    ],
+    "totalTimeMinutes": 405,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 45,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Frozen mango chunks work beautifully and are often cheaper and more reliably ripe than fresh mangoes out of season; thaw and puree the same way.",
+      "Skip the heavy cream and just reduce the milk a few minutes longer; the slow reduction is what gives real kulfi its dense texture, not the cream.",
+      "Reuse small yogurt cups or paper cups as molds with popsicle sticks instead of buying dedicated kulfi molds."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "mango-fresh",
+        "swap": "frozen-mango",
+        "savings": "Saves ~40% vs fresh out of season and is consistently ripe"
+      },
+      {
+        "forIngredientId": "heavy-cream",
+        "swap": "evaporated-milk or extra reduced milk",
+        "savings": "Cuts a few dollars and lowers fat"
+      },
+      {
+        "forIngredientId": "pistachios",
+        "swap": "almonds or cashews",
+        "savings": "Saves about half the nut cost"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 245,
+      "protein": 6,
+      "carbs": 32,
+      "fat": 11,
+      "fiber": 1
+    },
+    "emoji": "🥭",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Indian",
+    "tags": [
+      "frozen dessert",
+      "kulfi",
+      "mango",
+      "no-churn",
+      "summer",
+      "vegetarian",
+      "gluten-free",
+      "make-ahead"
+    ]
+  },
+  {
+    "id": "cur2-lebanese-mujaddara",
+    "name": "Lebanese Mujaddara",
+    "description": "A humble Levantine classic of tender brown lentils and rice crowned with a heap of deeply caramelized onions. Earthy cumin and the sweet, almost jammy fried onions do all the work — comforting, filling, and naturally vegan. Serve warm or at room temperature with a dollop of cool yogurt or a sharp tomato-cucumber salad.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "lentils",
+        "quantity": 1.5,
+        "note": "brown or green lentils, dried"
+      },
+      {
+        "ingredientId": "rice",
+        "quantity": 4,
+        "note": "long-grain or basmati"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 3,
+        "note": "large yellow onions, thinly sliced"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.3,
+        "note": "for frying onions and cooking"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1,
+        "note": "ground cumin"
+      },
+      {
+        "ingredientId": "coriander",
+        "quantity": 1,
+        "optional": true,
+        "note": "ground coriander"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 1,
+        "optional": true,
+        "note": "small pinch, warm note"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1,
+        "note": "black pepper"
+      },
+      {
+        "ingredientId": "plain-yogurt",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "for serving"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.25,
+        "optional": true,
+        "note": "chopped, to garnish"
+      }
+    ],
+    "steps": [
+      "Rinse the lentils and add them to a pot with about 4 cups of water. Bring to a boil, then simmer uncovered for 12-15 minutes until just barely tender but still holding their shape. Drain, reserving the cooking liquid, and set aside.",
+      "While the lentils cook, thinly slice the onions. Heat the olive oil in a wide, deep skillet over medium heat and add the onions with a pinch of salt. Fry, stirring often, for 20-25 minutes until they shrink down and turn deep golden-brown and sweet; let some edges go dark and crispy for flavor.",
+      "Scoop out about a third of the darkest, crispiest onions onto a paper-towel-lined plate to use as the topping. Leave the rest in the pan with the flavored oil.",
+      "Rinse the rice until the water runs clear, then add it to the pan with the remaining onions. Stir for 1-2 minutes to coat every grain in the onion oil.",
+      "Add the drained lentils, ground cumin, coriander, a small pinch of cinnamon, salt, and black pepper. Stir to combine, then pour in the reserved lentil liquid topped up with water to reach about 3 cups total.",
+      "Bring to a boil, then reduce to the lowest heat, cover tightly, and cook for 15 minutes without lifting the lid. Remove from heat and let it steam, still covered, for 10 more minutes.",
+      "Fluff gently with a fork. Pile onto a platter, scatter the reserved crispy onions over the top, and garnish with chopped parsley. Serve warm with cool yogurt on the side."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 45,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegan",
+      "vegetarian",
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Onions, lentils, and rice are some of the cheapest staples in any store — this dish feeds four for pocket change.",
+      "Don't rush the onions; long, slow caramelization with patience (not extra oil) is what gives mujaddara its signature flavor for free.",
+      "Make a double batch — it keeps in the fridge for days and is just as good cold or at room temperature."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "rice",
+        "swap": "Use bulgur instead of rice for a nuttier, traditional Levantine 'mujaddara burghul'",
+        "savings": "Roughly the same cost, more fiber"
+      },
+      {
+        "forIngredientId": "lentils",
+        "swap": "Green lentils work identically to brown; both hold their shape well",
+        "savings": "No change in cost"
+      },
+      {
+        "forIngredientId": "plain-yogurt",
+        "swap": "Skip it or use a squeeze of lemon to keep it fully vegan and cheaper",
+        "savings": "Saves about $0.40/serving"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 470,
+      "protein": 16,
+      "carbs": 78,
+      "fat": 12,
+      "fiber": 11
+    },
+    "emoji": "🧅",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Lebanese",
+    "tags": [
+      "vegan",
+      "lentils",
+      "rice",
+      "caramelized-onions",
+      "budget",
+      "one-pot",
+      "middle-eastern",
+      "meatless",
+      "comfort-food"
+    ]
+  },
+  {
+    "id": "cur2-chicken-kebab-koobideh",
+    "name": "Chicken Kebab Koobideh",
+    "description": "Persian-style ground chicken kebab — minced chicken kneaded with grated onion, turmeric, and saffron until tacky, then molded onto skewers (or shaped into logs) and grilled over high heat for a juicy, smoky char. Served with saffron rice, grilled tomato, and sumac.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "ground-chicken",
+        "quantity": 4,
+        "note": "use thigh-based ground chicken if available — higher fat keeps it juicy"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "large yellow onion, grated and squeezed of excess juice"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 1,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "saffron",
+        "quantity": 1,
+        "note": "pinch, bloomed in 2 tbsp hot water"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "1.5 tsp"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 1,
+        "note": "1/2 tsp, freshly ground"
+      },
+      {
+        "ingredientId": "sumac",
+        "quantity": 1,
+        "note": "for dusting at the table"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 1,
+        "note": "2 tbsp, melted for basting"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 2,
+        "note": "grilled alongside the kebabs"
+      },
+      {
+        "ingredientId": "basmati-rice",
+        "quantity": 4,
+        "note": "steamed, for serving"
+      },
+      {
+        "ingredientId": "egg-yolk",
+        "quantity": 1,
+        "optional": true,
+        "note": "mapped to eggs — optional binder for leaner chicken"
+      }
+    ],
+    "steps": [
+      "Bloom the saffron: crush a pinch of saffron threads and steep in 2 tbsp very hot water; set aside to deepen in color. Grate the onion on the large holes of a box grater, then transfer to a fine sieve and press out as much liquid as you can — wet onion will make the mince fall apart on the skewer.",
+      "In a large bowl combine the ground chicken, squeezed grated onion, turmeric, salt, pepper, and half the saffron water (add the optional egg yolk if your chicken is very lean). Knead vigorously with your hands for 5-8 minutes until the mixture turns smooth, pale, and noticeably tacky — this protein binding is what lets it grip the skewer.",
+      "Cover and chill the mince for at least 30 minutes (up to overnight). Cold, rested mince is firmer and far easier to shape.",
+      "With wet hands, divide into 4-6 portions. Press each firmly along a flat metal skewer in a long even log, pinching ridges every inch with your fingers; or shape into flattened logs directly on a foil-lined tray if you have no skewers.",
+      "Heat a grill, grill pan, or broiler to high. Halve the tomatoes and thread or place them alongside. Grill the kebabs without moving them for 3-4 minutes until the underside chars and releases cleanly, then flip.",
+      "Baste with melted butter and the remaining saffron water, and grill the second side 3-4 minutes more until just cooked through (165F / no pink) but still juicy — chicken koobideh cooks fast, so don't overdo it.",
+      "Rest the kebabs 2 minutes off the heat. Serve over steamed basmati rice with the blistered grilled tomatoes, and dust generously with sumac at the table."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Ground chicken thigh is cheaper than breast and stays far juicier — the higher fat is exactly what koobideh needs.",
+      "A pinch of saffron goes a long way; bloom it in hot water to extract maximum color and aroma from the smallest amount.",
+      "No skewers? Shape the mince into flat logs straight on a foil-lined tray and broil — you get the same char with zero equipment."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ground-chicken",
+        "swap": "Ground turkey (thigh) for a similar lean kebab",
+        "savings": "About the same; turkey is often cheaper in bulk"
+      },
+      {
+        "forIngredientId": "saffron",
+        "swap": "A pinch of turmeric plus paprika for color",
+        "savings": "Saves ~$2-3 per use"
+      },
+      {
+        "forIngredientId": "basmati-rice",
+        "swap": "Regular long-grain or jasmine rice",
+        "savings": "Saves ~$0.50/serving"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 34,
+      "carbs": 42,
+      "fat": 13,
+      "fiber": 2
+    },
+    "emoji": "🍢",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Persian",
+    "tags": [
+      "persian",
+      "kebab",
+      "grilled",
+      "high-protein",
+      "chicken",
+      "middle-eastern",
+      "dinner"
+    ]
+  },
+  {
+    "id": "cur2-persian-fesenjan",
+    "name": "Persian Fesenjan (Walnut & Pomegranate Chicken)",
+    "description": "A rich, velvety northern-Iranian stew (khoresh) of bone-in chicken braised in finely ground toasted walnuts and tart pomegranate molasses until the sauce turns deep mahogany. Sweet, sour, and nutty all at once, it's a centerpiece dish traditionally served over fluffy Persian rice for celebrations and Yalda night.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "bone-in, skin removed (or 8 thighs for a crowd)"
+      },
+      {
+        "ingredientId": "walnuts",
+        "quantity": 1,
+        "note": "about 2.5 cups, finely ground and toasted"
+      },
+      {
+        "ingredientId": "pomegranate-molasses",
+        "quantity": 0.6,
+        "note": "about 2/3 cup; the defining souring agent"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1.5,
+        "note": "grated or finely diced"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.15,
+        "note": "2 tbsp, for sauteing the onion"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.1,
+        "note": "2 tbsp, to balance tartness; adjust to taste"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.5,
+        "note": "1/2 tsp"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.25,
+        "note": "1/4 tsp ground"
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 0.15,
+        "note": "pinch, optional warming spice",
+        "optional": true
+      },
+      {
+        "ingredientId": "saffron",
+        "quantity": 0.02,
+        "note": "small pinch bloomed in hot water",
+        "optional": true
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 0.5,
+        "note": "about 2 cups to thin the walnut sauce"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.25
+      },
+      {
+        "ingredientId": "pomegranate-seeds",
+        "quantity": 0.5,
+        "note": "for garnish",
+        "optional": true
+      },
+      {
+        "ingredientId": "basmati-rice",
+        "quantity": 4,
+        "note": "steamed, to serve"
+      }
+    ],
+    "steps": [
+      "Toast the walnuts: in a dry skillet over medium-low heat, toast the ground walnuts, stirring constantly, for 4-6 minutes until fragrant and lightly golden but not browned. This deepens flavor and releases their oils. Set aside.",
+      "In a heavy pot or Dutch oven, melt the butter over medium heat and saute the grated onion with the turmeric until soft and pale gold, about 8 minutes. Season the chicken thighs with salt and pepper and brown them in the pot for 2-3 minutes per side, then set the chicken aside.",
+      "Add the toasted ground walnuts to the pot and stir for 1-2 minutes to coat in the onion and butter, then pour in the chicken broth plus 1 cup water. Bring to a gentle simmer.",
+      "Simmer the walnut sauce uncovered on low for 30-40 minutes, stirring often so it does not catch, until the walnut oil rises and the sauce darkens and thickens. Skim off any oil if you like a leaner sauce.",
+      "Stir in the pomegranate molasses, sugar, cinnamon, nutmeg, and bloomed saffron. Taste and balance: it should be boldly tart with a gentle sweet backbone. Add more molasses for sour or sugar for sweet as needed.",
+      "Return the chicken (and any juices) to the pot, nestling the pieces into the sauce. Cover and simmer gently on low for 45-60 minutes, turning the chicken once, until it is fork-tender and the sauce is glossy and deep mahogany brown.",
+      "Uncover for the last 10 minutes if the sauce needs thickening; it should coat the back of a spoon. Adjust salt.",
+      "Rest 10 minutes off the heat to let the flavors marry and the oil settle. Garnish with fresh pomegranate seeds and serve hot over steamed basmati rice."
+    ],
+    "totalTimeMinutes": 120,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 100,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy walnuts in bulk and grind them yourself in a food processor instead of buying pre-ground nut meal; it is far cheaper and tastes fresher.",
+      "Bone-in, skin-on thighs are cheaper than breasts, stay juicier through the long braise, and their bones enrich the sauce.",
+      "If pomegranate molasses is pricey or hard to find, simmer pure pomegranate juice with a little sugar and lemon down to a syrup at home."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Use bone-in chicken drumsticks, or cubed butternut squash and chickpeas for a vegetarian fesenjan",
+        "savings": "Drumsticks run cheaper per pound; squash + beans cut the protein cost in half"
+      },
+      {
+        "forIngredientId": "pomegranate-molasses",
+        "swap": "Reduce pomegranate juice with sugar and a squeeze of lemon into a thick syrup",
+        "savings": "Saves $3-4 vs. a specialty bottle if you only need it once"
+      },
+      {
+        "forIngredientId": "saffron",
+        "swap": "A pinch of turmeric plus a tiny bit of paprika for color",
+        "savings": "Saffron is the most expensive spice; this saves a few dollars per pinch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 720,
+      "protein": 38,
+      "carbs": 52,
+      "fat": 42,
+      "fiber": 6
+    },
+    "emoji": "🌰",
+    "accentColor": "bg-rose-100",
+    "cuisine": "Persian",
+    "tags": [
+      "persian",
+      "iranian",
+      "stew",
+      "khoresh",
+      "walnut",
+      "pomegranate",
+      "comfort-food",
+      "gluten-free",
+      "celebration",
+      "yalda"
+    ]
+  },
+  {
+    "id": "cur2-greek-pastitsio",
+    "name": "Greek Pastitsio",
+    "description": "The Greek answer to lasagna: long tubes of pasta bound with cheese, a cinnamon-and-clove-scented beef ragù in the middle, and a thick, golden egg-enriched béchamel baked until set. Comforting, aromatic, and deeply satisfying.",
+    "mealType": "dinner",
+    "servings": 8,
+    "ingredients": [
+      {
+        "ingredientId": "bucatini",
+        "quantity": 8,
+        "note": "long thick tubular pasta (bucatini or No. 2 macaroni); use spaghetti if unavailable"
+      },
+      {
+        "ingredientId": "ground-beef",
+        "quantity": 6,
+        "note": "lean ground beef for the meat sauce"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "finely chopped"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "3 cloves, minced"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 1,
+        "note": "one 14 oz can"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.4,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "red-wine",
+        "quantity": 0.2,
+        "note": "1/2 cup dry red wine for the ragù"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 1,
+        "note": "1 tsp ground, plus a small stick if available"
+      },
+      {
+        "ingredientId": "allspice",
+        "quantity": 1,
+        "note": "1/2 tsp ground"
+      },
+      {
+        "ingredientId": "cloves-ground",
+        "quantity": 1,
+        "note": "pinch, about 1/8 tsp"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 1,
+        "note": "1 leaf"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.5,
+        "note": "for the béchamel, about 6 tbsp"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.3,
+        "note": "about 2/3 cup for the roux"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 1,
+        "note": "1 quart whole milk, warmed"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3,
+        "note": "lightly beaten, to enrich and set the béchamel and pasta layer"
+      },
+      {
+        "ingredientId": "parmesan",
+        "quantity": 0.5,
+        "note": "stands in for kefalotyri/kefalograviera; grated, split between layers and topping"
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 1,
+        "note": "freshly grated, for the béchamel"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.15,
+        "note": "for sautéing the beef and aromatics"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "feta",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "crumbled into the pasta layer for extra tang"
+      }
+    ],
+    "steps": [
+      "Make the ragù: heat olive oil in a wide pan over medium-high, brown the ground beef, breaking it up, then add the chopped onion and garlic and cook until soft. Stir in tomato paste and cook 1 minute, then pour in the red wine and let it bubble away.",
+      "Add the crushed tomatoes, cinnamon, allspice, ground clove, bay leaf, salt and pepper. Simmer uncovered 25-30 minutes until thick and most of the liquid has cooked off; the sauce should be dry, not soupy. Discard the bay leaf and let it cool slightly.",
+      "Cook the pasta in well-salted water 1-2 minutes shy of al dente, then drain. Toss the warm pasta with a little olive oil, about a third of the grated cheese, and one beaten egg so the strands don't clump.",
+      "Make the béchamel: melt the butter over medium heat, whisk in the flour and cook 2 minutes without browning, then add the warm milk in a steady stream while whisking constantly until thick and smooth. Season with salt, pepper and fresh nutmeg, and remove from heat.",
+      "Temper the remaining 2 eggs with a ladle of hot béchamel, then whisk them back into the sauce along with half of the remaining cheese until glossy and pourable.",
+      "Assemble in a buttered 9x13 baking dish: spread half the pasta on the bottom, scatter over the optional feta, spoon all the meat ragù over evenly, then top with the remaining pasta. Pour the béchamel over the top, spreading to cover completely, and dust with the last of the cheese.",
+      "Bake at 350F (175C) for 45-50 minutes until the top is set and deeply golden. Rest at least 20-30 minutes before cutting so the layers firm up into clean squares."
+    ],
+    "totalTimeMinutes": 135,
+    "prepTimeMinutes": 35,
+    "cookTimeMinutes": 100,
+    "difficulty": "hard",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": false,
+    "dietTags": [],
+    "cheapTips": [
+      "Buy a wedge of parmesan and grate it yourself instead of pre-grated kefalotyri; it costs less and melts better.",
+      "Lean ground beef stretches further in a long-simmered ragù, and you can swap in half ground turkey to cut cost without losing the spiced flavor.",
+      "Pastitsio actually tastes better the next day, so make a full pan and reheat slices all week; it freezes well too."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "bucatini",
+        "swap": "Use regular spaghetti broken in half or penne",
+        "savings": "Save ~40% vs specialty long macaroni"
+      },
+      {
+        "forIngredientId": "ground-beef",
+        "swap": "Replace half with ground turkey",
+        "savings": "Save ~$2-3 per pan"
+      },
+      {
+        "forIngredientId": "red-wine",
+        "swap": "Use beef broth with a splash of red wine vinegar",
+        "savings": "Skip buying a bottle of wine"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 540,
+      "protein": 28,
+      "carbs": 48,
+      "fat": 27,
+      "fiber": 3
+    },
+    "emoji": "🇬🇷",
+    "accentColor": "bg-sky-100",
+    "cuisine": "Greek",
+    "tags": [
+      "greek",
+      "baked-pasta",
+      "comfort-food",
+      "casserole",
+      "bechamel",
+      "ground-beef",
+      "make-ahead",
+      "mediterranean"
+    ]
+  },
+  {
+    "id": "cur2-moroccan-lamb-tagine",
+    "name": "Moroccan Lamb Tagine",
+    "description": "A soul-warming Moroccan braise of meltingly tender lamb shoulder slow-cooked with ras el hanout, ginger, saffron and sweet dried apricots, brightened by preserved lemon and finished with toasted almonds and cilantro. Deeply spiced but balanced, with a glossy, fragrant sauce meant for spooning over couscous.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "lamb-shoulder",
+        "quantity": 4,
+        "note": "boneless, cut into 1.5-inch chunks"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "1 large, finely grated/chopped"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.3,
+        "note": "4 cloves, minced"
+      },
+      {
+        "ingredientId": "ginger",
+        "quantity": 0.15,
+        "note": "1 tbsp fresh grated"
+      },
+      {
+        "ingredientId": "ras-el-hanout",
+        "quantity": 2,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1,
+        "note": "1 tsp ground"
+      },
+      {
+        "ingredientId": "coriander",
+        "quantity": 1,
+        "note": "1 tsp ground"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 1,
+        "note": "1/2 tsp, plus 1 stick if available"
+      },
+      {
+        "ingredientId": "turmeric",
+        "quantity": 0.5,
+        "note": "1/2 tsp"
+      },
+      {
+        "ingredientId": "saffron",
+        "quantity": 0.05,
+        "note": "large pinch, bloomed in warm water"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 0.75,
+        "note": "about half a can"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 1,
+        "note": "~2 cups, or lamb/beef stock"
+      },
+      {
+        "ingredientId": "dried-apricot",
+        "quantity": 0.5,
+        "note": "about 1 cup, halved"
+      },
+      {
+        "ingredientId": "honey",
+        "quantity": 0.1,
+        "note": "1 tbsp"
+      },
+      {
+        "ingredientId": "preserved-lemon",
+        "quantity": 0.5,
+        "note": "rind of 1, rinsed and slivered",
+        "optional": true
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.1,
+        "note": "2 tbsp for searing"
+      },
+      {
+        "ingredientId": "slivered-almonds",
+        "quantity": 0.3,
+        "note": "1/3 cup, toasted, for garnish"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.5,
+        "note": "1/4 cup chopped, plus parsley"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "to taste"
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1,
+        "note": "to taste"
+      }
+    ],
+    "steps": [
+      "Pat the lamb chunks dry and season generously with salt and pepper. Bloom the saffron in 3 tbsp warm water and set aside. In a small bowl, mix the ras el hanout, cumin, coriander, cinnamon and turmeric.",
+      "Heat the olive oil in a heavy Dutch oven or tagine over medium-high. Sear the lamb in batches until deeply browned on all sides, about 8 minutes total; transfer to a plate. Do not crowd the pot, or the meat will steam instead of brown.",
+      "Lower the heat to medium and add the grated onion. Cook 6-8 minutes until softened and golden, scraping up the browned bits. Stir in the garlic and ginger and cook 1 minute until fragrant.",
+      "Add the spice mix and cook 30-60 seconds, stirring constantly, until it smells toasty. Stir in the crushed tomato and cook 2-3 minutes to deepen the flavor.",
+      "Return the lamb and its juices to the pot. Pour in the chicken broth and bloomed saffron with its water, plus a cinnamon stick if using. Bring to a gentle simmer, then cover and reduce heat to low.",
+      "Braise gently for about 1.5 hours, stirring occasionally, until the lamb is fork-tender. Add a splash of water if it ever looks dry.",
+      "Stir in the dried apricots, honey and preserved lemon. Uncover and simmer 20-30 more minutes, until the apricots plump and the sauce reduces to a glossy, spoonable consistency. Taste and adjust salt.",
+      "Meanwhile, toast the slivered almonds in a dry pan over medium heat until golden, 3-4 minutes; watch closely so they don't burn.",
+      "Rest the tagine 5 minutes off the heat. Scatter with toasted almonds and chopped cilantro, and serve over couscous or with warm bread."
+    ],
+    "totalTimeMinutes": 150,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 125,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy a whole bone-in lamb shoulder and cut it down yourself, or use lamb stew meat or shoulder chops on sale; the bones add body to the braise.",
+      "Make your own ras el hanout from the spices already in your rack (cumin, coriander, cinnamon, paprika, ginger, a pinch of cayenne and cloves) instead of buying a jar.",
+      "This tastes even better the next day, so make a double batch and freeze half; the spice and apricot flavors deepen with time."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "lamb-shoulder",
+        "swap": "Beef stew meat or chuck, braised the same way",
+        "savings": "~40% cheaper than lamb"
+      },
+      {
+        "forIngredientId": "ras-el-hanout",
+        "swap": "DIY blend of cumin, coriander, cinnamon, paprika, ginger and a pinch of cayenne",
+        "savings": "Saves ~$5 vs a specialty jar"
+      },
+      {
+        "forIngredientId": "dried-apricot",
+        "swap": "Pitted prunes or raisins",
+        "savings": "Often half the price of apricots"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 520,
+      "protein": 38,
+      "carbs": 28,
+      "fat": 28,
+      "fiber": 5
+    },
+    "emoji": "🍲",
+    "accentColor": "bg-orange-100",
+    "cuisine": "Moroccan",
+    "tags": [
+      "lamb",
+      "tagine",
+      "braise",
+      "north-african",
+      "stew",
+      "ras-el-hanout",
+      "comfort-food",
+      "make-ahead"
+    ]
+  },
+  {
+    "id": "cur2-shakshuka-with-feta",
+    "name": "Shakshuka with Feta",
+    "description": "Eggs gently poached in a spiced tomato and roasted-pepper sauce, finished with crumbled feta and fresh herbs. A bold North African and Middle Eastern classic that comes together in one skillet — serve straight from the pan with crusty bread for scooping.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 2,
+        "note": "3 tbsp"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "1 large, finely diced"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 1,
+        "note": "1 red bell pepper, diced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "4 cloves, minced"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1,
+        "note": "2 tsp ground cumin"
+      },
+      {
+        "ingredientId": "sweet-paprika",
+        "quantity": 1,
+        "note": "2 tsp"
+      },
+      {
+        "ingredientId": "smoked-paprika",
+        "quantity": 0.5,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "cayenne",
+        "quantity": 0.25,
+        "note": "1/4 tsp, or to taste"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.4,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 1,
+        "note": "1 28-oz can"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "to taste"
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1,
+        "note": "to taste"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.05,
+        "note": "1 tsp, to balance acidity"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 6,
+        "note": "6 large eggs"
+      },
+      {
+        "ingredientId": "feta",
+        "quantity": 0.5,
+        "note": "about 4 oz, crumbled"
+      },
+      {
+        "ingredientId": "cilantro-fresh",
+        "quantity": 0.25,
+        "note": "handful, chopped — or parsley",
+        "optional": true
+      },
+      {
+        "ingredientId": "bread",
+        "quantity": 0.5,
+        "note": "crusty bread, for serving"
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a large, deep skillet over medium heat. Add the diced onion and red bell pepper and cook, stirring occasionally, for 8-10 minutes until softened and the onion is golden at the edges.",
+      "Stir in the minced garlic, cumin, sweet paprika, smoked paprika, and cayenne. Cook for 1 minute until fragrant, then add the tomato paste and fry it for another minute to deepen its flavor.",
+      "Pour in the crushed tomatoes and add the sugar, a good pinch of salt, and a few grinds of pepper. Simmer uncovered, stirring now and then, for 10-15 minutes until the sauce thickens and the raw tomato edge cooks off. Taste and adjust seasoning.",
+      "Crumble about half the feta into the sauce and stir it in. Using the back of a spoon, make 6 shallow wells in the sauce, spacing them evenly.",
+      "Crack one egg into each well. Spoon a little sauce over the whites only, leaving the yolks exposed, and season the eggs with a pinch of salt.",
+      "Cover the skillet and reduce the heat to low. Cook for 8-12 minutes, until the whites are just set but the yolks are still runny — check often, as they go from runny to firm quickly.",
+      "Scatter the remaining crumbled feta and the chopped cilantro or parsley over the top. Serve immediately from the pan with crusty bread for scooping."
+    ],
+    "totalTimeMinutes": 40,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 30,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "A can of crushed tomatoes is the cheapest and most reliable base — far better value than fresh tomatoes out of season, and it gives a richer sauce.",
+      "Buy a block of feta in brine rather than pre-crumbled; it is cheaper per ounce, lasts longer, and tastes far creamier.",
+      "Skip the gluten-free framing and serve with whatever bread you have — day-old bread crisped in the dry skillet makes perfect dippers for free."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "crushed-tomato",
+        "swap": "Use a can of whole peeled tomatoes and crush them by hand, or substitute tomato-sauce in a pinch",
+        "savings": "Whole canned tomatoes are often a few cents cheaper and let you control the texture"
+      },
+      {
+        "forIngredientId": "feta",
+        "swap": "Crumble in goat cheese or a firm queso fresco",
+        "savings": "Often cheaper by the block and equally tangy"
+      },
+      {
+        "forIngredientId": "cilantro-fresh",
+        "swap": "Use fresh parsley, or omit entirely",
+        "savings": "Saves about $1.50 if you skip the fresh herb"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 15,
+      "carbs": 18,
+      "fat": 19,
+      "fiber": 4
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-red-100",
+    "cuisine": "North African / Middle Eastern",
+    "tags": [
+      "shakshuka",
+      "eggs",
+      "one-pan",
+      "vegetarian",
+      "brunch",
+      "tomato",
+      "spicy",
+      "skillet"
+    ]
+  },
+  {
+    "id": "cur2-manakish-zaatar",
+    "name": "Manakish Zaatar",
+    "description": "The classic Levantine breakfast flatbread: a soft, olive-oil-enriched yeast dough slathered with a generous za'atar-and-olive-oil paste and baked screaming hot until the edges crisp and the za'atar turns fragrant. Tear and eat warm, ideally with mint, tomato, cucumber and a wedge of cheese.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.5,
+        "note": "all-purpose; about 3 cups for 4 manakish"
+      },
+      {
+        "ingredientId": "instant-yeast",
+        "quantity": 1,
+        "note": "2.25 tsp / one packet"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.02,
+        "note": "1 tsp, to feed the yeast"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.03,
+        "note": "1 tsp in the dough"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.18,
+        "note": "split: ~3 tbsp in the dough, rest for the za'atar paste"
+      },
+      {
+        "ingredientId": "water",
+        "quantity": 1,
+        "note": "about 1 cup warm water to bring the dough together"
+      },
+      {
+        "ingredientId": "zaatar",
+        "quantity": 0.5,
+        "note": "about 1/2 cup good za'atar blend"
+      },
+      {
+        "ingredientId": "evoo",
+        "quantity": 0.25,
+        "note": "extra-virgin, for the za'atar paste; a generous pour"
+      },
+      {
+        "ingredientId": "sumac",
+        "quantity": 0.03,
+        "optional": true,
+        "note": "1 tsp to brighten the paste if za'atar is mild"
+      },
+      {
+        "ingredientId": "sesame-seeds",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "1 tbsp stirred into the paste for nuttiness"
+      }
+    ],
+    "steps": [
+      "Bloom the yeast: stir the sugar and instant yeast into about 1 cup warm water (not hot) and let sit 5 minutes until foamy.",
+      "Make the dough: in a large bowl combine the flour and salt, pour in the yeast water and the ~3 tbsp olive oil, and mix to a shaggy mass. Knead 8-10 minutes until smooth, soft and elastic; cover and let rise in a warm spot 1 to 1.5 hours until doubled.",
+      "Make the za'atar paste: stir the za'atar with the extra-virgin olive oil (and optional sumac and sesame seeds) into a thick, spoonable, wet paste. It should pour slowly off a spoon, not be dry or crumbly.",
+      "Preheat oven to its highest setting, 475-500°F (245-260°C), with a baking sheet or stone inside to get blazing hot.",
+      "Punch down the risen dough, divide into 4 pieces, and roll or press each into a round about 8 inches across and a scant 1/4 inch thick. Dimple all over with your fingertips so the paste pools.",
+      "Spread a generous layer of the za'atar paste over each round, leaving a thin border, pushing it into the dimples right to the edge.",
+      "Slide onto the hot tray and bake 7-10 minutes, until the base is set and lightly golden but the bread is still soft and pliable; do not overbake or it goes cracker-hard.",
+      "Eat warm, folded or torn, on its own or with fresh mint, sliced tomato, cucumber and a wedge of white cheese."
+    ],
+    "totalTimeMinutes": 110,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 10,
+    "difficulty": "medium",
+    "equipment": [
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian",
+      "vegan",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Making your own dough from flour, yeast and water costs a fraction of buying flatbreads and yields four big manakish.",
+      "Buy za'atar in bulk from a Middle Eastern grocer rather than tiny supermarket jars — it is far cheaper per ounce and fresher.",
+      "Mix the za'atar paste with regular olive oil and save the pricier extra-virgin for a finishing drizzle to stretch it."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "flour",
+        "swap": "Use store-bought pizza dough and skip the rise",
+        "savings": "Costs a bit more but saves ~90 min and the kneading"
+      },
+      {
+        "forIngredientId": "instant-yeast",
+        "swap": "Active dry yeast, bloomed the same way",
+        "savings": "Usually cheaper per packet and interchangeable here"
+      },
+      {
+        "forIngredientId": "evoo",
+        "swap": "Regular olive oil in the paste",
+        "savings": "Saves a few dollars vs extra-virgin"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 9,
+      "carbs": 56,
+      "fat": 19,
+      "fiber": 4
+    },
+    "emoji": "🫓",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Levantine",
+    "tags": [
+      "flatbread",
+      "zaatar",
+      "breakfast",
+      "middle-eastern",
+      "vegan",
+      "baked",
+      "street-food"
+    ]
+  },
+  {
+    "id": "cur2-french-coq-au-vin",
+    "name": "French Coq au Vin",
+    "description": "The classic Burgundian braise: bone-in chicken slowly simmered in red wine with smoky lardons, browned mushrooms, and glazed pearl onions. Marinating the chicken in the wine deepens the color and flavor, and a butter-flour beurre manie gives the sauce its glossy, velvety body.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 4,
+        "note": "bone-in, skin-on chicken thighs and/or drumsticks"
+      },
+      {
+        "ingredientId": "red-wine",
+        "quantity": 0.75,
+        "note": "a dry red Burgundy or Pinot Noir, about 3/4 bottle"
+      },
+      {
+        "ingredientId": "bacon",
+        "quantity": 0.25,
+        "note": "cut into lardons; slab bacon or pancetta is ideal"
+      },
+      {
+        "ingredientId": "cremini",
+        "quantity": 0.5,
+        "note": "quartered"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 0.5,
+        "note": "small frozen or fresh pearl onions, peeled and kept whole"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "cut into chunks"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "3 cloves, smashed"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.2,
+        "note": "about 1 tbsp"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 0.4,
+        "note": "about 1.5 cups, to cover"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.25,
+        "note": "half for searing, half for the beurre manie"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.1,
+        "note": "for the beurre manie and to dust the chicken"
+      },
+      {
+        "ingredientId": "thyme-fresh",
+        "quantity": 0.3,
+        "note": "a few sprigs for the bouquet garni"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.2,
+        "note": "stems in the braise, chopped leaves to finish"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.05,
+        "note": "for searing"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.03
+      },
+      {
+        "ingredientId": "bourbon",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "stand-in for a splash of brandy/cognac to flambe"
+      }
+    ],
+    "steps": [
+      "Pat the chicken dry, season generously with salt and pepper, and place in a bowl with the smashed garlic, carrot, thyme, bay leaves, and red wine. Cover and marinate in the fridge at least 2 hours or overnight, then strain, reserving the wine and aromatics separately and patting the chicken dry again.",
+      "Render the bacon lardons in a heavy Dutch oven over medium heat until crisp; remove with a slotted spoon. In the rendered fat plus a little olive oil, brown the pearl onions and mushrooms until golden, then set aside.",
+      "Dust the dried chicken lightly in flour, then sear skin-side down in the same pot over medium-high heat until deeply browned on both sides, about 8 minutes total. If using, add the bourbon/brandy off the heat and carefully flambe or simmer off.",
+      "Stir the tomato paste into the pot and cook 1 minute, then pour in the reserved marinade wine and chicken broth, scraping up all the browned bits. Tuck in the carrots, garlic, and a bouquet garni of thyme, bay, and parsley stems.",
+      "Return the chicken and bacon to the pot, bring to a gentle simmer, then cover and braise on low (or in a 325F oven) for about 45 minutes, until the chicken is tender and reads 175F.",
+      "Lift out the chicken and keep warm; discard the bouquet garni and skim excess fat from the sauce. Bring the sauce to a brisk simmer to reduce slightly.",
+      "Mash the remaining soft butter with the remaining flour into a smooth beurre manie, then whisk it into the simmering sauce bit by bit until it lightly coats a spoon.",
+      "Return the chicken, mushrooms, and pearl onions to the sauce to warm through and glaze, then taste and adjust salt and pepper.",
+      "Shower with chopped parsley and serve over mashed potatoes, buttered egg noodles, or with crusty bread to soak up the sauce."
+    ],
+    "totalTimeMinutes": 90,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 65,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "A modest dry red works perfectly here; never cook with anything labeled cooking wine, but you don't need an expensive bottle either since long braising mellows it.",
+      "Buy bone-in, skin-on thighs and drumsticks instead of a whole cut-up chicken; they're cheaper, stay juicier, and give the sauce more body from the bones.",
+      "Frozen pearl onions and a single pack of cremini stretch the dish and skip the tedious peeling of fresh pearl onions."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Use bone-in chicken drumsticks or a cut-up whole chicken",
+        "savings": "Whole chicken broken down yourself runs about 30% cheaper per pound"
+      },
+      {
+        "forIngredientId": "bacon",
+        "swap": "Pancetta or diced ham for the lardons",
+        "savings": "Regular bacon is often cheaper than slab pancetta and renders just as well"
+      },
+      {
+        "forIngredientId": "cremini",
+        "swap": "White button mushrooms",
+        "savings": "Button mushrooms are typically 20% cheaper and taste nearly identical when browned"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 38,
+      "carbs": 12,
+      "fat": 26,
+      "fiber": 2
+    },
+    "emoji": "🍷",
+    "accentColor": "bg-rose-100",
+    "cuisine": "French",
+    "tags": [
+      "braise",
+      "comfort-food",
+      "dinner-party",
+      "wine",
+      "chicken",
+      "classic",
+      "one-pot",
+      "bistro"
+    ]
+  },
+  {
+    "id": "cur2-ratatouille-nicoise",
+    "name": "Ratatouille Niçoise",
+    "description": "The classic vegetable stew of Provence: eggplant, zucchini, and peppers each cooked separately in good olive oil, then folded into a slow-simmered tomato, onion, and garlic base. Finished with herbes de Provence and torn basil, it's silky and bright with every vegetable still distinct. Great warm, at room temperature, or cold the next day.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "eggplant",
+        "quantity": 1,
+        "note": "1 medium globe eggplant, cut into 3/4-inch cubes"
+      },
+      {
+        "ingredientId": "zucchini",
+        "quantity": 2,
+        "note": "2 medium zucchini, cut into 3/4-inch half-moons"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 2,
+        "note": "1 red and 1 yellow bell pepper, diced"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "1 large yellow onion, finely diced"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 4,
+        "note": "4 ripe tomatoes, peeled and chopped (or sub 1 can crushed)"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 4,
+        "note": "4 cloves, minced"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.5,
+        "note": "1 tbsp, to deepen the base"
+      },
+      {
+        "ingredientId": "evoo",
+        "quantity": 6,
+        "note": "about 6 tbsp total, divided for cooking each vegetable"
+      },
+      {
+        "ingredientId": "herbes-de-provence",
+        "quantity": 1,
+        "note": "1.5 tsp"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 1,
+        "note": "1 leaf"
+      },
+      {
+        "ingredientId": "basil-fresh",
+        "quantity": 0.5,
+        "note": "handful, torn, to finish"
+      },
+      {
+        "ingredientId": "thyme-fresh",
+        "quantity": 0.25,
+        "optional": true,
+        "note": "a few sprigs"
+      },
+      {
+        "ingredientId": "kalamata-olives",
+        "quantity": 0.2,
+        "optional": true,
+        "note": "a small handful, pitted and halved — the Niçoise touch"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      }
+    ],
+    "steps": [
+      "Toss the eggplant cubes with a little salt and let them sit in a colander for 15 minutes, then pat dry — this draws out bitterness and excess water so they brown instead of steam.",
+      "Heat 2 tbsp olive oil in a wide skillet over medium-high heat. Saute the eggplant until golden and tender, 6-8 minutes, then transfer to a plate. Add 1 tbsp more oil and saute the zucchini until lightly browned but still firm, about 4 minutes; set aside with the eggplant.",
+      "Add another tbsp of oil and cook the bell peppers until softened and just blistered, 5 minutes; set aside with the other vegetables.",
+      "In a large pot or Dutch oven, warm the remaining 2 tbsp oil over medium heat. Cook the onion gently until soft and translucent, 7-8 minutes, then add the garlic and tomato paste and cook 1 minute until fragrant.",
+      "Add the chopped tomatoes, herbes de Provence, bay leaf, thyme, and a good pinch of salt. Simmer uncovered for 12-15 minutes until the tomatoes break down into a thick, glossy sauce.",
+      "Fold the reserved eggplant, zucchini, and peppers into the tomato base. Simmer gently, stirring occasionally, for 15-20 minutes so the flavors marry while the vegetables keep their shape.",
+      "Stir in the olives, then taste and adjust salt and pepper. Discard the bay leaf.",
+      "Off the heat, fold in the torn basil and a final drizzle of olive oil. Let it rest 10 minutes before serving warm, or cool to room temperature — ratatouille is even better the next day."
+    ],
+    "totalTimeMinutes": 75,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 50,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "vegan",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy eggplant, zucchini, and peppers in late summer when they're in season and cheapest — this is a peak-harvest dish by design.",
+      "Swap fresh tomatoes for a can of crushed tomatoes when good ripe ones aren't available; it's cheaper and often tastes better off-season.",
+      "Make a double batch — ratatouille keeps 4-5 days and tastes better as leftovers, so the cost per meal drops fast."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "tomato",
+        "swap": "1 can crushed tomatoes",
+        "savings": "~$1.50 off-season and no peeling"
+      },
+      {
+        "forIngredientId": "herbes-de-provence",
+        "swap": "equal parts dried thyme, oregano, and rosemary",
+        "savings": "$0 if already stocked"
+      },
+      {
+        "forIngredientId": "kalamata-olives",
+        "swap": "any black or green olive, or just leave them out",
+        "savings": "~$1.00"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 235,
+      "protein": 5,
+      "carbs": 22,
+      "fat": 16,
+      "fiber": 7
+    },
+    "emoji": "🍆",
+    "accentColor": "bg-violet-100",
+    "cuisine": "French (Provençal)",
+    "tags": [
+      "vegetable stew",
+      "provencal",
+      "summer",
+      "make-ahead",
+      "one-pot",
+      "plant-based",
+      "mediterranean"
+    ]
+  },
+  {
+    "id": "cur2-french-crepes",
+    "name": "French Crepes",
+    "description": "Thin, lacy French crepes with golden, slightly crisp edges and a tender center. A simple batter of flour, eggs, milk, and melted butter rested until silky, then swirled paper-thin in a hot pan. Fold around jam, Nutella, lemon and sugar, or anything you like.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.18,
+        "note": "about 1 cup / 125g all-purpose flour"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.55,
+        "note": "about 1.25 cups whole milk, thinned with a splash of water"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.15,
+        "note": "3 tbsp melted, plus a little for the pan"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.04,
+        "note": "1 tbsp, for sweet crepes"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.01,
+        "note": "pinch"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "1/2 tsp, optional for sweet crepes"
+      },
+      {
+        "ingredientId": "jam",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "or Nutella / lemon and sugar, for serving"
+      }
+    ],
+    "steps": [
+      "In a blender or large bowl, combine the flour, eggs, milk (plus a splash of water), melted butter, sugar, salt, and vanilla. Blend or whisk until completely smooth with the consistency of thin cream; the batter should coat the back of a spoon but run off easily.",
+      "Cover and rest the batter at room temperature for at least 30 minutes (or refrigerate up to overnight). This relaxes the gluten so the crepes turn out tender, not rubbery. If it has thickened after resting, whisk in a tablespoon or two of water.",
+      "Heat a nonstick or well-seasoned crepe pan over medium-high heat. Lightly brush with melted butter and wipe out the excess so the pan is barely slick.",
+      "Lift the pan off the heat, pour in a small ladle of batter (about 1/4 cup), and immediately swirl and tilt the pan so the batter coats the bottom in a thin, even layer. Pour any excess back if it pools.",
+      "Cook for about 45-60 seconds, until the edges lift and turn golden-lacy and the surface looks set and dry. Loosen the edge with a spatula.",
+      "Flip the crepe and cook the second side for just 20-30 seconds, until lightly spotted. The first crepe is usually a test; adjust heat and batter amount as needed.",
+      "Slide onto a plate and stack the crepes as you go, covering loosely with a clean towel to keep them warm and pliable. Re-butter the pan only if they start to stick.",
+      "Fill or spread each crepe with jam, Nutella, or a squeeze of lemon and a sprinkle of sugar, then fold into quarters or roll up and serve warm."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Crepe batter is mostly flour, eggs, and milk - pantry staples that make a dessert or breakfast for four for under a dollar a person.",
+      "No blender needed: a bowl and whisk work fine. Whisk the eggs and a little milk into the flour first to avoid lumps, then thin with the rest.",
+      "Fill with whatever is cheap and on hand - a smear of jam, a sliced banana, or just butter and sugar all taste great."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "milk",
+        "swap": "Use almond or oat milk for a dairy-lighter batter",
+        "savings": "Comparable; uses up plant milk you already have"
+      },
+      {
+        "forIngredientId": "butter",
+        "swap": "Swap melted butter for neutral vegetable oil",
+        "savings": "Saves about $0.20 per batch"
+      },
+      {
+        "forIngredientId": "jam",
+        "swap": "Skip store-bought fillings and use cinnamon-sugar or fresh fruit",
+        "savings": "Saves $1-2 versus a jar of Nutella"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 10,
+      "carbs": 33,
+      "fat": 13,
+      "fiber": 1
+    },
+    "emoji": "🥞",
+    "accentColor": "bg-amber-100",
+    "cuisine": "French",
+    "tags": [
+      "crepes",
+      "french",
+      "breakfast",
+      "brunch",
+      "dessert",
+      "vegetarian",
+      "classic",
+      "budget-friendly"
+    ]
+  },
+  {
+    "id": "cur2-german-wiener-schnitzel",
+    "name": "German Wiener Schnitzel",
+    "description": "The Austrian-German classic: a thin veal cutlet pounded paper-thin, breaded in the traditional flour-egg-crumb coating, then shallow-fried in plenty of hot butter and oil so the crumb puffs and souffles away from the meat. Crisp, golden and tender, served simply with a wedge of lemon and a dusting of parsley.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "cube-steak",
+        "quantity": 4,
+        "note": "Authentic: thin veal cutlets (Kalbsschnitzel), about 5 oz each, pounded to 1/4 inch"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.15,
+        "note": "for dredging"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3,
+        "note": "beaten with a splash of milk"
+      },
+      {
+        "ingredientId": "breadcrumbs",
+        "quantity": 0.4,
+        "note": "fine dry breadcrumbs (Semmelbrösel)"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.3,
+        "note": "clarified butter is traditional"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.25,
+        "note": "for frying, mixed with the butter"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 1,
+        "note": "cut into wedges for serving"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.2,
+        "optional": true,
+        "note": "chopped, for garnish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.01
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "splash to loosen the egg"
+      }
+    ],
+    "steps": [
+      "Place each veal cutlet between two sheets of plastic wrap and pound with a flat mallet or heavy pan to an even 1/4 inch thickness. Pat completely dry and season both sides with salt and pepper.",
+      "Set up three shallow dishes: one with flour, one with the eggs beaten together with a splash of milk, and one with the fine breadcrumbs.",
+      "Dredge a cutlet in flour and shake off all excess, then turn it through the egg to coat fully, then lay it in the breadcrumbs and press very lightly so the crumb adheres but stays loose. Do not pack it down.",
+      "Heat the butter and oil together in a wide skillet over medium-high until it shimmers and a crumb sizzles instantly, about 340-350F. There should be enough fat for the schnitzel to half-float.",
+      "Lay one schnitzel in the fat and immediately swirl and tilt the pan, spooning hot fat over the top. This makes the breading puff and souffle away from the meat. Fry 1-2 minutes until deep golden underneath.",
+      "Flip and fry the second side 1-2 minutes more until golden and crisp all over. The thin veal cooks through fast.",
+      "Lift onto paper towels to drain briefly, season with a pinch of salt, and keep warm while you fry the rest, topping up the fat as needed.",
+      "Serve immediately with lemon wedges and a sprinkle of parsley. A squeeze of lemon over the crisp crust is essential."
+    ],
+    "totalTimeMinutes": 35,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Veal can be pricey, so a thin pork loin cutlet (Schnitzel Wiener Art) is the common, much cheaper everyday version and uses the exact same breading and frying technique.",
+      "Make your own fine breadcrumbs by blitzing stale bread or leftover rolls instead of buying them.",
+      "Fry in a smaller skillet with fewer cutlets so you need less fat to get the schnitzel to float and souffle properly."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "cube-steak",
+        "swap": "Thin pork loin cutlets (Schnitzel Wiener Art)",
+        "savings": "Roughly half the cost of veal"
+      },
+      {
+        "forIngredientId": "butter",
+        "swap": "All vegetable or canola oil",
+        "savings": "Saves about $1 and is cheaper than clarified butter"
+      },
+      {
+        "forIngredientId": "breadcrumbs",
+        "swap": "Stale bread blitzed in a blender",
+        "savings": "Nearly free using bread you already have"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 38,
+      "carbs": 24,
+      "fat": 26,
+      "fiber": 1
+    },
+    "emoji": "🍖",
+    "accentColor": "bg-amber-100",
+    "cuisine": "German",
+    "tags": [
+      "schnitzel",
+      "veal",
+      "fried",
+      "austrian",
+      "german",
+      "comfort-food",
+      "crispy",
+      "classic"
+    ]
+  },
+  {
+    "id": "cur2-beef-rouladen",
+    "name": "Beef Rouladen",
+    "description": "The German Sunday-dinner classic: thin beef slices spread with sharp mustard, layered with bacon, onion, and tangy dill pickle, rolled tight, seared, then braised low and slow in red wine and beef broth until fork-tender. The braising liquid is strained and thickened into a deep, glossy gravy. Serve with mashed potatoes, Spaetzle, or red cabbage.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flank-steak",
+        "quantity": 4,
+        "note": "top-round or flank, pounded thin into 4 large cutlets"
+      },
+      {
+        "ingredientId": "dijon",
+        "quantity": 0.25,
+        "note": "German-style or Dijon mustard, spread on the beef"
+      },
+      {
+        "ingredientId": "bacon",
+        "quantity": 0.3,
+        "note": "about 4 slices, one per roulade"
+      },
+      {
+        "ingredientId": "dill-pickles",
+        "quantity": 0.4,
+        "note": "cut into long batons"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "one finely chopped for filling, one for braise"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "for the braising base"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.15
+      },
+      {
+        "ingredientId": "red-wine",
+        "quantity": 0.25,
+        "note": "dry red, for deglazing"
+      },
+      {
+        "ingredientId": "beef-broth",
+        "quantity": 0.6
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.1,
+        "note": "for dredging and thickening the gravy"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.15
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.05,
+        "note": "for searing"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 0.05,
+        "note": "2 leaves"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.2,
+        "optional": true,
+        "note": "to garnish"
+      }
+    ],
+    "steps": [
+      "Lay each thin beef cutlet between plastic wrap and pound to about 1/4 inch. Season lightly with salt and pepper, then spread a thin even layer of mustard across each one.",
+      "Lay a slice of bacon over the mustard, then scatter a spoonful of the finely chopped onion and lay 2-3 pickle batons across the short end. Roll up tightly from the filled end and secure with toothpicks or kitchen twine.",
+      "Dredge each roll lightly in flour, shaking off the excess. Heat oil in a heavy Dutch oven over medium-high and sear the rouladen on all sides until deeply browned, then set aside.",
+      "Lower the heat to medium, add the remaining chopped onion, the carrot, and the tomato paste. Cook 4-5 minutes until softened and the paste darkens slightly.",
+      "Pour in the red wine to deglaze, scraping up the browned bits, and let it reduce by half. Add the beef broth and bay leaves and bring to a gentle simmer.",
+      "Nestle the rouladen back in seam-side down, cover, and braise on low (or in a 325F oven) for 75-90 minutes, turning once, until fork-tender.",
+      "Transfer the rolls to a plate and remove the toothpicks. Strain the braising liquid, pressing the vegetables, then return the liquid to the pot.",
+      "Whisk the butter with the remaining flour into a paste and stir it into the simmering liquid; cook 3-4 minutes until the gravy is glossy and coats a spoon. Taste and adjust salt and pepper.",
+      "Return the rouladen to the gravy to warm through, garnish with parsley, and serve over mashed potatoes or Spaetzle."
+    ],
+    "totalTimeMinutes": 120,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 90,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Ask the butcher to slice and pound top round into thin cutlets for you, or buy a small top-round roast and slice it yourself thin against the grain - it's cheaper than pre-cut rouladen meat.",
+      "Skip the wine and use all beef broth plus a splash of red wine vinegar for the same tang at a fraction of the cost.",
+      "Make a double batch and freeze half in the gravy - rouladen reheat beautifully and taste even better the next day."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "red-wine",
+        "swap": "beef broth plus a splash of red wine vinegar or balsamic",
+        "savings": "saves the cost of a bottle of wine"
+      },
+      {
+        "forIngredientId": "dijon",
+        "swap": "plain yellow mustard",
+        "savings": "about half the price"
+      },
+      {
+        "forIngredientId": "flank-steak",
+        "swap": "thin-cut top round or even cube steak",
+        "savings": "top round runs cheaper per pound than flank"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 420,
+      "protein": 38,
+      "carbs": 12,
+      "fat": 23,
+      "fiber": 2
+    },
+    "emoji": "🥩",
+    "accentColor": "bg-red-100",
+    "cuisine": "German",
+    "tags": [
+      "german",
+      "braised",
+      "beef",
+      "comfort-food",
+      "sunday-dinner",
+      "make-ahead",
+      "one-pot"
+    ]
+  },
+  {
+    "id": "cur2-spanish-paella-valenciana",
+    "name": "Spanish Paella Valenciana",
+    "description": "The original paella from the rice fields of Valencia — bone-in chicken and rabbit browned in olive oil, a slow tomato-and-pimentón sofrito, flat green beans and butter beans, then short-grain rice simmered in saffron-rosemary broth until it forms the prized toasted crust (socarrat) on the bottom. No seafood, no stirring, no cream.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 2,
+        "note": "bone-in, cut into chunks"
+      },
+      {
+        "ingredientId": "chicken-drumsticks",
+        "quantity": 2,
+        "note": "traditionally part rabbit; use bone-in chicken pieces"
+      },
+      {
+        "ingredientId": "arborio-rice",
+        "quantity": 4,
+        "note": "bomba or other short-grain Spanish rice"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 1.5,
+        "note": "about 4 cups hot broth"
+      },
+      {
+        "ingredientId": "green-beans",
+        "quantity": 0.5,
+        "note": "wide flat romano beans if available"
+      },
+      {
+        "ingredientId": "white-beans",
+        "quantity": 0.5,
+        "note": "for traditional garrofó butter beans"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 2,
+        "note": "grated, skins discarded"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.25
+      },
+      {
+        "ingredientId": "smoked-paprika",
+        "quantity": 1,
+        "note": "Spanish pimentón dulce"
+      },
+      {
+        "ingredientId": "saffron",
+        "quantity": 1,
+        "note": "a generous pinch of threads"
+      },
+      {
+        "ingredientId": "rosemary-fresh",
+        "quantity": 1,
+        "note": "1 sprig"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 1,
+        "note": "wedges to serve",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Bloom the saffron: warm the chicken broth and steep the saffron threads in it (and a little salt) so it turns deep gold while you cook.",
+      "Heat the olive oil in a wide paella pan or large skillet over medium-high. Season the bone-in chicken pieces with salt and brown them well on all sides, about 8-10 minutes, then push them to the outer ring of the pan.",
+      "Add the flat green beans and butter beans to the center and saute a couple of minutes until blistered.",
+      "Make the sofrito: lower the heat, add the grated garlic and grated tomato, and cook down slowly for 5-7 minutes until jammy and the oil separates, then stir in the smoked paprika off the direct heat so it doesn't scorch.",
+      "Pour in the hot saffron broth and tuck in the rosemary sprig. Bring to a brisk boil and taste for salt — it should taste slightly assertive.",
+      "Scatter the rice evenly across the pan and gently shake to settle it into one even layer. From here, DO NOT stir — stirring releases starch and ruins the texture.",
+      "Cook uncovered over medium heat for about 10 minutes, then lower to a gentle simmer for 8 more minutes, rotating the pan so it cooks evenly, until the liquid is absorbed and the rice is just tender.",
+      "For the socarrat, raise the heat to high for the final 1-2 minutes until you hear a faint crackle and smell toasting — that caramelized bottom crust is the goal. Pull off the heat, cover loosely with foil or a towel, and rest 5 minutes before serving with lemon wedges."
+    ],
+    "totalTimeMinutes": 60,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 40,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Bone-in chicken thighs and drumsticks are cheaper than breasts and give far more flavor and richer broth for paella.",
+      "A pinch of saffron goes a long way — buy a small tin once and it lasts a dozen paellas; smoked paprika carries the color and depth in between.",
+      "Use water plus a bouillon cube instead of boxed broth, and simmer the chicken bones in it first for a richer, almost-free stock."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "arborio-rice",
+        "swap": "any short-grain rice like sushi rice or even medium-grain",
+        "savings": "Skip pricey imported bomba; short-grain works for ~half the cost"
+      },
+      {
+        "forIngredientId": "saffron",
+        "swap": "extra smoked paprika plus a pinch of turmeric for color",
+        "savings": "Saves the priciest spice while keeping the golden hue"
+      },
+      {
+        "forIngredientId": "white-beans",
+        "swap": "canned cannellini or lima beans, drained",
+        "savings": "Canned beans cost pennies versus specialty garrofó"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 560,
+      "protein": 32,
+      "carbs": 68,
+      "fat": 17,
+      "fiber": 5
+    },
+    "emoji": "🥘",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Spanish",
+    "tags": [
+      "paella",
+      "valencian",
+      "rice",
+      "saffron",
+      "one-pan",
+      "chicken",
+      "gluten-free",
+      "dairy-free",
+      "traditional"
+    ]
+  },
+  {
+    "id": "cur2-spanish-croquetas",
+    "name": "Spanish Croquetas de Jamón",
+    "description": "The Spanish tapas bar classic: a thick, silky béchamel folded with finely diced jamón serrano, chilled until firm, then breaded and fried into crisp golden croquettes with a molten, creamy center. Patience while chilling the masa is the real secret.",
+    "mealType": "snack",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "ham",
+        "quantity": 1,
+        "note": "jamón serrano, finely diced (cured Spanish ham)"
+      },
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 0.25,
+        "note": "about 2.5 cups, warmed"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.5,
+        "note": "about 5 tbsp"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.15,
+        "note": "about 3/4 cup"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 0.25,
+        "note": "very finely minced",
+        "optional": true
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 0.02,
+        "note": "a pinch, freshly grated"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "beaten, for coating"
+      },
+      {
+        "ingredientId": "breadcrumbs",
+        "quantity": 0.3,
+        "note": "for coating; panko also works"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.3,
+        "note": "for shallow/deep frying"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "white-pepper",
+        "quantity": 0.02
+      }
+    ],
+    "steps": [
+      "Melt the butter in a saucepan over low heat, add the finely minced onion (if using) and the diced jamón, and gently cook 3-4 minutes until the onion is soft and the ham has released its aroma — do not brown.",
+      "Add all the flour and stir constantly for 2-3 minutes to cook out the raw taste, forming a smooth, pale roux that pulls together into a paste.",
+      "Pour in the warm milk a little at a time, whisking hard after each addition to keep it lump-free. Once all the milk is in, switch to a wooden spoon.",
+      "Cook the béchamel over medium-low heat, stirring continuously for 10-15 minutes, until very thick and it cleanly pulls away from the sides of the pan. Season with nutmeg, white pepper, and just a little salt (the jamón is already salty).",
+      "Spread the masa into a shallow dish, press cling film directly onto the surface, and refrigerate at least 3-4 hours (ideally overnight) until completely firm and cold.",
+      "Scoop portions of the cold masa and roll into small cylinders or balls with floured hands. Dip each in beaten egg, then coat fully in breadcrumbs; for an extra-crisp shell, dip in egg and breadcrumbs a second time.",
+      "Heat olive oil to 180C/350F in a deep pan. Fry the croquetas in small batches for 2-3 minutes, turning, until deeply golden all over — don't crowd the pan or the oil will cool.",
+      "Lift out with a slotted spoon and drain on paper towels. Rest 1-2 minutes and serve hot, while the centers are still molten and creamy."
+    ],
+    "totalTimeMinutes": 255,
+    "prepTimeMinutes": 225,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [],
+    "cheapTips": [
+      "Use the salty end pieces and trimmings of jamón serrano (the taco or hueso scraps) — delis sell them cheap and they're perfect here.",
+      "Make a double batch of masa and freeze the breaded raw croquetas; fry them straight from frozen for instant tapas.",
+      "Stale bread blitzed in a blender makes free breadcrumbs that crisp up better than store-bought."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ham",
+        "swap": "Use cooked shredded chicken or jamón cocido (cooked ham) for a milder, cheaper croqueta",
+        "savings": "Saves about $2-3 per batch versus cured serrano"
+      },
+      {
+        "forIngredientId": "breadcrumbs",
+        "swap": "Blitz stale bread or saltines into crumbs at home",
+        "savings": "Saves around $2 a bag"
+      },
+      {
+        "forIngredientId": "olive-oil",
+        "swap": "Fry in vegetable or sunflower oil instead",
+        "savings": "Saves about $1.50 per batch"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 340,
+      "protein": 14,
+      "carbs": 28,
+      "fat": 19,
+      "fiber": 1
+    },
+    "emoji": "🥐",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Spanish",
+    "tags": [
+      "tapas",
+      "fried",
+      "jamon",
+      "bechamel",
+      "appetizer",
+      "make-ahead",
+      "spanish"
+    ]
+  },
+  {
+    "id": "cur2-gazpacho-andaluz",
+    "name": "Gazpacho Andaluz",
+    "description": "The classic chilled raw-tomato soup of Andalusia: ripe tomatoes, cucumber, green pepper and garlic blended silky-smooth with day-old bread, sherry vinegar and a generous stream of olive oil. No cooking, no fuss, just deeply refreshing on a hot day.",
+    "mealType": "lunch",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "tomato",
+        "quantity": 8,
+        "note": "very ripe Roma or vine tomatoes, the soul of the dish"
+      },
+      {
+        "ingredientId": "cucumber",
+        "quantity": 1,
+        "note": "peeled"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 1,
+        "note": "green Italian/Cubanelle pepper preferred"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 1,
+        "note": "1 small clove, raw"
+      },
+      {
+        "ingredientId": "bread",
+        "quantity": 0.2,
+        "note": "about 2 thick slices stale rustic bread, crusts removed"
+      },
+      {
+        "ingredientId": "sherry-vinegar",
+        "quantity": 0.1,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "evoo",
+        "quantity": 0.15,
+        "note": "good Spanish extra-virgin, drizzled in to emulsify"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      }
+    ],
+    "steps": [
+      "Core the tomatoes and roughly chop them. Peel the cucumber and chop. Halve the green pepper, discard core and seeds, and chop. Peel the garlic clove.",
+      "Tear the stale bread into chunks and soak it in a splash of water for a couple of minutes to soften, then squeeze out excess water.",
+      "Add the tomatoes, cucumber, green pepper, garlic and soaked bread to a blender along with the salt and sherry vinegar.",
+      "Blend on high for 2 to 3 full minutes until completely smooth and slightly frothy. The longer you blend, the silkier the texture.",
+      "With the blender running on low, pour the olive oil in a thin steady stream so it emulsifies into a creamy, pale-orange soup.",
+      "Taste and adjust: add a little more vinegar for brightness or salt as needed. For an ultra-smooth, restaurant-style gazpacho, pass it through a fine sieve.",
+      "Chill in the fridge for at least 2 hours, ideally longer, until very cold.",
+      "Stir before serving and pour into glasses or bowls. Finish each with a drizzle of olive oil and, if you like, a few diced cucumber, pepper and bread croutons."
+    ],
+    "totalTimeMinutes": 140,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 0,
+    "difficulty": "easy",
+    "equipment": [
+      "blender"
+    ],
+    "primaryCookingMethod": "no-cook",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian",
+      "vegan",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Make it at peak summer when tomatoes are cheapest and ripest, soft or slightly bruised tomatoes are perfect here and often sold at a discount.",
+      "This is the ideal use for stale, leftover bread, do not buy fresh bread just for this.",
+      "It keeps 3 to 4 days in the fridge and tastes even better on day two, so make a big batch."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "sherry-vinegar",
+        "swap": "Red wine vinegar (use a touch less, it is sharper)",
+        "savings": "Saves on a specialty bottle you may not stock"
+      },
+      {
+        "forIngredientId": "bread",
+        "swap": "A handful of stale baguette ends or crackers",
+        "savings": "Uses up scraps for free"
+      },
+      {
+        "forIngredientId": "bell-pepper",
+        "swap": "Any green pepper you have on hand",
+        "savings": "Buy whatever is cheapest that week"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 165,
+      "protein": 3,
+      "carbs": 16,
+      "fat": 11,
+      "fiber": 3
+    },
+    "emoji": "🍅",
+    "accentColor": "bg-red-100",
+    "cuisine": "Spanish",
+    "tags": [
+      "chilled-soup",
+      "no-cook",
+      "summer",
+      "raw",
+      "andalusian",
+      "vegan",
+      "gluten-optional"
+    ]
+  },
+  {
+    "id": "cur2-pisto-manchego",
+    "name": "Pisto Manchego",
+    "description": "The Spanish cousin of ratatouille from La Mancha — onion, green pepper, zucchini and eggplant slowly stewed in good olive oil until jammy, then simmered down with ripe tomato. Finished with a fried egg on top, it's a humble, deeply savory vegetable dish that's great hot or at room temperature with crusty bread.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.5,
+        "note": "extra-virgin, generous pour"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1.5,
+        "note": "yellow onion, finely diced"
+      },
+      {
+        "ingredientId": "bell-pepper",
+        "quantity": 2,
+        "note": "green peppers, diced"
+      },
+      {
+        "ingredientId": "zucchini",
+        "quantity": 2,
+        "note": "diced into small cubes"
+      },
+      {
+        "ingredientId": "eggplant",
+        "quantity": 1,
+        "note": "small, peeled and diced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.3,
+        "note": "2-3 cloves, minced"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 1,
+        "note": "or grated fresh ripe tomatoes"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.1,
+        "note": "1 tsp, for depth"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "1 fried egg per serving"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.02,
+        "note": "pinch, to balance tomato acidity",
+        "optional": true
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "bread",
+        "quantity": 0.5,
+        "note": "crusty bread, for serving",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Dice the onion, green peppers, zucchini and peeled eggplant into small, even cubes (about 1 cm) so everything cooks at the same rate; mince the garlic.",
+      "Warm a generous amount of olive oil in a wide, heavy pan over medium-low heat. Add the onion and green pepper with a pinch of salt and cook slowly for 12-15 minutes, stirring often, until soft and sweet but not browned.",
+      "Stir in the garlic for 30 seconds, then add the eggplant and a little more oil. Cook for 8-10 minutes until it softens and starts to collapse, adding oil as the eggplant drinks it up.",
+      "Add the zucchini and cook another 6-8 minutes, until just tender. The vegetables should be silky, not mushy or watery.",
+      "Stir in the tomato paste and cook for 1 minute, then add the crushed tomatoes and an optional pinch of sugar. Season with salt and pepper.",
+      "Lower the heat and simmer gently, uncovered, for 20-25 minutes, stirring occasionally, until the mixture is thick and jammy with no loose liquid. Taste and adjust salt.",
+      "Just before serving, fry the eggs in a little olive oil with crisp, lacy edges and a runny yolk.",
+      "Spoon the pisto into bowls, top each with a fried egg, and serve warm with crusty bread to mop up the oil."
+    ],
+    "totalTimeMinutes": 75,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 55,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "This dish is built for end-of-week vegetables — slightly soft zucchini, peppers and eggplant are perfect here, so buy whatever is marked down.",
+      "Pisto keeps for 4-5 days and actually tastes better the next day, so make a double batch and skip the egg until serving.",
+      "Grating a couple of ripe fresh tomatoes (and discarding the skins) is cheaper and tastes brighter than canned if good tomatoes are in season."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "crushed-tomato",
+        "swap": "Grate 3-4 ripe fresh tomatoes and discard the skins",
+        "savings": "Saves ~$0.40 in tomato season and tastes fresher"
+      },
+      {
+        "forIngredientId": "eggplant",
+        "swap": "Swap in an extra zucchini or some diced mushroom",
+        "savings": "Saves ~$1.00 when eggplant is out of season"
+      },
+      {
+        "forIngredientId": "eggs",
+        "swap": "Skip the egg and serve over rice for a vegan main",
+        "savings": "Saves ~$0.80 per serving"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 9,
+      "carbs": 18,
+      "fat": 22,
+      "fiber": 6
+    },
+    "emoji": "🍆",
+    "accentColor": "bg-rose-100",
+    "cuisine": "Spanish",
+    "tags": [
+      "spanish",
+      "vegetable",
+      "stew",
+      "la-mancha",
+      "fried-egg",
+      "ratatouille-style",
+      "meatless",
+      "gluten-free",
+      "make-ahead",
+      "rustic"
+    ]
+  },
+  {
+    "id": "cur2-bacalhau-a-bras",
+    "name": "Bacalhau a Bras",
+    "description": "The beloved Lisbon classic: flakes of salt cod tangled with crisp matchstick potatoes and sweet onions, gently bound in silky just-set eggs and finished with black olives and parsley. Rustic, savory, and deeply comforting.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "salt-cod",
+        "quantity": 4,
+        "note": "bacalhau, soaked 24-36h with water changes to desalt"
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 4,
+        "note": "cut into thin matchsticks (palha)"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2,
+        "note": "thinly sliced into half-moons"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "cloves, minced"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 8,
+        "note": "lightly beaten, seasoned"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.3,
+        "note": "plus extra for frying potatoes"
+      },
+      {
+        "ingredientId": "kalamata-olives",
+        "quantity": 0.3,
+        "note": "traditionally small black olives, for garnish"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.5,
+        "note": "flat-leaf, chopped"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 1,
+        "note": "for poaching the cod",
+        "optional": true
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.05,
+        "note": "white or black"
+      }
+    ],
+    "steps": [
+      "Desalt the cod ahead: soak the salt cod in cold water in the fridge for 24-36 hours, changing the water 3-4 times. Then simmer gently with the bay leaf for 5 minutes, drain, and once cool flake into shreds, discarding any skin and bones.",
+      "Cut the potatoes into thin matchsticks (about 3mm). Rinse in cold water and pat thoroughly dry. Fry in hot olive oil in batches until pale golden and crisp, then drain on paper towels and lightly salt. (Quality store-bought shoestring fries are a real Lisbon shortcut.)",
+      "In a wide skillet, warm 4 tablespoons olive oil over medium heat. Add the sliced onions and a pinch of salt and cook gently for 8-10 minutes until soft and golden, then stir in the garlic for 1 minute until fragrant.",
+      "Add the flaked cod to the onions and toss for 2-3 minutes so it warms through and absorbs the oil.",
+      "Beat the eggs with pepper and a small pinch of salt (the cod is already salty). Fold the crisp potatoes into the cod and onions, then lower the heat.",
+      "Pour in the eggs and stir constantly with a wooden spoon, scraping the bottom, until the eggs are just creamy and barely set — they should stay glossy and never dry out. Remove from the heat immediately, as residual heat will finish them.",
+      "Slide onto a warm platter, scatter generously with chopped parsley and black olives, and serve at once."
+    ],
+    "totalTimeMinutes": 45,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 20,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Salt cod keeps for months in the pantry, so buy it when it is on sale and soak it whenever you fancy this dish.",
+      "Skip deep-frying and use a bag of frozen shoestring fries or matchstick potatoes baked crisp in the oven — it is how many busy Lisbon kitchens do it.",
+      "Stretch one fillet of cod further by leaning on extra potato and eggs; the dish is traditionally economical and forgiving."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "salt-cod",
+        "swap": "Fresh cod or even canned tuna, lightly salted (a common quick-version cheat)",
+        "savings": "Saves about $3-4 vs imported bacalhau"
+      },
+      {
+        "forIngredientId": "potato",
+        "swap": "Bag of frozen shoestring/matchstick fries, baked crisp",
+        "savings": "Saves prep and a little oil"
+      },
+      {
+        "forIngredientId": "kalamata-olives",
+        "swap": "Any black olives or simply omit",
+        "savings": "Saves about $1"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 470,
+      "protein": 38,
+      "carbs": 30,
+      "fat": 23,
+      "fiber": 3
+    },
+    "emoji": "🐟",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "Portuguese",
+    "tags": [
+      "portuguese",
+      "salt cod",
+      "bacalhau",
+      "comfort food",
+      "eggs",
+      "lisbon",
+      "seafood"
+    ]
+  },
+  {
+    "id": "cur2-italian-osso-buco",
+    "name": "Italian Osso Buco",
+    "description": "Milanese braised veal shanks, slow-cooked on the bone in white wine, soffritto, and tomato until the meat is fork-tender and the marrow turns to silk. Finished with a bright lemon-garlic-parsley gremolata. Classic over saffron risotto or polenta.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "beef-stew-meat",
+        "quantity": 4,
+        "note": "Ideally 4 cross-cut veal shanks (osso buco), ~1.5 in thick, on the bone"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.1,
+        "note": "for dredging the shanks"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.06
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.06
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "celery",
+        "quantity": 2,
+        "note": "2 stalks, finely diced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "3 cloves total: some in braise, some for gremolata"
+      },
+      {
+        "ingredientId": "white-wine",
+        "quantity": 0.4,
+        "note": "1.5 cups dry white, e.g. Pinot Grigio"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "beef-broth",
+        "quantity": 0.5,
+        "note": "low-sodium beef or veal stock, ~2 cups"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "thyme-fresh",
+        "quantity": 0.2,
+        "note": "a few sprigs"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.01
+      },
+      {
+        "ingredientId": "lemon-zest",
+        "quantity": 1,
+        "note": "zest of 1 lemon for gremolata"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.4,
+        "note": "large handful, finely chopped for gremolata"
+      }
+    ],
+    "steps": [
+      "Pat the veal shanks dry and season all over with salt and pepper. Tie a loop of kitchen string around the circumference of each so they hold their shape during braising. Dredge lightly in flour and shake off the excess.",
+      "Heat the olive oil and butter in a heavy Dutch oven over medium-high heat. Sear the shanks until deeply browned on both flat sides, about 4 minutes per side. Work in batches so they don't steam; transfer to a plate.",
+      "Lower the heat to medium and add the finely diced onion, carrot, and celery. Cook the soffritto gently, stirring, for 8 to 10 minutes until softened and lightly golden, then stir in the minced garlic for the braise and cook 1 minute more.",
+      "Pour in the white wine, scraping up all the browned bits from the bottom, and simmer until reduced by about half, 4 to 5 minutes. Stir in the crushed tomatoes, bay leaves, and thyme.",
+      "Nestle the shanks back in along with any juices and pour in enough broth to come about two-thirds up the meat. Bring to a gentle simmer.",
+      "Cover and transfer to a 325F oven (or keep at the barest simmer on the stove). Braise for about 2 hours, turning the shanks once halfway, until the meat is fork-tender and pulling from the bone but still holding together.",
+      "While the meat rests, make the gremolata: finely chop the parsley and remaining garlic together with the lemon zest into a fragrant, bright mince.",
+      "Remove the shanks, snip off the strings, and keep warm. If the sauce is thin, simmer it uncovered a few minutes to thicken; taste and adjust salt and pepper, and fish out the bay leaves.",
+      "Spoon the sauce over the shanks, shower generously with gremolata, and serve hot over saffron risotto alla Milanese or soft polenta."
+    ],
+    "totalTimeMinutes": 170,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 145,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Veal shanks are pricey; bone-in beef shank (osso buco di manzo) braises the same way for a fraction of the cost and gives you the same marrow.",
+      "Buy a whole bunch of celery and carrots for the soffritto and freeze the rest chopped for the next braise or soup.",
+      "Skip store-bought stock and simmer the bones and trimmings with water and an onion for 30 minutes to build a richer braising liquid for free."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "beef-stew-meat",
+        "swap": "Bone-in beef shank or beef short ribs",
+        "savings": "About 40% cheaper than veal while staying rich and gelatinous"
+      },
+      {
+        "forIngredientId": "white-wine",
+        "swap": "Extra broth plus a splash of white wine vinegar or lemon juice",
+        "savings": "Saves the cost of a bottle of wine"
+      },
+      {
+        "forIngredientId": "beef-broth",
+        "swap": "Water with a bouillon cube",
+        "savings": "Cuts stock cost to pennies per serving"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 52,
+      "carbs": 14,
+      "fat": 21,
+      "fiber": 3
+    },
+    "emoji": "🍖",
+    "accentColor": "bg-rose-100",
+    "cuisine": "Italian",
+    "tags": [
+      "braised",
+      "veal",
+      "milanese",
+      "comfort-food",
+      "dinner-party",
+      "slow-cooked",
+      "gremolata",
+      "winter"
+    ]
+  },
+  {
+    "id": "cur2-pasta-puttanesca",
+    "name": "Pasta Puttanesca",
+    "description": "The bold, briny Neapolitan pasta that comes together from the pantry in one pan: spaghetti tossed in a garlicky tomato sauce loud with anchovy, capers, and Kalamata olives, brightened with parsley and a kick of chile. No cream, no fuss — just deeply savory, salty-sweet, and ready in under 30 minutes.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "spaghetti",
+        "quantity": 0.8,
+        "note": "about 360g dried spaghetti"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 1,
+        "note": "one 28oz can, San Marzano if possible"
+      },
+      {
+        "ingredientId": "anchovies-canned",
+        "quantity": 0.6,
+        "note": "6-8 oil-packed fillets, finely chopped — they melt into the sauce"
+      },
+      {
+        "ingredientId": "capers",
+        "quantity": 0.4,
+        "note": "3 tbsp, rinsed and drained"
+      },
+      {
+        "ingredientId": "kalamata-olives",
+        "quantity": 0.6,
+        "note": "about 2/3 cup, pitted and torn"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 4,
+        "note": "4 cloves, thinly sliced"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.18,
+        "note": "1/4 cup extra-virgin"
+      },
+      {
+        "ingredientId": "red-pepper-flakes",
+        "quantity": 0.25,
+        "note": "1/2 tsp, or to taste"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.4,
+        "note": "1/4 cup chopped flat-leaf parsley"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.15,
+        "note": "1 tbsp, for depth",
+        "optional": true
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05,
+        "note": "for the pasta water — go light, the sauce is salty"
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02,
+        "note": "freshly ground, to finish"
+      }
+    ],
+    "steps": [
+      "Bring a large pot of water to a boil and salt it lightly — the anchovies, capers, and olives bring plenty of salt, so don't over-season the water.",
+      "While it heats, warm the olive oil in a large skillet over medium-low. Add the sliced garlic and red pepper flakes and cook gently for about 1 minute, until fragrant but not browned.",
+      "Add the chopped anchovies (and tomato paste, if using) and stir for 1-2 minutes, mashing with a wooden spoon until the anchovies dissolve completely into the oil.",
+      "Pour in the crushed tomatoes, then stir in the olives and capers. Simmer over medium heat for 12-15 minutes, until the sauce thickens and the raw tomato edge mellows.",
+      "Meanwhile, cook the spaghetti until just shy of al dente, about 1 minute less than the package says. Reserve a cup of pasta water before draining.",
+      "Transfer the drained spaghetti directly into the skillet with the sauce, adding a splash of pasta water. Toss vigorously over medium heat for 1-2 minutes so the pasta finishes cooking in the sauce and the starch emulsifies it into a glossy coat.",
+      "Stir in most of the chopped parsley and a few grinds of black pepper. Loosen with more pasta water if needed. Taste and adjust — it should be bold and briny, rarely needing extra salt.",
+      "Plate immediately, scatter with the remaining parsley, and finish with a drizzle of olive oil. Serve hot; puttanesca is best the moment it's tossed."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Anchovies, capers, and olives are pantry stars — buy them in jars/cans and they keep for months, so a single purchase covers many batches.",
+      "Skip pricey San Marzano if you're stretching a budget; a good store-brand can of crushed tomatoes works beautifully since the briny ingredients carry the flavor.",
+      "A 28oz can of crushed tomatoes plus one box of pasta feeds four for a few dollars — this is one of the cheapest 'real' dinners you can make."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "kalamata-olives",
+        "swap": "Any brine-cured black or green olives (oil-cured work great)",
+        "savings": "Buy loose from the deli olive bar in small amounts instead of a whole jar"
+      },
+      {
+        "forIngredientId": "anchovies-canned",
+        "swap": "1 tbsp anchovy paste, or 1 tsp fish sauce in a pinch",
+        "savings": "A tube of anchovy paste lasts months and costs less per use than tins"
+      },
+      {
+        "forIngredientId": "spaghetti",
+        "swap": "Linguine, bucatini, or any long dried pasta",
+        "savings": "Use whatever long pasta is cheapest or already in the pantry"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 470,
+      "protein": 15,
+      "carbs": 72,
+      "fat": 14,
+      "fiber": 6
+    },
+    "emoji": "🍝",
+    "accentColor": "bg-red-100",
+    "cuisine": "Italian",
+    "tags": [
+      "pantry",
+      "one-pan",
+      "weeknight",
+      "30-minute",
+      "briny",
+      "no-cream",
+      "Neapolitan",
+      "budget"
+    ]
+  },
+  {
+    "id": "cur2-orecchiette-with-broccoli-rabe",
+    "name": "Orecchiette with Broccoli Rabe",
+    "description": "The classic Puglian one-pot pasta: ear-shaped orecchiette boiled together with bitter broccoli rabe, then tossed in a garlicky, anchovy-melted, chili-spiked olive oil. Earthy, savory, and just a little bitter, finished with sharp pecorino. Rustic Southern Italian comfort food.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "pasta",
+        "quantity": 4,
+        "note": "orecchiette (ear-shaped pasta), ~12-14 oz dry"
+      },
+      {
+        "ingredientId": "broccolini",
+        "quantity": 1,
+        "note": "broccoli rabe (rapini); broccolini is a milder, sweeter stand-in — 1 large bunch, trimmed"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.5,
+        "note": "4 fat cloves, thinly sliced"
+      },
+      {
+        "ingredientId": "anchovies-canned",
+        "quantity": 0.5,
+        "note": "4-5 oil-packed fillets; melt into the oil for savory depth"
+      },
+      {
+        "ingredientId": "red-pepper-flakes",
+        "quantity": 0.1,
+        "note": "1/2 tsp, or to taste"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.15,
+        "note": "1/4 cup good extra-virgin"
+      },
+      {
+        "ingredientId": "pecorino-romano",
+        "quantity": 0.4,
+        "note": "grated, for finishing",
+        "optional": true
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05,
+        "note": "for heavily salting the pasta water"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.25,
+        "optional": true,
+        "note": "a squeeze to brighten the bitterness"
+      }
+    ],
+    "steps": [
+      "Bring a large pot of water to a rolling boil and salt it generously until it tastes like the sea. Meanwhile, trim the tough bottom inch off the broccoli rabe stems and cut the rest into 2-inch pieces, keeping leaves, stems, and florets.",
+      "Drop the broccoli rabe into the boiling water and blanch for 2 minutes to tame its bitterness, then scoop it out with a spider or slotted spoon into a colander, leaving the pot of water on the heat.",
+      "Add the orecchiette to the same boiling water and cook until al dente, following the package time (usually 10-12 minutes). Reserve a cup of the starchy pasta water before draining.",
+      "While the pasta cooks, warm the olive oil in a large skillet over medium-low heat. Add the sliced garlic, anchovy fillets, and red pepper flakes; cook gently for 2-3 minutes, mashing the anchovies with a spoon until they dissolve into the oil and the garlic is golden, not browned.",
+      "Add the blanched broccoli rabe to the skillet, season lightly with salt, and saute 3-4 minutes so it soaks up the garlicky, anchovy-rich oil.",
+      "Drain the orecchiette and add it straight to the skillet with a splash of the reserved pasta water. Toss vigorously over medium heat for a minute so the starchy water emulsifies into a light, glossy sauce that clings to the pasta.",
+      "Taste and adjust salt and chili. Finish with a squeeze of lemon if using, then plate and shower with grated pecorino. Serve immediately while hot."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Cook the broccoli rabe and pasta in the SAME pot of water - blanch the greens first, scoop them out, then boil the pasta. One pot, less gas, and the pasta picks up the green's flavor.",
+      "Anchovies are cheap and last for months in the fridge; a few fillets melt invisibly into the oil and add huge savory depth, so don't skip them over a pricier protein.",
+      "Broccoli rabe is often cheaper than the equivalent weight of florets at the farmers market or ethnic grocers - and the stems and leaves are all edible, so there's no waste."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "broccolini",
+        "swap": "Regular broccoli florets or chopped kale - blanch a bit longer; you lose the signature bitterness but gain savings",
+        "savings": "~$1.50/bunch"
+      },
+      {
+        "forIngredientId": "pecorino-romano",
+        "swap": "Parmesan, or toasted seasoned breadcrumbs (pangrattato) for a dairy-free crunch",
+        "savings": "~$2 vs a wedge of pecorino"
+      },
+      {
+        "forIngredientId": "anchovies-canned",
+        "swap": "1 tsp anchovy paste, or a splash of fish sauce / extra pinch of salt",
+        "savings": "~$1"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 18,
+      "carbs": 68,
+      "fat": 15,
+      "fiber": 5
+    },
+    "emoji": "🥦",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Italian",
+    "tags": [
+      "pasta",
+      "puglian",
+      "southern-italian",
+      "weeknight",
+      "one-pot",
+      "greens",
+      "rustic"
+    ]
+  },
+  {
+    "id": "cur2-italian-wedding-soup",
+    "name": "Italian Wedding Soup",
+    "description": "A soul-warming Italian-American classic: tender mini meatballs of beef and pork simmered with orzo and wilted greens in a golden, parmesan-rich chicken broth. The name comes from \"minestra maritata\" — the happy \"marriage\" of meat and greens.",
+    "mealType": "dinner",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "ground-beef",
+        "quantity": 2,
+        "note": "for mini meatballs; 80/20"
+      },
+      {
+        "ingredientId": "ground-pork",
+        "quantity": 1,
+        "note": "blended with beef for tender meatballs"
+      },
+      {
+        "ingredientId": "breadcrumbs",
+        "quantity": 0.25,
+        "note": "panade base, about 1/2 cup"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.1,
+        "note": "to soak breadcrumbs, about 1/4 cup"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 1,
+        "note": "binds the meatballs"
+      },
+      {
+        "ingredientId": "parmesan",
+        "quantity": 0.4,
+        "note": "half in meatballs, half to finish"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 0.3,
+        "note": "chopped, for meatballs and garnish"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.15,
+        "note": "3 cloves, minced"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "finely diced"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 2,
+        "note": "small dice"
+      },
+      {
+        "ingredientId": "celery",
+        "quantity": 0.25,
+        "note": "2 stalks, small dice"
+      },
+      {
+        "ingredientId": "chicken-broth",
+        "quantity": 2,
+        "note": "about 8 cups total"
+      },
+      {
+        "ingredientId": "orzo",
+        "quantity": 0.3,
+        "note": "or acini di pepe, about 3/4 cup dry"
+      },
+      {
+        "ingredientId": "spinach",
+        "quantity": 0.6,
+        "note": "or escarole, roughly chopped"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.1,
+        "note": "for searing and sweating veg"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "squeeze to brighten at the end"
+      }
+    ],
+    "steps": [
+      "Make the panade: in a large bowl, stir the breadcrumbs with the milk and let sit 5 minutes until pasty. Add ground beef, ground pork, egg, half the parmesan, half the parsley, the minced garlic, 1 tsp salt, and a few grinds of pepper. Mix gently with your hands just until combined — don't overwork it.",
+      "Roll into small meatballs about 3/4 inch (marble to grape size); you should get 40 or so. Keep them tiny so they cook through in the broth and fit on a spoon.",
+      "Heat the olive oil in a large pot over medium-high. Brown the meatballs in batches, turning, just until golden on the outside (about 3 minutes per batch) — they'll finish in the soup. Transfer to a plate.",
+      "Lower heat to medium. In the same pot, sweat the onion, carrot, and celery in the rendered fat with a pinch of salt for 6 to 8 minutes until softened and fragrant, scraping up the browned bits.",
+      "Pour in the chicken broth and bring to a gentle simmer. Slide the meatballs back in and simmer 10 minutes so they cook through and flavor the broth.",
+      "Stir in the orzo and cook 8 to 9 minutes, until just tender, stirring occasionally so it doesn't stick.",
+      "Add the chopped spinach (or escarole) and simmer 2 minutes until wilted. Stir in the remaining parmesan.",
+      "Taste and adjust salt and pepper. Finish with a squeeze of lemon if using, ladle into bowls, and top with remaining parsley and extra grated parmesan."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Use all ground beef instead of a beef-pork blend if pork is pricey — a splash of extra olive oil keeps the meatballs moist.",
+      "A parmesan rind dropped into the simmering broth adds huge savory depth and uses up the heel of the wedge instead of wasting it.",
+      "Bulk it up cheaply with an extra handful of orzo or a can of cannellini beans to stretch it to more servings."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ground-pork",
+        "swap": "use an equal amount of ground turkey or just more ground beef",
+        "savings": "~$2 and one fewer item to buy"
+      },
+      {
+        "forIngredientId": "spinach",
+        "swap": "frozen-spinach, thawed and squeezed dry (about half a box)",
+        "savings": "~$1.50 vs fresh"
+      },
+      {
+        "forIngredientId": "chicken-broth",
+        "swap": "water plus 2 chicken bouillon cubes",
+        "savings": "~$3 vs boxed broth"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 410,
+      "protein": 30,
+      "carbs": 18,
+      "fat": 24,
+      "fiber": 2
+    },
+    "emoji": "🍲",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Italian-American",
+    "tags": [
+      "soup",
+      "meatballs",
+      "comfort-food",
+      "italian",
+      "brothy",
+      "one-pot",
+      "high-protein"
+    ]
+  },
+  {
+    "id": "cur2-british-fish-and-chips",
+    "name": "British Fish and Chips",
+    "description": "The chippy classic done right: flaky cod in a shatteringly crisp golden beer batter, thick double-fried chips, and a spoonful of mushy peas. Don't forget the salt and malt vinegar.",
+    "mealType": "dinner",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "cod",
+        "quantity": 2,
+        "note": "two thick skinless cod fillets, about 180g each"
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 3,
+        "note": "large Maris Piper or russet potatoes for chips"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.3,
+        "note": "plain flour for the batter, plus a little for dusting"
+      },
+      {
+        "ingredientId": "beer",
+        "quantity": 0.4,
+        "note": "cold lager or pale ale, about 180ml"
+      },
+      {
+        "ingredientId": "baking-powder",
+        "quantity": 1,
+        "note": "1 tsp, for a lighter, crispier batter"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.5,
+        "note": "for deep frying, about 1L"
+      },
+      {
+        "ingredientId": "frozen-peas",
+        "quantity": 0.4,
+        "note": "for mushy peas"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.05,
+        "note": "knob, to finish the mushy peas"
+      },
+      {
+        "ingredientId": "mint-fresh",
+        "quantity": 0.1,
+        "optional": true,
+        "note": "few leaves for the mushy peas"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.5
+      },
+      {
+        "ingredientId": "vinegar",
+        "quantity": 0.05,
+        "note": "malt vinegar, for serving"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      }
+    ],
+    "steps": [
+      "Peel the potatoes and cut into thick chips about 1.5cm wide. Rinse under cold water to wash off surface starch, then soak in cold water for 10 minutes and pat completely dry.",
+      "Heat the oil in a deep heavy pan to 130C/265F. Blanch the chips in batches for 6-7 minutes until soft but not coloured, then lift out and drain on a rack. This first fry cooks them through.",
+      "Make the mushy peas: simmer the frozen peas in a little salted water for 4-5 minutes until tender, drain, then crush roughly with the butter, a few mint leaves, and salt and pepper. Keep warm.",
+      "Whisk the flour, baking powder, and a good pinch of salt with the cold beer until just smooth and the texture of thick cream; keep it cold and use straight away for the crispest batter.",
+      "Raise the oil temperature to 190C/375F. Pat the cod fillets dry, season, and dust lightly with flour so the batter clings.",
+      "Dip each fillet into the batter, letting excess drip off, then lower carefully into the hot oil away from you. Fry for 6-8 minutes, turning once, until the batter is deep golden and crisp and the fish flakes. Drain on a rack and season with salt.",
+      "Return the blanched chips to the 190C oil and fry for 2-3 minutes until golden and crisp. Drain well and season generously with salt.",
+      "Serve the fish and chips at once with the mushy peas, lemon wedges, and plenty of malt vinegar."
+    ],
+    "totalTimeMinutes": 50,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Cod is traditional but pricey - basa, pollock, or haddock fry up just as well for less.",
+      "Maris Piper or russet potatoes give the fluffiest chips; soaking and double-frying is what makes them crisp outside and soft inside.",
+      "Strain and reuse the frying oil two or three times - cool it, filter through a coffee filter, and store in a sealed jar."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "cod",
+        "swap": "tilapia or basa fillets",
+        "savings": "Cuts the fish cost by roughly half with the same flaky result"
+      },
+      {
+        "forIngredientId": "beer",
+        "swap": "cold sparkling water with an extra pinch of baking powder",
+        "savings": "Saves the cost of beer and keeps it just as crisp"
+      },
+      {
+        "forIngredientId": "frozen-peas",
+        "swap": "skip the mushy peas and serve with extra lemon",
+        "savings": "Drops a side ingredient entirely"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 720,
+      "protein": 42,
+      "carbs": 68,
+      "fat": 32,
+      "fiber": 7
+    },
+    "emoji": "🐟",
+    "accentColor": "bg-sky-100",
+    "cuisine": "British",
+    "tags": [
+      "british",
+      "pub-classic",
+      "deep-fried",
+      "comfort-food",
+      "fish",
+      "beer-batter"
+    ]
+  },
+  {
+    "id": "cur2-swedish-gravlax",
+    "name": "Swedish Gravlax",
+    "description": "Silky salt-and-sugar-cured salmon buried in fresh dill, cured cold for two to three days and sliced paper-thin, served with a sweet mustard-dill sauce.",
+    "mealType": "lunch",
+    "servings": 8,
+    "ingredients": [
+      {
+        "ingredientId": "salmon",
+        "quantity": 8,
+        "note": "1 skin-on, center-cut, sushi-grade salmon fillet (~2 lb / 900 g), pin bones removed"
+      },
+      {
+        "ingredientId": "kosher-salt",
+        "quantity": 0.5,
+        "note": "about 1/3 cup coarse salt for the cure"
+      },
+      {
+        "ingredientId": "white-sugar",
+        "quantity": 0.25,
+        "note": "about 1/4 cup, equal-ish to salt by feel"
+      },
+      {
+        "ingredientId": "dill-fresh",
+        "quantity": 2,
+        "note": "2 large bunches, roughly chopped with stems"
+      },
+      {
+        "ingredientId": "whole-peppercorns",
+        "quantity": 0.05,
+        "note": "1 Tbsp white peppercorns, coarsely crushed"
+      },
+      {
+        "ingredientId": "vodka",
+        "quantity": 0.05,
+        "note": "2 Tbsp, optional rub to firm the surface",
+        "optional": true
+      },
+      {
+        "ingredientId": "dijon",
+        "quantity": 0.4,
+        "note": "for the hovmästarsås sauce"
+      },
+      {
+        "ingredientId": "honey",
+        "quantity": 0.1,
+        "note": "or sugar, to sweeten the mustard sauce"
+      },
+      {
+        "ingredientId": "white-wine-vinegar",
+        "quantity": 0.1,
+        "note": "for the sauce"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.15,
+        "note": "neutral oil to emulsify the sauce"
+      },
+      {
+        "ingredientId": "sourdough",
+        "quantity": 0.5,
+        "note": "rye or sourdough crispbread, to serve",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Run your fingers along the salmon and pull any pin bones with tweezers. Pat the fillet completely dry and, if using, rub the flesh side with vodka to firm the surface and help the cure adhere.",
+      "Make the cure: combine the kosher salt, sugar, and coarsely crushed white peppercorns. Spread a thin layer of cure plus a handful of chopped dill on a sheet of plastic wrap large enough to wrap the whole fillet.",
+      "Lay the salmon skin-side down on the dill bed. Pack the remaining cure firmly all over the flesh, then bury the top completely under the rest of the chopped dill, pressing it in.",
+      "Wrap the fillet tightly in plastic wrap, set it skin-side down in a shallow dish to catch the brine that will weep out, and lay a second dish or board on top weighted with a few cans (about 2-3 lb of weight).",
+      "Refrigerate 48-72 hours, flipping the package every 12 hours and re-weighting each time. The flesh should go from translucent to firm and opaque at the edges — that is the cure working.",
+      "While it cures, whisk the hovmästarsås: Dijon, honey, and white wine vinegar, then slowly drizzle in the oil while whisking to a loose mayo-like emulsion. Stir in a tablespoon of finely chopped dill and chill.",
+      "Unwrap the cured salmon, scrape off the dill and cure, and pat dry. Do not rinse unless it tastes too salty (a quick rinse and re-dry is fine if so).",
+      "Set the fillet skin-side down and slice on a sharp shallow angle into thin, wide sheets, leaving the skin behind. Fan the slices on a board.",
+      "Serve cold with the mustard-dill sauce, extra fresh dill, and rye crispbread or sourdough. Keeps wrapped in the fridge up to 5 days."
+    ],
+    "totalTimeMinutes": 2910,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 0,
+    "difficulty": "medium",
+    "equipment": [
+      "no-kitchen"
+    ],
+    "primaryCookingMethod": "no-cook",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "high-protein",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy a whole side of salmon on sale and cure the lot — gravlax keeps 5 days and freezes well once cured, so it stretches one fish across many meals.",
+      "Skip pricey pre-sliced smoked salmon; a plain raw fillet plus salt, sugar, and dill costs a fraction and tastes fresher.",
+      "Use the leftover dill stems and salmon skin (crisped in a dry pan) so nothing goes to waste."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "white-wine-vinegar",
+        "swap": "Use plain white vinegar or lemon juice in the mustard sauce",
+        "savings": "~$2 vs a dedicated bottle of white wine vinegar"
+      },
+      {
+        "forIngredientId": "vodka",
+        "swap": "Omit entirely — it only firms the surface and is fully optional",
+        "savings": "saves the cost of a spirit you may not have"
+      },
+      {
+        "forIngredientId": "dijon",
+        "swap": "Whisk yellow mustard with a pinch of sugar for the sauce",
+        "savings": "~$2 vs jarred Dijon"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 230,
+      "protein": 23,
+      "carbs": 5,
+      "fat": 13,
+      "fiber": 0
+    },
+    "emoji": "🐟",
+    "accentColor": "bg-sky-100",
+    "cuisine": "Swedish",
+    "tags": [
+      "nordic",
+      "cured-fish",
+      "make-ahead",
+      "no-cook",
+      "appetizer",
+      "scandinavian",
+      "smorgasbord",
+      "high-protein"
+    ]
+  },
+  {
+    "id": "cur2-danish-smorrebrod",
+    "name": "Danish Smørrebrød",
+    "description": "Classic Danish open-faced sandwiches on dense buttered rye bread, built two authentic ways: pickled herring with raw red onion and capers, and rare roast beef with remoulade, crispy onions, and pickles. Cold, layered, and meant to be eaten knife-and-fork with proper garnish.",
+    "mealType": "lunch",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "bread",
+        "quantity": 0.35,
+        "note": "dense Danish rye bread (rugbrød), 4 thin slices"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.15,
+        "note": "good salted butter, softened, for spreading"
+      },
+      {
+        "ingredientId": "sardines",
+        "quantity": 1,
+        "note": "pickled herring fillets (sild) in vinegar brine"
+      },
+      {
+        "ingredientId": "red-onion",
+        "quantity": 0.25
+      },
+      {
+        "ingredientId": "capers",
+        "quantity": 0.15
+      },
+      {
+        "ingredientId": "deli-turkey",
+        "quantity": 2,
+        "note": "thinly sliced rare roast beef"
+      },
+      {
+        "ingredientId": "mayonnaise",
+        "quantity": 0.1,
+        "note": "base for quick remoulade"
+      },
+      {
+        "ingredientId": "dill-pickles",
+        "quantity": 0.2,
+        "note": "finely chopped into remoulade plus sliced for garnish"
+      },
+      {
+        "ingredientId": "curry-powder",
+        "quantity": 0.02,
+        "note": "pinch, for remoulade color and flavor"
+      },
+      {
+        "ingredientId": "mustard",
+        "quantity": 0.05,
+        "note": "Dijon-style, for remoulade"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "hard-boiled, for egg-and-herring garnish"
+      },
+      {
+        "ingredientId": "dill-fresh",
+        "quantity": 0.2
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 0.15,
+        "note": "thin-sliced and fried crisp for roast beef topping",
+        "optional": true
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.2,
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Hard-boil the eggs: lower into boiling water and cook 9 minutes, then chill in ice water, peel, and slice. Slice the red onion into thin rings and pat the pickled herring dry on paper towel.",
+      "Make the remoulade: stir together the mayonnaise, finely chopped pickle, Dijon mustard, and a pinch of curry powder. Season with salt and pepper and set aside.",
+      "For crispy onions (optional), fry the thin-sliced yellow onion in a dry or lightly oiled pan over medium heat until deep golden and crisp, then drain on paper towel.",
+      "Spread each slice of rye bread generously to the very edges with softened salted butter — this is essential so the bread doesn't go soggy and the toppings grip.",
+      "Build the herring smørrebrød: lay pickled herring fillets over two buttered slices, then top with red onion rings, a scatter of capers, and a few slices of hard-boiled egg.",
+      "Build the roast beef smørrebrød: drape folded slices of rare roast beef over the other two buttered slices, spoon remoulade across the top, and crown with crispy fried onions and sliced pickle.",
+      "Finish every piece with plenty of chopped fresh dill, a crack of black pepper, and a small lemon wedge on the herring. Serve cold and eat with a knife and fork."
+    ],
+    "totalTimeMinutes": 25,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 10,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "no-cook",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Buy a jar of pickled herring and a small piece of deli roast beef — a little of each goes far across several open sandwiches, so this stretches cheaply for lunches.",
+      "Make the remoulade from pantry mayo, mustard, pickle, and curry powder instead of buying a jarred version; it's better and far cheaper.",
+      "Dense rye is sold in long vacuum-packed loaves that keep for weeks — slice thin and freeze what you don't use so nothing goes stale."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "sardines",
+        "swap": "Use canned sardines or smoked salmon if pickled herring isn't available",
+        "savings": "often cheaper and easier to find"
+      },
+      {
+        "forIngredientId": "deli-turkey",
+        "swap": "Thin-sliced deli ham or actual deli turkey works in place of roast beef",
+        "savings": "saves about $2"
+      },
+      {
+        "forIngredientId": "bread",
+        "swap": "Dense whole-grain or pumpernickel bread instead of imported rugbrød",
+        "savings": "saves $3-4 per loaf"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 28,
+      "carbs": 34,
+      "fat": 21,
+      "fiber": 5
+    },
+    "emoji": "🥪",
+    "accentColor": "bg-sky-100",
+    "cuisine": "Danish",
+    "tags": [
+      "open-faced",
+      "scandinavian",
+      "rye-bread",
+      "pickled-herring",
+      "roast-beef",
+      "cold-lunch",
+      "nordic"
+    ]
+  },
+  {
+    "id": "cur2-polish-bigos",
+    "name": "Polish Bigos (Hunter's Stew)",
+    "description": "Poland's national dish: a deep, slow-simmered \"hunter's stew\" of sauerkraut and fresh cabbage braised with kielbasa, smoked pork, and a tangle of mushrooms. Dried plums and a splash of red wine give it that signature sweet-sour-smoky depth. It tastes even better reheated the next day.",
+    "mealType": "dinner",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "sauerkraut",
+        "quantity": 1.5,
+        "note": "drained but reserve some brine; rinse lightly if very sour"
+      },
+      {
+        "ingredientId": "cabbage",
+        "quantity": 0.5,
+        "note": "fresh green cabbage, finely shredded"
+      },
+      {
+        "ingredientId": "kielbasa",
+        "quantity": 2,
+        "note": "Polish smoked kielbasa, sliced into coins"
+      },
+      {
+        "ingredientId": "smoked-pork-belly",
+        "quantity": 1,
+        "note": "or smoked bacon, diced"
+      },
+      {
+        "ingredientId": "pork-shoulder",
+        "quantity": 2,
+        "note": "cut into bite-size chunks"
+      },
+      {
+        "ingredientId": "mushroom",
+        "quantity": 0.4,
+        "note": "fresh cremini, sliced"
+      },
+      {
+        "ingredientId": "shiitake",
+        "quantity": 0.15,
+        "optional": true,
+        "note": "dried porcini if you can find them; soak and reserve liquid"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "cloves, minced"
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.3
+      },
+      {
+        "ingredientId": "dried-apricot",
+        "quantity": 0.2,
+        "note": "use pitted dried prunes/plums if available"
+      },
+      {
+        "ingredientId": "red-wine",
+        "quantity": 0.3,
+        "note": "dry red"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "allspice",
+        "quantity": 1,
+        "note": "ideally 4-5 whole allspice berries"
+      },
+      {
+        "ingredientId": "caraway-seed",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "whole-peppercorns",
+        "quantity": 1,
+        "note": "a few black peppercorns"
+      },
+      {
+        "ingredientId": "paprika",
+        "quantity": 1,
+        "note": "sweet Hungarian-style"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      }
+    ],
+    "steps": [
+      "If using dried mushrooms, cover them with 1 cup of boiling water and soak 20 minutes; lift out, chop, and reserve the soaking liquid. Roughly chop the prunes.",
+      "Heat the oil in a large heavy pot or Dutch oven over medium-high. Brown the diced smoked pork belly until the fat renders, then add the pork shoulder chunks and sear on all sides until deeply colored. Remove the meats and set aside.",
+      "Lower the heat to medium, add the onions to the rendered fat, and cook 8-10 minutes until soft and golden. Stir in the garlic and fresh mushrooms and cook until the mushrooms release their liquid and it evaporates.",
+      "Stir in the tomato paste and paprika and cook 1-2 minutes until darkened and fragrant. Pour in the red wine, scraping up the browned bits, and let it bubble for a minute.",
+      "Return the seared meats. Add the drained sauerkraut, shredded fresh cabbage, soaked dried mushrooms with their strained liquid, chopped prunes, bay leaves, allspice, caraway, and peppercorns. Add water just to come level with the cabbage.",
+      "Bring to a gentle simmer, cover, and cook low and slow for 1.5 to 2 hours, stirring every 20-30 minutes so nothing catches, until the pork is fork-tender and the cabbage is silky.",
+      "Uncover for the last 20-30 minutes and add the sliced kielbasa, simmering until the stew thickens and the flavors marry. The liquid should be scant, not soupy.",
+      "Taste and balance with salt, pepper, and a splash of the reserved sauerkraut brine if it needs more tang. Fish out the bay leaves and whole spices.",
+      "Rest at least 15 minutes before serving, or ideally cool and reheat the next day. Serve hot with crusty rye bread and boiled potatoes."
+    ],
+    "totalTimeMinutes": 150,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 120,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Bigos is the ultimate use-up dish: any leftover roast pork, ham, or smoked sausage ends can replace some of the fresh pork shoulder.",
+      "Make a big batch and freeze in portions; the flavor genuinely improves after a day or two and it freezes beautifully.",
+      "Skip pricey dried porcini and use cheap fresh cremini plus a teaspoon of paprika for depth; a splash of soy sauce can mimic the umami if needed."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "red-wine",
+        "swap": "Use beef or chicken broth with a splash of vinegar",
+        "savings": "Avoids buying a bottle of wine, saving ~$8"
+      },
+      {
+        "forIngredientId": "pork-shoulder",
+        "swap": "Beef stew meat or extra kielbasa and bacon",
+        "savings": "Stretches the dish on cheaper or on-hand cuts"
+      },
+      {
+        "forIngredientId": "dried-apricot",
+        "swap": "A spoonful of raisins or a grated apple for sweetness",
+        "savings": "Uses pantry staples instead of buying prunes, ~$2"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 31,
+      "carbs": 18,
+      "fat": 31,
+      "fiber": 6
+    },
+    "emoji": "🥘",
+    "accentColor": "bg-rose-100",
+    "cuisine": "Polish",
+    "tags": [
+      "polish",
+      "stew",
+      "sauerkraut",
+      "comfort-food",
+      "hunters-stew",
+      "kielbasa",
+      "make-ahead",
+      "cabbage",
+      "winter"
+    ]
+  },
+  {
+    "id": "cur2-ukrainian-borscht",
+    "name": "Ukrainian Borscht",
+    "description": "The deep-ruby beet soup at the heart of Ukrainian cooking: beef simmered on the bone for a rich broth, a sautéed beet-and-tomato zazharka that keeps the color vivid, cabbage and potato for body, brightened with a splash of vinegar and finished with crushed garlic, sour cream, and a shower of fresh dill.",
+    "mealType": "dinner",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "beef-stew-meat",
+        "quantity": 6,
+        "note": "bone-in beef shank or short rib, on the bone"
+      },
+      {
+        "ingredientId": "beet",
+        "quantity": 3,
+        "note": "about 3 medium beets, peeled"
+      },
+      {
+        "ingredientId": "cabbage",
+        "quantity": 0.4,
+        "note": "roughly a third of a small head, shredded"
+      },
+      {
+        "ingredientId": "potato",
+        "quantity": 3,
+        "note": "medium, peeled and cubed"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 2,
+        "note": "grated"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1.5
+      },
+      {
+        "ingredientId": "tomato-paste",
+        "quantity": 0.5,
+        "note": "about 2 tbsp"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 4,
+        "note": "cloves, crushed at the end"
+      },
+      {
+        "ingredientId": "bay-leaf",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "vinegar",
+        "quantity": 1,
+        "note": "about 1 tbsp; lemon juice or beet kvass also traditional"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 1,
+        "note": "pinch, to balance the beets"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 2,
+        "note": "for the zazharka"
+      },
+      {
+        "ingredientId": "sour-cream",
+        "quantity": 0.4,
+        "note": "for serving, smetana"
+      },
+      {
+        "ingredientId": "dill-fresh",
+        "quantity": 0.5,
+        "note": "chopped, to finish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 1
+      },
+      {
+        "ingredientId": "white-beans",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "optional; some regions add white beans"
+      }
+    ],
+    "steps": [
+      "Put the bone-in beef in a large pot with about 3 quarts cold water, bring to a gentle boil, and skim off the gray foam. Add the bay leaves and a big pinch of salt, then lower to a bare simmer for 1.5 to 2 hours until the meat is tender. Lift out the meat, pull it from the bone into bite-size pieces, and reserve the strained broth.",
+      "Meanwhile make the zazharka: heat the oil in a skillet over medium, soften the diced onion and grated carrot for about 6 minutes, then stir in the tomato paste and cook 2 minutes until it darkens and smells sweet.",
+      "Add the grated beets to the skillet with the splash of vinegar and the pinch of sugar (the acid locks in the ruby color). Add a ladle of broth, cover, and braise gently for 15 to 20 minutes until the beets are tender but still vivid.",
+      "Bring the reserved broth back to a simmer, add the cubed potato, and cook 10 minutes until almost tender. Add the shredded cabbage (and white beans if using) and cook another 5 to 7 minutes.",
+      "Stir the beet zazharka and the shredded beef back into the pot. Simmer everything together for 10 minutes so the flavors marry; taste and adjust salt, pepper, and acidity.",
+      "Turn off the heat and stir in the crushed raw garlic. Cover and let the borscht rest at least 15 minutes (it is even better the next day).",
+      "Ladle into bowls, top each with a spoonful of sour cream and a generous handful of fresh dill, and serve with dark bread."
+    ],
+    "totalTimeMinutes": 160,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 130,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "gluten-free",
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Bone-in cuts like shank or short rib are cheaper than stew meat and give a far richer broth — the bone is doing the heavy lifting.",
+      "Borscht genuinely improves overnight as the flavors deepen, so make a big batch and it doubles as several days of lunches.",
+      "Save the sour cream and dill for serving rather than stirring them in — a little goes a long way and the soup keeps better without dairy in the pot."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "beef-stew-meat",
+        "swap": "Skip the meat and use veggie-broth for a vegetarian borscht — still deeply satisfying",
+        "savings": "~$4/batch"
+      },
+      {
+        "forIngredientId": "vinegar",
+        "swap": "Use bottled lemon juice you already have on hand",
+        "savings": "~$0.50"
+      },
+      {
+        "forIngredientId": "sour-cream",
+        "swap": "Plain Greek yogurt gives the same tang for less",
+        "savings": "~$1"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 20,
+      "carbs": 24,
+      "fat": 13,
+      "fiber": 5
+    },
+    "emoji": "🍲",
+    "accentColor": "bg-rose-100",
+    "cuisine": "Ukrainian",
+    "tags": [
+      "soup",
+      "beet",
+      "comfort-food",
+      "beef",
+      "eastern-european",
+      "make-ahead",
+      "one-pot",
+      "winter"
+    ]
+  },
+  {
+    "id": "cur2-potato-latkes",
+    "name": "Potato Latkes",
+    "description": "Crisp, golden Jewish-style potato pancakes — coarsely grated russet potato and onion squeezed bone-dry, bound with just egg and a little flour, then shallow-fried until shatteringly crisp at the edges and tender in the middle. Serve hot with applesauce and sour cream.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "potato",
+        "quantity": 4,
+        "note": "about 2 lb russet potatoes, peeled"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 0.5,
+        "note": "1 medium yellow onion"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.05,
+        "note": "about 1/4 cup all-purpose flour (or matzo meal)"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02,
+        "note": "1.5 tsp kosher salt"
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.01,
+        "note": "1/2 tsp black pepper"
+      },
+      {
+        "ingredientId": "baking-powder",
+        "quantity": 0.03,
+        "note": "1/2 tsp, for extra lift and crisp"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 0.4,
+        "note": "neutral oil for shallow frying, about 1 cup"
+      },
+      {
+        "ingredientId": "applesauce",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "for serving"
+      },
+      {
+        "ingredientId": "sour-cream",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      "Peel the potatoes. Using the large holes of a box grater (or a food processor shredding disc), coarsely grate the potatoes and the onion together — the onion's enzymes help keep the potato from browning.",
+      "Pile the grated potato and onion into the center of a clean kitchen towel or several layers of cheesecloth. Twist it tight over the sink and wring out as much liquid as you possibly can — squeeze hard, multiple times. Let the squeezed liquid sit in a bowl for a minute, then carefully pour off the water, leaving the white potato starch at the bottom.",
+      "Add the dried shreds back to the bowl with that reserved starch. Mix in the eggs, flour, salt, pepper, and baking powder until everything is evenly coated. Work quickly so the mixture doesn't oxidize and turn gray.",
+      "Pour about 1/4 inch of oil into a heavy skillet (cast iron is ideal) and heat over medium-high until shimmering — a shred of potato should sizzle immediately, around 350F.",
+      "Scoop a scant 1/4 cup of mixture per latke, lay it in the oil, and flatten gently with a spatula into a thin, even round. Don't crowd the pan — fry 3 to 4 at a time.",
+      "Fry undisturbed for 3 to 4 minutes per side, until deeply golden brown and crisp at the edges. Adjust the heat so they color steadily without burning.",
+      "Transfer to a wire rack set over a sheet pan (not paper towels, which steam them soft) and immediately sprinkle with a little salt. Keep warm in a 200F oven while you fry the rest, topping up the oil as needed.",
+      "Serve hot and fresh with applesauce and sour cream alongside."
+    ],
+    "totalTimeMinutes": 45,
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 25,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Russet potatoes are one of the cheapest staples by the pound — buy a big bag and this dish costs pennies per serving.",
+      "Save the cloudy water you wring out and let the potato starch settle to the bottom; stirring it back in is free binder and gives crispier latkes.",
+      "Matzo meal, breadcrumbs, or even a little extra flour all work as the binder, so use whatever is already in your pantry instead of buying something new."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "flour",
+        "swap": "Matzo meal or plain breadcrumbs (the traditional binder)",
+        "savings": "Use what you have on hand instead of buying flour"
+      },
+      {
+        "forIngredientId": "applesauce",
+        "swap": "Grate a fresh apple or skip it entirely",
+        "savings": "Saves ~$2 vs a jar of applesauce"
+      },
+      {
+        "forIngredientId": "vegetable-oil",
+        "swap": "Any neutral oil — canola, corn, or sunflower",
+        "savings": "Whichever is cheapest at your store"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 320,
+      "protein": 7,
+      "carbs": 38,
+      "fat": 16,
+      "fiber": 4
+    },
+    "emoji": "🥔",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Jewish",
+    "tags": [
+      "latkes",
+      "potato pancakes",
+      "hanukkah",
+      "fried",
+      "vegetarian",
+      "comfort food",
+      "ashkenazi"
+    ]
+  },
+  {
+    "id": "cur2-cheese-blintzes",
+    "name": "Cheese Blintzes",
+    "description": "Tender crepe-like wrappers folded around a lightly sweetened farmer's-cheese filling, then pan-fried in butter until golden and crisp. A classic Ashkenazi treat served with sour cream and berries.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.18,
+        "note": "1 cup all-purpose flour for the crepe batter"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "3 for batter, 1 yolk for filling"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.5,
+        "note": "about 1.25 cups whole milk for the batter"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.4,
+        "note": "melted in batter plus more for frying"
+      },
+      {
+        "ingredientId": "cottage-cheese",
+        "quantity": 1,
+        "note": "stand-in for dry-curd farmer's cheese; drain well"
+      },
+      {
+        "ingredientId": "cream-cheese",
+        "quantity": 0.4,
+        "note": "softened, to bind the filling"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.08,
+        "note": "about 3 tbsp, divided between batter and filling"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.1,
+        "note": "1 tsp for the filling"
+      },
+      {
+        "ingredientId": "lemon-zest",
+        "quantity": 1,
+        "note": "zest of half a lemon, for the filling"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02,
+        "note": "pinch in batter and filling"
+      },
+      {
+        "ingredientId": "sour-cream",
+        "quantity": 0.4,
+        "optional": true,
+        "note": "for serving"
+      },
+      {
+        "ingredientId": "strawberries",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      "Whisk together the flour, 3 eggs, milk, half the melted butter, 1 tbsp sugar, and a pinch of salt until smooth, then rest the batter 20-30 minutes so the crepes stay tender.",
+      "Make the filling: press the cottage cheese in a sieve or cheesecloth to drain off excess liquid, then mash with the softened cream cheese, remaining 2 tbsp sugar, egg yolk, vanilla, lemon zest, and a pinch of salt until thick and spreadable.",
+      "Heat a lightly buttered 8-inch nonstick skillet over medium. Pour in a scant 1/4 cup batter, swirling to coat the bottom in a thin layer; cook about 1 minute until set and the underside is pale gold, then slide out onto a plate cooked-side up. Repeat to make 8 crepes, stacking as you go.",
+      "Spoon about 2 tbsp filling onto the lower third of each crepe (cooked side up). Fold the bottom edge over the filling, fold in both sides, then roll up snugly into a sealed rectangular parcel, seam-side down.",
+      "Melt a knob of butter in a clean skillet over medium heat. Add the blintzes seam-side down and fry 2-3 minutes per side until deep golden and crisp, adding more butter as needed.",
+      "Serve warm, seam-side down, with a dollop of sour cream and fresh strawberries."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 25,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Cottage cheese stands in beautifully for pricey farmer's cheese; just drain it well in a sieve so the filling isn't watery.",
+      "A nonstick skillet means you need only a thin film of butter per crepe, stretching one stick a long way.",
+      "Blintzes freeze perfectly after rolling but before frying, so make a double batch and fry straight from frozen on a busy morning."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "cottage-cheese",
+        "swap": "Ricotta drained in a sieve, or mashed farmer's cheese",
+        "savings": "Ricotta is similar in price but gives a smoother, slightly richer filling"
+      },
+      {
+        "forIngredientId": "strawberries",
+        "swap": "Frozen berries warmed into a quick sauce",
+        "savings": "Saves about $2 versus fresh, especially out of season"
+      },
+      {
+        "forIngredientId": "sour-cream",
+        "swap": "Plain Greek yogurt",
+        "savings": "Comparable cost and adds extra protein"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 19,
+      "carbs": 38,
+      "fat": 23,
+      "fiber": 1
+    },
+    "emoji": "🥞",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Jewish (Ashkenazi)",
+    "tags": [
+      "brunch",
+      "crepes",
+      "cheese",
+      "comfort-food",
+      "vegetarian",
+      "make-ahead",
+      "eastern-european"
+    ]
+  },
+  {
+    "id": "cur2-belgian-liege-waffles",
+    "name": "Belgian Liège Waffles",
+    "description": "Dense, chewy yeasted brioche-dough waffles studded with pearl sugar that melts into crackly caramel pockets against the iron. This is the real Liège-style waffle sold from Belgian street carts — rich, eggy, and sweet enough to eat plain, no syrup required.",
+    "mealType": "breakfast",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "flour",
+        "quantity": 0.5,
+        "note": "bread flour preferred for chew, ~2.5 cups"
+      },
+      {
+        "ingredientId": "instant-yeast",
+        "quantity": 1,
+        "note": "2.25 tsp / 1 packet instant yeast"
+      },
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 0.4,
+        "note": "lukewarm, ~1/3 cup to bloom yeast"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.6,
+        "note": "softened, ~10 tbsp, worked into dough"
+      },
+      {
+        "ingredientId": "brown-sugar",
+        "quantity": 0.15,
+        "note": "2 tbsp light brown sugar in the dough"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.5,
+        "note": "3/4 tsp"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.3,
+        "note": "1.5 tsp vanilla extract"
+      },
+      {
+        "ingredientId": "turbinado-sugar",
+        "quantity": 0.8,
+        "note": "Belgian pearl sugar (nibsugar) — use turbinado only as a last resort; pearl sugar gives true crunch, ~1.25 cups"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.2,
+        "optional": true,
+        "note": "pinch in the dough, traditional touch"
+      }
+    ],
+    "steps": [
+      "In a small bowl, stir the instant yeast and a pinch of the brown sugar into the lukewarm milk and let it sit 5-10 minutes until foamy.",
+      "In a large bowl, whisk the flour and salt. Make a well, then add the eggs, vanilla, remaining brown sugar, and the foamy yeast-milk. Mix into a shaggy, sticky dough.",
+      "Knead the dough in the bowl for 4-5 minutes until it comes together and is elastic, then add the softened butter a few pats at a time, working each fully in before adding more, until the dough is glossy and smooth.",
+      "Cover the bowl and let the dough rise in a warm spot for 1.5-2 hours, until doubled and puffy.",
+      "Gently fold the pearl sugar (and optional cinnamon) into the risen dough by hand — fold, don't overmix, so the sugar stays in distinct pieces. Let it rest 15 minutes.",
+      "Divide the dough into 6 equal balls (about 110 g each). Meanwhile heat a waffle iron to medium-high; do not oil it, as the sugar self-releases.",
+      "Place one ball in the center of the iron, close, and cook 3-5 minutes until deep golden brown and the escaping sugar has caramelized at the edges.",
+      "Carefully lift each waffle out with a fork or wooden spatula and cool on a rack for a minute so the caramel sets and crisps. Eat warm, plain or dusted with powdered sugar."
+    ],
+    "totalTimeMinutes": 155,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Make a double batch and freeze the cooked waffles flat — they reheat crisp straight from frozen in a toaster, so the active work pays off twice.",
+      "Pearl sugar is pricey; buy a bag once and it lasts for many batches since you only use a little per waffle. In a pinch, crush sugar cubes into rough chunks rather than using fine sugar.",
+      "Soften butter at room temp instead of microwaving so it emulsifies into the dough properly and you waste none."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "turbinado-sugar",
+        "swap": "Crushed sugar cubes (broken into pea-sized bits) stand in for true Belgian pearl sugar",
+        "savings": "~$2 vs. specialty pearl sugar"
+      },
+      {
+        "forIngredientId": "whole-milk",
+        "swap": "Any milk including 2% or oat milk works to bloom the yeast",
+        "savings": "use what's on hand, $0"
+      },
+      {
+        "forIngredientId": "instant-yeast",
+        "swap": "Active dry yeast — bloom it the same way, just give it a few extra minutes",
+        "savings": "interchangeable, $0"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 420,
+      "protein": 8,
+      "carbs": 56,
+      "fat": 19,
+      "fiber": 1
+    },
+    "emoji": "🧇",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Belgian",
+    "tags": [
+      "waffles",
+      "brioche",
+      "yeasted",
+      "pearl-sugar",
+      "street-food",
+      "dessert",
+      "breakfast",
+      "caramelized"
+    ]
+  },
+  {
+    "id": "cur2-lemon-ricotta-pancakes",
+    "name": "Lemon Ricotta Pancakes",
+    "description": "Pillowy, custard-tender pancakes lightened with whipped egg whites and folded with whole-milk ricotta, brightened by lemon zest and juice. Delicate and lacy at the edges, almost like a soufflé in pancake form.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "ricotta",
+        "quantity": 0.5,
+        "note": "whole-milk ricotta, about 1 cup"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.15,
+        "note": "all-purpose, about 1 cup"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3,
+        "note": "separated"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.2,
+        "note": "whole milk, about 3/4 cup"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 2,
+        "note": "zest of both plus 2 tbsp juice"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.04,
+        "note": "about 2 tbsp"
+      },
+      {
+        "ingredientId": "baking-powder",
+        "quantity": 0.1,
+        "note": "2 tsp"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.01,
+        "note": "1/4 tsp"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.03,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.15,
+        "note": "for the griddle"
+      },
+      {
+        "ingredientId": "maple-syrup",
+        "quantity": 0.15,
+        "optional": true,
+        "note": "to serve"
+      },
+      {
+        "ingredientId": "blueberries",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "to serve"
+      }
+    ],
+    "steps": [
+      "Separate the eggs, putting yolks in a large bowl and whites in a clean medium bowl. In the large bowl, whisk the yolks with the ricotta, milk, sugar, vanilla, the zest of both lemons, and 2 tbsp lemon juice until smooth.",
+      "Whisk the flour, baking powder, and salt together, then fold into the wet ricotta mixture just until no dry streaks remain. The batter will be thick; do not overmix.",
+      "Whip the egg whites with a pinch of salt to soft, billowy peaks. Stir a third of the whites into the batter to loosen it, then gently fold in the rest in two additions, keeping as much air as possible.",
+      "Heat a nonstick skillet or griddle over medium-low and melt a little butter, swirling to coat. Low and slow is key so the thick batter cooks through without burning.",
+      "Scoop scant 1/4-cup mounds of batter and spread slightly. Cook 2 to 3 minutes until the bottoms are golden and small bubbles set around the edges.",
+      "Flip gently and cook another 1 to 2 minutes until puffed and cooked through. Wipe the pan and add fresh butter between batches.",
+      "Keep finished pancakes warm in a low oven. Serve right away, dusted with a little extra lemon zest and topped with maple syrup and blueberries."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 15,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Whole-milk ricotta is cheapest in the larger tub; portion the rest into lasagna, baked pasta, or a sweetened toast spread within the week.",
+      "No fresh lemons? Bottled lemon juice covers the acidity, but keep at least one real lemon just for the zest, which carries most of the aroma.",
+      "Cook all the batter even if you only need half now; leftover pancakes freeze flat between parchment and reheat crisp in a toaster."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "ricotta",
+        "swap": "Cottage cheese blended smooth",
+        "savings": "Often $1-2 cheaper per tub and adds even more protein"
+      },
+      {
+        "forIngredientId": "milk",
+        "swap": "Buttermilk or milk with a splash of the lemon juice",
+        "savings": "Uses what's on hand, no extra purchase"
+      },
+      {
+        "forIngredientId": "maple-syrup",
+        "swap": "Honey or a quick lemon-sugar dusting",
+        "savings": "Saves the cost of real maple syrup"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 320,
+      "protein": 14,
+      "carbs": 32,
+      "fat": 15,
+      "fiber": 1
+    },
+    "emoji": "🥞",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "American",
+    "tags": [
+      "pancakes",
+      "brunch",
+      "lemon",
+      "ricotta",
+      "fluffy",
+      "vegetarian",
+      "weekend"
+    ]
+  },
+  {
+    "id": "cur2-apple-cinnamon-oatmeal-bake",
+    "name": "Apple Cinnamon Oatmeal Bake",
+    "description": "A warm, sliceable baked oatmeal layered with cinnamon-spiced apples, bound with milk, egg, and maple syrup, and topped with toasted walnuts. The oats set into a tender, custardy casserole — make it Sunday and reheat all week.",
+    "mealType": "breakfast",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "oats",
+        "quantity": 2,
+        "note": "old-fashioned rolled oats, ~2 cups"
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.6,
+        "note": "~2 cups whole milk"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2
+      },
+      {
+        "ingredientId": "maple-syrup",
+        "quantity": 0.4,
+        "note": "~1/3 cup"
+      },
+      {
+        "ingredientId": "apple",
+        "quantity": 2,
+        "note": "firm baking apples like Honeycrisp, peeled and diced"
+      },
+      {
+        "ingredientId": "cinnamon",
+        "quantity": 0.5,
+        "note": "~2 tsp ground cinnamon"
+      },
+      {
+        "ingredientId": "baking-powder",
+        "quantity": 0.15,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "vanilla",
+        "quantity": 0.1,
+        "note": "1.5 tsp vanilla extract"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.1,
+        "note": "2 tbsp melted, plus extra for the dish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.05,
+        "note": "1/2 tsp"
+      },
+      {
+        "ingredientId": "walnuts",
+        "quantity": 0.4,
+        "note": "~1/2 cup, roughly chopped",
+        "optional": true
+      },
+      {
+        "ingredientId": "brown-sugar",
+        "quantity": 0.2,
+        "note": "2 tbsp for the apple layer",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Heat the oven to 375F (190C) and butter an 8x8-inch or 9-inch baking dish.",
+      "Peel and dice the apples into 1/2-inch pieces, then toss them with the brown sugar and half of the cinnamon so they release a little syrup while you mix the base.",
+      "In a large bowl, whisk together the milk, eggs, maple syrup, melted butter, and vanilla until smooth.",
+      "Stir in the rolled oats, baking powder, salt, and remaining cinnamon, then let the mixture rest 5 minutes so the oats begin to absorb the liquid.",
+      "Fold about two-thirds of the apples into the oat mixture, pour it into the buttered dish, and spread level.",
+      "Scatter the remaining apples and the chopped walnuts evenly over the top so they toast and caramelize.",
+      "Bake for 38 to 45 minutes, until the center is set and no longer jiggly and the edges are golden.",
+      "Let it rest 10 minutes to firm up, then cut into squares and serve warm with an extra drizzle of maple syrup or a splash of cold milk."
+    ],
+    "totalTimeMinutes": 55,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 40,
+    "difficulty": "easy",
+    "equipment": [
+      "oven"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Buy oats from the bulk bin and a 5 lb bag pays for itself fast — this whole bake costs pennies per serving.",
+      "Use bruised or slightly soft apples that are past snacking prime; baking hides their texture and saves them from the trash.",
+      "Bake a double batch in one dish and refrigerate; squares reheat in 60 seconds and beat any boxed cereal on cost per breakfast."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "milk",
+        "swap": "Use almond-milk or oat-milk to make it dairy-free",
+        "savings": "About the same cost, and lets you skip a dairy run"
+      },
+      {
+        "forIngredientId": "maple-syrup",
+        "swap": "Swap in honey or brown sugar",
+        "savings": "Saves ~$0.40 per bake vs real maple syrup"
+      },
+      {
+        "forIngredientId": "walnuts",
+        "swap": "Use pecans, raisins, or just leave them out",
+        "savings": "Saves ~$0.60 if you skip the nuts"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 280,
+      "protein": 8,
+      "carbs": 42,
+      "fat": 9,
+      "fiber": 5
+    },
+    "emoji": "🍎",
+    "accentColor": "bg-amber-100",
+    "cuisine": "American",
+    "tags": [
+      "baked-oatmeal",
+      "meal-prep",
+      "make-ahead",
+      "fall",
+      "kid-friendly",
+      "vegetarian",
+      "breakfast"
+    ]
+  },
+  {
+    "id": "cur2-spanish-tortilla-espanola",
+    "name": "Spanish Tortilla Española",
+    "description": "The classic Spanish potato omelette: thin-sliced potatoes and onion gently confited in olive oil, bound with beaten eggs and cooked into a thick, golden cake that's set on the outside and just-creamy in the middle. Five ingredients, all technique. Serve in wedges warm or at room temperature.",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "potato",
+        "quantity": 2.5,
+        "note": "about 1.5 lb / 700g waxy or Yukon Gold potatoes"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 6
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "yellow onion, thinly sliced (classic 'con cebolla')"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.6,
+        "note": "extra virgin, enough to nearly submerge the potatoes (most is drained and reusable)"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 1,
+        "note": "to taste"
+      }
+    ],
+    "steps": [
+      "Peel the potatoes and slice them into thin, even rounds about 2-3mm thick (a mandoline helps). Thinly slice the onion. Pat the potatoes dry and salt them lightly.",
+      "Pour the olive oil into a 9-10 inch nonstick skillet over medium-low heat. Add the potatoes and onion, making sure they're nearly submerged. Cook gently for 20-25 minutes, stirring occasionally, until the potatoes are meltingly tender but not browned — they should crush easily against the side of the pan.",
+      "Set a colander over a heatproof bowl and drain the potatoes and onion, reserving the flavorful oil for later use. Let the potatoes cool for a few minutes.",
+      "Beat the eggs in a large bowl with a good pinch of salt. Fold in the warm drained potatoes and onion and let the mixture rest 10-15 minutes so the potatoes soak up the egg.",
+      "Heat 1-2 tablespoons of the reserved oil in the nonstick skillet over medium heat. Pour in the egg-and-potato mixture, spreading it evenly, and cook 3-4 minutes, gently pulling the edges inward, until the bottom is set and golden and the top is still loose.",
+      "Cover the pan with a flat plate larger than the skillet. Holding it firmly, flip the tortilla onto the plate, then slide it back into the pan uncooked-side down. Tuck the edges in with a spatula to round the sides.",
+      "Cook the second side 2-3 minutes for a creamy (jugosa) center, or 4 minutes for fully set. Slide onto a plate, rest 5 minutes, and cut into wedges. Serve warm or at room temperature."
+    ],
+    "totalTimeMinutes": 50,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 35,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "The olive oil is mostly drained off and keeps in a jar — it's now potato-and-onion infused, perfect for frying eggs or roasting vegetables, so it isn't really 'used up.'",
+      "Potatoes, eggs, and onion are some of the cheapest staples there are — this feeds four for the price of a couple eggs each.",
+      "No need for premium spuds; ordinary all-purpose or Yukon Gold potatoes work better here than fancy varieties."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "olive-oil",
+        "swap": "Use vegetable or canola oil for the confit step (finish with a little olive oil for flavor if you have it)",
+        "savings": "Saves about 60% versus extra-virgin olive oil"
+      },
+      {
+        "forIngredientId": "potato",
+        "swap": "Sweet potato or a mix with potato for a slightly sweeter, modern twist",
+        "savings": "Roughly the same cost"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 320,
+      "protein": 12,
+      "carbs": 28,
+      "fat": 18,
+      "fiber": 3
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Spanish",
+    "tags": [
+      "spanish",
+      "tapas",
+      "potato",
+      "egg",
+      "vegetarian",
+      "gluten-free",
+      "classic",
+      "5-ingredient",
+      "room-temperature"
+    ]
+  },
+  {
+    "id": "cur2-frittata-primavera",
+    "name": "Frittata Primavera",
+    "description": "A tender Italian baked egg frittata loaded with spring vegetables — asparagus, zucchini, leek, and sweet peas — bound by eggs enriched with a splash of milk and nutty Parmesan. Started on the stovetop for set edges, then finished in the oven so the center stays custardy and just set. Bright with fresh basil and lemon, it's elegant enough for brunch yet easy enough for a weeknight.",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "eggs",
+        "quantity": 8
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.1,
+        "note": "3 tablespoons whole milk"
+      },
+      {
+        "ingredientId": "parmesan",
+        "quantity": 0.2,
+        "note": "1/2 cup finely grated"
+      },
+      {
+        "ingredientId": "asparagus",
+        "quantity": 0.5,
+        "note": "half a bunch, trimmed and cut into 1-inch pieces"
+      },
+      {
+        "ingredientId": "zucchini",
+        "quantity": 1,
+        "note": "small, halved and thinly sliced"
+      },
+      {
+        "ingredientId": "leek",
+        "quantity": 1,
+        "note": "white and light-green parts only, thinly sliced"
+      },
+      {
+        "ingredientId": "frozen-peas",
+        "quantity": 0.25,
+        "note": "about 3/4 cup, thawed"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 0.1,
+        "note": "2 cloves, minced"
+      },
+      {
+        "ingredientId": "basil-fresh",
+        "quantity": 0.3,
+        "note": "small handful, torn"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.06,
+        "note": "2 tablespoons"
+      },
+      {
+        "ingredientId": "lemon-zest",
+        "quantity": 1,
+        "note": "zest of half a lemon"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "red-pepper-flakes",
+        "quantity": 0.01,
+        "optional": true,
+        "note": "pinch, for warmth"
+      }
+    ],
+    "steps": [
+      "Position a rack in the upper-middle of the oven and preheat to 375°F (190°C). Bring a small pot of salted water to a boil and blanch the asparagus for 90 seconds, then drain and set aside so it stays bright and crisp-tender.",
+      "In a bowl, whisk the eggs with the milk, grated Parmesan, lemon zest, 1/2 teaspoon salt, and several grinds of pepper until fully blended and slightly frothy. Stir in half the torn basil.",
+      "Heat the olive oil in a 10-inch oven-safe (cast-iron or nonstick) skillet over medium. Add the sliced leek with a pinch of salt and cook 3-4 minutes until soft but not browned, then add the garlic and cook 30 seconds until fragrant.",
+      "Add the zucchini and cook 3-4 minutes until just tender and any liquid has cooked off, then stir in the blanched asparagus and peas and warm through for 1 minute. Spread the vegetables into an even layer.",
+      "Pour the egg mixture evenly over the vegetables. Let it cook undisturbed over medium-low for 2-3 minutes, gently lifting the edges with a spatula and tilting the pan so uncooked egg runs underneath, until the edges are set but the center is still loose.",
+      "Scatter the red pepper flakes over the top, then transfer the skillet to the oven and bake 8-12 minutes, until the frittata is puffed and the center is just set with no liquid jiggle.",
+      "Let rest in the pan 5 minutes so it finishes setting and firms up for clean slices. Run a spatula around and under the edge to loosen.",
+      "Slide onto a board or serve from the pan. Top with the remaining fresh basil and a little extra Parmesan, cut into 4 wedges, and serve warm or at room temperature."
+    ],
+    "totalTimeMinutes": 35,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "high-protein",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Use whatever spring vegetables are cheapest or on sale — broccoli, spinach, or bell pepper all work beautifully in place of asparagus.",
+      "Frozen peas are cheaper than fresh and just as good here; keep a bag in the freezer for instant color and sweetness.",
+      "A frittata is the perfect home for the lonely half-zucchini or wilting herbs in your fridge, turning near-scraps into a real meal."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "asparagus",
+        "swap": "Use broccoli florets or fresh spinach",
+        "savings": "Saves ~$2 when asparagus is out of season"
+      },
+      {
+        "forIngredientId": "parmesan",
+        "swap": "Use grated cheddar or crumbled feta",
+        "savings": "Saves ~$1.50 per wedge of hard cheese"
+      },
+      {
+        "forIngredientId": "leek",
+        "swap": "Use half a yellow onion plus a sliced scallion",
+        "savings": "Saves ~$1 versus a whole leek"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 245,
+      "protein": 17,
+      "carbs": 9,
+      "fat": 16,
+      "fiber": 3
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Italian",
+    "tags": [
+      "frittata",
+      "eggs",
+      "spring vegetables",
+      "brunch",
+      "vegetarian",
+      "gluten-free",
+      "high-protein",
+      "one-pan",
+      "meal-prep-friendly"
+    ]
+  },
+  {
+    "id": "cur2-savory-dutch-baby",
+    "name": "Savory Dutch Baby",
+    "description": "A dramatic, oven-puffed pancake baked in a screaming-hot cast-iron skillet until the edges climb the sides and turn golden and crisp. This savory version skips the sugar, folds Gruyere and fresh chives into a custardy egg-and-flour batter, and finishes with a peppery handful of arugula, shaved Parmesan, and a squeeze of lemon. It collapses gracefully into a tender, eggy center the moment it leaves the oven — best torn and shared straight from the pan.",
+    "mealType": "breakfast",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "eggs",
+        "quantity": 3
+      },
+      {
+        "ingredientId": "milk",
+        "quantity": 0.18,
+        "note": "3/4 cup whole milk, at room temperature"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.07,
+        "note": "3/4 cup all-purpose flour"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.12,
+        "note": "3 tbsp unsalted butter for the hot skillet"
+      },
+      {
+        "ingredientId": "gruyere",
+        "quantity": 0.25,
+        "note": "about 1/2 cup grated, stirred into batter"
+      },
+      {
+        "ingredientId": "chives",
+        "quantity": 0.3,
+        "note": "2 tbsp finely chopped, plus more to finish"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02
+      },
+      {
+        "ingredientId": "pepper",
+        "quantity": 0.02,
+        "note": "freshly ground"
+      },
+      {
+        "ingredientId": "nutmeg",
+        "quantity": 0.01,
+        "note": "tiny pinch, optional",
+        "optional": true
+      },
+      {
+        "ingredientId": "arugula",
+        "quantity": 0.3,
+        "note": "2 large handfuls to top"
+      },
+      {
+        "ingredientId": "parmesan",
+        "quantity": 0.1,
+        "note": "shaved, to finish"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.25,
+        "note": "wedge, to squeeze over"
+      },
+      {
+        "ingredientId": "evoo",
+        "quantity": 0.02,
+        "note": "drizzle over the greens"
+      }
+    ],
+    "steps": [
+      "Set a 10- to 12-inch cast-iron or other oven-safe skillet on the middle rack and preheat the oven to 450F (230C). Let everything else come to room temperature — cold ingredients will not puff well.",
+      "Crack the eggs into a blender (or a bowl with a whisk) and blend 20 seconds until pale and foamy. Add the room-temperature milk, flour, salt, pepper, and the pinch of nutmeg, then blend just until smooth — about 30 seconds. Let the batter rest 10 minutes; stir in the grated Gruyere and chopped chives.",
+      "When the oven is fully hot, carefully pull out the skillet, drop in the butter, and swirl until it melts and foams, coating the bottom and sides completely. Work quickly so the pan stays blazing hot.",
+      "Pour the rested batter into the center of the hot, buttered skillet all at once — do not stir. Return it to the oven immediately.",
+      "Bake 18 to 22 minutes without opening the door. The Dutch baby will billow up the sides and turn deep golden and crisp at the edges while staying custardy in the center.",
+      "Meanwhile, toss the arugula with a drizzle of olive oil, a squeeze of lemon, and a small pinch of salt.",
+      "Pull the puffed pancake from the oven (it will begin to deflate within a minute — that is normal). Pile the dressed arugula into the center, shower with shaved Parmesan and extra chives, and add a final crack of pepper.",
+      "Cut into wedges and serve immediately, straight from the pan, with a lemon wedge on the side."
+    ],
+    "totalTimeMinutes": 35,
+    "prepTimeMinutes": 13,
+    "cookTimeMinutes": 22,
+    "difficulty": "medium",
+    "equipment": [
+      "oven",
+      "blender"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": true,
+    "dietTags": [
+      "vegetarian",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Skip the blender and whisk the batter by hand — just beat the eggs really well first so the flour blends in lump-free.",
+      "Gruyere makes it luxe, but any meltable cheese you already have (cheddar, Swiss, even the heel of a Parmesan wedge) works great and costs less.",
+      "No cast iron? Any oven-safe metal skillet or even a glass pie dish works — just get it ripping hot with the butter before the batter goes in."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "gruyere",
+        "swap": "Sharp cheddar or Swiss cheese",
+        "savings": "Saves about $2 versus aged Gruyere"
+      },
+      {
+        "forIngredientId": "milk",
+        "swap": "Half-and-half cut with water, or any milk on hand",
+        "savings": "Uses what you already have; no extra cost"
+      },
+      {
+        "forIngredientId": "arugula",
+        "swap": "Baby spinach or spring mix",
+        "savings": "Often $1-2 cheaper per bag"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 430,
+      "protein": 22,
+      "carbs": 28,
+      "fat": 25,
+      "fiber": 2
+    },
+    "emoji": "🥞",
+    "accentColor": "bg-amber-100",
+    "cuisine": "German-American",
+    "tags": [
+      "brunch",
+      "oven-baked",
+      "puffy",
+      "vegetarian",
+      "cast-iron",
+      "eggs",
+      "shareable",
+      "no-stovetop"
+    ]
+  },
+  {
+    "id": "cur2-tiramisu-trifle",
+    "name": "Tiramisu Trifle",
+    "description": "Classic tiramisu reimagined as a layered trifle: espresso-and-Marsala-soaked ladyfingers under clouds of silky mascarpone zabaglione cream, dusted with bitter cocoa. No baking, no gelatin, just the real thing layered in a glass.",
+    "mealType": "snack",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "graham-crackers",
+        "quantity": 1,
+        "note": "Ladyfingers (savoiardi) are ideal; use ~24 ladyfingers per trifle"
+      },
+      {
+        "ingredientId": "mascarpone",
+        "quantity": 1,
+        "note": "8 oz, at room temperature"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 3,
+        "note": "yolks for the zabaglione, whites whipped separately"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.5,
+        "note": "about 1/2 cup, split between yolks and whites"
+      },
+      {
+        "ingredientId": "heavy-cream",
+        "quantity": 0.25,
+        "note": "1/2 cup, whipped to soft peaks to lighten the cream"
+      },
+      {
+        "ingredientId": "espresso",
+        "quantity": 6,
+        "note": "about 1.5 cups strong brewed espresso, cooled, for soaking"
+      },
+      {
+        "ingredientId": "marsala-wine",
+        "quantity": 0.15,
+        "note": "3 tbsp dry Marsala stirred into the soak and yolks"
+      },
+      {
+        "ingredientId": "cocoa",
+        "quantity": 0.2,
+        "note": "unsweetened, for dusting between and on top",
+        "optional": false
+      },
+      {
+        "ingredientId": "dark-chocolate",
+        "quantity": 0.2,
+        "optional": true,
+        "note": "shaved over the top for garnish"
+      }
+    ],
+    "steps": [
+      "Brew the espresso strong and let it cool completely, then stir in 2 tbsp of the Marsala and pour into a shallow dish for soaking. Set aside.",
+      "Make the zabaglione base: in a heatproof bowl set over barely simmering water, whisk the 3 egg yolks with half the sugar and the remaining 1 tbsp Marsala for 5-7 minutes until pale, thick, and tripled in volume. Remove and cool to room temperature.",
+      "Whisk the room-temperature mascarpone just until smooth, then fold it gently into the cooled zabaglione until no streaks remain (do not overwork or it will split).",
+      "In a clean bowl, whip the heavy cream to soft peaks and fold it into the mascarpone mixture. Separately, whip the egg whites with the remaining sugar to glossy soft peaks and fold them in too, keeping the cream airy.",
+      "Working one at a time, dip the ladyfingers into the espresso for just 1-2 seconds per side so they moisten but do not turn to mush, then arrange a snug single layer across the bottom of a glass trifle bowl.",
+      "Spread half the mascarpone cream over the soaked ladyfingers in an even layer, then sift a generous dusting of cocoa over the cream.",
+      "Add a second layer of espresso-dipped ladyfingers, top with the remaining mascarpone cream, and smooth the surface.",
+      "Cover and refrigerate at least 4 hours, ideally overnight, so the layers set and the flavors meld.",
+      "Just before serving, sift a final even layer of cocoa over the top and finish with shaved dark chocolate."
+    ],
+    "totalTimeMinutes": 270,
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 0,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "no-cook",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Brew strong instant or drip coffee instead of buying espresso shots — once it's soaked into the cookies and balanced with cocoa, the difference is negligible.",
+      "Skip the dark chocolate garnish; a clean dusting of cocoa is the traditional finish and costs almost nothing.",
+      "Buy a generic store-brand mascarpone or make your own by gently simmering heavy cream with a splash of lemon juice — it's the single most expensive ingredient."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "marsala-wine",
+        "swap": "Coffee liqueur, dark rum, or simply a splash more espresso",
+        "savings": "Avoids buying a whole bottle of Marsala for 3 tbsp"
+      },
+      {
+        "forIngredientId": "mascarpone",
+        "swap": "Beat 8 oz cream cheese with 3 tbsp heavy cream and 1 tbsp sour cream until smooth",
+        "savings": "Cuts the dairy cost by roughly half"
+      },
+      {
+        "forIngredientId": "graham-crackers",
+        "swap": "Cubed pound cake or sponge cake layered into the bowl",
+        "savings": "Use up day-old cake instead of buying special cookies"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 340,
+      "protein": 7,
+      "carbs": 30,
+      "fat": 21,
+      "fiber": 1
+    },
+    "emoji": "🍰",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Italian",
+    "tags": [
+      "dessert",
+      "no-bake",
+      "make-ahead",
+      "coffee",
+      "mascarpone",
+      "trifle",
+      "tiramisu",
+      "party"
+    ]
+  },
+  {
+    "id": "cur2-lemon-posset",
+    "name": "Lemon Posset",
+    "description": "A silky, set British cream pudding made from just three ingredients — heavy cream, sugar, and fresh lemon. No gelatin, no eggs: the lemon's acid alone thickens the simmered cream into a luxurious, intensely citrusy custard. Topped with fresh berries and mint, it's the easiest elegant dessert you'll ever make.",
+    "mealType": "snack",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "heavy-cream",
+        "quantity": 0.5,
+        "note": "2 cups (480 ml)"
+      },
+      {
+        "ingredientId": "white-sugar",
+        "quantity": 0.3,
+        "note": "2/3 cup (135 g)"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 2,
+        "note": "for ~6 tbsp fresh juice"
+      },
+      {
+        "ingredientId": "lemon-zest",
+        "quantity": 1,
+        "note": "finely grated zest of both lemons"
+      },
+      {
+        "ingredientId": "mixed-berries",
+        "quantity": 0.5,
+        "optional": true,
+        "note": "raspberries or blueberries, to serve"
+      },
+      {
+        "ingredientId": "mint-fresh",
+        "quantity": 0.15,
+        "optional": true,
+        "note": "a few small sprigs to garnish"
+      }
+    ],
+    "steps": [
+      "Finely grate the zest of both lemons, then juice them — you want about 6 tablespoons (90 ml) of fresh juice. Set both aside separately.",
+      "Pour the heavy cream into a saucepan and add the sugar and lemon zest. Place over medium heat and stir until the sugar fully dissolves.",
+      "Bring to a gentle boil, then let it boil steadily for exactly 3 minutes, stirring constantly so it doesn't boil over or scorch. This concentrates the cream so it will set firmly.",
+      "Remove from the heat and let it stand for 1 minute to cool slightly, then whisk in the fresh lemon juice. The acid will immediately begin to thicken the cream.",
+      "Let the mixture rest off the heat for 5 minutes, then give it a final whisk — it should look smooth and slightly thickened.",
+      "Pour through a fine strainer into 4 small ramekins, glasses, or jars to catch the zest for a perfectly smooth texture (or leave the zest in for more punch).",
+      "Cool to room temperature, then refrigerate uncovered for at least 3 hours, or until fully set with a soft, custard-like wobble.",
+      "Just before serving, top each posset with fresh berries and a small sprig of mint."
+    ],
+    "totalTimeMinutes": 195,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 5,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Lemon posset needs nothing but cream, sugar, and lemon — skip the berries and you have a stunning dessert for the price of a carton of cream.",
+      "Save the spent, juiced lemon halves in the freezer to zest or use for cleaning later; the zest is the most flavorful part.",
+      "Serve in small espresso cups or recycled jam jars — possets are very rich, so tiny portions go a long way and stretch one batch further."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "lemon",
+        "swap": "Use bottled lemon juice plus extra zest from one fresh lemon",
+        "savings": "Saves about $0.50 and works in a pinch, though fresh juice tastes brighter"
+      },
+      {
+        "forIngredientId": "white-sugar",
+        "swap": "Caster or superfine sugar dissolves even faster",
+        "savings": "Same cost, smoother result"
+      },
+      {
+        "forIngredientId": "mixed-berries",
+        "swap": "Any seasonal fruit or a spoon of jam",
+        "savings": "Saves $1.50+ when berries are out of season"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 3,
+      "carbs": 30,
+      "fat": 40,
+      "fiber": 1
+    },
+    "emoji": "🍋",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "British",
+    "tags": [
+      "dessert",
+      "make-ahead",
+      "no-bake",
+      "3-ingredient",
+      "gluten-free",
+      "citrus",
+      "elegant",
+      "vegetarian"
+    ]
+  },
+  {
+    "id": "cur2-chocolate-lava-cake",
+    "name": "Chocolate Lava Cake",
+    "description": "A classic molten chocolate lava cake with a set, fudgy exterior that gives way to a warm, flowing dark-chocolate center. Built the real way — quality dark chocolate and butter melted together, whole eggs plus extra yolks whipped with sugar for lift, and just enough flour to hold the walls. The trick is underbaking: pull them at 12 minutes so the middle stays liquid.",
+    "mealType": "snack",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "dark-chocolate",
+        "quantity": 1.2,
+        "note": "about 6 oz / 170g good bittersweet dark chocolate (60-70%), chopped"
+      },
+      {
+        "ingredientId": "butter",
+        "quantity": 0.6,
+        "note": "about 10 tbsp unsalted, plus extra for greasing the ramekins"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 2,
+        "note": "2 whole eggs"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 1,
+        "note": "2 extra yolks (counted as ~1 egg's worth of cost)"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.15,
+        "note": "about 1/3 cup granulated sugar"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.1,
+        "note": "about 1/4 cup all-purpose flour"
+      },
+      {
+        "ingredientId": "vanilla-extract",
+        "quantity": 0.1,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "salt",
+        "quantity": 0.02,
+        "note": "a pinch of fine salt"
+      },
+      {
+        "ingredientId": "cocoa-powder",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "for dusting the buttered ramekins so the cakes release cleanly"
+      },
+      {
+        "ingredientId": "powdered-sugar",
+        "quantity": 0.05,
+        "optional": true,
+        "note": "for dusting before serving"
+      },
+      {
+        "ingredientId": "raspberries",
+        "quantity": 0.3,
+        "optional": true,
+        "note": "to garnish"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 425F (220C). Generously butter four 6-oz ramekins, then dust the inside with cocoa powder, tapping out the excess — this is what lets the molten cakes slide out cleanly. Set them on a baking sheet.",
+      "Combine the chopped dark chocolate and butter in a heatproof bowl. Melt gently over a pan of barely simmering water (or in 30-second microwave bursts), stirring until smooth and glossy. Let it cool for a couple of minutes so it doesn't cook the eggs.",
+      "In a separate bowl, whisk the 2 whole eggs, 2 extra yolks, sugar, vanilla, and pinch of salt together vigorously for 1-2 minutes, until pale, thickened, and slightly foamy — this whipped air is what gives the cakes their lift.",
+      "Pour the warm melted chocolate into the egg mixture and whisk until fully combined and uniform.",
+      "Sift the flour over the top and fold it in gently with a spatula just until no streaks remain. Do not overmix — you want to keep the airiness.",
+      "Divide the batter evenly among the four ramekins, filling each about three-quarters full.",
+      "Bake for exactly 11-12 minutes: the tops should be puffed and set with a thin crust, but the centers should still jiggle slightly when nudged. Underbaking is correct — that's the molten core.",
+      "Let the cakes rest for exactly 1 minute (no longer, or the center keeps cooking). Run a thin knife around each edge, invert a plate over the ramekin, flip together, and lift the ramekin away.",
+      "Dust with powdered sugar, add a few raspberries, and serve immediately while the center is still flowing."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 18,
+    "cookTimeMinutes": 12,
+    "difficulty": "medium",
+    "equipment": [
+      "oven",
+      "stovetop"
+    ],
+    "primaryCookingMethod": "oven",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Use a good baking bar of dark chocolate rather than premium couverture — at 60-70% cacao the result is just as molten for a fraction of the price.",
+      "No ramekins? A muffin tin works: butter and cocoa-dust the cups, bake the same way, and they pop out into little molten cakes.",
+      "Batter can be portioned into the ramekins and refrigerated up to a day ahead; bake straight from cold, adding about 1 extra minute."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "dark-chocolate",
+        "swap": "Semi-sweet or dark chocolate chips melted the same way",
+        "savings": "Often cheaper per ounce than a bar and you skip the chopping"
+      },
+      {
+        "forIngredientId": "butter",
+        "swap": "Plant butter for a dairy-free version",
+        "savings": "Comparable price, no separate dairy purchase needed"
+      },
+      {
+        "forIngredientId": "raspberries",
+        "swap": "Strawberries or a spoonful of any berry jam",
+        "savings": "Saves around $2-3 versus fresh raspberries"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 8,
+      "carbs": 38,
+      "fat": 34,
+      "fiber": 4
+    },
+    "emoji": "🍫",
+    "accentColor": "bg-rose-100",
+    "cuisine": "French",
+    "tags": [
+      "dessert",
+      "chocolate",
+      "molten",
+      "baking",
+      "date-night",
+      "individual"
     ]
   }
 ];
