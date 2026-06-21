@@ -164,6 +164,41 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   parmesan: { calories: 22, protein: 2, carbs: 0, fat: 1.5, confidence: "high" }, // 1 tbsp grated
   mozzarella: { calories: 85, protein: 6, carbs: 1, fat: 6, confidence: "high" }, // 1/4 cup shredded
   "almond-milk": { calories: 60, protein: 1, carbs: 8, fat: 2.5, confidence: "high" }, // 1 cup vanilla unsweetened
+  // ===== Drinks =====
+  "gin": { calories: 73, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "rum": { calories: 64, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "white-rum": { calories: 64, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "tequila": { calories: 69, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "whiskey": { calories: 70, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "bourbon": { calories: 70, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "triple-sec": { calories: 80, protein: 0, carbs: 9, fat: 0, confidence: "high" },
+  "aperol": { calories: 45, protein: 0, carbs: 5, fat: 0, confidence: "high" },
+  "campari": { calories: 65, protein: 0, carbs: 8, fat: 0, confidence: "high" },
+  "sweet-vermouth": { calories: 45, protein: 0, carbs: 5, fat: 0, confidence: "high" },
+  "coffee-liqueur": { calories: 91, protein: 0, carbs: 11, fat: 0, confidence: "high" },
+  "prosecco": { calories: 20, protein: 0, carbs: 1.5, fat: 0, confidence: "high" },
+  "simple-syrup": { calories: 80, protein: 0, carbs: 21, fat: 0, confidence: "high" },
+  "tonic-water": { calories: 10, protein: 0, carbs: 2.5, fat: 0, confidence: "high" },
+  "club-soda": { calories: 0, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "ginger-beer": { calories: 12, protein: 0, carbs: 3, fat: 0, confidence: "high" },
+  "ginger-ale": { calories: 10, protein: 0, carbs: 2.6, fat: 0, confidence: "high" },
+  "cola": { calories: 12, protein: 0, carbs: 3.3, fat: 0, confidence: "high" },
+  "grenadine": { calories: 80, protein: 0, carbs: 20, fat: 0, confidence: "high" },
+  "bitters": { calories: 2, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "cranberry-juice": { calories: 17, protein: 0, carbs: 4, fat: 0, confidence: "high" },
+  "pineapple-juice": { calories: 16, protein: 0, carbs: 4, fat: 0, confidence: "high" },
+  "grapefruit-juice": { calories: 12, protein: 0, carbs: 3, fat: 0, confidence: "high" },
+  "tomato-juice": { calories: 5, protein: 0.2, carbs: 1.1, fat: 0, confidence: "high" },
+  "coffee": { calories: 2, protein: 0.3, carbs: 0, fat: 0, confidence: "high" },
+  "espresso": { calories: 3, protein: 0.1, carbs: 0.5, fat: 0, confidence: "high" },
+  "cold-brew": { calories: 5, protein: 0.5, carbs: 0, fat: 0, confidence: "high" },
+  "black-tea": { calories: 2, protein: 0, carbs: 0.5, fat: 0, confidence: "high" },
+  "green-tea": { calories: 2, protein: 0, carbs: 0.4, fat: 0, confidence: "high" },
+  "matcha": { calories: 5, protein: 1, carbs: 1, fat: 0, confidence: "high" },
+  "chai-tea": { calories: 3, protein: 0, carbs: 0.6, fat: 0, confidence: "high" },
+  "agave-syrup": { calories: 60, protein: 0, carbs: 16, fat: 0, confidence: "high" },
+  "vanilla-extract": { calories: 12, protein: 0, carbs: 0.5, fat: 0, confidence: "high" },
+  "ice": { calories: 0, protein: 0, carbs: 0, fat: 0, confidence: "high" },
   "oat-milk": { calories: 120, protein: 3, carbs: 16, fat: 5, confidence: "high" }, // 1 cup
 
   // ===== Expanded condiments =====

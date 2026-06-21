@@ -87,7 +87,9 @@ const EQUIPMENT: { label: string; value: string; icon: FeatherName }[] = [
   { label: "Microwave", value: "microwave", icon: "zap" },
   { label: "Stovetop", value: "stovetop", icon: "thermometer" },
   { label: "Oven", value: "oven", icon: "box" },
+  { label: "Rice Cooker", value: "rice-cooker", icon: "archive" },
   { label: "Air Fryer", value: "air-fryer", icon: "wind" },
+  { label: "Blender", value: "blender", icon: "loader" },
   { label: "No Kitchen", value: "no-kitchen", icon: "coffee" },
 ];
 

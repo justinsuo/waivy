@@ -39,6 +39,7 @@ const EQUIPMENT_KEYWORDS: Record<Equipment, string[]> = {
   oven: ["oven"],
   "rice-cooker": ["rice cooker"],
   "air-fryer": ["air fryer", "air-fryer"],
+  blender: ["blender", "blend", "blended"],
   "no-kitchen": ["dorm", "no kitchen", "no-kitchen", "dorm-friendly"],
 };
 
@@ -48,6 +49,7 @@ const MEAL_TYPE_KEYWORDS: Record<MealType, string[]> = {
   dinner: ["dinner", "supper", "evening"],
   snack: ["snack"],
   "meal-prep": ["meal prep", "meal-prep", "prep"],
+  drink: ["drink", "drinks", "cocktail", "mocktail", "smoothie", "tea", "coffee", "juice", "beverage"],
 };
 
 function lc(s: string) {

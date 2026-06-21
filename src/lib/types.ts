@@ -16,6 +16,7 @@ export type Equipment =
   | "oven"
   | "rice-cooker"
   | "air-fryer"
+  | "blender"
   | "no-kitchen";
 
 export type DietTag =
@@ -25,7 +26,7 @@ export type DietTag =
   | "gluten-free"
   | "dairy-free";
 
-export type MealType = "breakfast" | "lunch" | "dinner" | "snack" | "meal-prep";
+export type MealType = "breakfast" | "lunch" | "dinner" | "snack" | "meal-prep" | "drink";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
@@ -153,6 +154,7 @@ export interface Recipe {
     | "air-fryer"
     | "microwave"
     | "air-fryer-and-microwave"
+    | "blender"
     | "no-cook";
   noStovetopRequired?: boolean;
   crispinessLevel?: "soft" | "lightly crispy" | "crispy" | "extra crispy";

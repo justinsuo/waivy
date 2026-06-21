@@ -39,6 +39,7 @@ const EQUIPMENT_OPTIONS: { value: Equipment; label: string; emoji: string }[] = 
   { value: "oven", label: "Oven", emoji: "🔥" },
   { value: "rice-cooker", label: "Rice cooker", emoji: "🍚" },
   { value: "air-fryer", label: "Air fryer", emoji: "💨" },
+  { value: "blender", label: "Blender", emoji: "🥤" },
   { value: "no-kitchen", label: "Dorm only", emoji: "🏠" },
 ];
 
@@ -65,6 +66,7 @@ const MEAL_OPTIONS: { value: MealType | "any"; label: string }[] = [
   { value: "dinner", label: "Dinner" },
   { value: "snack", label: "Snack" },
   { value: "meal-prep", label: "Meal prep" },
+  { value: "drink", label: "Drinks" },
 ];
 
 const DEFAULTS: CheapFilters = {

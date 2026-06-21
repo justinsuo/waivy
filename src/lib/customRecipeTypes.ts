@@ -37,7 +37,7 @@ export interface BaseCustomRecipe {
   id: string;
   name: string;
   description: string;
-  mealType: "breakfast" | "lunch" | "dinner" | "snack" | "meal-prep";
+  mealType: "breakfast" | "lunch" | "dinner" | "snack" | "meal-prep" | "drink";
   cuisineStyle?: string;
   servings: number;
   prepTimeMinutes: number;
