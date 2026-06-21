@@ -1286,6 +1286,34 @@ export const INGREDIENTS: Ingredient[] = [
 // Alias map: maps alternative ingredient IDs used in macro recipe batches to the
 // canonical ID already in INGREDIENTS. The value is the canonical id string.
 const INGREDIENT_ALIASES: Record<string, string> = {
+  // Variant / synonym ingredient ids used by some macro-friendly recipes that
+  // weren't in the catalog — resolve to the closest canonical ingredient so
+  // pricing, nutrition, and pantry matching work instead of silently dropping.
+  "chicken-sausage": "sausage",
+  "turkey-kielbasa": "sausage",
+  "pigeon-peas": "black-eyed-peas",
+  "croutons": "bread",
+  "anchovies": "tuna",
+  "manchego-cheese": "parmesan",
+  "shirataki-noodles": "rice-noodles",
+  "pork-loin": "pork-chop",
+  "vanilla-protein-powder": "protein-powder",
+  "low-fat-yogurt": "greek-yogurt",
+  "light-coconut-milk": "coconut-milk",
+  "low-fat-milk": "milk",
+  "chickpea-pasta": "pasta",
+  "lentil-pasta": "pasta",
+  "low-fat-evaporated-milk": "evaporated-milk",
+  "large-lettuce-leaves": "lettuce",
+  "low-fat-cheese": "cheese",
+  "powdered-peanut-butter": "peanut-butter",
+  "labneh": "greek-yogurt",
+  "low-fat-sour-cream": "sour-cream",
+  "extra-red-lentils": "red-lentils",
+  "light-mayo": "mayonnaise",
+  "lean-ground-beef": "ground-beef",
+  "light-turkey-gravy": "chicken-broth",
+  "quark": "cottage-cheese",
   // Eggs
   "egg": "eggs",
   "egg-whites": "eggs",

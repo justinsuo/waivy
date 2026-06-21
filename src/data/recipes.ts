@@ -4585,13 +4585,39 @@ function dedupeByName(recipes: Recipe[]): Recipe[] {
   });
 }
 
+// Brand-name protein-powder "shake" recipes that are really just "blend brand-X
+// powder with milk" — removed (they aren't real recipes and use trademarks). One
+// generic protein shake (gen-protein-shake) is kept; real fruit smoothies remain.
+const REMOVED_RECIPE_IDS = new Set<string>([
+  "gen-protein-smoothie-bowl",
+  "gen-isopure-zero-carb-shake",
+  "gen-premier-protein-shake",
+  "gen-orgain-organic-protein-smoothie",
+  "gen-vega-protein-smoothie",
+  "gen-clif-bar-builder-protein-shake",
+  "gen-slim-fast-high-protein-shake",
+  "gen-muscle-milk-shake",
+  "gen-optimum-nutrition-gold-standard-shake",
+  "gen-chocolate-banana-protein-smoothie",
+  "gen-strawberry-protein-smoothie-bowl",
+  "gen-bsn-syntha-6-shake",
+  "gen-muscletech-nitrotech-shake",
+  "gen-dymatize-iso-100-shake",
+  "gen-musclepharm-combat-protein-shake",
+  "gen-casein-protein-shake",
+  "gen-garden-of-life-raw-organic-protein-shake",
+  "gen-nutribullet-protein-smoothie",
+  "gen-ensure-high-protein-shake",
+]);
+const notRemoved = (r: Recipe) => !REMOVED_RECIPE_IDS.has(r.id);
+
 export const CATALOG_RECIPES: Recipe[] = dedupeByName([
   ...RECIPES,
   ...originalVariantsOnly(MACRO_RECIPES),
   ...WEB_RECIPES,
   ...GEN_RECIPES,
   ...SOCIAL_RECIPES,
-]);
+].filter(notRemoved));
 
 export const ALL_RECIPES: Recipe[] = [
   ...RECIPES,
@@ -4599,7 +4625,7 @@ export const ALL_RECIPES: Recipe[] = [
   ...WEB_RECIPES,
   ...GEN_RECIPES,
   ...SOCIAL_RECIPES,
-];
+].filter(notRemoved);
 
 export const RECIPE_MAP = new Map<string, Recipe>(
   ALL_RECIPES.map((r) => [r.id, r]),
