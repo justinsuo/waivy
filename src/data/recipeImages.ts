@@ -6,6 +6,7 @@ import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
 import { RICE_COOKER_RECIPE_PHOTOS } from "@/data/riceCookerRecipePhotos";
 import { DRINK_RECIPE_PHOTOS } from "@/data/drinkRecipePhotos";
 import { CURATED_RECIPE_PHOTOS } from "@/data/curatedRecipePhotos";
+import { BAKING_RECIPE_PHOTOS } from "@/data/bakingRecipePhotos";
 
 /**
  * Curated real food photographs for every recipe.
@@ -17,6 +18,7 @@ export const RECIPE_IMAGES: Record<string, RecipeImage> = {
   ...RICE_COOKER_RECIPE_PHOTOS,
   ...DRINK_RECIPE_PHOTOS,
   ...CURATED_RECIPE_PHOTOS,
+  ...BAKING_RECIPE_PHOTOS,
   "egg-fried-rice": {
     src: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Yangzhou_fried_rice_and_drinks_25-09-2019.jpg",
     alt: "Photo of egg fried rice",
