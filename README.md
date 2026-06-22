@@ -19,7 +19,7 @@ See all twelve in **[docs/screenshots/](docs/screenshots/)**.
 
 A Next.js + TypeScript + Tailwind web app that helps students cook real food with what they already own. It started as a flat recipe database and grew into a small AI cooking platform — pantry tracking, AI Chef recipe generation, AI ingredient understanding, image generation, regional pricing, nutrition math, a guided cooking mode, a global-cuisine explorer, and a manual recipe builder.
 
-The catalog now spans **6,800+ browseable recipes** across cooking methods (incl. **rice cooker** and **blender**) and meal types (incl. a full **Drinks** category — cocktails, mocktails, smoothies, coffee, tea, and juices), each priced from a 776-ingredient catalog with real per-unit cost and USDA-derived nutrition. Every curated recipe's photo is freely licensed (Wikimedia Commons / CC) and hand-verified to depict the dish.
+The catalog now spans **7,000+ browseable recipes** across cooking methods (incl. **rice cooker**, **blender**, and a big **oven baking** collection — cakes, cookies, breads, pastries, pies & tarts) and meal types (incl. a full **Drinks** category — cocktails, mocktails, smoothies, coffee, tea, and juices), each priced from a 777-ingredient catalog with real per-unit cost and USDA-derived nutrition. Every curated recipe's photo is freely licensed (Wikimedia Commons / CC) and hand-verified to depict the dish.
 
 Everything is shipped as a single static export, hosted on GitHub Pages. All OpenAI calls are proxied through a Cloudflare Worker so the API key never reaches the browser. Anthropic Haiku is called directly from the browser for low-latency tasks (vision, voice, quick recipe options, the Pesto chatbot) and is fully optional — the app degrades gracefully when no AI keys are configured.
 
@@ -77,12 +77,12 @@ Everything is shipped as a single static export, hosted on GitHub Pages. All Ope
 
 | | |
 | --- | --- |
-| **Routes** | 12 (Home, AI Chef, Pantry, Cheap Recipes, Explore, Grocery List, Saved, Recipe Studio, Recipe Studio New, Recipe detail (8,800+ prerendered), Custom recipe, About) |
-| **Recipes** | **6,861 browseable** (8,882 total) — curated stovetop/oven, air-fryer, microwave & **rice-cooker** dishes, viral social-media recipes, a global cuisine catalog, plus a **Drinks** category (cocktails, mocktails, smoothies, coffee, tea, juices) and a **Blender** category. Each freely-licensed photo is hand-verified to match the dish. |
+| **Routes** | 12 (Home, AI Chef, Pantry, Cheap Recipes, Explore, Grocery List, Saved, Recipe Studio, Recipe Studio New, Recipe detail (9,000+ prerendered), Custom recipe, About) |
+| **Recipes** | **7,084 browseable** (9,106 total) — curated stovetop/oven, air-fryer, microwave & **rice-cooker** dishes, viral social-media recipes, a global cuisine catalog, a big **baking** collection (cakes, cookies, breads, pastries, pies & tarts), plus a **Drinks** category (cocktails, mocktails, smoothies, coffee, tea, juices) and a **Blender** category. Each freely-licensed photo is hand-verified to match the dish. |
 | **Categories** | meal type (breakfast/lunch/dinner/snack/meal-prep/**drink**) + equipment (microwave/stovetop/oven/rice-cooker/air-fryer/**blender**/no-kitchen) — all filterable |
-| **Catalog ingredients** | **776** — with per-unit prices, units, package sizes, shelf life, tags |
+| **Catalog ingredients** | **777** — with per-unit prices, units, package sizes, shelf life, tags |
 | **Per-ingredient nutrition** | USDA-derived per-unit calories / protein / carbs / fat / fiber + confidence |
-| **Static pages built** | **8,882** — `npm run build` |
+| **Static pages built** | **9,112** — `npm run build` |
 | **Pantry presets** | 8 starter packs (Dorm Starter, Broke College, Air Fryer, Microwave-Only, Vegan, High Protein, Asian Pantry, Mexican Pantry) |
 | **Regional pricing buckets** | 14 (national avg + 13 region-specific multipliers) |
 | **Worker endpoints** | 11 POST + 2 GET (`/health`, `/diagnostics`) |
