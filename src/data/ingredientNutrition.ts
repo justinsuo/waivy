@@ -199,6 +199,7 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   "agave-syrup": { calories: 60, protein: 0, carbs: 16, fat: 0, confidence: "high" },
   "vanilla-extract": { calories: 12, protein: 0, carbs: 0.5, fat: 0, confidence: "high" },
   "ice": { calories: 0, protein: 0, carbs: 0, fat: 0, confidence: "high" },
+  "sago": { calories: 544, protein: 0.3, carbs: 135, fat: 0, fiber: 1.4, confidence: "high" }, // 1 cup dry tapioca/sago
   "oat-milk": { calories: 120, protein: 3, carbs: 16, fat: 5, confidence: "high" }, // 1 cup
 
   // ===== Expanded condiments =====

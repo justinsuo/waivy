@@ -1,9 +1,8 @@
 import type { RecipeImage } from "@/lib/types";
 
 /**
- * Freely-licensed, hand-verified photos for the curated recipes
- * (src/data/curatedRecipes.ts). Wikimedia Commons, CC0 / CC BY / CC BY-SA only,
- * each visually confirmed to depict the dish.
+ * Freely-licensed, hand-verified photos for the curated recipes (Wikimedia
+ * Commons, CC0 / CC BY / CC BY-SA only), each visually confirmed to depict the dish.
  */
 export const CURATED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
   "cur-classic-beef-chili": {
@@ -1254,6 +1253,16 @@ export const CURATED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "license": "CC BY 2.0",
     "attributionRequired": true,
     "attributionText": "Photo: sanctumsolitude — CC BY 2.0 via Wikimedia Commons",
+    "verifiedMatch": true
+  },
+  "cur-mango-sago": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/2/23/Mango_pomelo_sago.jpg",
+    "alt": "Photo of Mango Sago",
+    "sourceName": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mango_pomelo_sago.jpg",
+    "license": "CC BY 2.0",
+    "attributionRequired": true,
+    "attributionText": "Photo: relgar — CC BY 2.0 via Wikimedia Commons",
     "verifiedMatch": true
   }
 };

@@ -3,9 +3,8 @@ import type { Recipe } from "@/lib/types";
 /**
  * Curated, quality-gated recipes — faithful versions of well-known dishes across
  * world cuisines. Each was authored to be authentic, then adversarially judged by
- * a strict chef that REJECTS AI slop (inauthentic ingredients, implausible
- * quantities, generic templates); only score >= 7 keepers made it in (avg ~8.5).
- * Real catalog ingredient ids, quantities in catalog units. Photos are in
+ * a strict chef that REJECTS AI slop; only score >= 7 keepers made it in. Real
+ * catalog ingredient ids, quantities in catalog units. Photos are in
  * curatedRecipePhotos.ts (freely licensed, hand-verified to depict the dish).
  */
 export const CURATED_RECIPES: Recipe[] = [
@@ -18460,6 +18459,110 @@ export const CURATED_RECIPES: Recipe[] = [
       "baking",
       "date-night",
       "individual"
+    ]
+  },
+  {
+    "id": "cur-mango-sago",
+    "name": "Mango Sago",
+    "description": "The chilled Hong Kong–style dessert: ripe mango blended into a silky coconut-and-evaporated-milk base, studded with bouncy tapioca sago pearls and cubes of fresh mango. Cold, creamy, fruity, and barely any cooking — just boil the pearls and blend.",
+    "mealType": "snack",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "sago",
+        "quantity": 0.4,
+        "note": "small tapioca/sago pearls, dry"
+      },
+      {
+        "ingredientId": "mango",
+        "quantity": 3,
+        "note": "very ripe — about 2 blended, 1 diced"
+      },
+      {
+        "ingredientId": "coconut-milk",
+        "quantity": 0.5,
+        "note": "about 1 cup, full-fat"
+      },
+      {
+        "ingredientId": "evaporated-milk",
+        "quantity": 0.3,
+        "note": "about 1 cup"
+      },
+      {
+        "ingredientId": "sweetened-condensed-milk",
+        "quantity": 0.2,
+        "note": "3-4 tbsp, to taste"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 1,
+        "optional": true,
+        "note": "only if the mangoes are tart"
+      }
+    ],
+    "steps": [
+      "Rinse the sago. Bring a medium pot of water to a boil, add the sago pearls, and cook over medium heat, stirring now and then so they do not stick, for 10-12 minutes until almost translucent.",
+      "Turn off the heat, cover, and let the pearls sit 5-10 minutes until fully clear with no white center. Drain and rinse under cold running water to stop the cooking, then set aside.",
+      "Peel the mangoes and slice the flesh off the pits. Blend about two-thirds of the mango into a smooth puree; dice the rest into small cubes and keep chilled.",
+      "In a bowl, whisk the mango puree with the coconut milk, evaporated milk, and sweetened condensed milk until smooth and creamy. Taste — if the mangoes were tart, stir in the sugar until pleasantly sweet.",
+      "Stir the cooled sago and most of the diced mango into the mango-coconut base. Cover and chill at least 1-2 hours, until cold.",
+      "Ladle into bowls or glasses and top with the reserved diced mango (add a few fresh pomelo segments for the classic mango-pomelo version). Serve cold."
+    ],
+    "totalTimeMinutes": 30,
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 15,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "primaryCookingMethod": "stovetop",
+    "noStovetopRequired": false,
+    "dietTags": [
+      "vegetarian",
+      "gluten-free"
+    ],
+    "cheapTips": [
+      "Use the ripest on-sale mangoes — Ataulfo/Champagne mangoes are sweetest and usually need no added sugar.",
+      "A bag of sago pearls is cheap and keeps for ages; cook a big batch and refrigerate for several desserts.",
+      "Evaporated milk stands in for some of the coconut milk to cut cost while keeping it creamy."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "coconut-milk",
+        "swap": "all evaporated milk or whole milk for a lighter, cheaper version",
+        "savings": "~$1.00"
+      },
+      {
+        "forIngredientId": "sweetened-condensed-milk",
+        "swap": "2 tbsp sugar plus a splash more milk",
+        "savings": "~$0.40"
+      },
+      {
+        "forIngredientId": "sago",
+        "swap": "small pearl tapioca from the baking aisle (same thing)",
+        "savings": "often cheaper"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 300,
+      "protein": 4,
+      "carbs": 48,
+      "fat": 11,
+      "fiber": 2
+    },
+    "emoji": "🥭",
+    "accentColor": "bg-yellow-100",
+    "cuisine": "Hong Kong",
+    "tags": [
+      "dessert",
+      "asian",
+      "mango",
+      "chilled",
+      "no-bake",
+      "sago",
+      "summer",
+      "crowd-pleaser"
     ]
   }
 ];

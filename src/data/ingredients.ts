@@ -1309,6 +1309,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: "agave-syrup", name: "Agave syrup", category: "condiment", estimatedUnitCost: 0.18, unit: "tbsp", commonPackageSize: "11 oz (~$5)", shelfLifeDays: 730, tags: ["drink"] },
   { id: "vanilla-extract", name: "Vanilla extract", category: "condiment", estimatedUnitCost: 0.25, unit: "tsp", commonPackageSize: "2 oz (~$6)", shelfLifeDays: 1825, tags: ["drink"] },
   { id: "ice", name: "Ice", category: "condiment", estimatedUnitCost: 0.01, unit: "cup", commonPackageSize: "from your freezer", shelfLifeDays: 9999, tags: ["drink"] },
+  { id: "sago", name: "Sago pearls (tapioca, dry)", category: "grain", estimatedUnitCost: 0.8, unit: "cup", commonPackageSize: "16 oz bag (~$3)", shelfLifeDays: 730, tags: ["vegan", "gluten-free", "dessert"] },
   { id: "wakame", name: "Dried wakame", category: "vegetable", estimatedUnitCost: 0.50, unit: "tsp", commonPackageSize: "1 oz (~$5)", shelfLifeDays: 365 },
   { id: "water", name: "Water", category: "condiment", estimatedUnitCost: 0.00, unit: "cup", commonPackageSize: "tap water", shelfLifeDays: 1 },
   { id: "white-wine", name: "White wine (cooking)", category: "condiment", estimatedUnitCost: 0.32, unit: "tbsp", commonPackageSize: "750ml (~$8)", shelfLifeDays: 30 },
