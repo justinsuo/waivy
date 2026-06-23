@@ -2,7 +2,8 @@
 import React from "react";
 import { View } from "react-native";
 import { Card, Row, Txt } from "~/components/ui";
-import { colors, space } from "~/theme";
+import { space } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import type { CartSummary } from "~/lib/grocery/recipeIngredientAggregator";
 
 function Stat({ value, label, tone }: { value: string | number; label: string; tone?: string }) {
@@ -25,6 +26,7 @@ function Stat({ value, label, tone }: { value: string | number; label: string; t
 }
 
 export function GrocerySummaryBar({ summary }: { summary: CartSummary }) {
+  const { colors } = useTheme();
   return (
     <Card style={{ marginBottom: space.lg }}>
       <Row justify="space-between" align="center">

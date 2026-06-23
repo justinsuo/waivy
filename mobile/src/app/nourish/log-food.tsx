@@ -25,7 +25,8 @@ import {
 import { Sheet } from "~/components/Sheet";
 import { toast } from "~/components/Toast";
 import { tap } from "~/lib/haptics";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius, type AccentKey } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 
 import { useRecentFoods, logFood, nourish } from "~/lib/stores/nourish";
 import { useSaved } from "~/lib/stores/app";
@@ -60,8 +61,20 @@ function FoodRow({
 }: {
   food: FoodItem;
   onPress: () => void;
-  tone?: keyof typeof accent;
+  tone?: AccentKey;
 }) {
+  const { colors, accent } = useTheme();
+  const rowStyle = {
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    gap: space.md,
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingVertical: space.md,
+    paddingHorizontal: space.lg,
+  };
   return (
     <Press onPress={onPress} scaleTo={0.98} style={rowStyle}>
       <View style={{ flex: 1, gap: 3 }}>
@@ -81,19 +94,10 @@ function FoodRow({
   );
 }
 
-const rowStyle = {
-  flexDirection: "row" as const,
-  alignItems: "center" as const,
-  gap: space.md,
-  backgroundColor: colors.surface,
-  borderRadius: radius.lg,
-  borderWidth: 1,
-  borderColor: colors.border,
-  paddingVertical: space.md,
-  paddingHorizontal: space.lg,
-};
-
 export default function LogFood() {
+  const { colors, accent } = useTheme();
+  const stepperBtn = { width: 56, height: 56, borderRadius: 28, backgroundColor: colors.oat, alignItems: "center" as const, justifyContent: "center" as const, borderWidth: 1, borderColor: colors.border };
+  const rowStyle = { flexDirection: "row" as const, alignItems: "center" as const, gap: space.md, backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border, paddingVertical: space.md, paddingHorizontal: space.lg };
   const [meal, setMeal] = useState<MealSlot>(() => mealSlotNow());
   const [query, setQuery] = useState("");
 
@@ -547,14 +551,3 @@ export default function LogFood() {
     </Screen>
   );
 }
-
-const stepperBtn = {
-  width: 56,
-  height: 56,
-  borderRadius: 28,
-  backgroundColor: colors.oat,
-  alignItems: "center" as const,
-  justifyContent: "center" as const,
-  borderWidth: 1,
-  borderColor: colors.border,
-};

@@ -20,7 +20,8 @@ import {
 import { RecipeCard } from "~/components/RecipeCard";
 import { allSeedViews, type RecipeView } from "~/lib/recipes";
 import { tap } from "~/lib/haptics";
-import { colors, space, radius, accent, font, shadow, type AccentKey } from "~/theme";
+import { space, radius, font, shadow, type AccentKey } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 
 type FeatherName = React.ComponentProps<typeof Feather>["name"];
 
@@ -47,6 +48,7 @@ function CategoryTile({
   route,
   width,
 }: (typeof TILES)[number] & { width: number }) {
+  const { accent } = useTheme();
   const a = accent[tone];
   return (
     <Press
@@ -131,6 +133,7 @@ function bestScore(v: { costPerServing: number; totalTimeMinutes: number; nutrit
 const PAGE = 12;
 
 export default function RecipesHub() {
+  const { colors, accent } = useTheme();
   const all = useMemo(() => allSeedViews(), []);
 
   const [query, setQuery] = useState("");

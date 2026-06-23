@@ -2,15 +2,16 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Svg, { Circle, Rect } from "react-native-svg";
-import { colors, radius, font } from "~/theme";
+import { radius, font } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { Txt, Row } from "./ui";
 
 export function ProgressRing({
   size = 132,
   stroke = 13,
   progress,
-  color = colors.carrot,
-  track = colors.oat,
+  color,
+  track,
   children,
 }: {
   size?: number;
@@ -20,6 +21,9 @@ export function ProgressRing({
   track?: string;
   children?: React.ReactNode;
 }) {
+  const { colors } = useTheme();
+  const strokeColor = color ?? colors.carrot;
+  const trackColor = track ?? colors.oat;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const clamped = Math.max(0, Math.min(1, isFinite(progress) ? progress : 0));
@@ -27,12 +31,12 @@ export function ProgressRing({
   return (
     <View style={{ width: size, height: size, alignItems: "center", justifyContent: "center" }}>
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
-        <Circle cx={size / 2} cy={size / 2} r={r} stroke={track} strokeWidth={stroke} fill="none" />
+        <Circle cx={size / 2} cy={size / 2} r={r} stroke={trackColor} strokeWidth={stroke} fill="none" />
         <Circle
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke={color}
+          stroke={strokeColor}
           strokeWidth={stroke}
           fill="none"
           strokeDasharray={c}
@@ -59,6 +63,7 @@ export function MacroBar({
   color: string;
   unit?: string;
 }) {
+  const { colors } = useTheme();
   const pct = target > 0 ? Math.max(0, Math.min(1, value / target)) : 0;
   return (
     <View style={{ flex: 1, gap: 5 }}>
@@ -79,7 +84,7 @@ export function WeeklyBars({
   data,
   target,
   height = 120,
-  color = colors.basil,
+  color,
   anchor = "zero",
 }: {
   data: { label: string; value: number }[];
@@ -88,6 +93,8 @@ export function WeeklyBars({
   color?: string;
   anchor?: "zero" | "min";
 }) {
+  const { colors } = useTheme();
+  const barColor = color ?? colors.basil;
   const max = Math.max(target ?? 0, ...data.map((d) => d.value), 1);
   const min = anchor === "min" ? Math.min(...data.map((d) => d.value)) : 0;
   const span = Math.max(max - min, 1);
@@ -102,7 +109,7 @@ export function WeeklyBars({
                 style={{
                   width: "70%",
                   height: h,
-                  backgroundColor: d.value > 0 ? color : colors.oat,
+                  backgroundColor: d.value > 0 ? barColor : colors.oat,
                   borderRadius: 6,
                 }}
               />

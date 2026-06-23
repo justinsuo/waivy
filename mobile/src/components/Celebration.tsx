@@ -15,7 +15,7 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import { colors, radius, font, shadow } from "~/theme";
+import { radius, font, shadow } from "~/theme";
 import { celebrate as hapticCelebrate } from "~/lib/haptics";
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get("window");
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   badge: {
-    backgroundColor: colors.text,
+    backgroundColor: "#241A12", // fixed-dark pill so white text reads in both themes
     paddingVertical: 12,
     paddingHorizontal: 22,
     borderRadius: radius.pill,

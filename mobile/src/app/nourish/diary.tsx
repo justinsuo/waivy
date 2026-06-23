@@ -24,7 +24,8 @@ import { useKVRaw } from "~/lib/store";
 import { nourish, useTargets } from "~/lib/stores/nourish";
 import { entryTotals, sumTotals } from "@/lib/nourish/types";
 import type { DiaryEntry, MealSlot } from "@/lib/nourish/types";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import type { AccentKey } from "~/theme";
@@ -75,6 +76,7 @@ const fmtKcal = (n: number) => Math.round(n).toLocaleString();
 // ─── Screen ───────────────────────────────────────────────────────────────────
 
 export default function Diary() {
+  const { colors, accent } = useTheme();
   // Re-render whenever the diary changes (logging / deleting from anywhere).
   const diaryRaw = useKVRaw("srf:nourish-diary");
 
@@ -289,6 +291,7 @@ function MealGroup({
   onDelete: (entry: DiaryEntry) => void;
   style?: any;
 }) {
+  const { colors, accent } = useTheme();
   const meta = MEAL_META[meal];
   return (
     <Card padded={false} style={[{ overflow: "hidden" }, style]}>
@@ -339,6 +342,7 @@ function EntryRow({
   onDelete: (entry: DiaryEntry) => void;
   last: boolean;
 }) {
+  const { colors, accent } = useTheme();
   const kcal = entryTotals(entry).kcal;
   const servings = entry.quantityServings;
   const servingLabel = entry.food.servingDescription;

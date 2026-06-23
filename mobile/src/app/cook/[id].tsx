@@ -11,7 +11,8 @@ import { Txt, Row, Button, Press, IconButton, EmptyState } from "~/components/ui
 import { toast } from "~/components/Toast";
 import { celebrate } from "~/components/Celebration";
 import { recordActivity } from "~/lib/streak";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius, type Palette } from "~/theme";
+import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import { getSeedRecipe, getCustom, getAnyView } from "~/lib/recipes";
 import { logRecipeAsMeal } from "~/lib/actions";
 import { bestEffortNutrition } from "@/lib/nutritionEngine";
@@ -43,6 +44,8 @@ function getSteps(id: string): { name: string; steps: Step[]; nutrition: Nutriti
 export default function GuidedCookScreen() {
   useKeepAwake();
   const insets = useSafeAreaInsets();
+  const { colors, accent } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   const { id } = useLocalSearchParams<{ id: string }>();
   const recipeId = decodeURIComponent(String(id));
   const data = useMemo(() => getSteps(recipeId), [recipeId]);
@@ -184,4 +187,6 @@ export default function GuidedCookScreen() {
   );
 }
 
-const styles = StyleSheet.create({ bg: { flex: 1, backgroundColor: colors.bg } });
+function makeStyles(c: Palette) {
+  return StyleSheet.create({ bg: { flex: 1, backgroundColor: c.bg } });
+}

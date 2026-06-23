@@ -4,7 +4,8 @@ import { Pressable, StyleSheet, View } from "react-native";
 import Animated, { FadeInUp, FadeOutDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
-import { colors, radius, space, shadow, font } from "~/theme";
+import { radius, space, shadow, font } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { success as hapticSuccess, warning as hapticWarning } from "~/lib/haptics";
 
 export type ToastKind = "success" | "info" | "error" | "reward";
@@ -27,14 +28,14 @@ const ICON: Record<ToastKind, React.ComponentProps<typeof Feather>["name"]> = {
   error: "alert-circle",
   reward: "award",
 };
-const TINT: Record<ToastKind, string> = {
-  success: colors.basil,
-  info: colors.sky,
-  error: colors.tomato,
-  reward: colors.grape,
-};
-
 export function ToastHost() {
+  const { colors } = useTheme();
+  const TINT: Record<ToastKind, string> = {
+    success: colors.basil,
+    info: colors.sky,
+    error: colors.tomato,
+    reward: colors.grape,
+  };
   const insets = useSafeAreaInsets();
   const [current, setCurrent] = useState<ToastItem | null>(null);
 
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
-    backgroundColor: colors.text,
+    backgroundColor: "#241A12", // fixed-dark pill so white text reads in both themes
     paddingVertical: 12,
     paddingHorizontal: 14,
     borderRadius: radius.md,

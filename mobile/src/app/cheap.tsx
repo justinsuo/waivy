@@ -11,7 +11,8 @@ import { Txt, Row, Card, Pill, Button, EmptyState, Divider } from "~/components/
 import { RecipeRow } from "~/components/RecipeCard";
 import { seedToView } from "~/lib/recipes";
 import { tap } from "~/lib/haptics";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 
 import { rankCheapCatalog } from "~/lib/catalog";
 import type {
@@ -72,6 +73,7 @@ function FilterGroup({
   icon: React.ComponentProps<typeof Feather>["name"];
   children: React.ReactNode;
 }) {
+  const { colors } = useTheme();
   return (
     <View style={{ gap: space.sm }}>
       <Row gap={6}>
@@ -90,6 +92,7 @@ function FilterGroup({
 }
 
 export default function CheapScreen() {
+  const { colors, accent } = useTheme();
   const [budget, setBudget] = useState<number>(5);
   const [equipment, setEquipment] = useState<Equipment[]>([]);
   const [diet, setDiet] = useState<DietTag[]>([]);

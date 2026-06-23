@@ -27,7 +27,8 @@ import { tap } from "~/lib/haptics";
 import { useKVRaw } from "~/lib/store";
 import { allCustomViews, type RecipeView } from "~/lib/recipes";
 import { deleteCustomRecipe } from "@/lib/customRecipeStorage";
-import { colors, space, radius, accent, shadow, type AccentKey } from "~/theme";
+import { space, radius, shadow, type AccentKey } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 
 function ActionCard({
   tone,
@@ -42,6 +43,7 @@ function ActionCard({
   subtitle: string;
   onPress: () => void;
 }) {
+  const { colors, accent } = useTheme();
   const a = accent[tone];
   return (
     <Press
@@ -96,6 +98,7 @@ function CustomRecipeRow({
   view: RecipeView;
   onDelete: () => void;
 }) {
+  const { colors, accent } = useTheme();
   return (
     <Row gap={8} align="center">
       <View style={{ flex: 1 }}>
@@ -121,6 +124,7 @@ function CustomRecipeRow({
 }
 
 export default function StudioHub() {
+  const { colors, accent } = useTheme();
   // Re-read the custom-recipes store whenever it changes (e.g. after a delete).
   const raw = useKVRaw("srf:custom-recipes");
   const customs = React.useMemo<RecipeView[]>(

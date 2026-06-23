@@ -11,7 +11,8 @@ import { Image } from "expo-image";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Txt, Row, Card, Press, Button, Divider } from "~/components/ui";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { calculateRecipeMissingItems } from "~/lib/grocery/recipeIngredientAggregator";
 import type { CartRecipe, CartIngredient } from "~/lib/grocery/recipeCartStore";
 
@@ -42,6 +43,7 @@ export function RecipeShoppingBlock({
   onAddToList: (ings: CartIngredient[]) => void;
   onFlatten: () => void;
 }) {
+  const { colors, accent } = useTheme();
   const { have, need } = calculateRecipeMissingItems(recipe, pantry);
   const [selected, setSelected] = useState<Set<string>>(new Set());
 

@@ -27,7 +27,8 @@ import {
 import { Sheet } from "~/components/Sheet";
 import { toast } from "~/components/Toast";
 import { tap, selection, success } from "~/lib/haptics";
-import { colors, space, radius, shadow } from "~/theme";
+import { space, radius, shadow, type Palette } from "~/theme";
+import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import { useGrocery } from "~/lib/stores/app";
 import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logRecipeAsMeal } from "~/lib/actions";
@@ -62,7 +63,7 @@ function gradientStops(cuisine: string): [string, string] {
   const hexes = css.match(/#[0-9a-fA-F]{3,8}/g);
   if (hexes && hexes.length >= 2) return [hexes[0], hexes[1]];
   if (hexes && hexes.length === 1) return [hexes[0], hexes[0]];
-  return [colors.basilSoft, colors.basil];
+  return ["#E8FAF0", "#2FBF71"];
 }
 
 function emojiFor(cuisine: string): string {
@@ -104,6 +105,7 @@ function CardImage({ recipe, height }: { recipe: ExternalRecipe; height: number 
 }
 
 function GridCard({ recipe, onOpen, width }: { recipe: ExternalRecipe; onOpen: () => void; width: number }) {
+  const styles = useThemedStyles(makeStyles);
   return (
     <Press onPress={onOpen} scaleTo={0.97} style={[styles.card, { width }]}>
       <View style={styles.imageWrap}>
@@ -132,6 +134,7 @@ function GridCard({ recipe, onOpen, width }: { recipe: ExternalRecipe; onOpen: (
 }
 
 export default function ExploreScreen() {
+  const styles = useThemedStyles(makeStyles);
   const { width } = useWindowDimensions();
   const grocery = useGrocery();
   const { addExternal } = useRecipeCart();
@@ -340,6 +343,8 @@ function RecipeSheet({
   onAddPlan: (r: ExternalRecipe) => void;
   onLog: (r: ExternalRecipe) => void;
 }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   // Keep the rendered recipe stable through the close animation.
   const [snapshot, setSnapshot] = useState<ExternalRecipe | null>(recipe);
   React.useEffect(() => {
@@ -447,44 +452,46 @@ function Macro({ label, value }: { label: string; value: string }) {
   );
 }
 
-const styles = StyleSheet.create({
-  grid: {
-    marginTop: space.md,
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    overflow: "hidden",
-    ...shadow.sm,
-  },
-  imageWrap: { position: "relative" },
-  cuisineBadge: {
-    position: "absolute",
-    bottom: 8,
-    left: 8,
-    maxWidth: "85%",
-    backgroundColor: "rgba(36,26,18,0.78)",
-    paddingHorizontal: 9,
-    paddingVertical: 4,
-    borderRadius: radius.pill,
-  },
-  sheetHero: {
-    width: "100%",
-    height: 170,
-    borderRadius: radius.lg,
-    overflow: "hidden",
-  },
-  stepNum: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: colors.basil,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 1,
-  },
-});
+function makeStyles(c: Palette) {
+  return StyleSheet.create({
+    grid: {
+      marginTop: space.md,
+      flexDirection: "row",
+      flexWrap: "wrap",
+    },
+    card: {
+      backgroundColor: c.surface,
+      borderRadius: radius.lg,
+      borderWidth: 1,
+      borderColor: c.border,
+      overflow: "hidden",
+      ...shadow.sm,
+    },
+    imageWrap: { position: "relative" },
+    cuisineBadge: {
+      position: "absolute",
+      bottom: 8,
+      left: 8,
+      maxWidth: "85%",
+      backgroundColor: "rgba(0,0,0,0.66)",
+      paddingHorizontal: 9,
+      paddingVertical: 4,
+      borderRadius: radius.pill,
+    },
+    sheetHero: {
+      width: "100%",
+      height: 170,
+      borderRadius: radius.lg,
+      overflow: "hidden",
+    },
+    stepNum: {
+      width: 24,
+      height: 24,
+      borderRadius: 12,
+      backgroundColor: c.basil,
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 1,
+    },
+  });
+}

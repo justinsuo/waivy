@@ -25,7 +25,8 @@ import {
 import { MacroBar } from "~/components/Charts";
 import { toast } from "~/components/Toast";
 import { tap, success } from "~/lib/haptics";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import {
@@ -76,6 +77,7 @@ function numOr(value: string, fallback = 0): number {
 }
 
 export default function StudioNew() {
+  const { colors, accent } = useTheme();
   const [step, setStep] = useState(0);
 
   // Step 1 — basics
@@ -298,6 +300,7 @@ export default function StudioNew() {
 // ─── Step progress indicator ───────────────────────────────────────────────────
 
 function StepProgress({ step, onJump }: { step: number; onJump: (i: number) => void }) {
+  const { colors, accent } = useTheme();
   return (
     <Row gap={space.sm} justify="space-between">
       {STEP_LABELS.map((label, i) => {
@@ -450,6 +453,7 @@ function Stepper({
   onChange: (v: number) => void;
   suffix?: string;
 }) {
+  const { colors, accent } = useTheme();
   return (
     <Row gap={space.md} align="center">
       <IconButton
@@ -488,6 +492,7 @@ function IngredientsStep(props: {
   totalCost: number;
   costPerServing: number;
 }) {
+  const { colors, accent } = useTheme();
   const filledCount = props.ingredients.filter((i) => i.name.trim()).length;
   return (
     <View style={{ gap: space.md }}>
@@ -599,6 +604,7 @@ function MethodStep(props: {
   nutrition: ReturnType<typeof calculateNutritionForFreeForm>;
   servings: number;
 }) {
+  const { colors, accent } = useTheme();
   const { nutrition } = props;
   const per = nutrition.perServing;
   const hasMatches = nutrition.matchedCount > 0;

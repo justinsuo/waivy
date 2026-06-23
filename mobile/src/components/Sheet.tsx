@@ -19,7 +19,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors, radius, space, shadow } from "~/theme";
+import { radius, space, shadow, type Palette } from "~/theme";
+import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import { Txt, IconButton, Row } from "./ui";
 
 export function Sheet({
@@ -38,6 +39,8 @@ export function Sheet({
   maxHeightPct?: number;
 }) {
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   const translate = useSharedValue(600);
   const backdrop = useSharedValue(0);
 
@@ -105,22 +108,24 @@ export function Sheet({
   );
 }
 
-const styles = StyleSheet.create({
-  root: { flex: 1, justifyContent: "flex-end" },
-  kav: { justifyContent: "flex-end" },
-  panel: {
-    backgroundColor: colors.bg,
-    borderTopLeftRadius: radius.xxl,
-    borderTopRightRadius: radius.xxl,
-    paddingTop: space.sm,
-    ...shadow.lg,
-  },
-  handle: {
-    width: 44,
-    height: 5,
-    borderRadius: 3,
-    backgroundColor: colors.borderSoft,
-    alignSelf: "center",
-    marginBottom: space.md,
-  },
-});
+function makeStyles(c: Palette) {
+  return StyleSheet.create({
+    root: { flex: 1, justifyContent: "flex-end" },
+    kav: { justifyContent: "flex-end" },
+    panel: {
+      backgroundColor: c.bg,
+      borderTopLeftRadius: radius.xxl,
+      borderTopRightRadius: radius.xxl,
+      paddingTop: space.sm,
+      ...shadow.lg,
+    },
+    handle: {
+      width: 44,
+      height: 5,
+      borderRadius: 3,
+      backgroundColor: c.borderSoft,
+      alignSelf: "center",
+      marginBottom: space.md,
+    },
+  });
+}
