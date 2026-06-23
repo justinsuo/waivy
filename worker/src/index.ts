@@ -20,6 +20,12 @@ interface Env {
   // KV namespace backing cross-device sync (/sync/*). Optional: when the
   // binding is absent the sync routes return 503 and the apps stay local-only.
   SYNC?: KVNamespace;
+  // Workers AI binding — cheap recipe-image generation (FLUX-1-schnell, ~$0.0001
+  // /image vs ~$0.04 for dall-e-3). Optional: absent → falls back to OpenAI.
+  AI?: { run(model: string, inputs: Record<string, unknown>): Promise<{ image?: string }> };
+  // R2 bucket caching generated images by prompt hash so each unique recipe is
+  // generated once, globally. Optional: absent → images returned inline (base64).
+  IMAGES?: R2Bucket;
   // Per-task model overrides — each falls back to DEFAULT_TEXT_MODEL
   // if not set. All env vars are optional.
   DEFAULT_TEXT_MODEL?: string;
@@ -909,6 +915,45 @@ function buildOptionsUserPrompt(body: Record<string, unknown>): string {
 
 // ---------- Route: /generate-recipe-image ----------
 
+async function sha256Hex(s: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+function base64ToBytes(b64: string): Uint8Array {
+  const bin = atob(b64);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+function bytesToBase64(bytes: Uint8Array): string {
+  let bin = "";
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+
+/** Cheap image via Workers AI FLUX-1-schnell. Returns PNG bytes or null. */
+async function cfFluxImage(env: Env, prompt: string): Promise<Uint8Array | null> {
+  if (!env.AI) return null;
+  try {
+    const out = await env.AI.run("@cf/black-forest-labs/flux-1-schnell", { prompt, steps: 4 });
+    return out?.image ? base64ToBytes(out.image) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** GET /recipe-image/:hash — stream a cached image from R2 (CDN-immutable). */
+async function handleServeImage(req: Request, env: Env, key: string): Promise<Response> {
+  if (!env.IMAGES || !/^[a-f0-9]{64}$/.test(key)) return new Response("Not found", { status: 404 });
+  const obj = await env.IMAGES.get(key);
+  if (!obj) return new Response("Not found", { status: 404 });
+  const headers = new Headers();
+  headers.set("Content-Type", obj.httpMetadata?.contentType || "image/png");
+  headers.set("Cache-Control", "public, max-age=31536000, immutable");
+  headers.set("Access-Control-Allow-Origin", "*");
+  return new Response(obj.body, { headers });
+}
+
 async function handleGenerateImage(req: Request, env: Env): Promise<Response> {
   const origin = req.headers.get("Origin");
   let body: { recipeName?: string; prompt?: string; ingredients?: string[]; method?: string };
@@ -921,19 +966,50 @@ async function handleGenerateImage(req: Request, env: Env): Promise<Response> {
     ? body.prompt
     : buildImagePrompt(body.recipeName || "", body.ingredients || [], body.method);
   if (!prompt) return jsonResponse({ error: "Missing prompt" }, 400, env, origin);
+
+  const imgBase = new URL(req.url).origin;
+  const key = await sha256Hex(prompt);
+
   try {
-    const image = await openaiImage(env, prompt, "1024x1024");
-    return jsonResponse(
-      {
-        b64_json: image.b64_json,
-        url: image.url,
-        prompt,
-        model: image.model,
-      },
-      200,
-      env,
-      origin,
-    );
+    // 1) R2 cache hit — same recipe was generated before; reuse it for free.
+    if (env.IMAGES) {
+      const head = await env.IMAGES.head(key);
+      if (head) {
+        return jsonResponse(
+          { url: `${imgBase}/recipe-image/${key}`, model: head.customMetadata?.model || "cache", cached: true, prompt },
+          200, env, origin,
+        );
+      }
+    }
+
+    // 2) Generate — prefer cheap Workers AI FLUX-schnell, else OpenAI.
+    let bytes = await cfFluxImage(env, prompt);
+    let model = bytes ? "flux-1-schnell" : "";
+    if (!bytes) {
+      const image = await openaiImage(env, prompt, "1024x1024");
+      model = image.model;
+      if (image.b64_json) {
+        bytes = base64ToBytes(image.b64_json);
+      } else if (image.url) {
+        if (!env.IMAGES) {
+          // No cache bucket configured: pass the OpenAI URL straight through.
+          return jsonResponse({ url: image.url, model, prompt, cached: false }, 200, env, origin);
+        }
+        const r = await fetch(image.url);
+        bytes = new Uint8Array(await r.arrayBuffer());
+      }
+    }
+    if (!bytes) return jsonResponse({ error: "image generation failed" }, 500, env, origin);
+
+    // 3) Cache in R2 and hand back a stable URL; else return inline base64.
+    if (env.IMAGES) {
+      await env.IMAGES.put(key, bytes, {
+        httpMetadata: { contentType: "image/png", cacheControl: "public, max-age=31536000, immutable" },
+        customMetadata: { model },
+      });
+      return jsonResponse({ url: `${imgBase}/recipe-image/${key}`, model, prompt, cached: false }, 200, env, origin);
+    }
+    return jsonResponse({ b64_json: bytesToBase64(bytes), model, prompt, cached: false }, 200, env, origin);
   } catch (e) {
     return jsonResponse(
       { error: e instanceof Error ? e.message : "image generation failed" },
@@ -1770,8 +1846,8 @@ export default {
             pricing: modelFor(env, "pricing"),
             ingredient: modelFor(env, "ingredient"),
             webRecipe: modelFor(env, "webRecipe"),
-            image: img.primary,
-            imageFallback: img.fallback,
+            image: env.AI ? "flux-1-schnell (Workers AI)" : img.primary,
+            imageFallback: img.primary,
             tts: ttsModelFor(env),
             ttsVoice: ttsVoiceFor(env),
           },
@@ -1788,6 +1864,7 @@ export default {
             TTS_MODEL: !!env.TTS_MODEL,
             TTS_DEFAULT_VOICE: !!env.TTS_DEFAULT_VOICE,
           },
+          bindings: { workersAI: !!env.AI, imageCacheR2: !!env.IMAGES, sync: !!env.SYNC },
           warnings: [],
           note: "All model defaults are current OpenAI model aliases (June 2026). OpenAI resolves aliases like 'gpt-4o-mini' to the latest dated snapshot — that's why the dashboard shows a dated form. The worker is not pinned to any snapshot.",
         },
@@ -1799,6 +1876,11 @@ export default {
 
     if (req.method === "GET" && url.pathname === "/health") {
       return jsonResponse({ ok: true }, 200, env, origin);
+    }
+
+    // Serve cached generated images straight from R2 (CDN-immutable).
+    if (req.method === "GET" && url.pathname.startsWith("/recipe-image/")) {
+      return handleServeImage(req, env, url.pathname.slice("/recipe-image/".length));
     }
 
     if (req.method !== "POST") {

@@ -18,6 +18,25 @@ compatibility_flags = ["nodejs_compat"]
 binding = "SYNC"
 id = "REPLACE_WITH_KV_NAMESPACE_ID"
 
+# ── Cheap recipe-image generation (Workers AI FLUX-1-schnell) ────────────────
+# /generate-recipe-image prefers Cloudflare Workers AI (~$0.0001/image, with a
+# daily free Neuron allotment) over OpenAI dall-e/gpt-image (~$0.04). Enabling
+# the binding needs no id — Workers AI is account-level. Absent → OpenAI is used.
+[ai]
+binding = "AI"
+
+# ── Generated-image cache (R2) ───────────────────────────────────────────────
+# Each unique recipe prompt is generated once and stored here by SHA-256 hash,
+# then served from /recipe-image/<hash> (CDN-immutable) to every user/device —
+# so popular/repeat recipes cost $0. Create the bucket once, then redeploy:
+#
+#   wrangler r2 bucket create waivy-recipe-images
+#
+# Absent → images are returned inline as base64 (today's behavior).
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "waivy-recipe-images"
+
 # OPENAI_API_KEY and ALLOWED_ORIGIN are stored as worker secrets:
 #   wrangler secret put OPENAI_API_KEY
 #   wrangler secret put ALLOWED_ORIGIN  (e.g. https://justinsuo.github.io)
