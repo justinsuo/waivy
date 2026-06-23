@@ -6,6 +6,7 @@
  */
 import { RECIPES, RECIPE_MAP } from "@/data/recipes";
 import { getRecipeImage } from "@/data/recipeImages";
+import { findBorrowedPhoto } from "@/lib/recipePhotoMatch";
 import { INGREDIENT_MAP, CATEGORY_LABEL } from "@/data/ingredients";
 import {
   calculateCostPerServing,
@@ -57,7 +58,7 @@ export function categoryLabel(cat: string): string {
 // ── seed recipes ─────────────────────────────────────────────────────────────
 
 export function seedToView(r: Recipe): RecipeView {
-  const img = getRecipeImage(r.id);
+  const img = getRecipeImage(r.id) ?? findBorrowedPhoto(r);
   return {
     id: r.id,
     source: "seed",
@@ -97,8 +98,9 @@ export function customNutrition(c: CustomRecipe): NutritionEstimate {
 }
 
 export function customToView(c: CustomRecipe): RecipeView {
-  // Image: prefer a local file (mobile) → remote/data url stored in meta.
-  const uri = localImageUri(c.id) ?? c.image?.src ?? undefined;
+  // Image: prefer a local file (mobile) → stored remote/data url → borrow the
+  // closest catalog photo (free) so AI recipes look real without an API call.
+  const uri = localImageUri(c.id) ?? c.image?.src ?? findBorrowedPhoto(c)?.src ?? undefined;
   return {
     id: c.id,
     source: c.isAIGenerated ? "custom-ai" : "custom-user",

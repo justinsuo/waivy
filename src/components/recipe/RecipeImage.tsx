@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 import { getRecipeImage } from "@/data/recipeImages";
+import { findBorrowedPhoto } from "@/lib/recipePhotoMatch";
 import type { Recipe } from "@/lib/types";
 
 interface Props {
@@ -31,7 +32,9 @@ export function RecipeImage({
   overlay,
   showAttribution = false,
 }: Props) {
-  const img = getRecipeImage(recipe.id);
+  // Verified photo first; otherwise borrow the closest catalog recipe's real
+  // photo (free) before falling back to the gradient placeholder.
+  const img = getRecipeImage(recipe.id) ?? findBorrowedPhoto(recipe) ?? undefined;
   const [errored, setErrored] = useState(false);
   // Reset errored state when the recipe changes so a previous recipe's
   // failed image doesn't force the fallback for an unrelated recipe
