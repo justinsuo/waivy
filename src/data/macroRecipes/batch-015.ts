@@ -18,7 +18,7 @@ export const BATCH_015: Recipe[] = [
     ingredients:[
       {ingredientId:"canned-salmon",quantity:1},{ingredientId:"cream-cheese",quantity:1},
       {ingredientId:"bagel",quantity:0.5},{ingredientId:"cucumber",quantity:0.5},
-      {ingredientId:"red-wine-vinegar",quantity:0},{ingredientId:"onion",quantity:0.25},
+      {ingredientId:"red-wine-vinegar",quantity:1},{ingredientId:"onion",quantity:0.25},
       {ingredientId:"everything-bagel",quantity:1},{ingredientId:"lemon",quantity:0.25},
       {ingredientId:"dill-fresh",quantity:0.5},
     ],

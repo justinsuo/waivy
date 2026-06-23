@@ -188,7 +188,7 @@ export const BATCH_031: Recipe[] = [
     emoji:"🧡", accentColor:"bg-orange-100",
     ingredients:[
       {ingredientId:"tofu",quantity:2},{ingredientId:"rice",quantity:2},
-      {ingredientId:"greek-yogurt",quantity:0},{ingredientId:"tomato-sauce",quantity:1},
+      {ingredientId:"greek-yogurt",quantity:0.5},{ingredientId:"tomato-sauce",quantity:1},
       {ingredientId:"onion",quantity:1},{ingredientId:"garlic",quantity:3},
       {ingredientId:"ginger",quantity:2},{ingredientId:"curry-powder",quantity:2},
       {ingredientId:"paprika",quantity:2},{ingredientId:"cumin",quantity:1},
@@ -789,7 +789,7 @@ export const BATCH_031: Recipe[] = [
       {ingredientId:"spinach",quantity:2},{ingredientId:"onion",quantity:1},
       {ingredientId:"garlic",quantity:3},{ingredientId:"ginger",quantity:2},
       {ingredientId:"cumin",quantity:2},{ingredientId:"curry-powder",quantity:2},
-      {ingredientId:"mustard",quantity:0},{ingredientId:"vegetable-oil",quantity:1},
+      {ingredientId:"mustard",quantity:1},{ingredientId:"vegetable-oil",quantity:1},
       {ingredientId:"lemon",quantity:0.5},
     ],
     steps:[

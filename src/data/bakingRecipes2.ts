@@ -1974,7 +1974,7 @@ export const BAKING_RECIPES_2: Recipe[] = [
       },
       {
         "ingredientId": "plum-sauce",
-        "quantity": 0,
+        "quantity": 6,
         "note": "12 small Italian prune plums, halved and pitted (this is fresh fruit — measured as 24 halves; not a pantry sauce)"
       },
       {

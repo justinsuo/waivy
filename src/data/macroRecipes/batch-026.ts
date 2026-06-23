@@ -784,7 +784,7 @@ export const BATCH_026: Recipe[] = [
       {ingredientId:"spinach",quantity:2},{ingredientId:"cucumber",quantity:1},
       {ingredientId:"soy-sauce",quantity:2},{ingredientId:"mirin",quantity:2},
       {ingredientId:"honey",quantity:1},{ingredientId:"toasted-sesame-oil",quantity:2},
-      {ingredientId:"ginger",quantity:2},{ingredientId:"rice",quantity:0},
+      {ingredientId:"ginger",quantity:2},{ingredientId:"rice",quantity:1},
       {ingredientId:"apple-cider-vinegar",quantity:1},{ingredientId:"sesame-seeds",quantity:1},
       {ingredientId:"scallion",quantity:3},
     ],

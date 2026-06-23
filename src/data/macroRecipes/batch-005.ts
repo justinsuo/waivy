@@ -921,7 +921,7 @@ export const BATCH_005: Recipe[] = [
     accentColor: "bg-amber-100",
     ingredients: [
       { ingredientId: "ramen", quantity: 2 },
-      { ingredientId: "ground-pork", quantity: 0 },
+      { ingredientId: "ground-pork", quantity: 4 },
       { ingredientId: "sausage", quantity: 1 },
       { ingredientId: "eggs", quantity: 2 },
       { ingredientId: "miso", quantity: 3 },

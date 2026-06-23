@@ -25,7 +25,7 @@ export const BATCH_004: Recipe[] = [
     accentColor: "bg-green-100",
     ingredients: [
       { ingredientId: "chicken-breast", quantity: 4 },
-      { ingredientId: "hominy", quantity: 0 },
+      { ingredientId: "hominy", quantity: 2 },
       { ingredientId: "white-beans", quantity: 1 },
       { ingredientId: "chicken-broth", quantity: 4 },
       { ingredientId: "onion", quantity: 1 },

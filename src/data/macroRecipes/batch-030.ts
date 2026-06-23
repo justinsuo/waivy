@@ -18,7 +18,7 @@ export const BATCH_030: Recipe[] = [
     ingredients:[
       {ingredientId:"chicken-breast",quantity:2},{ingredientId:"rice",quantity:2},
       {ingredientId:"peanut-butter",quantity:2},{ingredientId:"soy-sauce",quantity:3},
-      {ingredientId:"rice",quantity:0},{ingredientId:"chili-garlic-sauce",quantity:2},
+      {ingredientId:"rice",quantity:1},{ingredientId:"chili-garlic-sauce",quantity:2},
       {ingredientId:"honey",quantity:1},{ingredientId:"garlic",quantity:3},
       {ingredientId:"ginger",quantity:2},{ingredientId:"toasted-sesame-oil",quantity:1},
       {ingredientId:"scallion",quantity:4},{ingredientId:"vegetable-oil",quantity:1},

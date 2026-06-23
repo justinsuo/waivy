@@ -193,7 +193,7 @@ export const BATCH_013: Recipe[] = [
       {ingredientId:"crushed-tomato",quantity:1},{ingredientId:"garlic",quantity:4},
       {ingredientId:"red-pepper-flakes",quantity:0.5},{ingredientId:"anchovy-paste",quantity:1},
       {ingredientId:"olive-oil",quantity:1},{ingredientId:"lemon",quantity:0.5},
-      {ingredientId:"parsley-fresh",quantity:2},{ingredientId:"capers",quantity:0},
+      {ingredientId:"parsley-fresh",quantity:2},{ingredientId:"capers",quantity:0.15},
     ],
     steps:[
       "Cook pasta. Heat olive oil in a pan; add garlic, red pepper flakes, and anchovy paste (if using). Cook 1 minute.",

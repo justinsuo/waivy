@@ -251,7 +251,7 @@ export const BATCH_006: Recipe[] = [
       {ingredientId:"broccoli",quantity:3},{ingredientId:"garlic",quantity:3},
       {ingredientId:"ginger",quantity:1},{ingredientId:"soy-sauce",quantity:2},
       {ingredientId:"oyster-sauce",quantity:1},{ingredientId:"sesame-oil",quantity:0.5},
-      {ingredientId:"vegetable-oil",quantity:0.5},{ingredientId:"cornstarch",quantity:0},
+      {ingredientId:"vegetable-oil",quantity:0.5},{ingredientId:"cornstarch",quantity:1},
       {ingredientId:"scallion",quantity:3},
     ],
     steps:[

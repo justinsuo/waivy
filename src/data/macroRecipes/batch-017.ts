@@ -104,7 +104,7 @@ export const BATCH_017: Recipe[] = [
     ingredients:[
       {ingredientId:"chicken-breast",quantity:2},{ingredientId:"cucumber",quantity:2},
       {ingredientId:"tomato",quantity:2},{ingredientId:"feta",quantity:2},
-      {ingredientId:"olives",quantity:0},{ingredientId:"onion",quantity:0.5},
+      {ingredientId:"olives",quantity:1},{ingredientId:"onion",quantity:0.5},
       {ingredientId:"lemon",quantity:2},{ingredientId:"olive-oil",quantity:2},
       {ingredientId:"oregano",quantity:1},{ingredientId:"garlic",quantity:2},
       {ingredientId:"lettuce",quantity:2},{ingredientId:"salt",quantity:0.5},

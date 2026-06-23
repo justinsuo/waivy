@@ -93,7 +93,7 @@ export const BATCH_020: Recipe[] = [
       {ingredientId:"almond-milk",quantity:1},{ingredientId:"greek-yogurt",quantity:0.5},
       {ingredientId:"peanut-butter",quantity:1},{ingredientId:"protein-powder",quantity:1},
       {ingredientId:"cocoa",quantity:1},{ingredientId:"honey",quantity:0.5},
-      {ingredientId:"banana",quantity:0.5},{ingredientId:"ice",quantity:0},
+      {ingredientId:"banana",quantity:0.5},{ingredientId:"ice",quantity:1},
     ],
     steps:[
       "Blend almond milk, Greek yogurt, peanut butter, protein powder, cocoa, honey, and half a frozen banana.",

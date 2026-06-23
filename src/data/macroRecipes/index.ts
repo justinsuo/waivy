@@ -119,7 +119,7 @@ import { BATCH_099 } from "./batch-099";
 import { BATCH_100 } from "./batch-100";
 import { BATCH_101 } from "./batch-101";
 
-export const MACRO_RECIPES: Recipe[] = [
+const ALL_MACRO_BATCHES: Recipe[] = [
   ...BATCH_001,
   ...BATCH_002,
   ...BATCH_003,
@@ -222,5 +222,20 @@ export const MACRO_RECIPES: Recipe[] = [
   ...BATCH_100,
   ...BATCH_101,
 ];
+
+// Dedupe by id (keep the FIRST/original generation). A handful of dishes were
+// re-defined in a later batch with the same id, which collided in RECIPE_MAP
+// (last-wins) and shadowed the original. Keep-first removes the phantom twins.
+export const MACRO_RECIPES: Recipe[] = (() => {
+  const seen = new Set<string>();
+  const out: Recipe[] = [];
+  for (const r of ALL_MACRO_BATCHES) {
+    if (!seen.has(r.id)) {
+      seen.add(r.id);
+      out.push(r);
+    }
+  }
+  return out;
+})();
 
 export const MACRO_RECIPE_MAP = new Map(MACRO_RECIPES.map((r) => [r.id, r]));

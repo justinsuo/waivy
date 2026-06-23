@@ -326,7 +326,7 @@ export const BATCH_018: Recipe[] = [
       {ingredientId:"eggs",quantity:8},{ingredientId:"greek-yogurt",quantity:2},
       {ingredientId:"dijon",quantity:0.5},{ingredientId:"sriracha",quantity:0.5},
       {ingredientId:"smoked-paprika",quantity:0.25},{ingredientId:"salt",quantity:0.25},
-      {ingredientId:"chives",quantity:0},
+      {ingredientId:"chives",quantity:1},
     ],
     steps:[
       "Hard-boil 8 eggs (9 minutes from cold water). Ice bath, peel, halve.",
@@ -561,7 +561,7 @@ export const BATCH_018: Recipe[] = [
       {ingredientId:"avocado",quantity:2},{ingredientId:"black-beans",quantity:0.5},
       {ingredientId:"lime",quantity:1},{ingredientId:"garlic",quantity:1},
       {ingredientId:"onion",quantity:0.25},{ingredientId:"cilantro-fresh",quantity:0.25},
-      {ingredientId:"jalapeño",quantity:0},{ingredientId:"salt",quantity:0.25},
+      {ingredientId:"jalapeño",quantity:1},{ingredientId:"salt",quantity:0.25},
       {ingredientId:"tortilla-chips",quantity:1},
     ],
     steps:[
