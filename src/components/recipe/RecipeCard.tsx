@@ -112,7 +112,7 @@ export function RecipeCard({ result, recipe, highlight, from }: Props) {
             <span className="font-medium text-ink-muted">
               {nutrition.calories} cal
             </span>
-            <span className="text-stone-300">·</span>
+            <span className="text-ink-faint">·</span>
             <span className="font-medium text-ink-muted">
               {nutrition.protein}g protein
             </span>
