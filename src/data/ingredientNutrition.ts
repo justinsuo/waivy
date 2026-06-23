@@ -200,6 +200,10 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   "vanilla-extract": { calories: 12, protein: 0, carbs: 0.5, fat: 0, confidence: "high" },
   "ice": { calories: 0, protein: 0, carbs: 0, fat: 0, confidence: "high" },
   "sago": { calories: 544, protein: 0.3, carbs: 135, fat: 0, fiber: 1.4, confidence: "high" }, // 1 cup dry tapioca/sago
+  "marshmallows": { calories: 159, protein: 1, carbs: 41, fat: 0, fiber: 0, confidence: "medium" }, // 1 cup mini marshmallows
+  "creme-de-menthe": { calories: 50, protein: 0, carbs: 7, fat: 0, fiber: 0, confidence: "low" }, // 1 tbsp liqueur
+  "ube-halaya": { calories: 520, protein: 4, carbs: 90, fat: 14, fiber: 4, confidence: "low" }, // 1 cup sweetened yam jam
+  "custard-powder": { calories: 30, protein: 0, carbs: 7, fat: 0, fiber: 0, confidence: "medium" }, // 1 tbsp (mostly starch)
   "oat-milk": { calories: 120, protein: 3, carbs: 16, fat: 5, confidence: "high" }, // 1 cup
 
   // ===== Expanded condiments =====

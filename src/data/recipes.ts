@@ -9,6 +9,7 @@ import { RICE_COOKER_RECIPES } from "./riceCookerRecipes";
 import { DRINK_RECIPES } from "./drinkRecipes";
 import { CURATED_RECIPES } from "./curatedRecipes";
 import { BAKING_RECIPES } from "./bakingRecipes";
+import { BAKING_RECIPES_2 } from "./bakingRecipes2";
 
 const BASE_RECIPES: Recipe[] = [
   {
@@ -4623,6 +4624,7 @@ export const CATALOG_RECIPES: Recipe[] = dedupeByName([
   ...DRINK_RECIPES,
   ...CURATED_RECIPES,
   ...BAKING_RECIPES,
+  ...BAKING_RECIPES_2,
 ].filter(notRemoved));
 
 export const ALL_RECIPES: Recipe[] = [
@@ -4634,6 +4636,7 @@ export const ALL_RECIPES: Recipe[] = [
   ...DRINK_RECIPES,
   ...CURATED_RECIPES,
   ...BAKING_RECIPES,
+  ...BAKING_RECIPES_2,
 ].filter(notRemoved);
 
 export const RECIPE_MAP = new Map<string, Recipe>(
