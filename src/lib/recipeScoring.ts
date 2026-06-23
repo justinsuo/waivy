@@ -108,6 +108,47 @@ export function calculateMissingCost(
   }, 0);
 }
 
+export interface Makeability {
+  /** Required (non-optional) ingredients you already have. */
+  matched: number;
+  /** Total required (non-optional) ingredients. */
+  total: number;
+  /** Required ingredients you still need to buy. */
+  missing: number;
+  /** matched / total, 0..1. */
+  coverage: number;
+  /** $ to buy the missing required ingredients. */
+  missingCost: number;
+  /** Composite "how doable is this right now" score — higher = more makeable. */
+  score: number;
+}
+
+/**
+ * How makeable a recipe is given the user's pantry — i.e. how much of it you
+ * can cook with what you already own. Drives the "Most makeable" sort.
+ *
+ * Ranking intent: a recipe you can fully make (nothing missing) beats one
+ * that's mostly covered; among equal coverage, fewer missing items wins, then
+ * cheaper-to-complete. We score on the *ratio* of owned required ingredients
+ * so a 3-ingredient dish you fully have isn't unfairly beaten by a 12-ingredient
+ * dish you have 8 of. Optional ingredients and items already in the pantry
+ * never count against you.
+ */
+export function recipeMakeability(
+  recipe: Recipe,
+  pantrySet: Set<string>,
+): Makeability {
+  const { matched, total } = calculatePantryMatch(recipe, pantrySet);
+  const missing = Math.max(0, total - matched);
+  const coverage = total > 0 ? matched / total : 0;
+  const missingCost = calculateMissingCost(recipe, pantrySet);
+  // Coverage dominates (0..100). Subtract a small penalty per still-missing
+  // item so equal-coverage recipes favor the one needing fewer buys, and a
+  // tiny cost penalty so a near-free finish edges out a pricey one.
+  const score = coverage * 100 - missing * 2 - Math.min(missingCost, 10) * 0.4;
+  return { matched, total, missing, coverage, missingCost, score };
+}
+
 function timeBucketMaxMinutes(bucket: CheapFilters["time"]): number {
   switch (bucket) {
     case "under-10":

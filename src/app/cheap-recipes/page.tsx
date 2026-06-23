@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { Coins, Filter, RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useSettings } from "@/lib/settings/SettingsStore";
@@ -8,7 +9,12 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 import { RecipeGrid } from "@/components/recipe/RecipeGrid";
-import { rankCheapRecipes } from "@/lib/recipeScoring";
+import {
+  rankCheapRecipes,
+  pantrySetFromItems,
+  recipeMakeability,
+} from "@/lib/recipeScoring";
+import { useAppStore } from "@/lib/AppStore";
 import {
   isAirFryerRecipe,
   isMicrowaveRecipe,
@@ -78,7 +84,7 @@ const DEFAULTS: CheapFilters = {
   mealType: "any",
 };
 
-type Sort = "cheapest" | "fastest" | "protein" | "best";
+type Sort = "cheapest" | "fastest" | "protein" | "best" | "makeable";
 
 const PAGE_SIZE = 12;
 
@@ -89,6 +95,9 @@ export default function CheapRecipesPage() {
   // Prefill budget / servings / diet / equipment from the user's saved
   // cooking defaults once settings hydrate (Settings → Cooking defaults).
   const { settings, ready: settingsReady } = useSettings();
+  // Pantry drives the "Most makeable" sort — rank by what you can cook now.
+  const { pantry } = useAppStore();
+  const pantrySet = useMemo(() => pantrySetFromItems(pantry), [pantry]);
   const defaultsAppliedRef = useRef(false);
   useEffect(() => {
     if (!settingsReady || defaultsAppliedRef.current) return;
@@ -179,8 +188,25 @@ export default function CheapRecipesPage() {
       sorted.sort(
         (a, b) => b.recipe.estimatedNutrition.protein - a.recipe.estimatedNutrition.protein,
       );
+    else if (sort === "makeable") {
+      // Rank by how much of each recipe the pantry already covers. Precompute
+      // makeability once per recipe, then sort: most-doable first, ties broken
+      // by cheaper-to-finish, then cheaper per serving.
+      const m = new Map(
+        sorted.map((x) => [x.recipe.id, recipeMakeability(x.recipe, pantrySet)]),
+      );
+      sorted.sort((a, b) => {
+        const A = m.get(a.recipe.id)!;
+        const B = m.get(b.recipe.id)!;
+        return (
+          B.score - A.score ||
+          A.missingCost - B.missingCost ||
+          a.costPerServing - b.costPerServing
+        );
+      });
+    }
     return sorted;
-  }, [filters, sort, queryHitIds, dormOnly, mealPrepOnly, methodOnly]);
+  }, [filters, sort, pantrySet, queryHitIds, dormOnly, mealPrepOnly, methodOnly]);
 
   // Reset page size when filters change
   useEffect(() => {
@@ -504,6 +530,7 @@ export default function CheapRecipesPage() {
                 {(
                   [
                     ["best", "Best overall"],
+                    ["makeable", "Most makeable"],
                     ["cheapest", "Cheapest per serving"],
                     ["fastest", "Fastest"],
                     ["protein", "Highest protein"],
@@ -575,6 +602,29 @@ export default function CheapRecipesPage() {
             <p className="text-sm text-ink-muted">Loading recipes…</p>
           )}
         </div>
+
+        {sort === "makeable" && hydrated && (
+          pantry.length === 0 ? (
+            <div className="mb-4 rounded-2xl border border-line bg-surface-soft px-4 py-3 text-sm text-ink-muted">
+              <span className="font-semibold text-ink">Add your pantry to use this.</span>{" "}
+              “Most makeable” ranks recipes by how much you can cook with what you already
+              have on hand.{" "}
+              <Link
+                href="/pantry"
+                className="font-semibold text-emerald-700 underline underline-offset-2 dark:text-emerald-400"
+              >
+                Add pantry items →
+              </Link>
+            </div>
+          ) : (
+            <div className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-200">
+              Ranked by what you can make with your{" "}
+              <span className="font-semibold">{pantry.length}</span> pantry item
+              {pantry.length === 1 ? "" : "s"} — recipes you can fully cook come first.
+            </div>
+          )
+        )}
+
         {results.length === 0 && debouncedQuery.trim() ? (
           <SearchZeroState
             query={debouncedQuery}
