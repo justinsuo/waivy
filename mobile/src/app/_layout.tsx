@@ -10,7 +10,7 @@ import { AuthProvider } from "~/lib/firebase/auth";
 import { ToastHost } from "~/components/Toast";
 import { CelebrationHost } from "~/components/Celebration";
 import { ScreenshotDriver } from "~/components/ScreenshotDriver";
-import { colors } from "~/theme";
+import { ThemeProvider, useTheme } from "~/theme/ThemeProvider";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -24,6 +24,20 @@ export default function RootLayout() {
     });
   }, []);
 
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <RootShell ready={ready} />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+function RootShell({ ready }: { ready: boolean }) {
+  const { colors, mode } = useTheme();
+
   if (!ready) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
@@ -33,10 +47,9 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <StatusBar style="dark" />
-        <AuthProvider>
+    <>
+      <StatusBar style={mode === "dark" ? "light" : "dark"} />
+      <AuthProvider>
         <Stack
           screenOptions={{
             headerShown: false,
@@ -65,8 +78,7 @@ export default function RootLayout() {
         <ToastHost />
         <CelebrationHost />
         <ScreenshotDriver />
-        </AuthProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+      </AuthProvider>
+    </>
   );
 }

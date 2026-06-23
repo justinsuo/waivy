@@ -3,10 +3,11 @@ import { Platform, type ColorValue } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
-import { colors } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { selection as hapticSelection } from "~/lib/haptics";
 
 function TabIcon({ name, color, focused }: { name: any; color: ColorValue; focused: boolean }) {
+  const { colors } = useTheme();
   // Active icon springs up a touch when selected — small, satisfying.
   const s = useSharedValue(focused ? 1 : 0.92);
   useEffect(() => {
@@ -33,6 +34,7 @@ function TabIcon({ name, color, focused }: { name: any; color: ColorValue; focus
 }
 
 export default function TabLayout() {
+  const { colors, mode } = useTheme();
   return (
     <Tabs
       screenListeners={{
@@ -40,7 +42,7 @@ export default function TabLayout() {
       }}
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.basilShadow,
+        tabBarActiveTintColor: mode === "dark" ? colors.basil : colors.basilShadow,
         tabBarInactiveTintColor: colors.textFaint,
         tabBarLabelStyle: { fontSize: 11, fontWeight: "700", marginTop: 2 },
         tabBarStyle: {

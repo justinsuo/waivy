@@ -4,9 +4,10 @@ import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Screen, ScreenHeader } from "~/components/Screen";
 import { useAuth } from "~/lib/firebase/auth";
-import { Txt, Row, Card, Button, Field, Press, Badge, Divider, Pill } from "~/components/ui";
+import { Txt, Row, Card, Button, Field, Press, Badge, Divider, Pill, SegmentedControl } from "~/components/ui";
 import { toast } from "~/components/Toast";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { useSync } from "~/lib/stores/sync";
 import { useKVRaw } from "~/lib/store";
 import { kv } from "@shared/platform/kv";
@@ -26,6 +27,7 @@ function saveSetting(key: string, value: string) {
 export default function SettingsScreen() {
   const sync = useSync();
   const auth = useAuth();
+  const { colors, accent, pref: themePref } = useTheme();
   useKVRaw(SETTINGS_KEYS.workerUrl);
   useKVRaw(SETTINGS_KEYS.anthropic); // re-render the AI status badge live when a key is pasted
   useKVRaw("srf:location");
@@ -167,7 +169,24 @@ export default function SettingsScreen() {
       </Card>
 
       <Txt variant="label" style={{ marginTop: space.xl, marginBottom: 8 }}>PREFERENCES</Txt>
-      <Card>
+      <Card style={{ gap: 12 }}>
+        <Row gap={10}>
+          <Feather name="moon" size={18} color={colors.textMuted} />
+          <View style={{ flex: 1 }}>
+            <Txt variant="body">Appearance</Txt>
+            <Txt variant="caption" muted>Dark mode is easy on the eyes at night. “System” follows your phone.</Txt>
+          </View>
+        </Row>
+        <SegmentedControl
+          options={[
+            { label: "System", value: "system" },
+            { label: "Light", value: "light" },
+            { label: "Dark", value: "dark" },
+          ]}
+          value={themePref}
+          onChange={(v) => { kv().setItem("srf:settings-theme", v); tap(); }}
+        />
+        <Divider />
         <Press onPress={() => { setHapticsEnabled(!haptics); tap(); }} style={{ paddingVertical: 4 }}>
           <Row justify="space-between">
             <Row gap={10}><Feather name="smartphone" size={18} color={colors.textMuted} /><Txt variant="body">Haptic feedback</Txt></Row>

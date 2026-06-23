@@ -6,7 +6,7 @@
  * numeric spacing/radius, shadow objects) instead of Tailwind classes.
  */
 
-export const colors = {
+export const colorsLight = {
   // Surfaces
   bg: "#FFF8ED", // warm cream — app background
   surface: "#FFFFFF",
@@ -55,23 +55,81 @@ export const colors = {
   scrim: "rgba(36,26,18,0.45)",
 } as const;
 
-/** Maps a product/category to its accent + soft tint + shadow + on-color. */
-export const accent = {
-  "ai-chef": { main: colors.grape, tint: colors.grapeTint, shadow: colors.grapeShadow, on: "#FFFFFF" },
-  pantry: { main: colors.basil, tint: colors.basilTint, shadow: colors.basilShadow, on: "#FFFFFF" },
-  nourish: { main: colors.carrot, tint: colors.carrotTint, shadow: colors.carrotShadow, on: "#FFFFFF" },
-  grocery: { main: colors.teal, tint: colors.tealTint, shadow: colors.tealShadow, on: "#FFFFFF" },
-  cheap: { main: colors.butter, tint: colors.butterTint, shadow: colors.butterShadow, on: "#241A12" },
-  saved: { main: colors.pink, tint: colors.pinkTint, shadow: colors.pinkShadow, on: "#FFFFFF" },
-  explore: { main: colors.sky, tint: colors.skyTint, shadow: colors.skyShadow, on: "#FFFFFF" },
-  protein: { main: colors.grape, tint: colors.grapeTint, shadow: colors.grapeShadow, on: "#FFFFFF" },
-  carbs: { main: colors.sky, tint: colors.skyTint, shadow: colors.skyShadow, on: "#FFFFFF" },
-  fat: { main: colors.butter, tint: colors.butterTint, shadow: colors.butterShadow, on: "#241A12" },
-  fiber: { main: colors.basil, tint: colors.basilTint, shadow: colors.basilShadow, on: "#FFFFFF" },
-  water: { main: colors.sky, tint: colors.skyTint, shadow: colors.skyShadow, on: "#FFFFFF" },
-} as const;
+export type Palette = { -readonly [K in keyof typeof colorsLight]: string };
 
-export type AccentKey = keyof typeof accent;
+/**
+ * Warm-charcoal dark palette — brown-tinted (not cool gray) to keep the
+ * food-app warmth. Accent main hues stay vivid; their soft tints darken and
+ * text/surfaces invert. `inverse` stays white (text on colored fills).
+ */
+export const colorsDark: Palette = {
+  bg: "#120E0B",
+  surface: "#1C1714",
+  surfaceSoft: "#262019",
+  oat: "#262019",
+  borderSoft: "#3A312A",
+  border: "#3A312A",
+
+  text: "#F3ECE2",
+  textMuted: "#B6A896",
+  textFaint: "#8A7C6C",
+  inverse: "#FFFFFF",
+
+  basil: "#34CF7C",
+  basilShadow: "#16834A",
+  basilSoft: "#10301F",
+
+  carrot: "#FF8A3D",
+  carrotShadow: "#C75F18",
+  butter: "#FFD166",
+  butterShadow: "#C99A23",
+  tomato: "#F2554E",
+  tomatoShadow: "#B91C1C",
+  grape: "#9B82FF",
+  grapeShadow: "#4F38C7",
+  teal: "#20C7A5",
+  tealShadow: "#0E8E76",
+  sky: "#5AB6FF",
+  skyShadow: "#1E72C2",
+  pink: "#FF6B9E",
+  pinkShadow: "#C73E70",
+
+  basilTint: "#122E20",
+  carrotTint: "#33210F",
+  butterTint: "#2E2710",
+  grapeTint: "#221A3D",
+  tealTint: "#0F2E28",
+  skyTint: "#102532",
+  pinkTint: "#3A1722",
+  tomatoTint: "#3A1717",
+
+  scrim: "rgba(0,0,0,0.55)",
+};
+
+/** Back-compat default export (light). Converted screens use useTheme(). */
+export const colors = colorsLight;
+
+/** Maps a product/category to its accent + soft tint + shadow + on-color. */
+export function makeAccent(c: Palette) {
+  return {
+    "ai-chef": { main: c.grape, tint: c.grapeTint, shadow: c.grapeShadow, on: "#FFFFFF" },
+    pantry: { main: c.basil, tint: c.basilTint, shadow: c.basilShadow, on: "#FFFFFF" },
+    nourish: { main: c.carrot, tint: c.carrotTint, shadow: c.carrotShadow, on: "#FFFFFF" },
+    grocery: { main: c.teal, tint: c.tealTint, shadow: c.tealShadow, on: "#FFFFFF" },
+    cheap: { main: c.butter, tint: c.butterTint, shadow: c.butterShadow, on: "#241A12" },
+    saved: { main: c.pink, tint: c.pinkTint, shadow: c.pinkShadow, on: "#FFFFFF" },
+    explore: { main: c.sky, tint: c.skyTint, shadow: c.skyShadow, on: "#FFFFFF" },
+    protein: { main: c.grape, tint: c.grapeTint, shadow: c.grapeShadow, on: "#FFFFFF" },
+    carbs: { main: c.sky, tint: c.skyTint, shadow: c.skyShadow, on: "#FFFFFF" },
+    fat: { main: c.butter, tint: c.butterTint, shadow: c.butterShadow, on: "#241A12" },
+    fiber: { main: c.basil, tint: c.basilTint, shadow: c.basilShadow, on: "#FFFFFF" },
+    water: { main: c.sky, tint: c.skyTint, shadow: c.skyShadow, on: "#FFFFFF" },
+  } as const;
+}
+
+export const accent = makeAccent(colorsLight);
+
+export type AccentKey = keyof ReturnType<typeof makeAccent>;
 
 export const radius = {
   sm: 12,

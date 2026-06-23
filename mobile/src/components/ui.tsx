@@ -1,6 +1,7 @@
 /**
  * Waivy UI kit — the Pantry Pop design-system primitives, native edition.
  * Big touch targets, rounded cards, 3D buttons, soft shadows, haptics.
+ * Theme-aware: colors come from useTheme() so everything flips with dark mode.
  */
 import React from "react";
 import {
@@ -22,7 +23,8 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { Feather } from "@expo/vector-icons";
-import { colors, radius, space, font, shadow, accent, AccentKey, BUTTON_DEPTH } from "~/theme";
+import { radius, space, font, shadow, AccentKey, BUTTON_DEPTH, type Palette } from "~/theme";
+import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import {
   light as hapticLight,
   medium as hapticMedium,
@@ -60,14 +62,14 @@ type TxtVariant =
   | "label"
   | "caption";
 
-const TXT: Record<TxtVariant, { fontSize: number; fontWeight: any; color: string }> = {
-  display: { fontSize: font.sizes.xxxl, fontWeight: "800", color: colors.text },
-  title: { fontSize: font.sizes.xxl, fontWeight: "800", color: colors.text },
-  heading: { fontSize: font.sizes.lg, fontWeight: "700", color: colors.text },
-  subheading: { fontSize: font.sizes.md, fontWeight: "700", color: colors.text },
-  body: { fontSize: font.sizes.base, fontWeight: "400", color: colors.text },
-  label: { fontSize: font.sizes.sm, fontWeight: "600", color: colors.textMuted },
-  caption: { fontSize: font.sizes.xs, fontWeight: "500", color: colors.textFaint },
+const TXT: Record<TxtVariant, { fontSize: number; fontWeight: any; tone: "text" | "textMuted" | "textFaint" }> = {
+  display: { fontSize: font.sizes.xxxl, fontWeight: "800", tone: "text" },
+  title: { fontSize: font.sizes.xxl, fontWeight: "800", tone: "text" },
+  heading: { fontSize: font.sizes.lg, fontWeight: "700", tone: "text" },
+  subheading: { fontSize: font.sizes.md, fontWeight: "700", tone: "text" },
+  body: { fontSize: font.sizes.base, fontWeight: "400", tone: "text" },
+  label: { fontSize: font.sizes.sm, fontWeight: "600", tone: "textMuted" },
+  caption: { fontSize: font.sizes.xs, fontWeight: "500", tone: "textFaint" },
 };
 
 export function Txt({
@@ -86,12 +88,13 @@ export function Txt({
   center?: boolean;
   muted?: boolean;
 }) {
+  const { colors } = useTheme();
   const base = TXT[variant];
   return (
     <Text
       {...rest}
       style={[
-        { fontSize: base.fontSize, fontWeight: base.fontWeight, color: base.color },
+        { fontSize: base.fontSize, fontWeight: base.fontWeight, color: colors[base.tone] },
         muted && { color: colors.textMuted },
         color && { color },
         weight && { fontWeight: weight },
@@ -144,6 +147,7 @@ export function Spacer({ h = space.md }: { h?: number }) {
 }
 
 export function Divider({ style }: { style?: any }) {
+  const { colors } = useTheme();
   return <View style={[{ height: 1, backgroundColor: colors.border }, style]} />;
 }
 
@@ -161,11 +165,12 @@ export function Card({
   soft?: boolean;
   elevation?: "none" | "sm" | "md" | "lg";
 }) {
+  const { colors } = useTheme();
   return (
     <View
       {...rest}
       style={[
-        styles.card,
+        { backgroundColor: colors.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.border },
         soft && { backgroundColor: colors.surfaceSoft },
         padded && { padding: space.lg },
         elevation !== "none" && shadow[elevation],
@@ -251,6 +256,7 @@ export function Button({
   haptic?: HapticKind;
   style?: any;
 }) {
+  const { colors, accent } = useTheme();
   const depth = useSharedValue(0);
   const faceStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: depth.value }],
@@ -338,8 +344,8 @@ export function Button({
 export function IconButton({
   icon,
   onPress,
-  color = colors.text,
-  bg = colors.surface,
+  color,
+  bg,
   size = 42,
   iconSize = 20,
   style,
@@ -356,6 +362,9 @@ export function IconButton({
   disabled?: boolean;
   accessibilityLabel?: string;
 }) {
+  const { colors } = useTheme();
+  const fg = color ?? colors.text;
+  const background = bg ?? colors.surface;
   return (
     <Press
       onPress={onPress}
@@ -367,7 +376,7 @@ export function IconButton({
           width: size,
           height: size,
           borderRadius: size / 2,
-          backgroundColor: bg,
+          backgroundColor: background,
           alignItems: "center",
           justifyContent: "center",
           opacity: disabled ? 0.5 : 1,
@@ -376,7 +385,7 @@ export function IconButton({
         style,
       ]}
     >
-      <Feather name={icon} size={iconSize} color={color} />
+      <Feather name={icon} size={iconSize} color={fg} />
     </Press>
   );
 }
@@ -394,6 +403,7 @@ export function Badge({
   icon?: FeatherName;
   solid?: boolean;
 }) {
+  const { accent } = useTheme();
   const a = accent[tone];
   return (
     <View
@@ -430,6 +440,7 @@ export function Pill({
   icon?: FeatherName;
   disabled?: boolean;
 }) {
+  const { colors, accent } = useTheme();
   const a = accent[tone];
   return (
     <Press
@@ -474,6 +485,8 @@ export function SegmentedControl<T extends string>({
   value: T;
   onChange: (v: T) => void;
 }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   return (
     <View style={styles.segment}>
       {options.map((o) => {
@@ -511,6 +524,8 @@ export function Field({
   style,
   ...rest
 }: TextInputProps & { label?: string }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   return (
     <View style={{ gap: 6 }}>
       {label ? <Txt variant="label">{label}</Txt> : null}
@@ -563,6 +578,7 @@ export function SectionHeading({
   action?: string;
   onAction?: () => void;
 }) {
+  const { colors } = useTheme();
   return (
     <Row justify="space-between" style={{ marginBottom: space.sm }}>
       <Txt variant="heading">{title}</Txt>
@@ -575,40 +591,36 @@ export function SectionHeading({
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  segment: {
-    flexDirection: "row",
-    backgroundColor: colors.oat,
-    borderRadius: radius.md,
-    padding: 4,
-    gap: 4,
-  },
-  segmentItem: {
-    flex: 1,
-    paddingVertical: 9,
-    alignItems: "center",
-    borderRadius: radius.sm,
-  },
-  segmentItemActive: {
-    backgroundColor: colors.surface,
-    ...shadow.sm,
-  },
-  input: {
-    backgroundColor: colors.surface,
-    borderWidth: 1.5,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    fontSize: font.sizes.md,
-    color: colors.text,
-  },
-});
+function makeStyles(c: Palette) {
+  return StyleSheet.create({
+    segment: {
+      flexDirection: "row",
+      backgroundColor: c.oat,
+      borderRadius: radius.md,
+      padding: 4,
+      gap: 4,
+    },
+    segmentItem: {
+      flex: 1,
+      paddingVertical: 9,
+      alignItems: "center",
+      borderRadius: radius.sm,
+    },
+    segmentItemActive: {
+      backgroundColor: c.surface,
+      ...shadow.sm,
+    },
+    input: {
+      backgroundColor: c.surface,
+      borderWidth: 1.5,
+      borderColor: c.border,
+      borderRadius: radius.md,
+      paddingHorizontal: 14,
+      paddingVertical: 12,
+      fontSize: font.sizes.md,
+      color: c.text,
+    },
+  });
+}
 
 export { FeatherName };

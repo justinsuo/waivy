@@ -5,7 +5,8 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { colors, radius, space, shadow, accent, font } from "~/theme";
+import { radius, space, shadow, type Palette } from "~/theme";
+import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import { Txt, Row, Press, Badge } from "./ui";
 import { toast } from "./Toast";
 import type { RecipeView } from "~/lib/recipes";
@@ -17,6 +18,7 @@ function money(n: number) {
 }
 
 function ImageOrGradient({ view, height }: { view: RecipeView; height: number }) {
+  const { accent } = useTheme();
   const a = accent[view.accent];
   const [failed, setFailed] = useState(false);
   if (view.imageUri && !failed) {
@@ -43,6 +45,8 @@ function ImageOrGradient({ view, height }: { view: RecipeView; height: number })
 }
 
 export function RecipeCard({ view, width }: { view: RecipeView; width?: number }) {
+  const { colors, accent } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   const { isSaved, toggleSaved } = useSaved();
   const { has: inCart, addById } = useRecipeCart();
   const saved = isSaved(view.id);
@@ -91,6 +95,8 @@ export function RecipeCard({ view, width }: { view: RecipeView; width?: number }
 }
 
 export function RecipeRow({ view }: { view: RecipeView }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(makeStyles);
   return (
     <Press
       onPress={() => router.push(`/recipe/${encodeURIComponent(view.id)}`)}
@@ -114,55 +120,49 @@ export function RecipeRow({ view }: { view: RecipeView }) {
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    overflow: "hidden",
-    ...shadow.sm,
-  },
-  imageWrap: { position: "relative" },
-  // Positioning lives on the Press *wrapper* (containerStyle); the visual pill is
-  // the Pressable itself. (Putting position:absolute on the inner Pressable left
-  // the normal-flow wrapper below the image, dropping the button onto the title.)
-  saveBtnPos: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-  },
-  cartBtnPos: {
-    position: "absolute",
-    top: 10,
-    right: 52,
-  },
-  saveBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: "rgba(255,255,255,0.92)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  costBadge: {
-    position: "absolute",
-    bottom: 10,
-    left: 10,
-    backgroundColor: "rgba(36,26,18,0.78)",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: radius.pill,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: space.md,
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: space.sm,
-    ...shadow.sm,
-  },
-});
+function makeStyles(c: Palette) {
+  return StyleSheet.create({
+    card: {
+      backgroundColor: c.surface,
+      borderRadius: radius.lg,
+      borderWidth: 1,
+      borderColor: c.border,
+      overflow: "hidden",
+      ...shadow.sm,
+    },
+    imageWrap: { position: "relative" },
+    // Positioning lives on the Press *wrapper* (containerStyle); the visual pill is
+    // the Pressable itself.
+    saveBtnPos: { position: "absolute", top: 10, right: 10 },
+    cartBtnPos: { position: "absolute", top: 10, right: 52 },
+    saveBtn: {
+      width: 34,
+      height: 34,
+      borderRadius: 17,
+      backgroundColor: c.surface,
+      alignItems: "center",
+      justifyContent: "center",
+      ...shadow.sm,
+    },
+    costBadge: {
+      position: "absolute",
+      bottom: 10,
+      left: 10,
+      backgroundColor: "rgba(0,0,0,0.66)",
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: radius.pill,
+    },
+    row: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: space.md,
+      backgroundColor: c.surface,
+      borderRadius: radius.lg,
+      borderWidth: 1,
+      borderColor: c.border,
+      padding: space.sm,
+      ...shadow.sm,
+    },
+  });
+}
