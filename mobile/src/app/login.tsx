@@ -5,7 +5,8 @@ import { router } from "expo-router";
 import { Screen, ScreenHeader } from "~/components/Screen";
 import { Txt, Row, Card, Button, Field, Press, Divider, EmptyState } from "~/components/ui";
 import { toast } from "~/components/Toast";
-import { colors, space, radius } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { useAuth } from "~/lib/firebase/auth";
 
 function validEmail(e: string): boolean {
@@ -13,6 +14,7 @@ function validEmail(e: string): boolean {
 }
 
 export default function LoginScreen() {
+  const { colors, accent } = useTheme();
   const { user, loading, enabled, googleEnabled, signInWithGoogle, signInWithEmail, signUpWithEmail, sendPasswordReset } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");

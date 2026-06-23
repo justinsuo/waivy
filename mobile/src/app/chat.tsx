@@ -4,7 +4,8 @@ import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Txt, Row, Press, IconButton, Field } from "~/components/ui";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { usePantry, useSaved } from "~/lib/stores/app";
 import { ingredientLabel, getAnyView, getSeedRecipe, getCustom } from "~/lib/recipes";
 import { isAiEnabled, pantryChat, type PantryChatTurn } from "@/lib/anthropic";
@@ -26,6 +27,7 @@ function recipeContext(recipeId?: string, step?: string): string {
 }
 
 export default function ChatScreen() {
+  const { colors, accent } = useTheme();
   const insets = useSafeAreaInsets();
   const { recipe: recipeId, step } = useLocalSearchParams<{ recipe?: string; step?: string }>();
   const { pantry } = usePantry();

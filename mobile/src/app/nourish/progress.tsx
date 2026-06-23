@@ -29,7 +29,8 @@ import { tap } from "~/lib/haptics";
 import { useKVRaw } from "~/lib/store";
 import { nourish, useTargets } from "~/lib/stores/nourish";
 import { sumTotals } from "@/lib/nourish/types";
-import { colors, space, radius, font } from "~/theme";
+import { space, radius, font } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { Feather } from "@expo/vector-icons";
 
 // KV keys the engine writes to — subscribe so the screen stays live.
@@ -54,6 +55,7 @@ function prettyDate(iso: string): string {
 }
 
 export default function Progress() {
+  const { colors, accent } = useTheme();
   // Reactive subscriptions — any write to these keys re-renders the screen.
   const diaryRaw = useKVRaw(DIARY_KEY);
   useKVRaw(WEIGHT_KEY);

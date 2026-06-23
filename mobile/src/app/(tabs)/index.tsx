@@ -6,7 +6,8 @@ import { Screen } from "~/components/Screen";
 import { Txt, Row, Card, Press, IconButton, Badge, SectionHeading, Button } from "~/components/ui";
 import { RecipeCard } from "~/components/RecipeCard";
 import { ProgressRing, MacroBar } from "~/components/Charts";
-import { colors, space, radius, accent, AccentKey, shadow } from "~/theme";
+import { space, radius, AccentKey, shadow } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { allSeedViews } from "~/lib/recipes";
 import { usePantry, useGrocery } from "~/lib/stores/app";
 import { useToday } from "~/lib/stores/nourish";
@@ -29,6 +30,7 @@ const QUICK: { label: string; icon: any; tone: AccentKey; href: string }[] = [
 ];
 
 export default function HomeScreen() {
+  const { colors, accent } = useTheme();
   const { pantry } = usePantry();
   const { grocery } = useGrocery();
   const today = useToday();

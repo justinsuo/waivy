@@ -23,7 +23,8 @@ import {
 } from "~/components/ui";
 import { toast } from "~/components/Toast";
 import { tap } from "~/lib/haptics";
-import { colors, space, radius, accent, AccentKey } from "~/theme";
+import { space, radius, AccentKey } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { nourish, saveTargets, useProfile, useTargets } from "~/lib/stores/nourish";
 
 import {
@@ -102,6 +103,7 @@ function clampInt(n: number, lo: number, hi: number): number {
 }
 
 export default function Goals() {
+  const { colors, accent } = useTheme();
   const profile = useProfile();
   const targets = useTargets();
 

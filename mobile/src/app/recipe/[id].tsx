@@ -9,7 +9,8 @@ import { Screen } from "~/components/Screen";
 import { Txt, Row, Card, Button, Press, Badge, IconButton, EmptyState, Divider } from "~/components/ui";
 import { MacroBar } from "~/components/Charts";
 import { toast } from "~/components/Toast";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { getSeedRecipe, getCustom, getAnyView, ingredientLabel } from "~/lib/recipes";
 import { useSaved, usePantry, useGrocery } from "~/lib/stores/app";
 import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
@@ -22,6 +23,7 @@ import { useTargets } from "~/lib/stores/nourish";
 import type { NutritionEstimate } from "@/lib/types";
 
 export default function RecipeDetailScreen() {
+  const { colors, accent } = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [heroFailed, setHeroFailed] = useState(false);
   const insets = useSafeAreaInsets();

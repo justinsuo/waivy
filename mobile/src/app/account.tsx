@@ -5,7 +5,8 @@ import { router } from "expo-router";
 import { Screen, ScreenHeader } from "~/components/Screen";
 import { Txt, Row, Card, Button, Field, Press, EmptyState, Divider } from "~/components/ui";
 import { toast } from "~/components/Toast";
-import { colors, space, radius } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { useAuth } from "~/lib/firebase/auth";
 
 function initials(name?: string | null, email?: string | null): string {
@@ -21,6 +22,7 @@ function providerLabel(id?: string): string {
 }
 
 export default function AccountScreen() {
+  const { colors, accent } = useTheme();
   const { user, loading, enabled, signOutUser, updateDisplayName } = useAuth();
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");

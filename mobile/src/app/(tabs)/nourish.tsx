@@ -6,7 +6,8 @@ import { Screen } from "~/components/Screen";
 import { Txt, Row, Card, Press, Badge, IconButton, SectionHeading, EmptyState, Button } from "~/components/ui";
 import { ProgressRing, MacroBar } from "~/components/Charts";
 import { toast } from "~/components/Toast";
-import { colors, space, radius, accent, AccentKey } from "~/theme";
+import { space, radius, AccentKey } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { useToday, useWater, deleteEntry } from "~/lib/stores/nourish";
 import { entryTotals } from "@/lib/nourish/types";
 import { tap } from "~/lib/haptics";
@@ -26,6 +27,7 @@ const QUICK: { label: string; icon: any; tone: AccentKey; href: string }[] = [
 ];
 
 export default function NourishScreen() {
+  const { colors, accent } = useTheme();
   const { totals, target, entries } = useToday();
   const water = useWater();
   const calPct = target.calorieTarget ? totals.kcal / target.calorieTarget : 0;

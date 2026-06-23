@@ -16,7 +16,8 @@ import { Sheet } from "~/components/Sheet";
 import { Txt, Row, Card, Button, Field, Press, Badge, IconButton, EmptyState } from "~/components/ui";
 import { toast } from "~/components/Toast";
 import { celebrate } from "~/components/Celebration";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { useGrocery, usePantry, groceryItemName } from "~/lib/stores/app";
 import { useRecipeCart, type CartRecipe, type CartIngredient } from "~/lib/grocery/recipeCartStore";
 import { mergeIngredientsAcrossRecipes, summarizeCart } from "~/lib/grocery/recipeIngredientAggregator";
@@ -34,6 +35,7 @@ function itemCost(id: string, qty: number): number {
 }
 
 export default function GroceryScreen() {
+  const { colors, accent } = useTheme();
   const { grocery, addStaple, addPlanned, toggleChecked, remove, clearChecked, clear } = useGrocery();
   const { cart, remove: removeRecipe, clear: clearCart } = useRecipeCart();
   const { pantry } = usePantry();

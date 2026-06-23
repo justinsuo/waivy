@@ -7,7 +7,8 @@ import { Screen } from "~/components/Screen";
 import { Sheet } from "~/components/Sheet";
 import { Txt, Row, Card, Button, Field, Press, Badge, IconButton, EmptyState } from "~/components/ui";
 import { toast } from "~/components/Toast";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { usePantry } from "~/lib/stores/app";
 import { usePantries } from "~/lib/stores/pantries";
 import { ingredientLabel, categoryLabel } from "~/lib/recipes";
@@ -22,6 +23,7 @@ import { recognizeIngredientsFromImage } from "@/lib/anthropic";
 const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "canned", "frozen", "condiment", "spice", "snack"];
 
 export default function PantryScreen() {
+  const { colors, accent } = useTheme();
   const { pantry, add, addMany, remove, toggleUseSoon, clear, has } = usePantry();
   const { pantries, active, switchTo, createPantry, rename, removePantry, shuffle } = usePantries();
   const [addOpen, setAddOpen] = useState(false);

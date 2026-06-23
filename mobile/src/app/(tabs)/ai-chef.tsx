@@ -6,7 +6,8 @@ import { Screen } from "~/components/Screen";
 import { Sheet } from "~/components/Sheet";
 import { Txt, Row, Card, Button, Field, Press, Badge, Pill, SegmentedControl, EmptyState, SectionHeading, Divider } from "~/components/ui";
 import { toast } from "~/components/Toast";
-import { colors, space, radius, accent } from "~/theme";
+import { space, radius } from "~/theme";
+import { useTheme } from "~/theme/ThemeProvider";
 import { usePantry, useGrocery } from "~/lib/stores/app";
 import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
 import { logFood } from "~/lib/stores/nourish";
@@ -35,6 +36,8 @@ function mealSlotNow(): MealSlot {
 }
 
 export default function AiChefScreen() {
+  const { colors, accent } = useTheme();
+  const stepBtn = { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.oat, alignItems: "center" as const, justifyContent: "center" as const };
   const { pantry } = usePantry();
   const grocery = useGrocery();
   const { addGenerated } = useRecipeCart();
@@ -438,6 +441,7 @@ export default function AiChefScreen() {
 }
 
 function ResultPanel({ option, saved, refining, image, imageLoading, canMakeImage, onGenerateImage, onSave, onAddMissing, onAddToPlan, onLog, onCook, onAsk, onRefine }: any) {
+  const { colors, accent } = useTheme();
   const r: GeneratedRecipe = option.recipe;
   const n = r.estimatedNutrition;
   return (
@@ -535,5 +539,3 @@ function ResultPanel({ option, saved, refining, image, imageLoading, canMakeImag
     </Card>
   );
 }
-
-const stepBtn = { width: 42, height: 42, borderRadius: 21, backgroundColor: colors.oat, alignItems: "center" as const, justifyContent: "center" as const };
