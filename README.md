@@ -21,6 +21,8 @@ A Next.js + TypeScript + Tailwind web app that helps students cook real food wit
 
 The catalog now spans **7,200+ browseable recipes** across cooking methods (incl. **rice cooker**, **blender**, and a deep **oven baking** collection of 250+ bakes — cakes, cookies, breads, pastries, pies & tarts spanning American, French, Italian, Iberian, Eastern-European, Greek/Turkish/Middle-Eastern, and Indian/SE-Asian/East-Asian classics) and meal types (incl. a full **Drinks** category — cocktails, mocktails, smoothies, coffee, tea, and juices), each priced from a 781-ingredient catalog with real per-unit cost and USDA-derived nutrition. Every curated recipe's photo is freely licensed (Wikimedia Commons / CC) and hand-verified to depict the dish.
 
+> 📖 **Browse the whole catalog without opening the app:** [`docs/catalog/`](docs/catalog/README.md) — a visual gallery of all 662 photographed recipes (image + ingredients + steps + real cost/serving), plus [`all-recipes.csv`](docs/catalog/all-recipes.csv) listing every one of the 7,214 browseable recipes with full cost & macro details. Regenerate with `npx tsx scripts/generateCatalogDocs.ts`.
+
 Everything is shipped as a single static export, hosted on GitHub Pages. All OpenAI calls are proxied through a Cloudflare Worker so the API key never reaches the browser. Anthropic Haiku is called directly from the browser for low-latency tasks (vision, voice, quick recipe options, the Pesto chatbot) and is fully optional — the app degrades gracefully when no AI keys are configured.
 
 ---
