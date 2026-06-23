@@ -31,6 +31,7 @@ import { RecipeCard } from "@/components/recipe/RecipeCard";
 import { RECIPES, CATALOG_RECIPES } from "@/data/recipes";
 import { RECIPE_IMAGES } from "@/data/recipeImages";
 import { calculateCostPerServing } from "@/lib/recipeScoring";
+import type { Recipe } from "@/lib/types";
 import {
   isAirFryerRecipe,
   isMicrowaveRecipe,
@@ -45,18 +46,37 @@ import { ShaderGradientBackground } from "@/components/visual-effects/ShaderGrad
 import { LiquidGlassPanel } from "@/components/visual-effects/LiquidGlassPanel";
 import { PantryToRecipePreview } from "@/components/home/PantryToRecipePreview";
 
+// Home-only: gently bias the cheap picks toward quick, everyday meals. Returns a
+// $/serving-equivalent surcharge added to cost before sorting — NOT a filter, so a
+// truly cheap bake can still win. Does not touch /cheap-recipes or pantry match.
+function homeSurcharge(r: Recipe): number {
+  let s = 0;
+  if (r.tags?.includes("baking")) s += 2.5; // soft "tend not to show" on home
+  const ing = r.ingredients?.length ?? 0;
+  if (ing > 8) s += (ing - 8) * 0.06; // involved: many ingredients
+  const t = r.totalTimeMinutes ?? 0;
+  if (t > 30) s += (t - 30) * 0.012; // involved: long time
+  if (r.difficulty === "medium") s += 0.25;
+  else if (r.difficulty === "hard") s += 0.7; // involved: harder
+  const sv = r.servings ?? 0;
+  if (sv > 6) s += (sv - 6) * 0.08; // large batch
+  return s;
+}
+const homeRank = (r: Recipe) => calculateCostPerServing(r) + homeSurcharge(r);
+
 export default function HomePage() {
-  // Hero collage prefers recipes with curated photos.
+  // Hero collage prefers recipes with curated photos; ranking leans toward quick,
+  // cheap everyday meals and away from baking / big recipes (see homeSurcharge).
   const recipesWithPhotos = RECIPES.filter((r) => RECIPE_IMAGES[r.id]);
   const heroFeatured = [...recipesWithPhotos].sort(
-    (a, b) => calculateCostPerServing(a) - calculateCostPerServing(b),
+    (a, b) => homeRank(a) - homeRank(b),
   )[0];
   const heroSecondaries = [...recipesWithPhotos]
-    .sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))
+    .sort((a, b) => homeRank(a) - homeRank(b))
     .slice(1, 3);
 
   const featured = [...CATALOG_RECIPES]
-    .sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))
+    .sort((a, b) => homeRank(a) - homeRank(b))
     .slice(0, 6);
 
   const airFryerCount = CATALOG_RECIPES.filter(isAirFryerRecipe).length;
