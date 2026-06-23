@@ -63,12 +63,12 @@ export function PantryAIChat() {
   }
 
   return (
-    <section className="rounded-3xl border border-emerald-200 bg-emerald-50/40 p-5 sm:p-6">
+    <section className="rounded-3xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/40 p-5 sm:p-6">
       <div>
-        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-emerald-800">
+        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
           <MessageCircle size={16} /> Ask Pesto about your pantry
         </h2>
-        <p className="mt-1 text-sm text-emerald-900">
+        <p className="mt-1 text-sm text-emerald-900 dark:text-emerald-300">
           Pesto knows what&apos;s in your pantry and can suggest meals, swaps,
           and what to grab next.
         </p>
@@ -76,11 +76,11 @@ export function PantryAIChat() {
 
       <div
         ref={scrollRef}
-        className="mt-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl bg-white p-4"
+        className="mt-4 max-h-80 space-y-3 overflow-y-auto rounded-2xl bg-surface p-4"
       >
         {messages.length === 0 && (
-          <div className="text-sm text-stone-600">
-            <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          <div className="text-sm text-ink-muted">
+            <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-ink-muted">
               <Sparkles size={12} /> Try asking
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -88,14 +88,14 @@ export function PantryAIChat() {
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 >
                   {s}
                 </button>
               ))}
             </div>
             {pantry.length === 0 && (
-              <p className="mt-3 text-xs text-stone-500">
+              <p className="mt-3 text-xs text-ink-muted">
                 Tip: add a few pantry items above for more personalized
                 answers.
               </p>
@@ -108,12 +108,12 @@ export function PantryAIChat() {
         ))}
 
         {loading && (
-          <div className="flex items-center gap-2 text-sm text-stone-500">
+          <div className="flex items-center gap-2 text-sm text-ink-muted">
             <Loader2 size={14} className="animate-spin" /> Pesto is thinking…
           </div>
         )}
         {error && (
-          <div className="rounded-xl bg-red-50 px-3 py-2 text-xs text-red-800">
+          <div className="rounded-xl bg-red-50 dark:bg-red-950/40 px-3 py-2 text-xs text-red-800 dark:text-red-300">
             {error}
           </div>
         )}
@@ -130,7 +130,7 @@ export function PantryAIChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about a recipe, swap, or what to cook tonight…"
-          className="flex-1 rounded-full border border-stone-200 bg-white px-4 py-2 text-sm focus:border-emerald-400 focus:outline-none"
+          className="flex-1 rounded-full border border-line bg-surface px-4 py-2 text-sm focus:border-emerald-400 focus:outline-none"
           disabled={loading}
           aria-label="Pantry chat message"
         />
@@ -161,7 +161,7 @@ function ChatBubble({
         className={
           isUser
             ? "max-w-[85%] rounded-2xl bg-emerald-600 px-4 py-2.5 text-sm text-white"
-            : "max-w-[85%] rounded-2xl bg-stone-100 px-4 py-2.5 text-sm text-stone-800"
+            : "max-w-[85%] rounded-2xl bg-surface-sunken px-4 py-2.5 text-sm text-ink"
         }
       >
         <div className="whitespace-pre-wrap leading-relaxed">

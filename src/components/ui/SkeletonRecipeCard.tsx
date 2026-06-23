@@ -2,9 +2,9 @@
 // loads so the layout stays stable while results stream in.
 export function SkeletonRecipeCard() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white motion-safe:animate-pulse">
+    <div className="overflow-hidden rounded-2xl border border-line bg-surface motion-safe:animate-pulse">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
-        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent motion-safe:animate-[shimmer_1.8s_infinite]" />
+        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-surface/40 to-transparent motion-safe:animate-[shimmer_1.8s_infinite]" />
       </div>
       <div className="space-y-2 p-4">
         <div className="h-4 w-3/4 rounded bg-stone-200" />

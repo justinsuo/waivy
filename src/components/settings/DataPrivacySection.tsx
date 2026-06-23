@@ -86,7 +86,7 @@ export function DataPrivacySection() {
     >
       <SettingRow
         icon={<Download size={18} />}
-        iconClass="bg-emerald-100 text-emerald-700"
+        iconClass="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
         title="Export all data"
         description="Download a JSON backup of your pantry, recipes, settings, and everything else."
         control={
@@ -96,9 +96,9 @@ export function DataPrivacySection() {
         }
       />
 
-      <div className="rounded-2xl border border-stone-200 bg-stone-50/60 p-4">
-        <p className="text-sm font-semibold text-stone-900">Clear specific data</p>
-        <p className="mt-0.5 text-xs text-stone-600">
+      <div className="rounded-2xl border border-line bg-surface/60 p-4">
+        <p className="text-sm font-semibold text-ink">Clear specific data</p>
+        <p className="mt-0.5 text-xs text-ink-muted">
           Each one asks for confirmation first.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
@@ -116,12 +116,12 @@ export function DataPrivacySection() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4">
+      <div className="rounded-2xl border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 p-4">
         <div className="flex items-start gap-2.5">
-          <AlertTriangle size={18} className="mt-0.5 flex-none text-rose-600" />
+          <AlertTriangle size={18} className="mt-0.5 flex-none text-rose-600 dark:text-rose-400" />
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold text-rose-900">Reset everything</p>
-            <p className="mt-0.5 text-xs leading-relaxed text-rose-800">
+            <p className="text-sm font-semibold text-rose-900 dark:text-rose-300">Reset everything</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-rose-800 dark:text-rose-300">
               Wipes all Waivy data on this device and reloads the app fresh.
             </p>
           </div>

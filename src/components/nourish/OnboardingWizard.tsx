@@ -51,9 +51,9 @@ const GOAL_OPTIONS: { id: GoalMode; label: string; emoji: string; description: s
 // ─── Macro colour helpers ─────────────────────────────────────────────────────
 
 const MACRO_COLOURS = {
-  protein: { bar: "bg-emerald-500", text: "text-emerald-700", bg: "bg-emerald-50", ring: "ring-emerald-200" },
-  carbs: { bar: "bg-amber-400", text: "text-amber-700", bg: "bg-amber-50", ring: "ring-amber-200" },
-  fat: { bar: "bg-violet-400", text: "text-violet-700", bg: "bg-violet-50", ring: "ring-violet-200" },
+  protein: { bar: "bg-emerald-500", text: "text-emerald-700 dark:text-emerald-300", bg: "bg-emerald-50 dark:bg-emerald-950/40", ring: "ring-emerald-200" },
+  carbs: { bar: "bg-amber-400", text: "text-amber-700 dark:text-amber-300", bg: "bg-amber-50 dark:bg-amber-950/40", ring: "ring-amber-200" },
+  fat: { bar: "bg-violet-400", text: "text-violet-700 dark:text-violet-300", bg: "bg-violet-50 dark:bg-violet-950/40", ring: "ring-violet-200" },
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -162,7 +162,7 @@ export function OnboardingWizard({ onComplete }: Props) {
             <span
               className={clsx(
                 "hidden text-[10px] font-medium sm:block",
-                i === step ? "text-emerald-700" : "text-stone-400",
+                i === step ? "text-emerald-700 dark:text-emerald-300" : "text-ink-faint",
               )}
             >
               {s}
@@ -173,17 +173,17 @@ export function OnboardingWizard({ onComplete }: Props) {
 
       {/* Step 1 — Body stats */}
       {step === 0 && (
-        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-5 rounded-2xl border border-line bg-surface p-6 shadow-sm">
           <div>
-            <h2 className="text-xl font-bold text-stone-900">Tell us about yourself</h2>
-            <p className="mt-1 text-sm text-stone-500">
+            <h2 className="text-xl font-bold text-ink">Tell us about yourself</h2>
+            <p className="mt-1 text-sm text-ink-muted">
               Used only to calculate your targets — stored on this device.
             </p>
           </div>
 
           {/* Units toggle */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-medium text-stone-600">Units:</span>
+            <span className="text-xs font-medium text-ink-muted">Units:</span>
             {(["metric", "imperial"] as PreferredUnits[]).map((u) => (
               <SelectablePill
                 key={u}
@@ -199,7 +199,7 @@ export function OnboardingWizard({ onComplete }: Props) {
 
           {/* Weight */}
           <label className="block space-y-1.5">
-            <span className="text-sm font-medium text-stone-700">
+            <span className="text-sm font-medium text-ink-muted">
               Current weight {units === "imperial" ? "(lbs)" : "(kg)"}
             </span>
             <input
@@ -215,13 +215,13 @@ export function OnboardingWizard({ onComplete }: Props) {
                   else setWeightKg(v);
                 }
               }}
-              className="w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </label>
 
           {/* Height */}
           <div className="space-y-1.5">
-            <span className="text-sm font-medium text-stone-700">
+            <span className="text-sm font-medium text-ink-muted">
               Height {units === "imperial" ? "(ft / in)" : "(cm)"}
             </span>
             {units === "imperial" ? (
@@ -238,7 +238,7 @@ export function OnboardingWizard({ onComplete }: Props) {
                       const i = parseInt(inchesStr) || 0;
                       if (!isNaN(f) && f >= 0) setHeightCm(parseFloat(feetAndInchesToCm(f, i).toFixed(1)));
                     }}
-                    className="w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
                 <div className="flex-1">
@@ -253,7 +253,7 @@ export function OnboardingWizard({ onComplete }: Props) {
                       const i = parseInt(e.target.value);
                       if (!isNaN(i) && i >= 0 && i <= 11) setHeightCm(parseFloat(feetAndInchesToCm(f, i).toFixed(1)));
                     }}
-                    className="w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
               </div>
@@ -270,14 +270,14 @@ export function OnboardingWizard({ onComplete }: Props) {
                     setHeightCm(v);
                   }
                 }}
-                className="w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             )}
           </div>
 
           {/* Age */}
           <label className="block space-y-1.5">
-            <span className="text-sm font-medium text-stone-700">Age</span>
+            <span className="text-sm font-medium text-ink-muted">Age</span>
             <input
               type="text"
               inputMode="numeric"
@@ -288,15 +288,15 @@ export function OnboardingWizard({ onComplete }: Props) {
                 const v = parseInt(e.target.value);
                 if (!isNaN(v) && v > 0) setAge(v);
               }}
-              className="w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </label>
 
           {/* Sex */}
           <div className="space-y-1.5">
-            <span className="text-sm font-medium text-stone-700">
+            <span className="text-sm font-medium text-ink-muted">
               Sex{" "}
-              <span className="font-normal text-stone-400">
+              <span className="font-normal text-ink-faint">
                 (improves estimate — optional)
               </span>
             </span>
@@ -317,7 +317,7 @@ export function OnboardingWizard({ onComplete }: Props) {
             </div>
           </div>
 
-          <p className="rounded-xl bg-stone-50 px-3 py-2 text-[11px] text-stone-400">
+          <p className="rounded-xl bg-surface px-3 py-2 text-[11px] text-ink-faint">
             ⚠️ Calorie and macro targets are estimates based on general formulas.
             Consult a healthcare professional for medical conditions, pregnancy,
             or a history of disordered eating.
@@ -327,10 +327,10 @@ export function OnboardingWizard({ onComplete }: Props) {
 
       {/* Step 2 — Activity */}
       {step === 1 && (
-        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-5 rounded-2xl border border-line bg-surface p-6 shadow-sm">
           <div>
-            <h2 className="text-xl font-bold text-stone-900">How active are you?</h2>
-            <p className="mt-1 text-sm text-stone-500">
+            <h2 className="text-xl font-bold text-ink">How active are you?</h2>
+            <p className="mt-1 text-sm text-ink-muted">
               Think about your typical week including exercise and daily movement.
             </p>
           </div>
@@ -344,18 +344,18 @@ export function OnboardingWizard({ onComplete }: Props) {
                 className={clsx(
                   "flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                   activity === opt.id
-                    ? "border-emerald-500 bg-emerald-50"
-                    : "border-stone-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/40",
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40"
+                    : "border-line bg-surface hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/40",
                 )}
               >
                 <div>
-                  <p className={clsx("text-sm font-semibold", activity === opt.id ? "text-emerald-800" : "text-stone-800")}>
+                  <p className={clsx("text-sm font-semibold", activity === opt.id ? "text-emerald-800 dark:text-emerald-300" : "text-ink")}>
                     {opt.label}
                   </p>
-                  <p className="text-xs text-stone-500">{opt.description}</p>
+                  <p className="text-xs text-ink-muted">{opt.description}</p>
                 </div>
                 {activity === opt.id && (
-                  <Check size={16} className="shrink-0 text-emerald-600" />
+                  <Check size={16} className="shrink-0 text-emerald-600 dark:text-emerald-400" />
                 )}
               </button>
             ))}
@@ -365,10 +365,10 @@ export function OnboardingWizard({ onComplete }: Props) {
 
       {/* Step 3 — Goal */}
       {step === 2 && (
-        <div className="space-y-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-5 rounded-2xl border border-line bg-surface p-6 shadow-sm">
           <div>
-            <h2 className="text-xl font-bold text-stone-900">What&apos;s your goal?</h2>
-            <p className="mt-1 text-sm text-stone-500">
+            <h2 className="text-xl font-bold text-ink">What&apos;s your goal?</h2>
+            <p className="mt-1 text-sm text-ink-muted">
               We&apos;ll set a calorie target and macro split that supports it.
             </p>
           </div>
@@ -383,15 +383,15 @@ export function OnboardingWizard({ onComplete }: Props) {
                 className={clsx(
                   "flex flex-col rounded-xl border px-3 py-3 text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                   mode === opt.id
-                    ? "border-emerald-500 bg-emerald-50"
-                    : "border-stone-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/40",
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40"
+                    : "border-line bg-surface hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/40",
                 )}
               >
                 <span className="text-2xl" aria-hidden>{opt.emoji}</span>
-                <span className={clsx("mt-1 text-sm font-semibold", mode === opt.id ? "text-emerald-800" : "text-stone-800")}>
+                <span className={clsx("mt-1 text-sm font-semibold", mode === opt.id ? "text-emerald-800 dark:text-emerald-300" : "text-ink")}>
                   {opt.label}
                 </span>
-                <span className="mt-0.5 text-xs text-stone-500 leading-tight">{opt.description}</span>
+                <span className="mt-0.5 text-xs text-ink-muted leading-tight">{opt.description}</span>
               </button>
             ))}
           </div>
@@ -401,26 +401,26 @@ export function OnboardingWizard({ onComplete }: Props) {
 
       {/* Step 4 — Live target preview */}
       {step === 3 && (
-        <div className="space-y-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-4 rounded-2xl border border-line bg-surface p-6 shadow-sm">
           <div>
-            <h2 className="text-xl font-bold text-stone-900">Your daily targets</h2>
-            <p className="mt-1 text-sm text-stone-500">
+            <h2 className="text-xl font-bold text-ink">Your daily targets</h2>
+            <p className="mt-1 text-sm text-ink-muted">
               Calculated from your stats and goal. You can always adjust these later.
             </p>
           </div>
 
           {/* Calorie hero */}
-          <div className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-200 px-5 py-4">
+          <div className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-emerald-50 to-surface border border-emerald-200 dark:border-emerald-900 px-5 py-4">
             <div className="grid h-12 w-12 place-items-center rounded-xl bg-emerald-600 text-white shadow-sm">
               <Flame size={22} />
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-600">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                 Daily calorie target
               </p>
-              <p className="text-4xl font-bold text-stone-900 tabular-nums">
+              <p className="text-4xl font-bold text-ink tabular-nums">
                 {preview.calorieTarget.toLocaleString()}
-                <span className="ml-1 text-base font-normal text-stone-500">kcal</span>
+                <span className="ml-1 text-base font-normal text-ink-muted">kcal</span>
               </p>
             </div>
           </div>
@@ -448,28 +448,28 @@ export function OnboardingWizard({ onComplete }: Props) {
                     {grams}
                     <span className="text-sm font-normal">g</span>
                   </p>
-                  <p className="mt-0.5 text-xs font-medium text-stone-600">{name}</p>
+                  <p className="mt-0.5 text-xs font-medium text-ink-muted">{name}</p>
                 </div>
               );
             })}
           </div>
 
           {/* Fiber */}
-          <p className="flex items-center gap-1.5 text-sm text-stone-500">
+          <p className="flex items-center gap-1.5 text-sm text-ink-muted">
             <Zap size={13} className="text-amber-500" />
             Fiber target:{" "}
-            <strong className="text-stone-700">{preview.fiberG} g/day</strong>
+            <strong className="text-ink-muted">{preview.fiberG} g/day</strong>
           </p>
 
           {/* Mode summary */}
-          <p className="text-sm text-stone-500">
+          <p className="text-sm text-ink-muted">
             {mode === "cut" && `A deficit of ~${Math.round((preview.calorieTarget < 2000 ? 2000 - preview.calorieTarget : 2500 - preview.calorieTarget))} kcal/day supports your goal.`}
             {mode === "bulk" && "A modest surplus helps muscle growth while minimising fat gain."}
             {mode === "maintain" && "Eating at TDEE keeps your weight stable."}
             {mode === "recomp" && "Near-maintenance with high protein supports body recomposition over time."}
           </p>
 
-          <p className="rounded-xl bg-stone-50 px-3 py-2 text-[11px] text-stone-400">
+          <p className="rounded-xl bg-surface px-3 py-2 text-[11px] text-ink-faint">
             ⚠️ These are estimates — not medical advice. Consult a healthcare
             professional before making significant diet changes.
           </p>

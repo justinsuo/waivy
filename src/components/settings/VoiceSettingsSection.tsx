@@ -92,7 +92,7 @@ export function VoiceSettingsSection() {
       {!anyVoice ? (
         <SettingRow
           icon={<Info size={18} />}
-          iconClass="bg-amber-100 text-amber-700"
+          iconClass="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
           title="Voice guidance isn't available on this browser"
           description="This browser has no speech support and the premium voice service isn't configured, so spoken guidance is turned off. Everything else works normally."
         />
@@ -101,7 +101,7 @@ export function VoiceSettingsSection() {
           {/* Master toggle */}
           <SettingRow
             icon={<Volume2 size={18} />}
-            iconClass="bg-emerald-100 text-emerald-700"
+            iconClass="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
             title="Voice guidance"
             description="Read each step aloud automatically while cooking. You can always replay or pause from the cooking screen."
             control={
@@ -116,7 +116,7 @@ export function VoiceSettingsSection() {
           {/* Premium preference */}
           <SettingRow
             icon={<Sparkles size={18} />}
-            iconClass="bg-violet-100 text-violet-700"
+            iconClass="bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300"
             title="Use premium voice when available"
             description={
               premiumAvailable
@@ -135,9 +135,9 @@ export function VoiceSettingsSection() {
 
           {/* AI-voice disclosure — persistent whenever premium is active */}
           {usingPremium && (
-            <div className="flex items-start gap-2.5 rounded-2xl border border-violet-200 bg-violet-50 px-4 py-3">
-              <Sparkles size={16} className="mt-0.5 flex-none text-violet-600" />
-              <p className="text-xs leading-relaxed text-violet-900">
+            <div className="flex items-start gap-2.5 rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 px-4 py-3">
+              <Sparkles size={16} className="mt-0.5 flex-none text-violet-600 dark:text-violet-400" />
+              <p className="text-xs leading-relaxed text-violet-900 dark:text-violet-300">
                 <span className="font-semibold">{AI_VOICE_DISCLOSURE}.</span>{" "}
                 The premium voice is synthesized by AI — it is not a recording of
                 a real person.
@@ -147,7 +147,7 @@ export function VoiceSettingsSection() {
 
           {/* Voice picker — premium (gender → voice) or system fallback */}
           {usingPremium ? (
-            <div className="rounded-2xl border border-stone-200 bg-stone-50/60 p-4">
+            <div className="rounded-2xl border border-line bg-surface/60 p-4">
               <FieldLabel>Voice type</FieldLabel>
               <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Voice gender">
                 {GENDERS.map((g) => (
@@ -166,7 +166,7 @@ export function VoiceSettingsSection() {
               <FieldLabel>
                 <span className="mt-4 inline-block">
                   Premium voice{" "}
-                  <span className="ml-1 rounded-full bg-violet-100 px-1.5 py-0.5 text-[9px] font-bold text-violet-700">
+                  <span className="ml-1 rounded-full bg-violet-100 dark:bg-violet-900/40 px-1.5 py-0.5 text-[9px] font-bold text-violet-700 dark:text-violet-300">
                     AI
                   </span>
                 </span>
@@ -179,8 +179,8 @@ export function VoiceSettingsSection() {
                       <div
                         className={
                           selected
-                            ? "flex items-center gap-2 rounded-xl border-2 border-emerald-500 bg-emerald-50 p-2.5"
-                            : "flex items-center gap-2 rounded-xl border border-stone-200 bg-white p-2.5"
+                            ? "flex items-center gap-2 rounded-xl border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 p-2.5"
+                            : "flex items-center gap-2 rounded-xl border border-line bg-surface p-2.5"
                         }
                       >
                         <button
@@ -190,10 +190,10 @@ export function VoiceSettingsSection() {
                           onClick={() => setVoice({ premiumVoiceId: pv.id })}
                           className="min-w-0 flex-1 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg"
                         >
-                          <p className="text-sm font-semibold text-stone-900">
+                          <p className="text-sm font-semibold text-ink">
                             {pv.label}
                           </p>
-                          <p className="truncate text-xs text-stone-500">
+                          <p className="truncate text-xs text-ink-muted">
                             {pv.description}
                           </p>
                         </button>
@@ -202,7 +202,7 @@ export function VoiceSettingsSection() {
                           aria-label={`Preview ${pv.label} voice`}
                           onClick={() => preview(pv.id)}
                           disabled={previewing !== null}
-                          className="grid h-9 w-9 flex-none place-items-center rounded-full bg-emerald-600 text-white transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:opacity-50"
+                          className="grid h-9 w-9 flex-none place-items-center rounded-full bg-emerald-600 text-white transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ring-offset-background disabled:opacity-50"
                         >
                           {previewing === pv.id ? (
                             <Loader2 size={15} className="motion-safe:animate-spin" />
@@ -217,14 +217,14 @@ export function VoiceSettingsSection() {
               </ul>
             </div>
           ) : (
-            <div className="rounded-2xl border border-stone-200 bg-stone-50/60 p-4">
+            <div className="rounded-2xl border border-line bg-surface/60 p-4">
               <FieldLabel>
                 <span className="inline-flex items-center gap-1.5">
                   <Cpu size={11} /> System voice (your browser)
                 </span>
               </FieldLabel>
               {systemVoices.length === 0 ? (
-                <p className="text-xs text-stone-500">
+                <p className="text-xs text-ink-muted">
                   Your browser hasn&apos;t reported any voices yet. Try reopening
                   this page, or pick a voice once they load.
                 </p>
@@ -236,7 +236,7 @@ export function VoiceSettingsSection() {
                     onChange={(e) =>
                       setVoice({ systemVoiceURI: e.target.value || null })
                     }
-                    className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="min-w-0 flex-1 rounded-xl border border-line bg-surface px-3 py-2.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     <option value="">Browser default</option>
                     {systemVoices.map((sv) => (
@@ -251,7 +251,7 @@ export function VoiceSettingsSection() {
                     aria-label="Preview system voice"
                     onClick={() => preview(v.systemVoiceURI ?? "")}
                     disabled={previewing !== null}
-                    className="grid h-10 w-10 flex-none place-items-center rounded-full bg-stone-800 text-white transition-colors hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:opacity-50"
+                    className="grid h-10 w-10 flex-none place-items-center rounded-full bg-stone-800 text-white transition-colors hover:bg-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ring-offset-background disabled:opacity-50"
                   >
                     {previewing !== null ? (
                       <Loader2 size={16} className="motion-safe:animate-spin" />
@@ -261,7 +261,7 @@ export function VoiceSettingsSection() {
                   </button>
                 </div>
               )}
-              <p className="mt-2 text-[11px] text-stone-500">
+              <p className="mt-2 text-[11px] text-ink-muted">
                 System voices are provided free by your browser/OS. Quality
                 varies by device. The Web Speech API doesn&apos;t expose a
                 voice&apos;s gender, so any labels above are best-effort guesses
@@ -276,7 +276,7 @@ export function VoiceSettingsSection() {
             description={`How fast the voice reads. Currently: ${rateLabel(v.rate)} (${v.rate.toFixed(2)}×).`}
           >
             <div className="flex items-center gap-3">
-              <span className="text-xs font-medium text-stone-500">0.5×</span>
+              <span className="text-xs font-medium text-ink-muted">0.5×</span>
               <Slider
                 label="Speech rate"
                 min={0.5}
@@ -285,7 +285,7 @@ export function VoiceSettingsSection() {
                 value={v.rate}
                 onChange={(n) => setVoice({ rate: Math.round(n * 100) / 100 })}
               />
-              <span className="text-xs font-medium text-stone-500">2×</span>
+              <span className="text-xs font-medium text-ink-muted">2×</span>
             </div>
           </SettingRow>
         </>

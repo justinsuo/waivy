@@ -79,7 +79,7 @@ export function RecipeDetailClient({
   variantSiblings?: Recipe[];
 }) {
   return (
-    <Suspense fallback={<div className="h-6 w-32 animate-pulse rounded bg-stone-100" />}>
+    <Suspense fallback={<div className="h-6 w-32 animate-pulse rounded bg-surface-sunken" />}>
       <RecipeDetailBody recipe={recipe} variantSiblings={variantSiblings} />
     </Suspense>
   );
@@ -156,7 +156,7 @@ function RecipeDetailBody({
     <div className="space-y-6">
       <Link
         href={back.href}
-        className="group inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
+        className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-emerald-700 dark:text-emerald-300"
       >
         <ArrowLeft
           size={14}
@@ -168,7 +168,7 @@ function RecipeDetailBody({
       {/* Identity first: title, description, key facts, primary actions */}
       <header className="space-y-4">
         <p
-          className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700 motion-safe:animate-[fadeUp_460ms_ease-out_both]"
+          className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300 motion-safe:animate-[fadeUp_460ms_ease-out_both]"
         >
           <span
             aria-hidden
@@ -177,13 +177,13 @@ function RecipeDetailBody({
           Recipe
         </p>
         <h1
-          className="text-3xl font-bold leading-[1.05] tracking-tight text-stone-900 motion-safe:animate-[fadeUp_540ms_ease-out_both] sm:text-[2.5rem]"
+          className="text-3xl font-bold leading-[1.05] tracking-tight text-ink motion-safe:animate-[fadeUp_540ms_ease-out_both] sm:text-[2.5rem]"
           style={{ animationDelay: "60ms" }}
         >
           {recipe.name}
         </h1>
         <p
-          className="max-w-3xl text-base leading-relaxed text-stone-600 motion-safe:animate-[fadeUp_620ms_ease-out_both]"
+          className="max-w-3xl text-base leading-relaxed text-ink-muted motion-safe:animate-[fadeUp_620ms_ease-out_both]"
           style={{ animationDelay: "140ms" }}
         >
           {recipe.description}
@@ -231,7 +231,7 @@ function RecipeDetailBody({
               saved ? (
                 <BookmarkCheck
                   size={16}
-                  className="text-emerald-600 motion-safe:animate-[popIn_220ms_ease-out]"
+                  className="text-emerald-600 dark:text-emerald-400 motion-safe:animate-[popIn_220ms_ease-out]"
                 />
               ) : (
                 <Bookmark size={16} />
@@ -258,8 +258,8 @@ function RecipeDetailBody({
 
       {/* Variant selector — shown when this recipe has siblings */}
       {variantSiblings.length > 1 && (
-        <div className="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+        <div className="rounded-2xl border border-line bg-surface px-4 py-3">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
             Variants
           </p>
           <div className="flex flex-wrap gap-2">
@@ -277,7 +277,7 @@ function RecipeDetailBody({
                 <Link
                   key={v.id}
                   href={`/recipes/${v.id}`}
-                  className="inline-flex items-center rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-colors hover:border-emerald-300 hover:bg-emerald-50"
+                  className="inline-flex items-center rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-colors hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 >
                   {label}
                 </Link>
@@ -285,7 +285,7 @@ function RecipeDetailBody({
             })}
           </div>
           {recipe.variantNote && (
-            <p className="mt-2 text-xs text-stone-500">{recipe.variantNote}</p>
+            <p className="mt-2 text-xs text-ink-muted">{recipe.variantNote}</p>
           )}
         </div>
       )}
@@ -298,9 +298,9 @@ function RecipeDetailBody({
 
       {recipe.youtubeId && (
         <div className="overflow-hidden rounded-3xl shadow-sm">
-          <div className="flex items-center gap-2 bg-stone-100 px-4 py-2.5">
+          <div className="flex items-center gap-2 bg-surface-sunken px-4 py-2.5">
             <Play size={14} className="text-red-500 fill-red-500" />
-            <span className="text-sm font-medium text-stone-700">Watch how to make it</span>
+            <span className="text-sm font-medium text-ink-muted">Watch how to make it</span>
           </div>
           <div className="relative aspect-video w-full">
             <iframe
@@ -316,11 +316,11 @@ function RecipeDetailBody({
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
-          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink-muted">
             <Coins size={16} /> Cost breakdown
           </h2>
-          <p className="mt-1 text-xs text-stone-500">
-            Prices applied at <span className="font-semibold text-stone-700">{localQuote.regionLabel}</span> (×{localQuote.multiplier.toFixed(2)}). Tap ✨ to estimate any single price with AI, or ✎ to set your own.
+          <p className="mt-1 text-xs text-ink-muted">
+            Prices applied at <span className="font-semibold text-ink-muted">{localQuote.regionLabel}</span> (×{localQuote.multiplier.toFixed(2)}). Tap ✨ to estimate any single price with AI, or ✎ to set your own.
           </p>
           <div className="mt-3">
             <RecipeAIRepriceButton
@@ -336,8 +336,8 @@ function RecipeDetailBody({
                     key={`x-${idx}`}
                     className="flex items-center justify-between py-2 text-sm"
                   >
-                    <span className="text-stone-500">Unknown ingredient</span>
-                    <span className="font-medium text-stone-900">${b.cost.toFixed(2)}</span>
+                    <span className="text-ink-muted">Unknown ingredient</span>
+                    <span className="font-medium text-ink">${b.cost.toFixed(2)}</span>
                   </li>
                 );
               }
@@ -352,18 +352,18 @@ function RecipeDetailBody({
               );
             })}
           </ul>
-          <div className="mt-3 flex items-center justify-between rounded-2xl bg-emerald-50 px-4 py-3">
+          <div className="mt-3 flex items-center justify-between rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 px-4 py-3">
             <div>
-              <p className="text-xs text-emerald-800">Total</p>
-              <p className="text-lg font-bold text-emerald-900">
+              <p className="text-xs text-emerald-800 dark:text-emerald-300">Total</p>
+              <p className="text-lg font-bold text-emerald-900 dark:text-emerald-300">
                 ${totalCost.toFixed(2)}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-emerald-800">
+              <p className="text-xs text-emerald-800 dark:text-emerald-300">
                 Per serving × {recipe.servings}
               </p>
-              <p className="text-lg font-bold text-emerald-900">
+              <p className="text-lg font-bold text-emerald-900 dark:text-emerald-300">
                 ${cps.toFixed(2)}
               </p>
             </div>
@@ -371,7 +371,7 @@ function RecipeDetailBody({
         </Card>
 
         <Card>
-          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink-muted">
             <ChefHat size={16} /> Steps
           </h2>
           <ol className="mt-3 space-y-3">
@@ -380,7 +380,7 @@ function RecipeDetailBody({
                 <span className="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-emerald-600 text-xs font-bold text-white">
                   {i + 1}
                 </span>
-                <p className="text-sm text-stone-800">{step}</p>
+                <p className="text-sm text-ink">{step}</p>
               </li>
             ))}
           </ol>
@@ -393,19 +393,19 @@ function RecipeDetailBody({
 
       {recipe.flavorExplanation && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Why this tastes good
           </h2>
-          <p className="mt-2 text-sm text-stone-700">{recipe.flavorExplanation}</p>
+          <p className="mt-2 text-sm text-ink-muted">{recipe.flavorExplanation}</p>
         </Card>
       )}
 
       {(recipe.seasoningUpgrades?.length ?? 0) > 0 && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-amber-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
             Seasoning upgrades
           </h2>
-          <ul className="mt-2 space-y-1 text-sm text-stone-700">
+          <ul className="mt-2 space-y-1 text-sm text-ink-muted">
             {recipe.seasoningUpgrades!.map((s, i) => (
               <li key={i}>• {s}</li>
             ))}
@@ -415,10 +415,10 @@ function RecipeDetailBody({
 
       {(recipe.tasteTroubleshooting?.length ?? 0) > 0 && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             If it tastes flat
           </h2>
-          <ul className="mt-2 space-y-1 text-sm text-stone-700">
+          <ul className="mt-2 space-y-1 text-sm text-ink-muted">
             {recipe.tasteTroubleshooting!.map((s, i) => (
               <li key={i}>• {s}</li>
             ))}
@@ -431,10 +431,10 @@ function RecipeDetailBody({
       <div className="grid gap-6 md:grid-cols-2">
         {recipe.cheapTips.length > 0 && (
           <Card>
-            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-amber-700">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
               <Sparkles size={16} /> Why it&apos;s cheap
             </h2>
-            <ul className="mt-3 space-y-2 text-sm text-stone-700">
+            <ul className="mt-3 space-y-2 text-sm text-ink-muted">
               {recipe.cheapTips.map((t, i) => (
                 <li key={i} className="flex gap-2">
                   <span aria-hidden>💡</span> {t}
@@ -446,21 +446,21 @@ function RecipeDetailBody({
 
         {recipe.substitutions.length > 0 && (
           <Card>
-            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-700">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink-muted">
               <Layers size={16} /> Cheap swaps
             </h2>
-            <ul className="mt-3 space-y-2 text-sm text-stone-700">
+            <ul className="mt-3 space-y-2 text-sm text-ink-muted">
               {recipe.substitutions.map((s, i) => {
                 const ing = breakdown.find(
                   (b) => b.ingredient?.id === s.forIngredientId,
                 )?.ingredient;
                 return (
-                  <li key={i} className="rounded-xl bg-stone-50 p-2.5">
-                    <p className="font-medium text-stone-900">
+                  <li key={i} className="rounded-xl bg-surface p-2.5">
+                    <p className="font-medium text-ink">
                       {ing?.name ?? s.forIngredientId} → {s.swap}
                     </p>
                     {s.savings && (
-                      <p className="mt-0.5 text-xs text-emerald-700">{s.savings}</p>
+                      <p className="mt-0.5 text-xs text-emerald-700 dark:text-emerald-300">{s.savings}</p>
                     )}
                   </li>
                 );
@@ -471,10 +471,10 @@ function RecipeDetailBody({
 
         {(recipe.healthierTips ?? []).length > 0 && (
           <Card>
-            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-green-700">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-green-700 dark:text-green-300">
               <Lightbulb size={16} /> Make it healthier
             </h2>
-            <ul className="mt-3 space-y-2 text-sm text-stone-700">
+            <ul className="mt-3 space-y-2 text-sm text-ink-muted">
               {recipe.healthierTips!.map((t, i) => (
                 <li key={i}>• {t}</li>
               ))}
@@ -484,10 +484,10 @@ function RecipeDetailBody({
 
         {(recipe.batchPrepTips ?? []).length > 0 && (
           <Card>
-            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-700">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
               <Timer size={16} /> Batch prep
             </h2>
-            <ul className="mt-3 space-y-2 text-sm text-stone-700">
+            <ul className="mt-3 space-y-2 text-sm text-ink-muted">
               {recipe.batchPrepTips!.map((t, i) => (
                 <li key={i}>• {t}</li>
               ))}
@@ -498,10 +498,10 @@ function RecipeDetailBody({
 
       {(recipe.whatToBuyNext ?? []).length > 0 && (
         <Card>
-          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink-muted">
             🛍️ What to buy next time
           </h2>
-          <ul className="mt-3 space-y-1 text-sm text-stone-700">
+          <ul className="mt-3 space-y-1 text-sm text-ink-muted">
             {recipe.whatToBuyNext!.map((t, i) => (
               <li key={i}>• {t}</li>
             ))}
@@ -520,7 +520,7 @@ function RecipeDetailBody({
               : "Low confidence";
         return (
           <Card>
-            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-700">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-ink-muted">
               🥗 Nutrition per serving
               {hp && (
                 <span className="ml-1 rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
@@ -528,7 +528,7 @@ function RecipeDetailBody({
                 </span>
               )}
             </h2>
-            <p className="mt-1 text-xs text-stone-500">
+            <p className="mt-1 text-xs text-ink-muted">
               {n.source === "calculated"
                 ? `Calculated from ingredients · ${confLabel.toLowerCase()}`
                 : "From recipe author · medium confidence"}
@@ -544,7 +544,7 @@ function RecipeDetailBody({
                 <NutritionPill label="Fiber" value={n.estimate.fiber} unit="g" />
               </div>
             )}
-            <p className="mt-3 text-xs text-stone-500">
+            <p className="mt-3 text-xs text-ink-muted">
               Estimated from ingredients and serving size. Actual values vary by brand and preparation.
             </p>
           </Card>
@@ -569,13 +569,13 @@ function NutritionPill({
     <div
       className={
         highlight
-          ? "rounded-2xl bg-emerald-100 px-3 py-3 text-center"
-          : "rounded-2xl bg-stone-100 px-3 py-3 text-center"
+          ? "rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 px-3 py-3 text-center"
+          : "rounded-2xl bg-surface-sunken px-3 py-3 text-center"
       }
     >
       <p
         className={
-          highlight ? "text-xs font-medium text-emerald-800" : "text-xs font-medium text-stone-600"
+          highlight ? "text-xs font-medium text-emerald-800 dark:text-emerald-300" : "text-xs font-medium text-ink-muted"
         }
       >
         {label}
@@ -583,8 +583,8 @@ function NutritionPill({
       <p
         className={
           highlight
-            ? "text-lg font-bold text-emerald-900"
-            : "text-lg font-bold text-stone-900"
+            ? "text-lg font-bold text-emerald-900 dark:text-emerald-300"
+            : "text-lg font-bold text-ink"
         }
       >
         {value}
@@ -619,11 +619,11 @@ function CookingMode({
   // an undefined heading + a width:Infinity% progress bar.
   if (total === 0) {
     return (
-      <div className="space-y-4 rounded-3xl bg-white p-8 text-center shadow-sm">
-        <p className="text-base font-semibold text-stone-900">
+      <div className="space-y-4 rounded-3xl bg-surface p-8 text-center shadow-sm">
+        <p className="text-base font-semibold text-ink">
           This recipe doesn&apos;t have any cooking steps yet.
         </p>
-        <p className="text-sm text-stone-500">
+        <p className="text-sm text-ink-muted">
           Add steps in Recipe Studio, or come back to the recipe page.
         </p>
         <Button onClick={exit} variant="primary">
@@ -644,11 +644,11 @@ function CookingMode({
       <div className="flex items-center justify-between">
         <button
           onClick={exit}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-emerald-700 dark:text-emerald-300"
         >
           <ArrowLeft size={14} /> Back to recipe
         </button>
-        <p className="text-sm text-stone-500">
+        <p className="text-sm text-ink-muted">
           Step {step + 1} of {total}
         </p>
       </div>
@@ -660,9 +660,9 @@ function CookingMode({
         />
       </div>
 
-      <div className="rounded-3xl bg-white p-8 shadow-sm sm:p-12">
-        <p className="text-sm font-medium text-emerald-700">{recipe.name}</p>
-        <h2 className="mt-3 text-3xl font-bold leading-snug text-stone-900 sm:text-4xl">
+      <div className="rounded-3xl bg-surface p-8 shadow-sm sm:p-12">
+        <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">{recipe.name}</p>
+        <h2 className="mt-3 text-3xl font-bold leading-snug text-ink sm:text-4xl">
           {recipe.steps[step]}
         </h2>
 
@@ -704,7 +704,7 @@ function CookingMode({
                       ? "Resume voice"
                       : "Read this step aloud"
                 }
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ring-offset-background"
               >
                 {voice.speaking && !voice.paused ? <Pause size={16} /> : <Play size={16} />}
                 {voice.speaking && !voice.paused
@@ -717,7 +717,7 @@ function CookingMode({
                 type="button"
                 onClick={voice.replay}
                 aria-label="Replay this step"
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-stone-200 bg-white px-4 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-4 text-sm font-medium text-ink-muted transition-colors hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               >
                 <RotateCcw size={15} /> Replay
               </button>
@@ -725,13 +725,13 @@ function CookingMode({
                 type="button"
                 onClick={() => voice.setEnabled(false)}
                 aria-label="Turn voice guidance off"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-stone-500 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink-muted transition-colors hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               >
                 <Volume2 size={16} />
               </button>
               {voice.usingPremium && (
                 <span
-                  className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2.5 py-1 text-[11px] font-semibold text-violet-700"
+                  className="inline-flex items-center gap-1 rounded-full bg-violet-100 dark:bg-violet-900/40 px-2.5 py-1 text-[11px] font-semibold text-violet-700 dark:text-violet-300"
                   title={`${AI_VOICE_DISCLOSURE} — synthesized, not a real person`}
                 >
                   <Sparkles size={11} /> AI voice
@@ -742,7 +742,7 @@ function CookingMode({
             <button
               type="button"
               onClick={() => voice.setEnabled(true)}
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-stone-200 bg-white px-5 text-sm font-medium text-stone-600 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-5 text-sm font-medium text-ink-muted transition-colors hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
               <VolumeX size={16} /> Voice off — tap to read steps aloud
             </button>

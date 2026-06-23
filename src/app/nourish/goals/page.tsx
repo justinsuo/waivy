@@ -37,7 +37,7 @@ export default function NourishGoalsPage() {
   if (!hydrated) {
     return (
       <NourishShell title="Goals." description="Loading…">
-        <div className="h-48 animate-pulse rounded-2xl bg-stone-100" />
+        <div className="h-48 animate-pulse rounded-2xl bg-surface-sunken" />
       </NourishShell>
     );
   }
@@ -48,9 +48,9 @@ export default function NourishGoalsPage() {
         title="Set your goals."
         description="Finish onboarding first — that gives Nourish a starting calorie + macro target it can tune over time."
       >
-        <div className="rounded-3xl border border-stone-200 bg-white p-6 text-sm text-stone-700 shadow-sm">
+        <div className="rounded-3xl border border-line bg-surface p-6 text-sm text-ink-muted shadow-sm">
           Head back to{" "}
-          <a className="font-semibold text-emerald-700 hover:underline" href="/nourish">
+          <a className="font-semibold text-emerald-700 dark:text-emerald-300 hover:underline" href="/nourish">
             Nourish
           </a>{" "}
           to set up your profile.
@@ -107,7 +107,7 @@ export default function NourishGoalsPage() {
       title="Goals."
       description="What you're aiming for. Calorie + macro targets the rest of Nourish (and AI Chef) reads from."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow="Goal type"
           title="What are you working toward?"
@@ -124,14 +124,14 @@ export default function NourishGoalsPage() {
                 aria-pressed={active}
                 className={
                   active
-                    ? "rounded-2xl border-2 border-emerald-600 bg-emerald-50 p-4 text-left shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.01]"
-                    : "rounded-2xl border border-stone-200 bg-white p-4 text-left transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50/50"
+                    ? "rounded-2xl border-2 border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-4 text-left shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.01]"
+                    : "rounded-2xl border border-line bg-surface p-4 text-left transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/50"
                 }
               >
-                <p className="text-sm font-semibold text-stone-900">
+                <p className="text-sm font-semibold text-ink">
                   {opt.label}
                 </p>
-                <p className="mt-1 text-xs leading-relaxed text-stone-600">
+                <p className="mt-1 text-xs leading-relaxed text-ink-muted">
                   {opt.description}
                 </p>
               </button>
@@ -141,7 +141,7 @@ export default function NourishGoalsPage() {
       </section>
 
       {(snapshot.mode === "cut" || snapshot.mode === "bulk") && (
-        <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+        <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
           <SectionHeading
             eyebrow="Pace"
             title={`Weekly rate (${snapshot.weeklyRateKg >= 0 ? "+" : ""}${snapshot.weeklyRateKg.toFixed(2)} kg/week)`}
@@ -162,14 +162,14 @@ export default function NourishGoalsPage() {
             className="mt-4 w-full accent-emerald-600"
             aria-label="Weekly rate"
           />
-          <div className="mt-1 flex justify-between text-[11px] text-stone-500">
+          <div className="mt-1 flex justify-between text-[11px] text-ink-muted">
             <span>{rateRange.min.toFixed(2)} kg/wk</span>
             <span>{rateRange.max.toFixed(2)} kg/wk</span>
           </div>
         </section>
       )}
 
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <SectionHeading
             eyebrow="Calorie + macro targets"
@@ -219,8 +219,8 @@ export default function NourishGoalsPage() {
             onChange={(v) => update("fiberG", v)}
           />
         </div>
-        <p className="mt-4 text-[11px] text-stone-500">
-          Source: <span className="font-semibold uppercase text-stone-700">{snapshot.source}</span> · effective from {snapshot.effectiveFrom}
+        <p className="mt-4 text-[11px] text-ink-muted">
+          Source: <span className="font-semibold uppercase text-ink-muted">{snapshot.source}</span> · effective from {snapshot.effectiveFrom}
         </p>
       </section>
 
@@ -236,7 +236,7 @@ export default function NourishGoalsPage() {
         </Button>
       </div>
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Nutrition estimates are for general tracking only and may vary by brand,
         portion, and preparation. Not medical advice.
       </p>
@@ -257,18 +257,18 @@ function NumberField({
 }) {
   return (
     <label className="block">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
         {label}
       </span>
-      <div className="mt-1 flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100">
+      <div className="mt-1 flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100">
         <input
           type="number"
           inputMode="numeric"
           value={Number.isFinite(value) ? value : 0}
           onChange={(e) => onChange(Math.max(0, Math.round(parseFloat(e.target.value) || 0)))}
-          className="w-full bg-transparent text-lg font-semibold tabular-nums text-stone-900 outline-none"
+          className="w-full bg-transparent text-lg font-semibold tabular-nums text-ink outline-none"
         />
-        <span className="text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+        <span className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
           {unit}
         </span>
       </div>

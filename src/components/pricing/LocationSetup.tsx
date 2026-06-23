@@ -65,27 +65,27 @@ export function LocationSetup({ variant = "card", onChange }: Props) {
     <section
       className={
         isCompact
-          ? "rounded-2xl border border-stone-200 bg-white p-3"
-          : "rounded-3xl border border-stone-200 bg-white p-5 sm:p-6"
+          ? "rounded-2xl border border-line bg-surface p-3"
+          : "rounded-3xl border border-line bg-surface p-5 sm:p-6"
       }
     >
       <div className="flex items-start gap-2">
-        <div className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-sky-100 text-sky-700">
+        <div className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300">
           <MapPin size={16} />
         </div>
         <div className="flex-1">
           <p
             className={
               isCompact
-                ? "text-xs font-semibold uppercase tracking-wide text-stone-700"
-                : "text-sm font-semibold uppercase tracking-wide text-stone-700"
+                ? "text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                : "text-sm font-semibold uppercase tracking-wide text-ink-muted"
             }
           >
             Local pricing
           </p>
-          <p className="text-xs text-stone-600">
+          <p className="text-xs text-ink-muted">
             Recipe costs use your region. Current:{" "}
-            <span className="font-semibold text-stone-900">
+            <span className="font-semibold text-ink">
               {region.label} (×{region.multiplier.toFixed(2)})
             </span>
           </p>
@@ -105,7 +105,7 @@ export function LocationSetup({ variant = "card", onChange }: Props) {
 
       <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_2fr]">
         <div>
-          <label className="text-xs font-medium text-stone-700">
+          <label className="text-xs font-medium text-ink-muted">
             ZIP code
           </label>
           <div className="mt-1 flex gap-2">
@@ -115,24 +115,24 @@ export function LocationSetup({ variant = "card", onChange }: Props) {
               maxLength={5}
               inputMode="numeric"
               placeholder="94720"
-              className="w-full rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
             <Button onClick={applyZip} size="sm" disabled={!/^\d{5}$/.test(zip)}>
               Use
             </Button>
           </div>
-          <p className="mt-1 text-[11px] text-stone-500">
+          <p className="mt-1 text-[11px] text-ink-muted">
             We don&apos;t send your ZIP anywhere — stored only in this browser.
           </p>
         </div>
         <div>
-          <label className="text-xs font-medium text-stone-700">
+          <label className="text-xs font-medium text-ink-muted">
             Or pick a region
           </label>
           <select
             value={regionId}
             onChange={(e) => applyRegion(e.target.value)}
-            className="mt-1 w-full rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="mt-1 w-full rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
           >
             {listRegions().map((r) => (
               <option key={r.id} value={r.id}>

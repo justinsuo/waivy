@@ -79,9 +79,9 @@ function ExploreCard({
   return (
     <button
       onClick={onClick}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white text-left shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface text-left shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface-sunken">
         {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -111,10 +111,10 @@ function ExploreCard({
         )}
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-3">
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-stone-900 transition-colors group-hover:text-emerald-700">
+        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-ink transition-colors group-hover:text-emerald-700 dark:text-emerald-300">
           {recipe.title}
         </h3>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-muted">
           <span className="flex items-center gap-1">
             <Clock size={11} />
             {time ? `${time} min` : "Time varies"}
@@ -123,16 +123,16 @@ function ExploreCard({
             <span
               className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                 difficulty === "Easy"
-                  ? "bg-emerald-100 text-emerald-700"
+                  ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
                   : difficulty === "Medium"
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-red-100 text-red-700"
+                    ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+                    : "bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300"
               }`}
             >
               {difficulty}
             </span>
           ) : (
-            <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[11px] font-medium text-stone-500">
+            <span className="rounded-full bg-surface-sunken px-2 py-0.5 text-[11px] font-medium text-ink-muted">
               Any level
             </span>
           )}
@@ -140,7 +140,7 @@ function ExploreCard({
         {recipe.rating && (
           <div className="flex items-center gap-1 text-xs">
             <Star size={11} className="fill-amber-400 text-amber-400" />
-            <span className="font-semibold text-stone-800">
+            <span className="font-semibold text-ink">
               {recipe.rating.toFixed(1)}
             </span>
           </div>
@@ -150,13 +150,13 @@ function ExploreCard({
             recipe.diets.slice(0, 2).map((d) => (
               <span
                 key={d}
-                className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"
+                className="rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:text-emerald-300"
               >
                 {d}
               </span>
             ))
           ) : (
-            <span className="rounded-full bg-stone-50 px-2 py-0.5 text-[11px] font-medium text-stone-500">
+            <span className="rounded-full bg-surface px-2 py-0.5 text-[11px] font-medium text-ink-muted">
               Flexible diet
             </span>
           )}
@@ -201,7 +201,7 @@ function DetailPanel({
         role="dialog"
         aria-modal="true"
         aria-label={recipe.title}
-        className="relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl bg-white shadow-2xl sm:max-w-2xl sm:rounded-3xl"
+        className="relative z-10 max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl bg-surface shadow-2xl sm:max-w-2xl sm:rounded-3xl"
       >
         <div className="relative aspect-[3/1] overflow-hidden rounded-t-3xl">
           {resolveRecipeImage(recipe) ? (
@@ -234,19 +234,19 @@ function DetailPanel({
         </div>
 
         <div className="space-y-5 p-5">
-          <div className="flex flex-wrap gap-2 text-sm text-stone-600">
+          <div className="flex flex-wrap gap-2 text-sm text-ink-muted">
             {recipe.cuisine && (
-              <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium">
+              <span className="rounded-full bg-surface-sunken px-3 py-1 text-xs font-medium">
                 {recipe.cuisine}
               </span>
             )}
             {recipe.totalTimeMinutes && (
-              <span className="flex items-center gap-1 rounded-full bg-stone-100 px-3 py-1 text-xs font-medium">
+              <span className="flex items-center gap-1 rounded-full bg-surface-sunken px-3 py-1 text-xs font-medium">
                 <Clock size={12} /> {recipe.totalTimeMinutes} min
               </span>
             )}
             {recipe.servings && (
-              <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium">
+              <span className="rounded-full bg-surface-sunken px-3 py-1 text-xs font-medium">
                 {recipe.servings} servings
               </span>
             )}
@@ -254,10 +254,10 @@ function DetailPanel({
               <span
                 className={`rounded-full px-3 py-1 text-xs font-medium ${
                   recipe.difficulty === "Easy"
-                    ? "bg-emerald-100 text-emerald-700"
+                    ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
                     : recipe.difficulty === "Medium"
-                      ? "bg-amber-100 text-amber-700"
-                      : "bg-red-100 text-red-700"
+                      ? "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+                      : "bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300"
                 }`}
               >
                 {recipe.difficulty}
@@ -266,7 +266,7 @@ function DetailPanel({
             {recipe.diets.map((d) => (
               <span
                 key={d}
-                className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700"
+                className="rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300"
               >
                 {d}
               </span>
@@ -284,10 +284,10 @@ function DetailPanel({
                 val != null ? (
                   <div
                     key={String(label)}
-                    className={`rounded-2xl p-2.5 text-center ${label === "Calories" ? "bg-amber-50" : "bg-stone-50"}`}
+                    className={`rounded-2xl p-2.5 text-center ${label === "Calories" ? "bg-amber-50 dark:bg-amber-950/40" : "bg-surface"}`}
                   >
-                    <p className="text-xs text-stone-500">{label}</p>
-                    <p className="text-sm font-bold text-stone-900">
+                    <p className="text-xs text-ink-muted">{label}</p>
+                    <p className="text-sm font-bold text-ink">
                       {Math.round(Number(val))}
                       {unit}
                     </p>
@@ -299,18 +299,18 @@ function DetailPanel({
 
           {recipe.ingredients.length > 0 && (
             <div>
-              <h3 className="mb-2.5 font-semibold text-stone-800">
+              <h3 className="mb-2.5 font-semibold text-ink">
                 Ingredients
               </h3>
               <ul className="divide-y divide-stone-100">
                 {recipe.ingredients.map((ing, i) => (
                   <li key={i} className="flex gap-3 py-2 text-sm">
                     {ing.amount && (
-                      <span className="w-16 shrink-0 font-medium text-emerald-700">
+                      <span className="w-16 shrink-0 font-medium text-emerald-700 dark:text-emerald-300">
                         {ing.amount} {ing.unit ?? ""}
                       </span>
                     )}
-                    <span className="text-stone-800">{ing.name}</span>
+                    <span className="text-ink">{ing.name}</span>
                   </li>
                 ))}
               </ul>
@@ -319,7 +319,7 @@ function DetailPanel({
 
           {recipe.instructions.length > 0 && (
             <div>
-              <h3 className="mb-2.5 font-semibold text-stone-800">
+              <h3 className="mb-2.5 font-semibold text-ink">
                 Instructions
               </h3>
               <ol className="space-y-3">
@@ -327,14 +327,14 @@ function DetailPanel({
                   <li
                     key={i}
                     onClick={() => setStep(step === i ? null : i)}
-                    className={`flex cursor-pointer gap-3 rounded-2xl p-3 transition ${step === i ? "bg-emerald-50" : "hover:bg-stone-50"}`}
+                    className={`flex cursor-pointer gap-3 rounded-2xl p-3 transition ${step === i ? "bg-emerald-50 dark:bg-emerald-950/40" : "hover:bg-surface"}`}
                   >
                     <span
-                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold ${step === i ? "bg-emerald-600 text-white" : "bg-stone-100 text-stone-700"}`}
+                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-bold ${step === i ? "bg-emerald-600 text-white" : "bg-surface-sunken text-ink-muted"}`}
                     >
                       {i + 1}
                     </span>
-                    <p className="pt-0.5 text-sm leading-relaxed text-stone-800">
+                    <p className="pt-0.5 text-sm leading-relaxed text-ink">
                       {s}
                     </p>
                   </li>
@@ -344,8 +344,8 @@ function DetailPanel({
           )}
 
           {recipe.culturalNote && (
-            <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 text-sm leading-relaxed text-stone-700">
-              <span className="font-semibold text-stone-800">
+            <div className="rounded-2xl border border-line bg-surface p-4 text-sm leading-relaxed text-ink-muted">
+              <span className="font-semibold text-ink">
                 Did you know?{" "}
               </span>
               {recipe.culturalNote}
@@ -520,7 +520,7 @@ export default function ExplorePage() {
       />
 
       {isDemo && (
-        <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 shadow-sm">
+        <div className="flex items-start gap-3 rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-sm text-amber-900 dark:text-amber-300 shadow-sm">
           <Info size={16} className="mt-0.5 shrink-0" />
           <p>
             <span className="font-semibold">Demo mode</span> — showing a small
@@ -530,7 +530,7 @@ export default function ExplorePage() {
         </div>
       )}
       {resultSource === "themealdb" && !isDemo && (
-        <div className="flex items-start gap-3 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900 shadow-sm">
+        <div className="flex items-start gap-3 rounded-2xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 px-4 py-3 text-sm text-sky-900 dark:text-sky-300 shadow-sm">
           <Info size={16} className="mt-0.5 shrink-0" />
           <p>
             <span className="font-semibold">Powered by TheMealDB</span> — a free, open recipe database.
@@ -544,18 +544,18 @@ export default function ExplorePage() {
         <div className="relative flex-1">
           <Search
             size={16}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint"
           />
           <input
             value={inputValue}
             onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Search any cuisine, dish, or ingredient…"
-            className="w-full rounded-full border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="w-full rounded-full border border-line bg-surface py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
           />
         </div>
         <button
           onClick={() => setFiltersOpen((o) => !o)}
-          className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm font-medium transition ${filtersOpen ? "border-emerald-400 bg-emerald-50 text-emerald-700" : "border-stone-200 bg-white text-stone-600 hover:border-stone-300"}`}
+          className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm font-medium transition ${filtersOpen ? "border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300" : "border-line bg-surface text-ink-muted hover:border-line-strong"}`}
         >
           <SlidersHorizontal size={15} /> Filters
         </button>
@@ -563,10 +563,10 @@ export default function ExplorePage() {
 
       {/* Expanded filters */}
       {filtersOpen && (
-        <div className="space-y-4 rounded-3xl border border-stone-200 bg-white p-5">
+        <div className="space-y-4 rounded-3xl border border-line bg-surface p-5">
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Cuisine
               </p>
               <div className="flex max-h-28 flex-wrap gap-1.5 overflow-y-auto">
@@ -576,7 +576,7 @@ export default function ExplorePage() {
                     onClick={() =>
                       setFilter("cuisine", filters.cuisine === c ? "" : c)
                     }
-                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.cuisine === c ? "border-emerald-600 bg-emerald-600 text-white" : "border-stone-200 text-stone-600 hover:border-emerald-300"}`}
+                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.cuisine === c ? "border-emerald-600 bg-emerald-600 text-white" : "border-line text-ink-muted hover:border-emerald-300 dark:border-emerald-800"}`}
                   >
                     {c}
                   </button>
@@ -584,7 +584,7 @@ export default function ExplorePage() {
               </div>
             </div>
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Diet
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -594,7 +594,7 @@ export default function ExplorePage() {
                     onClick={() =>
                       setFilter("diet", filters.diet === d ? "" : d)
                     }
-                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.diet === d ? "border-emerald-600 bg-emerald-600 text-white" : "border-stone-200 text-stone-600 hover:border-emerald-300"}`}
+                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.diet === d ? "border-emerald-600 bg-emerald-600 text-white" : "border-line text-ink-muted hover:border-emerald-300 dark:border-emerald-800"}`}
                   >
                     {d}
                   </button>
@@ -602,7 +602,7 @@ export default function ExplorePage() {
               </div>
             </div>
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Max Time
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -615,13 +615,13 @@ export default function ExplorePage() {
                         filters.maxTime === t.value ? null : t.value,
                       )
                     }
-                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.maxTime === t.value ? "border-emerald-600 bg-emerald-600 text-white" : "border-stone-200 text-stone-600 hover:border-emerald-300"}`}
+                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.maxTime === t.value ? "border-emerald-600 bg-emerald-600 text-white" : "border-line text-ink-muted hover:border-emerald-300 dark:border-emerald-800"}`}
                   >
                     {t.label}
                   </button>
                 ))}
               </div>
-              <p className="mb-2 mt-3 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mb-2 mt-3 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Sort
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -637,18 +637,18 @@ export default function ExplorePage() {
                   <button
                     key={v}
                     onClick={() => setFilter("sort", v)}
-                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.sort === v ? "border-emerald-600 bg-emerald-600 text-white" : "border-stone-200 text-stone-600 hover:border-emerald-300"}`}
+                    className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.sort === v ? "border-emerald-600 bg-emerald-600 text-white" : "border-line text-ink-muted hover:border-emerald-300 dark:border-emerald-800"}`}
                   >
                     {l}
                   </button>
                 ))}
               </div>
-              <p className="mb-2 mt-3 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mb-2 mt-3 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Student Mode
               </p>
               <button
                 onClick={() => setFilter("studentMode", !filters.studentMode)}
-                className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.studentMode ? "border-emerald-600 bg-emerald-600 text-white" : "border-stone-200 text-stone-600 hover:border-emerald-300"}`}
+                className={`rounded-full border px-2.5 py-1 text-xs font-medium transition ${filters.studentMode ? "border-emerald-600 bg-emerald-600 text-white" : "border-line text-ink-muted hover:border-emerald-300 dark:border-emerald-800"}`}
               >
                 🎓 {filters.studentMode ? "On — budget & beginner only" : "Off"}
               </button>
@@ -656,7 +656,7 @@ export default function ExplorePage() {
           </div>
           <button
             onClick={clearAllFilters}
-            className="text-xs text-stone-500 transition hover:text-stone-700"
+            className="text-xs text-ink-muted transition hover:text-ink-muted"
           >
             Clear all filters
           </button>
@@ -666,8 +666,8 @@ export default function ExplorePage() {
       {/* Active filter chips */}
       {activeChips.length > 0 && (
         <div className="sticky top-16 z-20 -mx-2 px-2 py-1">
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-stone-200 bg-white/85 p-3 shadow-sm backdrop-blur-md">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-line bg-surface/85 p-3 shadow-sm backdrop-blur-md">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
               Active filters
             </span>
             {activeChips.map((chip) => (
@@ -687,7 +687,7 @@ export default function ExplorePage() {
             ))}
             <button
               onClick={clearAllFilters}
-              className="ml-auto text-xs font-semibold text-stone-600 transition hover:text-emerald-700 hover:underline"
+              className="ml-auto text-xs font-semibold text-ink-muted transition hover:text-emerald-700 dark:text-emerald-300 hover:underline"
             >
               Clear all
             </button>
@@ -696,17 +696,17 @@ export default function ExplorePage() {
       )}
 
       {/* Results header — count */}
-      <p className="text-sm text-stone-600">
+      <p className="text-sm text-ink-muted">
         {loading || total === 0 ? (
           showingCopy
         ) : (
           <>
             Showing{" "}
-            <span className="font-semibold text-stone-900">
+            <span className="font-semibold text-ink">
               <AnimatedNumber value={visibleCount} duration={500} />
             </span>{" "}
             of{" "}
-            <span className="font-semibold text-stone-900">
+            <span className="font-semibold text-ink">
               <AnimatedNumber value={total} duration={500} />
             </span>{" "}
             recipes
@@ -718,17 +718,17 @@ export default function ExplorePage() {
       {loading ? (
         <SkeletonRecipeGrid count={8} />
       ) : recipes.length === 0 ? (
-        <div className="flex flex-col items-center rounded-3xl border-2 border-dashed border-stone-200 bg-white px-6 py-16 text-center">
+        <div className="flex flex-col items-center rounded-3xl border-2 border-dashed border-line bg-surface px-6 py-16 text-center">
           <span
             className="mb-4 text-6xl motion-safe:animate-[emojiFloat_3.2s_ease-in-out_infinite]"
             aria-hidden
           >
             🍽️
           </span>
-          <h3 className="mb-1 text-lg font-semibold text-stone-800">
+          <h3 className="mb-1 text-lg font-semibold text-ink">
             No recipes match your filters
           </h3>
-          <p className="max-w-md text-sm text-stone-500">
+          <p className="max-w-md text-sm text-ink-muted">
             Try clearing filters, or have AI Chef invent a custom recipe from
             what you have.
           </p>
@@ -741,7 +741,7 @@ export default function ExplorePage() {
             </button>
             <Link
               href="/ai-chef"
-              className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface px-4 py-2 text-sm font-semibold text-ink hover:bg-surface"
             >
               <Sparkles size={14} /> Ask AI Chef
             </Link>
@@ -770,14 +770,14 @@ export default function ExplorePage() {
           <button
             onClick={loadMore}
             disabled={loadingMore}
-            className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-stone-800 transition hover:bg-stone-50 disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-surface disabled:opacity-60"
           >
             {loadingMore ? "Loading…" : "Load more recipes"}
           </button>
         </div>
       )}
       {!loading && recipes.length > 0 && !hasMore && (
-        <p className="pt-2 text-center text-xs text-stone-400">
+        <p className="pt-2 text-center text-xs text-ink-faint">
           You&apos;ve reached the end.
         </p>
       )}

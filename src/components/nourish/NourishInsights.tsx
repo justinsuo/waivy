@@ -124,25 +124,25 @@ export function NourishInsights() {
 
   if (!hydrated) {
     return (
-      <div className="h-40 animate-pulse rounded-3xl bg-stone-100" />
+      <div className="h-40 animate-pulse rounded-3xl bg-surface-sunken" />
     );
   }
 
   if (!targets || !remaining) {
     return (
-      <section className="rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-stone-50 p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-emerald-200 dark:border-emerald-900/70 bg-gradient-to-br from-emerald-50 via-surface to-stone-50 p-5 shadow-sm sm:p-6">
         <div className="flex items-start gap-3">
           <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-sm shadow-emerald-200">
             <Sparkles size={18} />
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
               Insights
             </p>
-            <p className="text-sm font-semibold text-stone-900">
+            <p className="text-sm font-semibold text-ink">
               Set goals to unlock smart suggestions.
             </p>
-            <p className="mt-1 text-xs text-stone-600">
+            <p className="mt-1 text-xs text-ink-muted">
               Once you have a calorie + macro target, this panel will rank
               recipes that fit what you have left in your day.
             </p>
@@ -189,22 +189,22 @@ export function NourishInsights() {
   }
 
   return (
-    <section className="rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-violet-50/40 p-5 shadow-sm sm:p-6">
+    <section className="rounded-3xl border border-emerald-200 dark:border-emerald-900/70 bg-gradient-to-br from-emerald-50 via-surface to-violet-50/40 p-5 shadow-sm sm:p-6">
       <div className="flex items-start gap-3">
         <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-sm shadow-emerald-200">
           <Sparkles size={18} />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
             Insights
           </p>
-          <p className="text-sm font-semibold text-stone-900">
+          <p className="text-sm font-semibold text-ink">
             You have{" "}
-            <span className="text-emerald-700">
+            <span className="text-emerald-700 dark:text-emerald-300">
               {Math.round(remaining.kcal)} kcal
             </span>{" "}
             and{" "}
-            <span className="text-violet-700">
+            <span className="text-violet-700 dark:text-violet-300">
               {Math.round(remaining.proteinG)} g protein
             </span>{" "}
             left today.
@@ -238,20 +238,20 @@ export function NourishInsights() {
       </div>
 
       {showProteinNudge && (
-        <div className="mt-5 rounded-2xl border border-violet-200 bg-violet-50/60 p-4">
+        <div className="mt-5 rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40/60 p-4">
           <div className="flex items-start gap-2.5">
-            <div className="grid h-8 w-8 flex-none place-items-center rounded-xl bg-violet-100 text-violet-700">
+            <div className="grid h-8 w-8 flex-none place-items-center rounded-xl bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300">
               <Beef size={14} />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-violet-700">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-violet-700 dark:text-violet-300">
                 Low on protein
               </p>
-              <p className="text-sm font-semibold text-stone-900">
+              <p className="text-sm font-semibold text-ink">
                 {Math.round(remaining.proteinG)} g protein left, and a few
                 cheap staples missing from your pantry.
               </p>
-              <p className="mt-1 text-xs text-violet-900">
+              <p className="mt-1 text-xs text-violet-900 dark:text-violet-300">
                 {missingProteinStaples
                   .map((id) => INGREDIENT_MAP.get(id)?.name)
                   .filter(Boolean)
@@ -271,8 +271,8 @@ export function NourishInsights() {
       )}
 
       {suggestions.length > 0 && (
-        <div className="mt-5 border-t border-emerald-100 pt-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+        <div className="mt-5 border-t border-emerald-100 dark:border-emerald-900 pt-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
             Database picks that fit
           </p>
           <HorizontalCarousel
@@ -284,19 +284,19 @@ export function NourishInsights() {
               <CarouselItem key={r.id} className="w-48 sm:w-56">
                 <Link
                   href={`/recipes/${r.id}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E8D8C4] bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#B6E8CD] hover:shadow-md"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#B6E8CD] hover:shadow-md"
                 >
                   <div className="relative">
                     <RecipeImage recipe={r} variant="card" />
-                    <span className="absolute right-2 top-2 inline-flex items-center rounded-full bg-white/95 px-2 py-0.5 text-[10px] font-bold text-[#16834A] shadow-sm">
+                    <span className="absolute right-2 top-2 inline-flex items-center rounded-full bg-surface/95 px-2 py-0.5 text-[10px] font-bold text-[#16834A] shadow-sm">
                       ${cps.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col gap-1.5 p-3">
-                    <p className="line-clamp-2 text-sm font-bold text-[#241A12] group-hover:text-[#16834A]">
+                    <p className="line-clamp-2 text-sm font-bold text-ink group-hover:text-[#16834A]">
                       {r.name}
                     </p>
-                    <p className="text-[11px] text-[#6B5A4A]">
+                    <p className="text-[11px] text-ink-muted">
                       {Math.round(n.calories)} kcal · {Math.round(n.protein)} g protein
                     </p>
                     {matchPct > 0 && (
@@ -312,8 +312,8 @@ export function NourishInsights() {
         </div>
       )}
 
-      <div className="mt-5 border-t border-emerald-100 pt-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+      <div className="mt-5 border-t border-emerald-100 dark:border-emerald-900 pt-4">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
           Jump to
         </p>
         {/* 4-tile IconTile row replaces the sentence-form quick-question
@@ -350,7 +350,7 @@ export function NourishInsights() {
         </div>
       </div>
 
-      <p className="mt-4 text-[10px] text-stone-500">
+      <p className="mt-4 text-[10px] text-ink-muted">
         Suggestions are based on your diary, goals, and pantry — not medical
         advice. Nutrition estimates may vary by brand, portion, and preparation.
       </p>

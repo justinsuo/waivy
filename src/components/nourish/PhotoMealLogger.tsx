@@ -73,30 +73,30 @@ function ComponentRow({
 
   const confidenceColor =
     component.aiConfidence === "high"
-      ? "text-emerald-600"
+      ? "text-emerald-600 dark:text-emerald-400"
       : component.aiConfidence === "medium"
-        ? "text-amber-600"
-        : "text-stone-400";
+        ? "text-amber-600 dark:text-amber-400"
+        : "text-ink-faint";
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 space-y-1">
+    <div className="rounded-xl border border-line bg-surface px-3 py-2.5 space-y-1">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-stone-900 truncate">{component.aiName}</p>
+          <p className="text-sm font-semibold text-ink truncate">{component.aiName}</p>
           {component.usdaFood && (
-            <p className="text-[10px] text-stone-400 truncate">
+            <p className="text-[10px] text-ink-faint truncate">
               via USDA: {component.usdaFood.name}
             </p>
           )}
           {!component.usdaFood && (
-            <p className="text-[10px] text-amber-600">No USDA match — macros estimated</p>
+            <p className="text-[10px] text-amber-600 dark:text-amber-400">No USDA match — macros estimated</p>
           )}
         </div>
         <button
           type="button"
           onClick={onRemove}
           aria-label="Remove item"
-          className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-stone-400 hover:bg-rose-50 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+          className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-ink-faint hover:bg-rose-50 dark:bg-rose-950/40 hover:text-rose-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
         >
           <X size={12} />
         </button>
@@ -120,9 +120,9 @@ function ComponentRow({
             <button
               type="button"
               onClick={() => { setGramsInput(String(component.grams)); setEditingGrams(true); }}
-              className="flex items-center gap-1 rounded-lg border border-stone-200 bg-white px-2 py-0.5 text-xs text-stone-700 hover:border-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="flex items-center gap-1 rounded-lg border border-line bg-surface px-2 py-0.5 text-xs text-ink-muted hover:border-emerald-300 dark:border-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
-              {component.grams}g <Pencil size={9} className="text-stone-400" />
+              {component.grams}g <Pencil size={9} className="text-ink-faint" />
             </button>
           )}
           <span className={clsx("text-[10px]", confidenceColor)}>
@@ -132,23 +132,23 @@ function ComponentRow({
 
         {/* Scaled macros */}
         {component.scaled ? (
-          <div className="text-[11px] text-stone-600 tabular-nums">
-            <span className="font-semibold text-stone-800">{component.scaled.kcal} kcal</span>
+          <div className="text-[11px] text-ink-muted tabular-nums">
+            <span className="font-semibold text-ink">{component.scaled.kcal} kcal</span>
             {" · "}{component.scaled.proteinG}g P
             {" · "}{component.scaled.carbG}g C
             {" · "}{component.scaled.fatG}g F
           </div>
         ) : (
-          <p className="text-[11px] text-stone-400 italic">macros unavailable</p>
+          <p className="text-[11px] text-ink-faint italic">macros unavailable</p>
         )}
       </div>
 
       {/* Estimation basis */}
-      <p className="text-[10px] text-stone-400 italic leading-relaxed">{component.estimationBasis}</p>
+      <p className="text-[10px] text-ink-faint italic leading-relaxed">{component.estimationBasis}</p>
 
       {/* Hidden calorie note from AI */}
       {component.usdaFood === null && !component.scaled && (
-        <p className="text-[10px] text-amber-600">
+        <p className="text-[10px] text-amber-600 dark:text-amber-400">
           Add manually or swap for a USDA food to get macros.
         </p>
       )}
@@ -321,7 +321,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
 
   if (!aiEnabled) {
     return (
-      <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 text-xs text-stone-500">
+      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-3 text-xs text-ink-muted">
         <AlertCircle size={14} className="shrink-0 text-amber-400" />
         AI photo logging requires <code className="bg-stone-200 px-1 rounded">NEXT_PUBLIC_ANTHROPIC_API_KEY</code>.
       </div>
@@ -329,9 +329,9 @@ export function PhotoMealLogger({ onLogged }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 to-white p-4 shadow-sm space-y-3">
+    <div className="rounded-2xl border border-violet-200 dark:border-violet-900 bg-gradient-to-br from-violet-50 to-surface p-4 shadow-sm space-y-3">
       <div className="flex items-center justify-between">
-        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-violet-600">
+        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
           <Camera size={13} />
           Snap or describe a meal
         </p>
@@ -357,7 +357,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={2}
-            className="w-full resize-none rounded-xl border border-stone-300 px-3 py-2 text-sm shadow-sm focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400"
+            className="w-full resize-none rounded-xl border border-line-strong px-3 py-2 text-sm shadow-sm focus:border-violet-400 focus:outline-none focus:ring-1 focus:ring-violet-400"
           />
 
           {inputMode === "photo" ? (
@@ -380,7 +380,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
             </Button>
           )}
 
-          <p className="text-[10px] text-stone-400 flex items-center gap-1">
+          <p className="text-[10px] text-ink-faint flex items-center gap-1">
             <Info size={10} />
             Macros are estimates grounded in USDA data. Always review before logging.
           </p>
@@ -394,11 +394,11 @@ export function PhotoMealLogger({ onLogged }: Props) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={preview} alt="Meal" className="h-24 w-auto rounded-xl object-cover" />
           )}
-          <div className="flex items-center gap-2 text-sm text-stone-600">
+          <div className="flex items-center gap-2 text-sm text-ink-muted">
             <Loader2 size={15} className="animate-spin text-violet-500" />
             {state === "identifying" ? "Identifying food components…" : "Looking up nutrition data…"}
           </div>
-          <p className="text-[10px] text-stone-400 text-center">
+          <p className="text-[10px] text-ink-faint text-center">
             {state === "grounding" && "Grounding macros in USDA FoodData Central"}
           </p>
         </div>
@@ -407,7 +407,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
       {/* Error */}
       {state === "error" && (
         <div className="space-y-2">
-          <p className="flex items-center gap-1.5 text-xs text-rose-600">
+          <p className="flex items-center gap-1.5 text-xs text-rose-600 dark:text-rose-400">
             <AlertCircle size={13} /> {error}
           </p>
           <Button variant="ghost" size="sm" onClick={reset}>Try again</Button>
@@ -423,16 +423,16 @@ export function PhotoMealLogger({ onLogged }: Props) {
           )}
 
           {/* Totals header */}
-          <div className="rounded-2xl border border-violet-200 bg-violet-50 px-3 py-2.5">
-            <p className="text-xs font-semibold text-violet-700 mb-1">Estimated total</p>
+          <div className="rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 px-3 py-2.5">
+            <p className="text-xs font-semibold text-violet-700 dark:text-violet-300 mb-1">Estimated total</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold tabular-nums text-stone-900">{totals.kcal}</span>
-              <span className="text-xs text-stone-500">kcal</span>
-              <span className="text-[10px] text-stone-400">
+              <span className="text-2xl font-bold tabular-nums text-ink">{totals.kcal}</span>
+              <span className="text-xs text-ink-muted">kcal</span>
+              <span className="text-[10px] text-ink-faint">
                 ({totals.kcalRange.low}–{totals.kcalRange.high} range)
               </span>
             </div>
-            <p className="text-[11px] text-stone-600 mt-0.5">
+            <p className="text-[11px] text-ink-muted mt-0.5">
               {totals.proteinG}g P · {totals.carbG}g C · {totals.fatG}g F
             </p>
           </div>
@@ -450,25 +450,25 @@ export function PhotoMealLogger({ onLogged }: Props) {
           </div>
 
           {/* Hidden extras prompt */}
-          <div className="rounded-xl border border-amber-200 bg-amber-50 overflow-hidden">
+          <div className="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 overflow-hidden">
             <button
               type="button"
               onClick={() => setShowExtras((v) => !v)}
               className="flex w-full items-center justify-between px-3 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
-              <span className="text-[11px] font-semibold text-amber-800">
+              <span className="text-[11px] font-semibold text-amber-800 dark:text-amber-300">
                 ⚠️ Did you miss any oil, sauces, or drinks?
               </span>
-              {showExtras ? <ChevronUp size={12} className="text-amber-600" /> : <ChevronDown size={12} className="text-amber-600" />}
+              {showExtras ? <ChevronUp size={12} className="text-amber-600 dark:text-amber-400" /> : <ChevronDown size={12} className="text-amber-600 dark:text-amber-400" />}
             </button>
             {showExtras && (
-              <div className="border-t border-amber-200 px-3 pb-3 pt-2 flex flex-wrap gap-1.5">
+              <div className="border-t border-amber-200 dark:border-amber-900 px-3 pb-3 pt-2 flex flex-wrap gap-1.5">
                 {HIDDEN_EXTRAS.map((extra) => (
                   <button
                     key={extra.searchTerm}
                     type="button"
                     onClick={() => addExtra(extra.searchTerm, extra.name, extra.typicalGrams)}
-                    className="flex items-center gap-1 rounded-full border border-amber-300 bg-white px-2.5 py-1 text-[11px] text-amber-800 hover:bg-amber-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                    className="flex items-center gap-1 rounded-full border border-amber-300 dark:border-amber-800 bg-surface px-2.5 py-1 text-[11px] text-amber-800 dark:text-amber-300 hover:bg-amber-100 dark:bg-amber-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
                   >
                     <span>{extra.emoji}</span>
                     <Plus size={9} /> {extra.name}
@@ -480,7 +480,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
 
           {/* Meal picker + log button */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-medium text-stone-600">Meal:</span>
+            <span className="text-xs font-medium text-ink-muted">Meal:</span>
             {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
               <SelectablePill key={id} active={meal === id} onClick={() => setMeal(id)} ariaSemantics="checked" showCheck={false} size="sm">
                 {label}
@@ -492,7 +492,7 @@ export function PhotoMealLogger({ onLogged }: Props) {
             {logged ? (
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-emerald-500 motion-safe:animate-[popIn_220ms_ease-out]" />
-                <span className="text-sm font-semibold text-stone-800">Logged!</span>
+                <span className="text-sm font-semibold text-ink">Logged!</span>
               </div>
             ) : (
               <>
@@ -501,14 +501,14 @@ export function PhotoMealLogger({ onLogged }: Props) {
                   Log to {MEAL_LABELS[meal]}
                 </Button>
                 <button type="button" onClick={reset}
-                  className="rounded-full border border-stone-200 px-3 text-xs font-medium text-stone-600 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400">
+                  className="rounded-full border border-line px-3 text-xs font-medium text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400">
                   Reset
                 </button>
               </>
             )}
           </div>
 
-          <p className="text-[10px] text-stone-400">
+          <p className="text-[10px] text-ink-faint">
             Estimates are grounded in USDA data but portion sizes carry ~15–25% uncertainty.
             Adjust grams above for better accuracy. Not medical advice.
           </p>

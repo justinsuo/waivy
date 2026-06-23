@@ -50,7 +50,7 @@ export function AIChefSteppedLoader({
   /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-[#CDBEFF]/80 bg-gradient-to-br from-[#EFE8FF] via-white to-[#E8FAF0]/60 p-5 shadow-sm sm:p-7">
+    <div className="relative overflow-hidden rounded-3xl border border-[#CDBEFF]/80 bg-gradient-to-br from-[#EFE8FF] via-surface to-[#E8FAF0]/60 p-5 shadow-sm sm:p-7">
       <div
         aria-hidden
         className="dot-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(circle_at_70%_30%,black,transparent_60%)]"
@@ -75,8 +75,8 @@ export function AIChefSteppedLoader({
             />
           </div>
           <div>
-            <p className="text-sm font-semibold text-[#241A12]">{label}</p>
-            <p className="text-[11px] text-[#6B5A4A]" aria-live="polite">
+            <p className="text-sm font-semibold text-ink">{label}</p>
+            <p className="text-[11px] text-ink-muted" aria-live="polite">
               Step {Math.min(step + 1, stages.length)} of {stages.length}
             </p>
           </div>
@@ -96,19 +96,19 @@ export function AIChefSteppedLoader({
                 className={clsx(
                   "flex items-center gap-2.5 rounded-xl px-2.5 py-1.5 text-sm transition-colors",
                   active &&
-                    "bg-white/70 ring-1 ring-inset ring-violet-200 backdrop-blur",
-                  done && "text-stone-500",
-                  !active && !done && "text-stone-400",
+                    "bg-surface/70 ring-1 ring-inset ring-violet-200 backdrop-blur",
+                  done && "text-ink-muted",
+                  !active && !done && "text-ink-faint",
                 )}
               >
                 <span
                   aria-hidden
                   className={clsx(
                     "grid h-5 w-5 flex-none place-items-center rounded-full transition-colors",
-                    done && "bg-emerald-100 text-emerald-700",
+                    done && "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
                     active &&
                       "bg-gradient-to-br from-violet-500 to-violet-700 text-white motion-safe:animate-[popIn_300ms_ease-out]",
-                    !active && !done && "bg-stone-100 text-stone-400",
+                    !active && !done && "bg-surface-sunken text-ink-faint",
                   )}
                 >
                   {done ? <Check size={11} /> : <span className="text-[10px] font-bold">{i + 1}</span>}
@@ -116,7 +116,7 @@ export function AIChefSteppedLoader({
                 <span
                   className={clsx(
                     "flex-1",
-                    active && "font-semibold text-violet-900",
+                    active && "font-semibold text-violet-900 dark:text-violet-300",
                   )}
                 >
                   {s}
@@ -135,7 +135,7 @@ export function AIChefSteppedLoader({
         </ul>
 
         <div className="mt-5">
-          <div className="relative h-1.5 overflow-hidden rounded-full bg-stone-100">
+          <div className="relative h-1.5 overflow-hidden rounded-full bg-surface-sunken">
             <div
               className="h-full rounded-full bg-gradient-to-r from-violet-500 to-emerald-500 transition-all duration-500"
               style={{

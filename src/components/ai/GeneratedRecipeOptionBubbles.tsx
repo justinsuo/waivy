@@ -65,11 +65,11 @@ export function GeneratedRecipeOptionBubbles({
                 className={clsx(
                   "group flex w-60 flex-col overflow-hidden rounded-2xl text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                   active
-                    ? "scale-[1.02] border-2 border-emerald-600 bg-white shadow-lg shadow-emerald-200"
-                    : "border border-stone-200 bg-white motion-safe:hover:-translate-y-1 hover:border-emerald-300 hover:shadow-md",
+                    ? "scale-[1.02] border-2 border-emerald-600 bg-surface shadow-lg shadow-emerald-200"
+                    : "border border-line bg-surface motion-safe:hover:-translate-y-1 hover:border-emerald-300 dark:border-emerald-800 hover:shadow-md",
                 )}
               >
-                <div className="relative h-28 overflow-hidden bg-stone-100">
+                <div className="relative h-28 overflow-hidden bg-surface-sunken">
                   {img ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
@@ -78,12 +78,12 @@ export function GeneratedRecipeOptionBubbles({
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
                     />
                   ) : generating ? (
-                    <div className="flex h-full items-center justify-center text-stone-500">
+                    <div className="flex h-full items-center justify-center text-ink-muted">
                       <Loader2 size={16} className="mr-1.5 animate-spin" />
                       <span className="text-xs">Generating…</span>
                     </div>
                   ) : (
-                    <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-50 to-amber-50 text-stone-400">
+                    <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-50 to-amber-50 text-ink-faint">
                       <ChefHat size={32} />
                     </div>
                   )}
@@ -102,20 +102,20 @@ export function GeneratedRecipeOptionBubbles({
                   )}
                 </div>
                 <div className="space-y-1 p-3">
-                  <p className="line-clamp-1 text-sm font-semibold text-stone-900 group-hover:text-emerald-700">
+                  <p className="line-clamp-1 text-sm font-semibold text-ink group-hover:text-emerald-700 dark:text-emerald-300">
                     {o.recipe.name}
                   </p>
-                  <p className="line-clamp-2 text-xs leading-relaxed text-stone-500">
+                  <p className="line-clamp-2 text-xs leading-relaxed text-ink-muted">
                     {o.shortReason}
                   </p>
                   <div className="flex flex-wrap items-center gap-1.5 pt-1.5 text-[10px] font-semibold uppercase tracking-wide">
-                    <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-100 px-1.5 py-0.5 text-emerald-800">
+                    <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 text-emerald-800 dark:text-emerald-300">
                       <Coins size={10} />$
                       {Number.isFinite(Number(o.recipe.estimatedCostPerServing))
                         ? Number(o.recipe.estimatedCostPerServing).toFixed(2)
                         : "—"}
                     </span>
-                    <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-100 px-1.5 py-0.5 text-amber-800">
+                    <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 text-amber-800 dark:text-amber-300">
                       <Clock size={10} />
                       {o.recipe.totalTimeMinutes} min
                     </span>

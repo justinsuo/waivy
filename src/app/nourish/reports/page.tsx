@@ -120,7 +120,7 @@ export default function NourishReportsPage() {
       title="Reports."
       description="Daily, weekly, and monthly summaries with calorie + macro adherence. Copy a summary, print, or export raw data."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -148,7 +148,7 @@ export default function NourishReportsPage() {
                 className={
                   active
                     ? "rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                    : "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+                    : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 }
               >
                 {label}
@@ -167,13 +167,13 @@ export default function NourishReportsPage() {
         )}
 
         {targets && adherence !== null && (
-          <div className="mt-5 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800">
+          <div className="mt-5 rounded-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/60 p-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
               Goal adherence
             </p>
-            <p className="mt-1 text-lg font-bold text-emerald-900">
+            <p className="mt-1 text-lg font-bold text-emerald-900 dark:text-emerald-300">
               {adherence}%{" "}
-              <span className="text-xs font-normal text-emerald-800">
+              <span className="text-xs font-normal text-emerald-800 dark:text-emerald-300">
                 of logged days within ±15% of {targets.calorieTarget} kcal/day
               </span>
             </p>
@@ -190,7 +190,7 @@ export default function NourishReportsPage() {
         </div>
 
         {hydrated && range === "week" && (
-          <p className="mt-4 text-[11px] text-stone-500">
+          <p className="mt-4 text-[11px] text-ink-muted">
             Includes {filtered.length} food entries and {Math.round(waterMl / 240)} cups of water across the range.
           </p>
         )}
@@ -208,7 +208,7 @@ export default function NourishReportsPage() {
         </div>
       </section>
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Nutrition estimates are for general tracking only and may vary by brand,
         portion, and preparation. Not medical advice.
       </p>
@@ -228,17 +228,17 @@ function SummaryStat({
   tone: "rose" | "violet" | "sky" | "amber";
 }) {
   const TONE: Record<string, string> = {
-    rose: "bg-rose-100 text-rose-700",
-    violet: "bg-violet-100 text-violet-700",
-    sky: "bg-sky-100 text-sky-700",
-    amber: "bg-amber-100 text-amber-700",
+    rose: "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300",
+    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
+    sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
+    amber: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300",
   };
   return (
-    <div className="rounded-2xl border border-stone-200 bg-stone-50 p-3">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+    <div className="rounded-2xl border border-line bg-surface p-3">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
         {label}
       </p>
-      <p className="mt-1 text-lg font-bold tabular-nums text-stone-900">
+      <p className="mt-1 text-lg font-bold tabular-nums text-ink">
         {value}{" "}
         <span className={`ml-1 inline-flex rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide ${TONE[tone]}`}>
           {unit}

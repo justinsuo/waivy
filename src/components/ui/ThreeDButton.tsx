@@ -28,7 +28,7 @@ const FACE: Record<Variant, string> = {
   primary:
     "bg-gradient-to-b from-[#3AD081] to-[#2FBF71] text-white border-[#16834A]",
   secondary:
-    "bg-gradient-to-b from-white to-[#FFF8ED] text-stone-900 border-[#E8D8C4]",
+    "bg-gradient-to-b from-surface to-[#FFF8ED] text-ink border-line",
   success:
     "bg-gradient-to-b from-[#3AD081] to-[#2FBF71] text-white border-[#16834A]",
   warning:
@@ -36,9 +36,9 @@ const FACE: Record<Variant, string> = {
   danger:
     "bg-gradient-to-b from-rose-500 to-rose-600 text-white border-rose-700",
   ghost:
-    "bg-transparent text-stone-700 border-transparent shadow-none",
+    "bg-transparent text-ink-muted border-transparent shadow-none",
   soft:
-    "bg-gradient-to-b from-violet-100 to-violet-200 text-violet-900 border-violet-300",
+    "bg-gradient-to-b from-violet-100 to-violet-200 text-violet-900 dark:text-violet-300 border-violet-300 dark:border-violet-800",
 };
 
 const RING: Record<Variant, string> = {
@@ -83,7 +83,7 @@ const FACE_BASE = clsx(
   "motion-safe:hover:-translate-y-px",
   "hover:brightness-[1.03]",
   // Focus
-  "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-background",
   // Disabled / loading
   "disabled:pointer-events-none disabled:opacity-50 disabled:saturate-50",
 );

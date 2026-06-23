@@ -85,46 +85,46 @@ export function LogGeneratedRecipeButton({ recipe, savedId }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-white shadow-sm">
+    <div className="rounded-xl border border-line bg-surface shadow-sm">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500"
       >
         <div className="flex items-center gap-2">
-          <Apple size={15} className="text-emerald-600" />
-          <span className="text-sm font-semibold text-stone-800">
+          <Apple size={15} className="text-emerald-600 dark:text-emerald-400" />
+          <span className="text-sm font-semibold text-ink">
             Log to Nourish
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-stone-400">
+          <span className="text-xs text-ink-faint">
             {Math.round(kcal)} kcal · {Math.round(proteinG)} g P per serving
           </span>
           {open ? (
-            <ChevronUp size={14} className="text-stone-400" />
+            <ChevronUp size={14} className="text-ink-faint" />
           ) : (
-            <ChevronDown size={14} className="text-stone-400" />
+            <ChevronDown size={14} className="text-ink-faint" />
           )}
         </div>
       </button>
 
       {open && (
-        <div className="space-y-3 border-t border-stone-100 px-4 py-3">
+        <div className="space-y-3 border-t border-line px-4 py-3">
           {done ? (
             <div className="flex items-center gap-2 py-2">
               <CheckCircle2
                 size={18}
                 className="text-emerald-500 motion-safe:animate-[popIn_220ms_ease-out]"
               />
-              <p className="text-sm font-semibold text-stone-800">
+              <p className="text-sm font-semibold text-ink">
                 Logged to {MEAL_LABELS[meal]}!
               </p>
             </div>
           ) : (
             <>
               <div className="flex items-center gap-3">
-                <span className="w-16 text-xs font-medium text-stone-600">
+                <span className="w-16 text-xs font-medium text-ink-muted">
                   Servings
                 </span>
                 <div className="flex items-center gap-2">
@@ -136,7 +136,7 @@ export function LogGeneratedRecipeButton({ recipe, savedId }: Props) {
                         Math.max(0.5, parseFloat((s - 0.5).toFixed(1))),
                       )
                     }
-                    className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     −
                   </button>
@@ -151,7 +151,7 @@ export function LogGeneratedRecipeButton({ recipe, savedId }: Props) {
                         parseFloat((s + 0.5).toFixed(1)),
                       )
                     }
-                    className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     +
                   </button>
@@ -160,7 +160,7 @@ export function LogGeneratedRecipeButton({ recipe, savedId }: Props) {
                   className={clsx(
                     "text-xs tabular-nums",
                     Math.round(kcal * servings) > 0
-                      ? "text-stone-500"
+                      ? "text-ink-muted"
                       : "text-stone-300",
                   )}
                 >
@@ -169,7 +169,7 @@ export function LogGeneratedRecipeButton({ recipe, savedId }: Props) {
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                <span className="w-16 text-xs font-medium text-stone-600" id="log-gen-recipe-meal-label">
+                <span className="w-16 text-xs font-medium text-ink-muted" id="log-gen-recipe-meal-label">
                   Meal
                 </span>
                 <div role="radiogroup" aria-labelledby="log-gen-recipe-meal-label" className="flex flex-wrap items-center gap-2">

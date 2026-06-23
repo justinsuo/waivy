@@ -49,7 +49,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunito.variable} ${inter.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-[#FFF8ED] text-[#241A12] antialiased">
+      <head>
+        {/* Set the color theme before first paint to avoid a light→dark flash.
+            Reads the saved appearance.theme from srf:settings; honors "system". */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t="light";var r=localStorage.getItem("srf:settings");if(r){var p=(JSON.parse(r)||{}).appearance;if(p&&p.theme)t=p.theme;}var d=t==="dark"||(t==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-background text-ink antialiased">
         <AuthProvider>
           <SettingsProvider>
             <AppStoreProvider>

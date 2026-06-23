@@ -213,12 +213,12 @@ export function PantryVoiceInput() {
   }
 
   return (
-    <section className="rounded-3xl border border-sky-200 bg-sky-50/50 p-5 sm:p-6">
+    <section className="rounded-3xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40/50 p-5 sm:p-6">
       <div>
-        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-800">
+        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-sky-800 dark:text-sky-300">
           <Sparkles size={16} /> Speak your pantry
         </h2>
-        <p className="mt-1 text-sm text-sky-900">
+        <p className="mt-1 text-sm text-sky-900 dark:text-sky-300">
           Hit the mic, say what you have — &ldquo;apple cider vinegar, eggs, frozen
           broccoli, some old tortillas&rdquo; — and we&apos;ll keep multi-word
           ingredients together.
@@ -250,7 +250,7 @@ export function PantryVoiceInput() {
           </Button>
         )}
         {listening && (
-          <span className="inline-flex items-center gap-2 rounded-full bg-rose-100 px-3 py-1 text-xs font-medium text-rose-800">
+          <span className="inline-flex items-center gap-2 rounded-full bg-rose-100 dark:bg-rose-900/40 px-3 py-1 text-xs font-medium text-rose-800 dark:text-rose-300">
             <span className="h-2 w-2 animate-pulse rounded-full bg-rose-500" />
             Listening…
           </span>
@@ -258,35 +258,35 @@ export function PantryVoiceInput() {
       </div>
 
       {(transcript || interim) && (
-        <div className="mt-4 rounded-2xl bg-white p-4 text-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+        <div className="mt-4 rounded-2xl bg-surface p-4 text-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
             Heard you say
           </p>
-          <p className="mt-1 text-stone-800">
+          <p className="mt-1 text-ink">
             {transcript}
-            {interim && <span className="text-stone-400"> {interim}</span>}
+            {interim && <span className="text-ink-faint"> {interim}</span>}
           </p>
         </div>
       )}
 
       {processing && (
-        <div className="mt-3 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm text-sky-800">
+        <div className="mt-3 flex items-center gap-2 rounded-2xl bg-surface px-4 py-3 text-sm text-sky-800 dark:text-sky-300">
           <Loader2 size={16} className="animate-spin" /> Understanding
           ingredients…
         </div>
       )}
 
       {error && (
-        <div className="mt-3 flex items-start gap-2 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div className="mt-3 flex items-start gap-2 rounded-2xl bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm text-red-800 dark:text-red-300">
           <AlertCircle size={16} className="mt-0.5 flex-none" /> {error}
         </div>
       )}
 
       {resolved && (
         <div className="mt-4 space-y-3">
-          <div className="rounded-2xl bg-white p-4">
+          <div className="rounded-2xl bg-surface p-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-stone-900">
+              <h3 className="text-sm font-semibold text-ink">
                 Recognized ({resolved.length})
               </h3>
               {resolved.length > 0 && (
@@ -300,7 +300,7 @@ export function PantryVoiceInput() {
               )}
             </div>
             {resolved.length === 0 ? (
-              <p className="mt-2 text-sm text-stone-600">
+              <p className="mt-2 text-sm text-ink-muted">
                 Didn&apos;t pick out any ingredients. Try again or add items
                 manually.
               </p>
@@ -316,8 +316,8 @@ export function PantryVoiceInput() {
                       onClick={() => addOne(r)}
                       className={
                         already
-                          ? "inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-medium text-emerald-700"
-                          : "inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-800 hover:border-emerald-300 hover:bg-emerald-50"
+                          ? "inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300"
+                          : "inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                       }
                       title={`${r.category} · ${r.ingredientRole}`}
                     >
@@ -328,7 +328,7 @@ export function PantryVoiceInput() {
                       )}
                       {r.displayName || r.canonicalName}
                       {r.useSoon && (
-                        <span className="ml-0.5 rounded-full bg-amber-200 px-1.5 text-[10px] font-semibold text-amber-900">
+                        <span className="ml-0.5 rounded-full bg-amber-200 px-1.5 text-[10px] font-semibold text-amber-900 dark:text-amber-300">
                           use soon
                         </span>
                       )}
@@ -340,7 +340,7 @@ export function PantryVoiceInput() {
           </div>
 
           {ignoredText.length > 0 && (
-            <div className="rounded-2xl bg-amber-50 p-3 text-xs text-amber-900">
+            <div className="rounded-2xl bg-amber-50 dark:bg-amber-950/40 p-3 text-xs text-amber-900 dark:text-amber-300">
               Ignored as non-food: {ignoredText.join(", ")}
             </div>
           )}

@@ -143,7 +143,7 @@ export default function AboutPage() {
       {/* ─── Pesto card — leaner copy, sticker-style avatar ─── */}
       <ScrollReveal
         as="section"
-        className="overflow-hidden rounded-3xl border border-[#B6E8CD] bg-gradient-to-br from-[#E8FAF0] via-white to-[#FFF8ED] p-6 sm:p-8"
+        className="overflow-hidden rounded-3xl border border-[#B6E8CD] bg-gradient-to-br from-[#E8FAF0] via-surface to-[#FFF8ED] p-6 sm:p-8"
       >
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
           <span
@@ -153,13 +153,13 @@ export default function AboutPage() {
             <MessageCircle size={26} strokeWidth={2.4} />
           </span>
           <div className="flex-1">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#16834A]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#16834A] dark:text-[#6FE0A5]">
               Floating chat
             </p>
-            <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-[#0F5E33] sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-[#0F5E33] dark:text-[#6FE0A5] sm:text-3xl">
               Meet Pesto.
             </h2>
-            <p className="mt-1 text-sm text-[#16834A] sm:text-base">
+            <p className="mt-1 text-sm text-[#16834A] dark:text-[#6FE0A5] sm:text-base">
               Tap the green bubble bottom-right. Ask anything food.
             </p>
           </div>
@@ -169,20 +169,20 @@ export default function AboutPage() {
       {/* ─── CTA — replaces the dark slide-deck closer ─── */}
       <ScrollReveal
         as="section"
-        className="relative overflow-hidden rounded-3xl border border-[#E8D8C4] bg-[#FFF1D9] p-8 sm:p-10"
+        className="relative overflow-hidden rounded-3xl border border-line bg-[#FFF1D9] dark:bg-[#262019] p-8 sm:p-10"
       >
         <div
           aria-hidden
           className="dot-grid pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(circle_at_75%_30%,black,transparent_65%)]"
         />
         <div className="relative">
-          <p className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#9B3F0A]">
+          <p className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#9B3F0A] dark:text-[#F2B07A]">
             <Sparkles size={12} /> Cook tonight
           </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#241A12] sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Ready to cook?
           </h2>
-          <p className="mt-2 max-w-md text-[#6B5A4A]">
+          <p className="mt-2 max-w-md text-ink-muted">
             Pick how you want to start.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">

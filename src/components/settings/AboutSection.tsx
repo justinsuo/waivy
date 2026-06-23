@@ -61,23 +61,23 @@ export function AboutSection() {
         control={
           <Link
             href="/about"
-            className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:bg-emerald-950/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             About <ArrowRight size={14} />
           </Link>
         }
       />
 
-      <div className="rounded-2xl border border-stone-200 bg-stone-50/60 p-4">
+      <div className="rounded-2xl border border-line bg-surface/60 p-4">
         <div className="flex items-center gap-2">
           {status === "loading" && (
-            <Loader2 size={16} className="text-stone-400 motion-safe:animate-spin" />
+            <Loader2 size={16} className="text-ink-faint motion-safe:animate-spin" />
           )}
-          {status === "ok" && <CheckCircle2 size={16} className="text-emerald-600" />}
+          {status === "ok" && <CheckCircle2 size={16} className="text-emerald-600 dark:text-emerald-400" />}
           {(status === "error" || status === "unconfigured") && (
-            <XCircle size={16} className="text-stone-400" />
+            <XCircle size={16} className="text-ink-faint" />
           )}
-          <p className="text-sm font-semibold text-stone-900">
+          <p className="text-sm font-semibold text-ink">
             AI service:{" "}
             {status === "loading"
               ? "checking…"
@@ -96,9 +96,9 @@ export function AboutSection() {
             {KEYS_TO_SHOW.filter((k) => diag.models?.[k.key]).map((k) => (
               <span
                 key={k.key}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11px] text-stone-600 ring-1 ring-stone-200"
+                className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-1 text-[11px] text-ink-muted ring-1 ring-stone-200"
               >
-                <span className="font-semibold text-stone-800">{k.label}:</span>
+                <span className="font-semibold text-ink">{k.label}:</span>
                 <span className="font-mono">{diag.models![k.key]}</span>
               </span>
             ))}
@@ -108,7 +108,7 @@ export function AboutSection() {
         {status === "ok" && diag?.warnings && diag.warnings.length > 0 && (
           <ul className="mt-3 space-y-1">
             {diag.warnings.map((w, i) => (
-              <li key={i} className="text-xs text-amber-700">
+              <li key={i} className="text-xs text-amber-700 dark:text-amber-300">
                 ⚠ {w}
               </li>
             ))}
@@ -116,7 +116,7 @@ export function AboutSection() {
         )}
 
         {status === "unconfigured" && (
-          <p className="mt-2 text-xs leading-relaxed text-stone-600">
+          <p className="mt-2 text-xs leading-relaxed text-ink-muted">
             The AI service isn&apos;t set up on this build. Recipes, pantry
             matching, pricing, and your browser&apos;s built-in cooking voice
             all still work — AI Chef, image generation, and the premium voice
@@ -124,7 +124,7 @@ export function AboutSection() {
           </p>
         )}
         {status === "error" && (
-          <p className="mt-2 text-xs leading-relaxed text-stone-600">
+          <p className="mt-2 text-xs leading-relaxed text-ink-muted">
             Couldn&apos;t reach the AI service right now. Waivy keeps working;
             AI features will retry automatically.
           </p>

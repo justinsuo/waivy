@@ -25,39 +25,39 @@ type Action = {
 
 const TONE: Record<Action["tone"], { bg: string; iconBg: string; text: string; ring: string }> = {
   emerald: {
-    bg: "border-emerald-200 bg-emerald-50/60 hover:border-emerald-300 hover:bg-emerald-100/60",
+    bg: "border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/60 hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/40/60",
     iconBg: "bg-gradient-to-br from-emerald-500 to-emerald-700",
-    text: "text-emerald-800",
+    text: "text-emerald-800 dark:text-emerald-300",
     ring: "focus-visible:ring-emerald-500",
   },
   violet: {
-    bg: "border-violet-200 bg-violet-50/60 hover:border-violet-300 hover:bg-violet-100/60",
+    bg: "border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40/60 hover:border-violet-300 dark:border-violet-800 hover:bg-violet-100 dark:bg-violet-900/40/60",
     iconBg: "bg-gradient-to-br from-violet-500 to-violet-700",
-    text: "text-violet-800",
+    text: "text-violet-800 dark:text-violet-300",
     ring: "focus-visible:ring-violet-500",
   },
   amber: {
-    bg: "border-amber-200 bg-amber-50/60 hover:border-amber-300 hover:bg-amber-100/60",
+    bg: "border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40/60 hover:border-amber-300 dark:border-amber-800 hover:bg-amber-100 dark:bg-amber-900/40/60",
     iconBg: "bg-gradient-to-br from-amber-400 to-amber-600",
-    text: "text-amber-800",
+    text: "text-amber-800 dark:text-amber-300",
     ring: "focus-visible:ring-amber-500",
   },
   sky: {
-    bg: "border-sky-200 bg-sky-50/60 hover:border-sky-300 hover:bg-sky-100/60",
+    bg: "border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40/60 hover:border-sky-300 dark:border-sky-800 hover:bg-sky-100 dark:bg-sky-900/40/60",
     iconBg: "bg-gradient-to-br from-sky-500 to-sky-700",
-    text: "text-sky-800",
+    text: "text-sky-800 dark:text-sky-300",
     ring: "focus-visible:ring-sky-500",
   },
   cyan: {
-    bg: "border-cyan-200 bg-cyan-50/60 hover:border-cyan-300 hover:bg-cyan-100/60",
+    bg: "border-cyan-200 dark:border-cyan-900 bg-cyan-50 dark:bg-cyan-950/40/60 hover:border-cyan-300 dark:border-cyan-800 hover:bg-cyan-100 dark:bg-cyan-900/40/60",
     iconBg: "bg-gradient-to-br from-cyan-500 to-cyan-700",
-    text: "text-cyan-800",
+    text: "text-cyan-800 dark:text-cyan-300",
     ring: "focus-visible:ring-cyan-500",
   },
   rose: {
-    bg: "border-rose-200 bg-rose-50/60 hover:border-rose-300 hover:bg-rose-100/60",
+    bg: "border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40/60 hover:border-rose-300 dark:border-rose-800 hover:bg-rose-100 dark:bg-rose-900/40/60",
     iconBg: "bg-gradient-to-br from-rose-500 to-rose-700",
-    text: "text-rose-800",
+    text: "text-rose-800 dark:text-rose-300",
     ring: "focus-visible:ring-rose-500",
   },
 };

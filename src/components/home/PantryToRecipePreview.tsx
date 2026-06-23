@@ -17,9 +17,9 @@ import { RECIPE_MAP } from "@/data/recipes";
  * without scrolling.
  */
 const CHIPS = [
-  { label: "Rice",      tone: "bg-[#FFD166] text-[#5C3700] border-[#FFC93D]" },
-  { label: "Eggs",      tone: "bg-[#FFE8D6] text-[#7C3309] border-[#FFC79A]" },
-  { label: "Soy sauce", tone: "bg-[#E8FAF0] text-[#0F5E33] border-[#B6E8CD]" },
+  { label: "Rice",      tone: "bg-[#FFD166] text-[#5C3700] dark:text-[#F2C97A] border-[#FFC93D]" },
+  { label: "Eggs",      tone: "bg-[#FFE8D6] dark:bg-[#33210F] text-[#7C3309] dark:text-[#F2B07A] border-[#FFC79A]" },
+  { label: "Soy sauce", tone: "bg-[#E8FAF0] dark:bg-[#122E20] text-[#0F5E33] dark:text-[#6FE0A5] border-[#B6E8CD]" },
 ];
 
 const TARGET_RECIPE_ID = "egg-fried-rice";
@@ -37,9 +37,9 @@ export function PantryToRecipePreview() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
       className="relative mt-4 max-w-xl"
     >
-      <div className="relative overflow-hidden rounded-3xl border border-[#E8D8C4] bg-white/85 p-4 shadow-[0_8px_24px_-12px_rgba(36,26,18,0.18)] backdrop-blur supports-[backdrop-filter]:bg-white/70 sm:p-5">
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-surface/85 p-4 shadow-[0_8px_24px_-12px_rgba(36,26,18,0.18)] backdrop-blur supports-[backdrop-filter]:bg-surface/70 sm:p-5">
         {/* Eyebrow */}
-        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#9B3F0A]">
+        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#9B3F0A] dark:text-[#F2B07A]">
           How it works
         </p>
 
@@ -84,28 +84,28 @@ export function PantryToRecipePreview() {
           >
             <Link
               href={`/recipes/${recipe.id}?from=home`}
-              className="group flex items-center gap-3 rounded-2xl border border-[#B6E8CD] bg-gradient-to-br from-[#E8FAF0] to-white px-3 py-2 transition-all motion-safe:hover:-translate-y-px hover:border-[#2FBF71] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2FBF71]"
+              className="group flex items-center gap-3 rounded-2xl border border-[#B6E8CD] bg-gradient-to-br from-[#E8FAF0] to-surface px-3 py-2 transition-all motion-safe:hover:-translate-y-px hover:border-[#2FBF71] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2FBF71] dark:ring-white/10"
             >
               <span aria-hidden className="text-2xl">{recipe.emoji ?? "🍚"}</span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-extrabold text-[#0F5E33]">
+                <span className="block truncate text-sm font-extrabold text-[#0F5E33] dark:text-[#6FE0A5]">
                   {recipe.name}
                 </span>
-                <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-semibold text-[#16834A]">
+                <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-semibold text-[#16834A] dark:text-[#6FE0A5]">
                   <span className="inline-flex items-center gap-1">
                     <Coins size={11} /> ${cps.toFixed(2)}/serving
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[#9B3F0A]">
+                  <span className="inline-flex items-center gap-1 text-[#9B3F0A] dark:text-[#F2B07A]">
                     <Flame size={11} /> {macros.protein}g protein
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[#1F6FA8]">
+                  <span className="inline-flex items-center gap-1 text-[#1F6FA8] dark:text-[#8FD0F5]">
                     <Clock size={11} /> {recipe.totalTimeMinutes} min
                   </span>
                 </span>
               </span>
               <ArrowRight
                 size={14}
-                className="flex-none text-[#16834A] transition-transform motion-safe:group-hover:translate-x-0.5"
+                className="flex-none text-[#16834A] dark:text-[#6FE0A5] transition-transform motion-safe:group-hover:translate-x-0.5"
               />
             </Link>
           </motion.div>

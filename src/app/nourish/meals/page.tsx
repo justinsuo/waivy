@@ -156,7 +156,7 @@ export default function NourishMealsPage() {
       title="My meals."
       description="Reusable groups of foods you eat together. Save your usual breakfast once, log it to a single day or your whole meal-prep week in one tap."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -181,12 +181,12 @@ export default function NourishMealsPage() {
                 aria-pressed={active}
                 className={
                   active
-                    ? "rounded-2xl border-2 border-emerald-600 bg-emerald-50 p-4 text-left shadow-sm shadow-emerald-200"
-                    : "rounded-2xl border border-stone-200 bg-stone-50 p-4 text-left transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50/50"
+                    ? "rounded-2xl border-2 border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-4 text-left shadow-sm shadow-emerald-200"
+                    : "rounded-2xl border border-line bg-surface p-4 text-left transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/50"
                 }
               >
-                <p className="text-sm font-semibold text-stone-900">{label}</p>
-                <p className="mt-0.5 text-xs text-stone-500">
+                <p className="text-sm font-semibold text-ink">{label}</p>
+                <p className="mt-0.5 text-xs text-ink-muted">
                   Save today&apos;s {label.toLowerCase()}
                 </p>
               </button>
@@ -195,9 +195,9 @@ export default function NourishMealsPage() {
         </div>
 
         {savePicking && (
-          <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4">
+          <div className="mt-5 rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/60 p-4">
             <label className="block">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
                 Meal name
               </span>
               <input
@@ -205,7 +205,7 @@ export default function NourishMealsPage() {
                 value={pickName}
                 onChange={(e) => setPickName(e.target.value)}
                 placeholder={`My ${savePicking}`}
-                className="mt-1 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+                className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
               />
             </label>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -226,7 +226,7 @@ export default function NourishMealsPage() {
                 Cancel
               </Button>
             </div>
-            <p className="mt-2 text-[11px] text-emerald-800">
+            <p className="mt-2 text-[11px] text-emerald-800 dark:text-emerald-300">
               We&apos;ll bundle the foods you&apos;ve logged to today&apos;s{" "}
               {savePicking}. Log some first if you haven&apos;t.
             </p>
@@ -268,15 +268,15 @@ export default function NourishMealsPage() {
             {meals.map((meal) => (
               <li
                 key={meal.id}
-                className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                className="flex flex-col gap-3 rounded-2xl border border-line bg-surface p-4 shadow-sm transition-shadow hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-stone-900">
+                    <p className="truncate text-sm font-semibold text-ink">
                       {meal.name}
                     </p>
                     {meal.defaultSlot && (
-                      <p className="text-[11px] uppercase tracking-wide text-stone-500">
+                      <p className="text-[11px] uppercase tracking-wide text-ink-muted">
                         Usually {meal.defaultSlot}
                       </p>
                     )}
@@ -284,33 +284,33 @@ export default function NourishMealsPage() {
                   <button
                     type="button"
                     onClick={() => remove(meal)}
-                    className="text-stone-400 transition-colors hover:text-red-600"
+                    className="text-ink-faint transition-colors hover:text-red-600 dark:text-red-400"
                     aria-label={`Delete ${meal.name}`}
                   >
                     <Trash2 size={14} />
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-1.5 text-[10px] font-semibold uppercase tracking-wide">
-                  <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-800">
+                  <span className="rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 text-emerald-800 dark:text-emerald-300">
                     {Math.round(meal.totalKcal)} kcal
                   </span>
-                  <span className="rounded-full bg-violet-100 px-2 py-0.5 text-violet-800">
+                  <span className="rounded-full bg-violet-100 dark:bg-violet-900/40 px-2 py-0.5 text-violet-800 dark:text-violet-300">
                     {Math.round(meal.totalProteinG)} g protein
                   </span>
-                  <span className="rounded-full bg-sky-100 px-2 py-0.5 text-sky-800">
+                  <span className="rounded-full bg-sky-100 dark:bg-sky-900/40 px-2 py-0.5 text-sky-800 dark:text-sky-300">
                     {Math.round(meal.totalCarbG)} g carbs
                   </span>
-                  <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-800">
+                  <span className="rounded-full bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-amber-800 dark:text-amber-300">
                     {Math.round(meal.totalFatG)} g fat
                   </span>
                 </div>
-                <p className="text-[11px] text-stone-500">
+                <p className="text-[11px] text-ink-muted">
                   {meal.items.length} items
                 </p>
 
                 {scheduling === meal.id ? (
-                  <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800">
+                  <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/60 p-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
                       Pick days
                     </p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
@@ -326,7 +326,7 @@ export default function NourishMealsPage() {
                               "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-all",
                               active
                                 ? "border-emerald-600 bg-emerald-600 text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.04]"
-                                : "border-stone-200 bg-white text-stone-700 hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50",
+                                : "border-line bg-surface text-ink-muted hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40",
                             )}
                           >
                             {active && <Check size={10} />}
@@ -336,7 +336,7 @@ export default function NourishMealsPage() {
                       })}
                     </div>
 
-                    <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800">
+                    <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-800 dark:text-emerald-300">
                       Slot
                     </p>
                     <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -351,7 +351,7 @@ export default function NourishMealsPage() {
                             className={
                               active
                                 ? "rounded-full border border-emerald-600 bg-emerald-600 px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm shadow-emerald-200"
-                                : "rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                                : "rounded-full border border-line bg-surface px-2.5 py-1 text-[11px] font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                             }
                           >
                             {label}
@@ -420,7 +420,7 @@ export default function NourishMealsPage() {
         )}
       </section>
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Nutrition estimates are for general tracking only and may vary by
         brand, portion, and preparation. Not medical advice.
       </p>

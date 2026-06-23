@@ -285,7 +285,7 @@ export default function CheapRecipesPage() {
 
       <LocationSetup variant="compact" />
 
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -310,7 +310,7 @@ export default function CheapRecipesPage() {
         </div>
 
         <div className="mb-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
             What do you have to cook with?
           </p>
           <div className="flex flex-wrap gap-2">
@@ -359,9 +359,9 @@ export default function CheapRecipesPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-4">
             <div>
-              <label className="flex items-center justify-between text-sm font-medium text-stone-800">
+              <label className="flex items-center justify-between text-sm font-medium text-ink">
                 Budget per serving
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-2.5 py-0.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
                   <Coins size={12} /> ${filters.budgetPerServing.toFixed(2)}
                 </span>
               </label>
@@ -380,7 +380,7 @@ export default function CheapRecipesPage() {
                 className="mt-2 w-full accent-emerald-600"
                 aria-label="Budget per serving"
               />
-              <div className="mt-1 flex justify-between text-[11px] text-stone-500">
+              <div className="mt-1 flex justify-between text-[11px] text-ink-muted">
                 <span>$0.50</span>
                 <span>$30.00</span>
               </div>
@@ -404,7 +404,7 @@ export default function CheapRecipesPage() {
                       className={
                         active
                           ? "rounded-full border border-emerald-600 bg-emerald-600 px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                          : "rounded-full border border-stone-200 bg-white px-2.5 py-1 text-[11px] font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+                          : "rounded-full border border-line bg-surface px-2.5 py-1 text-[11px] font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                       }
                     >
                       {p.label}
@@ -415,9 +415,9 @@ export default function CheapRecipesPage() {
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-sm font-medium text-stone-800">
+              <label className="flex items-center justify-between text-sm font-medium text-ink">
                 Servings
-                <span className="text-xs text-stone-600">{filters.servings}</span>
+                <span className="text-xs text-ink-muted">{filters.servings}</span>
               </label>
               <input
                 type="range"
@@ -480,7 +480,7 @@ export default function CheapRecipesPage() {
                   </Chip>
                 ))}
               </div>
-              <p className="mt-2 text-xs text-stone-500">
+              <p className="mt-2 text-xs text-ink-muted">
                 Pick all that apply. We&apos;ll show recipes you can actually cook.
               </p>
             </FilterGroup>
@@ -526,9 +526,9 @@ export default function CheapRecipesPage() {
       <section>
         {activeChips.length > 0 && (
           <div className="sticky top-16 z-20 mb-4 -mx-2 px-2 py-1">
-            <div className="rounded-2xl border border-stone-200 bg-white/85 p-3 shadow-sm backdrop-blur-md">
+            <div className="rounded-2xl border border-line bg-surface/85 p-3 shadow-sm backdrop-blur-md">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
                   Active filters
                 </span>
                 {activeChips.map((chip, i) => (
@@ -541,7 +541,7 @@ export default function CheapRecipesPage() {
                     {chip.label}
                     <span
                       aria-hidden
-                      className="grid h-4 w-4 place-items-center rounded-full bg-white/20 transition-transform motion-safe:group-hover:rotate-90"
+                      className="grid h-4 w-4 place-items-center rounded-full bg-surface/20 transition-transform motion-safe:group-hover:rotate-90"
                     >
                       ×
                     </span>
@@ -549,7 +549,7 @@ export default function CheapRecipesPage() {
                 ))}
                 <button
                   onClick={clearAllFilters}
-                  className="ml-auto text-xs font-semibold text-stone-600 hover:text-emerald-700 hover:underline"
+                  className="ml-auto text-xs font-semibold text-ink-muted hover:text-emerald-700 dark:text-emerald-300 hover:underline"
                 >
                   Clear all
                 </button>
@@ -560,19 +560,19 @@ export default function CheapRecipesPage() {
 
         <div className="mb-4 flex items-center justify-between">
           {hydrated ? (
-            <p className="text-sm text-stone-600">
+            <p className="text-sm text-ink-muted">
               Showing{" "}
-              <span className="font-semibold text-stone-900">
+              <span className="font-semibold text-ink">
                 <AnimatedNumber value={Math.min(visibleCount, results.length)} duration={500} />
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-stone-900">
+              <span className="font-semibold text-ink">
                 <AnimatedNumber value={results.length} duration={500} />
               </span>{" "}
               {results.length === 1 ? "recipe" : "recipes"}
             </p>
           ) : (
-            <p className="text-sm text-stone-600">Loading recipes…</p>
+            <p className="text-sm text-ink-muted">Loading recipes…</p>
           )}
         </div>
         {results.length === 0 && debouncedQuery.trim() ? (
@@ -627,7 +627,7 @@ function FilterGroup({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-medium text-stone-800">{label}</p>
+      <p className="mb-2 text-sm font-medium text-ink">{label}</p>
       {children}
     </div>
   );
@@ -650,7 +650,7 @@ function Chip({
       className={
         active
           ? "inline-flex items-center gap-1.5 rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.02]"
-          : "inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50 active:translate-y-0"
+          : "inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 active:translate-y-0"
       }
     >
       {children}

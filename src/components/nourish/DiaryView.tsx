@@ -105,10 +105,10 @@ function EntryRow({
   }
 
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-stone-100 bg-stone-50/50 px-3 py-2.5">
+    <div className="flex items-start gap-3 rounded-xl border border-line bg-surface/50 px-3 py-2.5">
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium text-stone-900">{entry.food.name}</p>
-        <p className="text-[11px] text-stone-400">
+        <p className="truncate text-sm font-medium text-ink">{entry.food.name}</p>
+        <p className="text-[11px] text-ink-faint">
           {editing ? (
             <span className="flex items-center gap-1.5">
               <input
@@ -117,7 +117,7 @@ function EntryRow({
                 step={0.25}
                 value={qty}
                 onChange={(e) => setQty(parseFloat(e.target.value) || 0.25)}
-                className="w-16 rounded border border-stone-300 px-1.5 py-0.5 text-xs"
+                className="w-16 rounded border border-line-strong px-1.5 py-0.5 text-xs"
                 autoFocus
               />
               × {entry.food.servingDescription}
@@ -130,8 +130,8 @@ function EntryRow({
 
       <div className="flex shrink-0 items-center gap-1">
         <div className="text-right mr-1">
-          <p className="text-sm font-semibold tabular-nums text-stone-800">{Math.round(totals.kcal)} kcal</p>
-          <p className="text-[10px] text-stone-400">
+          <p className="text-sm font-semibold tabular-nums text-ink">{Math.round(totals.kcal)} kcal</p>
+          <p className="text-[10px] text-ink-faint">
             {totals.proteinG.toFixed(1)}P · {totals.carbG.toFixed(1)}C · {totals.fatG.toFixed(1)}F
           </p>
         </div>
@@ -145,8 +145,8 @@ function EntryRow({
           className={clsx(
             "grid h-7 w-7 place-items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
             loggedAgain
-              ? "bg-emerald-100 text-emerald-600"
-              : "text-stone-400 hover:bg-stone-100",
+              ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400"
+              : "text-ink-faint hover:bg-surface-sunken",
           )}
         >
           {loggedAgain ? <Check size={13} /> : <RotateCcw size={13} />}
@@ -157,7 +157,7 @@ function EntryRow({
             type="button"
             onClick={handleSave}
             aria-label="Save"
-            className="grid h-7 w-7 place-items-center rounded-full bg-emerald-100 text-emerald-700 hover:bg-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="grid h-7 w-7 place-items-center rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             <Check size={13} />
           </button>
@@ -166,7 +166,7 @@ function EntryRow({
             type="button"
             onClick={() => setEditing(true)}
             aria-label="Edit serving"
-            className="grid h-7 w-7 place-items-center rounded-full text-stone-400 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="grid h-7 w-7 place-items-center rounded-full text-ink-faint hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             <Pencil size={13} />
           </button>
@@ -175,7 +175,7 @@ function EntryRow({
           type="button"
           onClick={onDelete}
           aria-label="Delete entry"
-          className="grid h-7 w-7 place-items-center rounded-full text-stone-400 hover:bg-rose-50 hover:text-rose-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+          className="grid h-7 w-7 place-items-center rounded-full text-ink-faint hover:bg-rose-50 dark:bg-rose-950/40 hover:text-rose-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
         >
           <Trash2 size={13} />
         </button>
@@ -207,11 +207,11 @@ function MealSection({
   return (
     <section>
       <div className="mb-2 flex items-center justify-between">
-        <h3 className="flex items-center gap-1.5 text-sm font-semibold text-stone-800">
+        <h3 className="flex items-center gap-1.5 text-sm font-semibold text-ink">
           <span aria-hidden>{MEAL_EMOJI[meal]}</span>
           {MEAL_LABELS[meal]}
           {entries.length > 0 && (
-            <span className="ml-1 text-xs font-normal text-stone-400 tabular-nums">
+            <span className="ml-1 text-xs font-normal text-ink-faint tabular-nums">
               {Math.round(totals.kcal)} kcal
             </span>
           )}
@@ -220,7 +220,7 @@ function MealSection({
           type="button"
           onClick={onAdd}
           aria-label={`Add food to ${MEAL_LABELS[meal]}`}
-          className="flex items-center gap-1 rounded-full border border-stone-200 bg-white px-2.5 py-1 text-xs font-medium text-stone-600 hover:border-emerald-300 hover:text-emerald-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="flex items-center gap-1 rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:text-emerald-700 dark:text-emerald-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           <Plus size={11} />
           Add
@@ -228,7 +228,7 @@ function MealSection({
       </div>
 
       {entries.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-stone-200 py-3 text-center text-xs text-stone-400">
+        <p className="rounded-xl border border-dashed border-line py-3 text-center text-xs text-ink-faint">
           Nothing logged yet
         </p>
       ) : (
@@ -251,25 +251,25 @@ function MealSection({
 
 function DayTotalsBar({ totals }: { totals: DayTotals }) {
   return (
-    <div className="flex gap-3 rounded-2xl border border-stone-200 bg-white px-4 py-3 shadow-sm">
+    <div className="flex gap-3 rounded-2xl border border-line bg-surface px-4 py-3 shadow-sm">
       <div className="flex-1 text-center">
-        <p className="text-lg font-bold tabular-nums text-stone-900">{Math.round(totals.kcal)}</p>
-        <p className="text-[10px] font-medium uppercase tracking-wider text-stone-400">kcal</p>
+        <p className="text-lg font-bold tabular-nums text-ink">{Math.round(totals.kcal)}</p>
+        <p className="text-[10px] font-medium uppercase tracking-wider text-ink-faint">kcal</p>
       </div>
-      <div className="w-px bg-stone-100" />
+      <div className="w-px bg-surface-sunken" />
       <div className="flex-1 text-center">
-        <p className="text-lg font-bold tabular-nums text-emerald-600">{totals.proteinG.toFixed(0)}g</p>
-        <p className="text-[10px] font-medium uppercase tracking-wider text-stone-400">protein</p>
+        <p className="text-lg font-bold tabular-nums text-emerald-600 dark:text-emerald-400">{totals.proteinG.toFixed(0)}g</p>
+        <p className="text-[10px] font-medium uppercase tracking-wider text-ink-faint">protein</p>
       </div>
-      <div className="w-px bg-stone-100" />
+      <div className="w-px bg-surface-sunken" />
       <div className="flex-1 text-center">
         <p className="text-lg font-bold tabular-nums text-amber-500">{totals.carbG.toFixed(0)}g</p>
-        <p className="text-[10px] font-medium uppercase tracking-wider text-stone-400">carbs</p>
+        <p className="text-[10px] font-medium uppercase tracking-wider text-ink-faint">carbs</p>
       </div>
-      <div className="w-px bg-stone-100" />
+      <div className="w-px bg-surface-sunken" />
       <div className="flex-1 text-center">
         <p className="text-lg font-bold tabular-nums text-violet-500">{totals.fatG.toFixed(0)}g</p>
-        <p className="text-[10px] font-medium uppercase tracking-wider text-stone-400">fat</p>
+        <p className="text-[10px] font-medium uppercase tracking-wider text-ink-faint">fat</p>
       </div>
     </div>
   );
@@ -310,24 +310,24 @@ export function DiaryView() {
   return (
     <div className="space-y-4">
       {/* Date navigator */}
-      <div className="flex items-center justify-between rounded-2xl border border-stone-200 bg-white px-4 py-3 shadow-sm">
+      <div className="flex items-center justify-between rounded-2xl border border-line bg-surface px-4 py-3 shadow-sm">
         <button
           type="button"
           onClick={() => setDate((d) => dateOffset(d, -1))}
           aria-label="Previous day"
           className={clsx(
-            "grid h-8 w-8 place-items-center rounded-full text-stone-600 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
+            "grid h-8 w-8 place-items-center rounded-full text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
           )}
         >
           <ChevronLeft size={16} />
         </button>
         <div className="text-center">
-          <p className="text-sm font-bold text-stone-900">{formatDate(date)}</p>
+          <p className="text-sm font-bold text-ink">{formatDate(date)}</p>
           {!isToday && (
             <button
               type="button"
               onClick={() => setDate(today)}
-              className="text-[10px] text-emerald-600 hover:underline focus:outline-none"
+              className="text-[10px] text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none"
             >
               Go to today
             </button>
@@ -338,7 +338,7 @@ export function DiaryView() {
           onClick={() => setDate((d) => dateOffset(d, 1))}
           disabled={isToday}
           aria-label="Next day"
-          className="grid h-8 w-8 place-items-center rounded-full text-stone-600 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:opacity-30"
+          className="grid h-8 w-8 place-items-center rounded-full text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:opacity-30"
         >
           <ChevronRight size={16} />
         </button>

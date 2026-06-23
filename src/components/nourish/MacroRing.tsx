@@ -73,13 +73,13 @@ export function MacroRing({
         </svg>
         {/* Centre text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-base font-bold tabular-nums leading-none text-stone-900">
+          <span className="text-base font-bold tabular-nums leading-none text-ink">
             {Math.round(consumed)}
           </span>
-          <span className="text-[9px] text-stone-400">/ {target}g</span>
+          <span className="text-[9px] text-ink-faint">/ {target}g</span>
         </div>
       </div>
-      <p className={clsx("text-xs font-semibold", overTarget ? "text-rose-500" : "text-stone-600")}>
+      <p className={clsx("text-xs font-semibold", overTarget ? "text-rose-500" : "text-ink-muted")}>
         {label}
         {overTarget && " ↑"}
       </p>

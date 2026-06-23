@@ -171,7 +171,7 @@ export default function NourishMealPlannerPage() {
       title="Meal planner."
       description="Plan the next 7 days. Tap a slot, pick a recipe or saved meal, then log the day in one tap when it arrives."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <SectionHeading
             eyebrow={
@@ -198,10 +198,10 @@ export default function NourishMealPlannerPage() {
           {days.map((date) => (
             <div
               key={date}
-              className="rounded-2xl border border-stone-200 bg-stone-50/40 p-3"
+              className="rounded-2xl border border-line bg-surface/40 p-3"
             >
               <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-stone-700">
+                <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
                   {dayLabel(date, today)}
                 </p>
                 <button
@@ -223,20 +223,20 @@ export default function NourishMealPlannerPage() {
                       className={clsx(
                         "group flex min-h-[88px] flex-col gap-1.5 rounded-xl border p-3 text-left transition-all",
                         cell
-                          ? "border-emerald-300 bg-white shadow-sm hover:border-emerald-400"
-                          : "border-dashed border-stone-300 bg-white/60 hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50/50",
+                          ? "border-emerald-300 dark:border-emerald-800 bg-surface shadow-sm hover:border-emerald-400"
+                          : "border-dashed border-line-strong bg-surface/60 hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/50",
                       )}
                     >
-                      <p className="text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+                      <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                         <span className="mr-1">{emoji}</span>
                         {label}
                       </p>
                       {cell ? (
                         <>
-                          <p className="line-clamp-2 text-sm font-semibold text-stone-900">
+                          <p className="line-clamp-2 text-sm font-semibold text-ink">
                             {cell.name}
                           </p>
-                          <div className="mt-auto flex items-center justify-between gap-2 text-[10px] text-stone-500">
+                          <div className="mt-auto flex items-center justify-between gap-2 text-[10px] text-ink-muted">
                             <span>
                               {Math.round(cell.kcal ?? 0)} kcal ·{" "}
                               {Math.round(cell.proteinG ?? 0)} g P
@@ -258,14 +258,14 @@ export default function NourishMealPlannerPage() {
                                   refresh();
                                 }
                               }}
-                              className="grid h-5 w-5 cursor-pointer place-items-center rounded-full text-stone-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                              className="grid h-5 w-5 cursor-pointer place-items-center rounded-full text-ink-faint transition-colors hover:bg-red-50 dark:bg-red-950/40 hover:text-red-600 dark:text-red-400"
                             >
                               <X size={10} />
                             </span>
                           </div>
                         </>
                       ) : (
-                        <span className="mt-auto inline-flex items-center gap-1 text-[11px] font-semibold text-stone-500 group-hover:text-emerald-700">
+                        <span className="mt-auto inline-flex items-center gap-1 text-[11px] font-semibold text-ink-muted group-hover:text-emerald-700 dark:text-emerald-300">
                           <Plus size={11} />
                           Plan {label.toLowerCase()}
                         </span>
@@ -291,7 +291,7 @@ export default function NourishMealPlannerPage() {
         />
       )}
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Plans live in your browser. Nothing is uploaded.
       </p>
     </NourishShell>
@@ -378,20 +378,20 @@ function PickerSheet({
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-white shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-xl sm:rounded-3xl">
-        <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
+      <div className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-surface shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-xl sm:rounded-3xl">
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-violet-700">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-violet-700 dark:text-violet-300">
               Plan
             </p>
-            <p className="text-sm font-semibold text-stone-900">
+            <p className="text-sm font-semibold text-ink">
               Pick a {slot} for {date}
             </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-stone-500 hover:bg-stone-100"
+            className="rounded-full p-2 text-ink-muted hover:bg-surface-sunken"
             aria-label="Close"
           >
             <X size={18} />
@@ -407,7 +407,7 @@ function PickerSheet({
               className={
                 tab === "recipe"
                   ? "inline-flex items-center gap-1.5 rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200"
-                  : "inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                  : "inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
               }
             >
               <Soup size={12} />
@@ -420,7 +420,7 @@ function PickerSheet({
               className={
                 tab === "meal"
                   ? "inline-flex items-center gap-1.5 rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200"
-                  : "inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                  : "inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
               }
             >
               <Layers size={12} />
@@ -433,32 +433,32 @@ function PickerSheet({
               <div className="relative">
                 <Search
                   size={14}
-                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint"
                 />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search recipes…"
-                  className="w-full rounded-full border border-stone-200 bg-stone-50 py-2.5 pl-9 pr-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100"
+                  className="w-full rounded-full border border-line bg-surface py-2.5 pl-9 pr-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-emerald-100"
                 />
               </div>
               {totalMatches > 0 && (
-                <p className="text-[11px] text-stone-500" aria-live="polite">
+                <p className="text-[11px] text-ink-muted" aria-live="polite">
                   Showing{" "}
-                  <span className="font-semibold text-stone-700">
+                  <span className="font-semibold text-ink-muted">
                     {Math.min(visibleCount, totalMatches)}
                   </span>{" "}
                   of{" "}
-                  <span className="font-semibold text-stone-700">
+                  <span className="font-semibold text-ink-muted">
                     {totalMatches}
                   </span>{" "}
                   recipe{totalMatches === 1 ? "" : "s"}
                 </p>
               )}
               {totalMatches === 0 ? (
-                <div className="rounded-2xl border border-dashed border-stone-200 bg-stone-50 p-6 text-center text-sm text-stone-600">
+                <div className="rounded-2xl border border-dashed border-line bg-surface p-6 text-center text-sm text-ink-muted">
                   No recipes match{" "}
-                  <span className="font-semibold text-stone-800">
+                  <span className="font-semibold text-ink">
                     &ldquo;{query.trim()}&rdquo;
                   </span>
                   . Try a shorter search.
@@ -472,12 +472,12 @@ function PickerSheet({
                         onClick={() =>
                           pickRecipe(r.id, r.name, n.calories, n.protein)
                         }
-                        className="flex w-full items-center justify-between gap-3 rounded-xl border border-stone-200 bg-white p-2.5 text-left transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50/50"
+                        className="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-surface p-2.5 text-left transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/50"
                       >
-                        <span className="min-w-0 flex-1 truncate text-sm font-semibold text-stone-900">
+                        <span className="min-w-0 flex-1 truncate text-sm font-semibold text-ink">
                           {r.name}
                         </span>
-                        <span className="shrink-0 text-[10px] font-semibold tabular-nums text-stone-600">
+                        <span className="shrink-0 text-[10px] font-semibold tabular-nums text-ink-muted">
                           {Math.round(n.calories)} kcal ·{" "}
                           {Math.round(n.protein)} g P
                         </span>
@@ -491,7 +491,7 @@ function PickerSheet({
                         onClick={() =>
                           setVisibleCount((c) => Math.min(c + PAGE, totalMatches))
                         }
-                        className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-stone-200 bg-stone-50 p-2.5 text-xs font-semibold text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+                        className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-line bg-surface p-2.5 text-xs font-semibold text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 hover:text-emerald-700 dark:text-emerald-300"
                       >
                         Load{" "}
                         {Math.min(PAGE, totalMatches - visibleCount)} more
@@ -526,12 +526,12 @@ function PickerSheet({
                     <button
                       type="button"
                       onClick={() => pickMeal(m.id)}
-                      className="flex w-full items-center justify-between gap-3 rounded-xl border border-stone-200 bg-white p-2.5 text-left transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50/50"
+                      className="flex w-full items-center justify-between gap-3 rounded-xl border border-line bg-surface p-2.5 text-left transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40/50"
                     >
-                      <span className="min-w-0 flex-1 truncate text-sm font-semibold text-stone-900">
+                      <span className="min-w-0 flex-1 truncate text-sm font-semibold text-ink">
                         {m.name}
                       </span>
-                      <span className="shrink-0 text-[10px] font-semibold tabular-nums text-stone-600">
+                      <span className="shrink-0 text-[10px] font-semibold tabular-nums text-ink-muted">
                         {Math.round(m.totalKcal)} kcal ·{" "}
                         {Math.round(m.totalProteinG)} g P
                       </span>

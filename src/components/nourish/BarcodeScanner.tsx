@@ -143,8 +143,8 @@ export function BarcodeScanner({ onLogged }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-4 shadow-sm space-y-3">
-      <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
+    <div className="rounded-2xl border border-amber-200 dark:border-amber-900 bg-gradient-to-br from-amber-50 to-surface p-4 shadow-sm space-y-3">
+      <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-300">
         <ScanBarcode size={13} />
         Barcode scanner
       </p>
@@ -156,7 +156,7 @@ export function BarcodeScanner({ onLogged }: Props) {
               Scan barcode
             </Button>
           ) : (
-            <p className="text-xs text-stone-500">Live scanning requires Chrome or Edge. Use manual entry:</p>
+            <p className="text-xs text-ink-muted">Live scanning requires Chrome or Edge. Use manual entry:</p>
           )}
           <div className="flex gap-2">
             <input
@@ -165,7 +165,7 @@ export function BarcodeScanner({ onLogged }: Props) {
               value={manualBarcode}
               onChange={(e) => setManualBarcode(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter") handleBarcode(manualBarcode); }}
-              className="flex-1 rounded-xl border border-stone-300 px-3 py-2 text-sm shadow-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
+              className="flex-1 rounded-xl border border-line-strong px-3 py-2 text-sm shadow-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
             />
             <Button variant="outline" size="sm" onClick={() => handleBarcode(manualBarcode)} disabled={manualBarcode.length < 6}>
               Look up
@@ -187,13 +187,13 @@ export function BarcodeScanner({ onLogged }: Props) {
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <div className="h-16 w-48 rounded-lg border-2 border-amber-400 opacity-70" />
           </div>
-          <p className="text-center text-xs text-stone-500">Point camera at barcode…</p>
+          <p className="text-center text-xs text-ink-muted">Point camera at barcode…</p>
           <Button variant="ghost" size="sm" onClick={reset} className="w-full">Cancel</Button>
         </div>
       )}
 
       {scanState === "looking-up" && (
-        <div className="flex items-center gap-2 py-2 text-sm text-stone-600">
+        <div className="flex items-center gap-2 py-2 text-sm text-ink-muted">
           <Loader2 size={15} className="animate-spin text-amber-500" />
           Looking up product…
         </div>
@@ -201,7 +201,7 @@ export function BarcodeScanner({ onLogged }: Props) {
 
       {(scanState === "not-found" || scanState === "error") && (
         <div className="space-y-2">
-          <p className="flex items-center gap-1.5 text-xs text-rose-600">
+          <p className="flex items-center gap-1.5 text-xs text-rose-600 dark:text-rose-400">
             <AlertCircle size={13} /> {error}
           </p>
           <Button variant="ghost" size="sm" onClick={reset}>Try again</Button>
@@ -210,29 +210,29 @@ export function BarcodeScanner({ onLogged }: Props) {
 
       {scanState === "found" && food && (
         <div className="space-y-3">
-          <div className="rounded-xl border border-amber-200 bg-amber-50/60 px-3 py-2.5">
-            <p className="text-sm font-bold text-stone-900">{food.name}</p>
-            {food.brand && <p className="text-[11px] text-stone-400">{food.brand}</p>}
-            <p className="text-xs text-stone-500 mt-0.5">
+          <div className="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40/60 px-3 py-2.5">
+            <p className="text-sm font-bold text-ink">{food.name}</p>
+            {food.brand && <p className="text-[11px] text-ink-faint">{food.brand}</p>}
+            <p className="text-xs text-ink-muted mt-0.5">
               {food.servingDescription} · {food.kcal} kcal · {food.proteinG}g P · {food.carbG}g C · {food.fatG}g F
             </p>
           </div>
 
           {/* Servings */}
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-stone-600 w-16">Servings</span>
+            <span className="text-xs font-medium text-ink-muted w-16">Servings</span>
             <div className="flex items-center gap-2">
               <button type="button" aria-label="Decrease servings" onClick={() => setServings((s) => Math.max(0.5, parseFloat((s - 0.5).toFixed(1))))}
-                className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">−</button>
+                className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">−</button>
               <span className="w-8 text-center text-sm font-semibold tabular-nums">{servings}</span>
               <button type="button" aria-label="Increase servings" onClick={() => setServings((s) => parseFloat((s + 0.5).toFixed(1)))}
-                className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">+</button>
+                className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">+</button>
             </div>
-            <span className="text-xs text-stone-400">= {Math.round(food.kcal * servings)} kcal</span>
+            <span className="text-xs text-ink-faint">= {Math.round(food.kcal * servings)} kcal</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-medium text-stone-600" id="barcode-meal-label">Meal:</span>
+            <span className="text-xs font-medium text-ink-muted" id="barcode-meal-label">Meal:</span>
             <div role="radiogroup" aria-labelledby="barcode-meal-label" className="flex flex-wrap items-center gap-2">
               {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
                 <SelectablePill key={id} active={meal === id} onClick={() => setMeal(id)} ariaSemantics="checked" showCheck={false} size="sm">
@@ -247,7 +247,7 @@ export function BarcodeScanner({ onLogged }: Props) {
               Add to {MEAL_LABELS[meal]}
             </Button>
             <button type="button" onClick={reset}
-              className={clsx("rounded-full border border-stone-200 px-3 text-xs font-medium text-stone-600 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400")}>
+              className={clsx("rounded-full border border-line px-3 text-xs font-medium text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400")}>
               Reset
             </button>
           </div>
@@ -257,7 +257,7 @@ export function BarcodeScanner({ onLogged }: Props) {
       {scanState === "logged" && (
         <div className="flex items-center gap-2 py-2">
           <CheckCircle2 size={18} className="text-emerald-500 motion-safe:animate-[popIn_220ms_ease-out]" />
-          <p className="text-sm font-semibold text-stone-800">Logged to {MEAL_LABELS[meal]}!</p>
+          <p className="text-sm font-semibold text-ink">Logged to {MEAL_LABELS[meal]}!</p>
         </div>
       )}
     </div>

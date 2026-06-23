@@ -47,22 +47,22 @@ const ITEMS: NavItem[] = [
 const GROUP_META: Record<Group, { label: string; tone: string; barTone: string }> = {
   track: {
     label: "Track",
-    tone: "text-emerald-700",
+    tone: "text-emerald-700 dark:text-emerald-300",
     barTone: "bg-emerald-500",
   },
   plan: {
     label: "Plan",
-    tone: "text-violet-700",
+    tone: "text-violet-700 dark:text-violet-300",
     barTone: "bg-violet-500",
   },
   review: {
     label: "Review",
-    tone: "text-sky-700",
+    tone: "text-sky-700 dark:text-sky-300",
     barTone: "bg-sky-500",
   },
   manage: {
     label: "Manage",
-    tone: "text-stone-700",
+    tone: "text-ink-muted",
     barTone: "bg-stone-500",
   },
 };
@@ -97,7 +97,7 @@ export function NourishSubNav() {
       aria-label="Nourish sections"
       className="sticky top-16 z-20 -mx-2 px-2 py-1"
     >
-      <div className="rounded-2xl border border-stone-200 bg-white/85 p-2 shadow-sm backdrop-blur-md">
+      <div className="rounded-2xl border border-line bg-surface/85 p-2 shadow-sm backdrop-blur-md">
         <div className="flex flex-wrap gap-x-3 gap-y-2.5">
           {groups.map((group) => {
             const items = ITEMS.filter((it) => it.group === group);
@@ -112,7 +112,7 @@ export function NourishSubNav() {
                   aria-hidden
                   className={clsx(
                     "inline-flex shrink-0 items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em]",
-                    isActiveGroup ? meta.tone : "text-stone-400",
+                    isActiveGroup ? meta.tone : "text-ink-faint",
                   )}
                 >
                   <span
@@ -137,7 +137,7 @@ export function NourishSubNav() {
                             "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                             active
                               ? "bg-gradient-to-br from-emerald-600 to-emerald-700 text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                              : "text-stone-600 hover:bg-stone-100 hover:text-stone-900",
+                              : "text-ink-muted hover:bg-surface-sunken hover:text-ink",
                           )}
                         >
                           <Icon
@@ -147,7 +147,7 @@ export function NourishSubNav() {
                                 ? "text-white"
                                 : isActiveGroup
                                   ? meta.tone
-                                  : "text-stone-400"
+                                  : "text-ink-faint"
                             }
                             aria-hidden
                           />

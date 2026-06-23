@@ -33,9 +33,9 @@ export function AiSection() {
       tone="violet"
     >
       {aiOff && (
-        <div className="flex items-start gap-2.5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
-          <Info size={16} className="mt-0.5 flex-none text-amber-600" />
-          <p className="text-xs leading-relaxed text-amber-900">
+        <div className="flex items-start gap-2.5 rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 px-4 py-3">
+          <Info size={16} className="mt-0.5 flex-none text-amber-600 dark:text-amber-400" />
+          <p className="text-xs leading-relaxed text-amber-900 dark:text-amber-300">
             No AI key is configured on this build, so AI features are offline
             regardless of these switches. The rest of Waivy — recipes, pantry
             matching, pricing, grocery — works fully.
@@ -45,7 +45,7 @@ export function AiSection() {
 
       <SettingRow
         icon={<Sparkles size={18} />}
-        iconClass="bg-violet-100 text-violet-700"
+        iconClass="bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300"
         title="AI features"
         description="Master switch for AI Chef, Pesto, and image generation."
         control={
@@ -60,7 +60,7 @@ export function AiSection() {
 
       <SettingRow
         icon={<Zap size={18} />}
-        iconClass="bg-amber-100 text-amber-700"
+        iconClass="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
         title="AI Chef default mode"
         description="Quick gives four fast options to pick from. Full does one detailed recipe with a longer write-up."
       >
@@ -82,7 +82,7 @@ export function AiSection() {
 
       <SettingRow
         icon={<ImageIcon size={18} />}
-        iconClass="bg-sky-100 text-sky-700"
+        iconClass="bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300"
         title="Generate recipe images"
         description="Create an AI photo for recipes that don't have one. Costs a little per image and stored images count toward the ~6 MB on-device image cap."
         control={
@@ -97,7 +97,7 @@ export function AiSection() {
 
       <SettingRow
         icon={<MessageCircle size={18} />}
-        iconClass="bg-emerald-100 text-emerald-700"
+        iconClass="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
         title="Pesto chat assistant"
         description="The floating chat button that answers cooking questions. Hide it if you'd rather not have it on screen."
         control={

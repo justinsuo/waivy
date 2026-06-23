@@ -116,28 +116,28 @@ export function IngredientPriceRow({
   return (
     <li className="flex items-start justify-between gap-3 py-2 text-sm">
       <div className="min-w-0 flex-1">
-        <p className="font-medium text-stone-800">
+        <p className="font-medium text-ink">
           {ingredient.name}{" "}
           {optional && (
-            <span className="text-xs text-stone-500">(optional)</span>
+            <span className="text-xs text-ink-muted">(optional)</span>
           )}
         </p>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-ink-muted">
           {quantity} {ingredient.unit}
         </p>
 
         {editing ? (
           <div className="mt-2 flex items-center gap-2">
-            <span className="text-xs text-stone-500">$</span>
+            <span className="text-xs text-ink-muted">$</span>
             <input
               type="number"
               step="0.01"
               min={0}
               value={draftPrice}
               onChange={(e) => setDraftPrice(e.target.value)}
-              className="w-20 rounded-lg border border-stone-200 bg-white px-2 py-1 text-xs focus:border-emerald-400 focus:outline-none"
+              className="w-20 rounded-lg border border-line bg-surface px-2 py-1 text-xs focus:border-emerald-400 focus:outline-none"
             />
-            <span className="text-[11px] text-stone-500">/{ingredient.unit}</span>
+            <span className="text-[11px] text-ink-muted">/{ingredient.unit}</span>
             <button
               onClick={save}
               className="ml-1 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-1 text-[11px] font-medium text-white"
@@ -146,23 +146,23 @@ export function IngredientPriceRow({
             </button>
             <button
               onClick={() => setEditing(false)}
-              className="text-[11px] text-stone-500 hover:text-stone-800"
+              className="text-[11px] text-ink-muted hover:text-ink"
             >
               Cancel
             </button>
           </div>
         ) : (
-          <div className="mt-1 flex flex-wrap items-center gap-x-2 text-[11px] text-stone-500">
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 text-[11px] text-ink-muted">
             <span>
               ${(quote?.appliedUnitCost ?? 0).toFixed(2)}/{ingredient.unit}
             </span>
             <span
               className={
                 quote?.source === "override"
-                  ? "rounded-full bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800"
+                  ? "rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800 dark:text-emerald-300"
                   : quote?.source === "ai-estimate"
-                    ? "rounded-full bg-violet-100 px-1.5 py-0.5 text-[10px] font-semibold text-violet-800"
-                    : "rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold text-stone-700"
+                    ? "rounded-full bg-violet-100 dark:bg-violet-900/40 px-1.5 py-0.5 text-[10px] font-semibold text-violet-800 dark:text-violet-300"
+                    : "rounded-full bg-surface-sunken px-1.5 py-0.5 text-[10px] font-semibold text-ink-muted"
               }
             >
               {sourceLabel[quote?.source ?? "fallback"]}
@@ -171,7 +171,7 @@ export function IngredientPriceRow({
               )}
             </span>
             {quote?.source === "catalog" && quote.multiplier !== 1 && (
-              <span className="text-stone-400">
+              <span className="text-ink-faint">
                 base ${quote.baseUnitCost.toFixed(2)} × {quote.multiplier.toFixed(2)}
               </span>
             )}
@@ -180,7 +180,7 @@ export function IngredientPriceRow({
 
         {/* AI sources panel */}
         {aiCached && showSources && (
-          <div className="mt-2 rounded-xl border border-violet-200 bg-violet-50 p-2 text-xs text-violet-900">
+          <div className="mt-2 rounded-xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 p-2 text-xs text-violet-900 dark:text-violet-300">
             <p className="font-semibold">
               {aiCached.estimate.selectedBudgetEstimate.packageUnit && (
                 <>
@@ -216,32 +216,32 @@ export function IngredientPriceRow({
                       <span>{s.storeName ?? s.productName ?? "source"}</span>
                     )}{" "}
                     — ${s.packagePrice.toFixed(2)} / {s.packageSize} {s.packageUnit}{" "}
-                    <span className="text-violet-700">[{s.confidence}]</span>
+                    <span className="text-violet-700 dark:text-violet-300">[{s.confidence}]</span>
                   </li>
                 ))}
               </ul>
             )}
             {aiCached.estimate.warnings?.length > 0 && (
-              <p className="mt-1 text-[11px] text-amber-900">
+              <p className="mt-1 text-[11px] text-amber-900 dark:text-amber-300">
                 ⚠ {aiCached.estimate.warnings.join(" ")}
               </p>
             )}
           </div>
         )}
         {estimateError && (
-          <p className="mt-1 text-[11px] text-red-700">{estimateError}</p>
+          <p className="mt-1 text-[11px] text-red-700 dark:text-red-300">{estimateError}</p>
         )}
       </div>
 
       <div className="flex flex-col items-end gap-1">
-        <p className="font-medium text-stone-900">${cost.toFixed(2)}</p>
+        <p className="font-medium text-ink">${cost.toFixed(2)}</p>
         {!editing && (
           <div className="flex items-center gap-1">
             {isWorkerConfigured() && !aiCached && (
               <button
                 onClick={estimateWithAI}
                 disabled={estimating}
-                className="rounded-full p-1 text-violet-500 hover:bg-violet-100 hover:text-violet-700 disabled:opacity-50"
+                className="rounded-full p-1 text-violet-500 hover:bg-violet-100 dark:bg-violet-900/40 hover:text-violet-700 dark:text-violet-300 disabled:opacity-50"
                 aria-label="Estimate this ingredient's price with AI"
                 title="Estimate with AI"
               >
@@ -255,7 +255,7 @@ export function IngredientPriceRow({
             {aiCached && (
               <button
                 onClick={() => setShowSources((s) => !s)}
-                className="rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+                className="rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
                 aria-label="Toggle AI price sources"
                 title="View AI price sources"
               >
@@ -264,7 +264,7 @@ export function IngredientPriceRow({
             )}
             <button
               onClick={startEdit}
-              className="rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+              className="rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
               aria-label="Edit price"
               title="Edit price"
             >
@@ -273,7 +273,7 @@ export function IngredientPriceRow({
             {override && (
               <button
                 onClick={reset}
-                className="rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+                className="rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
                 aria-label="Reset to catalog price"
                 title="Reset to catalog price"
               >

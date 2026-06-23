@@ -201,7 +201,7 @@ function buildCreativeSeed(): string {
 
 export default function AIChefPageWrapper() {
   return (
-    <Suspense fallback={<div className="text-stone-500">Loading…</div>}>
+    <Suspense fallback={<div className="text-ink-muted">Loading…</div>}>
       <AIChefPage />
     </Suspense>
   );
@@ -850,16 +850,16 @@ function AIChefPage() {
       <AIChefDemoHero />
 
       {!isWorkerConfigured() && (
-        <Card className="border-amber-200 bg-amber-50">
+        <Card className="border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40">
           <div className="flex flex-wrap items-start gap-4">
-            <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-amber-100 text-amber-700">
+            <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">
               <ChefHat size={18} />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="font-semibold text-amber-900">
+              <p className="font-semibold text-amber-900 dark:text-amber-300">
                 AI Chef is taking a break.
               </p>
-              <p className="mt-1 text-sm text-amber-900">
+              <p className="mt-1 text-sm text-amber-900 dark:text-amber-300">
                 The recipe generator is offline right now. You can still browse
                 hundreds of student-friendly recipes, build your pantry, and
                 use Pantry-to-Plate to find meals you can make.
@@ -873,7 +873,7 @@ function AIChefPage() {
                 </Link>
                 <Link
                   href="/pantry"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-800 hover:bg-stone-50"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface px-3 py-1.5 text-xs font-semibold text-ink hover:bg-surface"
                 >
                   Use my pantry
                 </Link>
@@ -883,7 +883,7 @@ function AIChefPage() {
         </Card>
       )}
 
-      <section className="relative overflow-hidden rounded-3xl border border-violet-200/60 bg-gradient-to-br from-white via-violet-50/30 to-white p-5 shadow-sm sm:p-7">
+      <section className="relative overflow-hidden rounded-3xl border border-violet-200 dark:border-violet-900/60 bg-gradient-to-br from-surface via-violet-50/30 to-surface p-5 shadow-sm sm:p-7">
         <div
           aria-hidden
           className="dot-grid pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(circle_at_90%_10%,black,transparent_55%)]"
@@ -908,7 +908,7 @@ function AIChefPage() {
             <Refrigerator size={12} className="mr-1 inline" />
             Use my pantry
             {pantry.length > 0 && (
-              <span className="ml-1 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-white/30 px-1 text-[10px] font-semibold">
+              <span className="ml-1 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-surface/30 px-1 text-[10px] font-semibold">
                 {pantry.length}
               </span>
             )}
@@ -939,10 +939,10 @@ function AIChefPage() {
         {mode === "pantry" ? (
           <div className="space-y-3">
             <div>
-              <label className="text-sm font-medium text-stone-800">
+              <label className="text-sm font-medium text-ink">
                 Pantry ingredients AI Chef can use
               </label>
-              <p className="mt-1 text-xs text-stone-500">
+              <p className="mt-1 text-xs text-ink-muted">
                 Tap a chip to include or exclude it from this recipe. Add more
                 below — snap a fridge photo or smart-paste a list — without
                 leaving this page.
@@ -956,23 +956,23 @@ function AIChefPage() {
             <ReceiptUpload variant="compact" />
             <PantrySmartAdd />
             <div>
-              <label className="flex items-center gap-1.5 text-sm font-medium text-stone-800">
-                <Sparkles size={14} className="text-violet-600" /> Notes for AI
+              <label className="flex items-center gap-1.5 text-sm font-medium text-ink">
+                <Sparkles size={14} className="text-violet-600 dark:text-violet-400" /> Notes for AI
               </label>
               <textarea
                 value={aiNotes}
                 onChange={(e) => setAiNotes(e.target.value)}
                 rows={3}
                 placeholder="Make something like a sushi roll using rice and seaweed. Keep it cheap, use what I already have, prefer microwave."
-                className="mt-1 w-full rounded-2xl border border-violet-200 bg-violet-50/50 p-3 text-sm focus:border-violet-400 focus:bg-white focus:outline-none"
+                className="mt-1 w-full rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40/50 p-3 text-sm focus:border-violet-400 focus:bg-surface focus:outline-none"
               />
-              <p className="mt-1 text-xs text-stone-500">
+              <p className="mt-1 text-xs text-ink-muted">
                 Tell the AI your idea, vibe, or craving. It treats this as
                 creative direction.
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-stone-800">
+              <label className="text-sm font-medium text-ink">
                 Optional craving (what kind of dish?)
               </label>
               <textarea
@@ -980,13 +980,13 @@ function AIChefPage() {
                 onChange={(e) => setCravings(e.target.value)}
                 rows={2}
                 placeholder="something Asian, quick microwave dinner, high protein…"
-                className="mt-1 w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="mt-1 w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
             </div>
           </div>
         ) : mode === "url" ? (
           <div className="space-y-3">
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Recipe URL (food blog, recipe site, etc.)
             </label>
             <input
@@ -994,9 +994,9 @@ function AIChefPage() {
               value={importUrl}
               onChange={(e) => setImportUrl(e.target.value)}
               placeholder="https://cookieandkate.com/..."
-              className="w-full rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-ink-muted">
               We&apos;ll extract structured recipe data (JSON-LD) when
               available, adapt it to your pantry / budget / equipment, and
               keep attribution to the original creator.
@@ -1004,7 +1004,7 @@ function AIChefPage() {
           </div>
         ) : mode === "paste" ? (
           <div className="space-y-3">
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Paste a TikTok caption, blog excerpt, transcript, or recipe text
             </label>
             <textarea
@@ -1012,7 +1012,7 @@ function AIChefPage() {
               onChange={(e) => setPasteText(e.target.value)}
               rows={5}
               placeholder="Paste the caption, recipe text, or transcript here. The AI will turn it into a clean recipe card."
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
             <div className="grid gap-2 sm:grid-cols-3">
               <select
@@ -1022,7 +1022,7 @@ function AIChefPage() {
                     e.target.value as typeof pastePlatform,
                   )
                 }
-                className="rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               >
                 <option value="tiktok">TikTok</option>
                 <option value="instagram">Instagram</option>
@@ -1035,16 +1035,16 @@ function AIChefPage() {
                 value={pasteSourceUrl}
                 onChange={(e) => setPasteSourceUrl(e.target.value)}
                 placeholder="Source URL (optional)"
-                className="rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <input
                 value={pasteCreator}
                 onChange={(e) => setPasteCreator(e.target.value)}
                 placeholder="Creator name (optional)"
-                className="rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
             </div>
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-ink-muted">
               We don&apos;t scrape TikTok/Instagram directly — paste the
               content you have access to and we&apos;ll build the recipe card
               with credit to the creator.
@@ -1052,7 +1052,7 @@ function AIChefPage() {
           </div>
         ) : mode === "web" ? (
           <div className="space-y-3">
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Tell me what you want — we&apos;ll search the web
             </label>
             <textarea
@@ -1060,9 +1060,9 @@ function AIChefPage() {
               onChange={(e) => setCravings(e.target.value)}
               rows={2}
               placeholder="viral TikTok ramen but cheap and microwave-friendly"
-              className="mt-1 w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="mt-1 w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Ingredients I have (optional, helps ranking)
             </label>
             <textarea
@@ -1070,12 +1070,12 @@ function AIChefPage() {
               onChange={(e) => setIngredients(e.target.value)}
               rows={2}
               placeholder="rice, eggs, frozen broccoli, chili crisp"
-              className="mt-1 w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="mt-1 w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
           </div>
         ) : mode === "have" ? (
           <div>
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Ingredients you have
             </label>
             <textarea
@@ -1083,11 +1083,11 @@ function AIChefPage() {
               onChange={(e) => setIngredients(e.target.value)}
               rows={2}
               placeholder="rice, eggs, frozen peas, soy sauce, scallions"
-              className="mt-1 w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="mt-1 w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
             <button
               type="button"
-              className="mt-1 text-xs font-medium text-emerald-700 hover:underline"
+              className="mt-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 hover:underline"
               onClick={() =>
                 setIngredients(
                   pantry
@@ -1107,7 +1107,7 @@ function AIChefPage() {
           </div>
         ) : (
           <div>
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               What are you craving?
             </label>
             <textarea
@@ -1115,14 +1115,14 @@ function AIChefPage() {
               onChange={(e) => setCravings(e.target.value)}
               rows={2}
               placeholder="I want something like Korean fried rice but cheaper and healthier."
-              className="mt-1 w-full rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="mt-1 w-full rounded-2xl border border-line bg-surface p-3 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
             <div className="mt-2 flex flex-wrap gap-2">
               {STARTER_PROMPTS.map((p) => (
                 <button
                   key={p}
                   onClick={() => setCravings(p)}
-                  className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 >
                   {p}
                 </button>
@@ -1133,7 +1133,7 @@ function AIChefPage() {
 
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           <div>
-            <label className="text-sm font-medium text-stone-800">
+            <label className="text-sm font-medium text-ink">
               Budget per serving (${budget.toFixed(2)})
             </label>
             <input
@@ -1145,11 +1145,11 @@ function AIChefPage() {
               onChange={(e) => setBudget(parseFloat(e.target.value))}
               className="mt-2 w-full accent-emerald-600"
             />
-            <div className="flex justify-between text-[11px] text-stone-500">
+            <div className="flex justify-between text-[11px] text-ink-muted">
               <span>$0.50</span>
               <span>$30.00</span>
             </div>
-            <label className="mt-3 block text-sm font-medium text-stone-800">
+            <label className="mt-3 block text-sm font-medium text-ink">
               Servings ({servings})
             </label>
             <input
@@ -1161,13 +1161,13 @@ function AIChefPage() {
               onChange={(e) => setServings(parseInt(e.target.value, 10))}
               className="mt-2 w-full accent-emerald-600"
             />
-            <label className="mt-3 block text-sm font-medium text-stone-800">
+            <label className="mt-3 block text-sm font-medium text-ink">
               Time limit
             </label>
             <select
               value={timeLimit}
               onChange={(e) => setTimeLimit(e.target.value)}
-              className="mt-1 w-full rounded-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="mt-1 w-full rounded-full border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             >
               <option value="any">Any</option>
               <option value="under 10 minutes">Under 10 min</option>
@@ -1177,7 +1177,7 @@ function AIChefPage() {
             </select>
           </div>
           <div>
-            <label className="text-sm font-medium text-stone-800">Equipment</label>
+            <label className="text-sm font-medium text-ink">Equipment</label>
             <div className="mt-2 flex flex-wrap gap-2">
               {EQUIPMENT_OPTS.map((eq) => (
                 <Chip
@@ -1189,7 +1189,7 @@ function AIChefPage() {
                 </Chip>
               ))}
             </div>
-            <label className="mt-3 block text-sm font-medium text-stone-800">
+            <label className="mt-3 block text-sm font-medium text-ink">
               Diet
             </label>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -1203,7 +1203,7 @@ function AIChefPage() {
                 </Chip>
               ))}
             </div>
-            <label className="mt-3 block text-sm font-medium text-stone-800">
+            <label className="mt-3 block text-sm font-medium text-ink">
               Creativity
             </label>
             <div className="mt-2 flex gap-2">
@@ -1217,12 +1217,12 @@ function AIChefPage() {
                 </Chip>
               ))}
             </div>
-            <label className="mt-3 flex items-center gap-2 text-sm text-stone-800">
+            <label className="mt-3 flex items-center gap-2 text-sm text-ink">
               <input
                 type="checkbox"
                 checked={autoImage}
                 onChange={(e) => setAutoImage(e.target.checked)}
-                className="h-4 w-4 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"
+                className="h-4 w-4 rounded border-line-strong text-emerald-600 dark:text-emerald-400 focus:ring-emerald-500"
               />
               Generate an image automatically
             </label>
@@ -1258,8 +1258,8 @@ function AIChefPage() {
                 ? `Generate from my pantry (${selectedPantryIds.size})`
                 : "Generate my recipe"}
           </ThreeDButton>
-          <p className="text-[11px] text-stone-500 sm:ml-2">
-            <span className="font-semibold text-stone-700">4 options</span> · re-priced from your region · macros + grocery list built in
+          <p className="text-[11px] text-ink-muted sm:ml-2">
+            <span className="font-semibold text-ink-muted">4 options</span> · re-priced from your region · macros + grocery list built in
           </p>
           {recipe && (
             <>
@@ -1319,8 +1319,8 @@ function AIChefPage() {
       )}
 
       {error && (
-        <Card className="border-red-200 bg-red-50">
-          <div className="flex items-start gap-2 text-sm text-red-800">
+        <Card className="border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/40">
+          <div className="flex items-start gap-2 text-sm text-red-800 dark:text-red-300">
             <AlertCircle size={16} className="mt-0.5 flex-none" />
             <div>
               <p className="font-semibold">AI Chef couldn&apos;t finish.</p>
@@ -1332,11 +1332,11 @@ function AIChefPage() {
 
       {webCandidates && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-stone-900">
+          <h2 className="text-lg font-semibold text-ink">
             Found on the web
           </h2>
           {webCandidates.length === 0 ? (
-            <p className="text-sm text-stone-600">
+            <p className="text-sm text-ink-muted">
               No good web matches. Try the &ldquo;Something creative&rdquo;
               mode for an original recipe.
             </p>
@@ -1349,11 +1349,11 @@ function AIChefPage() {
                       {c.sourceName ?? new URL(c.sourceUrl).hostname}
                     </Badge>
                   </div>
-                  <h3 className="text-base font-semibold text-stone-900">
+                  <h3 className="text-base font-semibold text-ink">
                     {c.name}
                   </h3>
-                  <p className="text-sm text-stone-600">{c.summary}</p>
-                  <p className="text-xs text-stone-500">
+                  <p className="text-sm text-ink-muted">{c.summary}</p>
+                  <p className="text-xs text-ink-muted">
                     {c.whyRecommended}
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -1361,7 +1361,7 @@ function AIChefPage() {
                       href={c.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs font-semibold text-emerald-700 hover:underline"
+                      className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 hover:underline"
                     >
                       Open original →
                     </a>
@@ -1371,7 +1371,7 @@ function AIChefPage() {
                         setMode("url");
                         setImportUrl(c.sourceUrl);
                       }}
-                      className="text-xs font-semibold text-stone-700 hover:underline"
+                      className="text-xs font-semibold text-ink-muted hover:underline"
                     >
                       Import &amp; adapt
                     </button>
@@ -1443,7 +1443,7 @@ function AIChefPage() {
               Only the image + "painting" loader keep the fixed 16:9. */}
           <div className="group overflow-hidden rounded-3xl shadow-md">
             {optionImages[selectedOptionId] ? (
-              <div className="relative aspect-[16/9] bg-stone-100">
+              <div className="relative aspect-[16/9] bg-surface-sunken">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={optionImages[selectedOptionId]}
@@ -1458,7 +1458,7 @@ function AIChefPage() {
                   <button
                     onClick={() => generateImageForOption(selectedOption)}
                     disabled={generatingImageIds.has(selectedOptionId)}
-                    className="inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold text-stone-800 shadow-sm backdrop-blur transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="inline-flex items-center gap-1 rounded-full bg-surface/90 px-2.5 py-1 text-[10px] font-semibold text-ink shadow-sm backdrop-blur transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                     title="Regenerate image"
                     aria-label="Regenerate image"
                   >
@@ -1486,8 +1486,8 @@ function AIChefPage() {
                 </div>
               </div>
             ) : generatingImageIds.has(selectedOptionId) ? (
-              <div className="relative aspect-[16/9] bg-stone-100">
-                <div className="flex h-full items-center justify-center text-stone-600">
+              <div className="relative aspect-[16/9] bg-surface-sunken">
+                <div className="flex h-full items-center justify-center text-ink-muted">
                   <Loader2 size={20} className="mr-2 animate-spin" />
                   <span className="text-sm">Painting your dish…</span>
                 </div>
@@ -1513,7 +1513,7 @@ function AIChefPage() {
               </div>
             )}
             {imageError && (
-              <div className="border-t border-amber-200 bg-amber-50 px-4 py-2 text-xs text-amber-900">
+              <div className="border-t border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 px-4 py-2 text-xs text-amber-900 dark:text-amber-300">
                 ⚠ {imageError}
               </div>
             )}
@@ -1552,7 +1552,7 @@ function AIChefPage() {
             {/* Title shows here only when there's no hero image — otherwise
                 it's overlaid on the image hero above. */}
             {!optionImages[selectedOptionId] && (
-              <h2 className="text-3xl font-bold leading-tight text-stone-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold leading-tight text-ink sm:text-4xl">
                 {selectedOption.recipe.name}
               </h2>
             )}
@@ -1567,7 +1567,7 @@ function AIChefPage() {
                 <CategoryChip key={eq} category={eq} />
               ))}
             </div>
-            <p className="max-w-3xl text-base leading-relaxed text-stone-700">
+            <p className="max-w-3xl text-base leading-relaxed text-ink-muted">
               {selectedOption.recipe.description}
             </p>
             {/* Why-this-fits + notes-influence callouts converted to a
@@ -1586,8 +1586,8 @@ function AIChefPage() {
                   key={key}
                   className={`flex h-full gap-3 rounded-2xl border p-4 shadow-sm ${
                     c.tone === "basil"
-                      ? "border-[#B6E8CD] bg-[#F4FCF8]"
-                      : "border-[#CDBEFF] bg-[#F6F3FF]"
+                      ? "border-[#B6E8CD] bg-[#F4FCF8] dark:bg-[#12251C]"
+                      : "border-[#CDBEFF] bg-[#F6F3FF] dark:bg-[#1E1733]"
                   }`}
                 >
                   <span
@@ -1601,14 +1601,14 @@ function AIChefPage() {
                   <div className="min-w-0">
                     <p
                       className={`text-[11px] font-bold uppercase tracking-[0.14em] ${
-                        c.tone === "basil" ? "text-[#16834A]" : "text-[#3F2BB8]"
+                        c.tone === "basil" ? "text-[#16834A] dark:text-[#6FE0A5]" : "text-[#3F2BB8] dark:text-[#C3B5FF]"
                       }`}
                     >
                       {c.title}
                     </p>
                     <p
                       className={`mt-1 text-sm leading-relaxed ${
-                        c.tone === "basil" ? "text-[#0F5E33]" : "text-[#2A1B8A]"
+                        c.tone === "basil" ? "text-[#0F5E33] dark:text-[#6FE0A5]" : "text-[#2A1B8A] dark:text-[#C3B5FF]"
                       }`}
                     >
                       {c.body}
@@ -1641,7 +1641,7 @@ function AIChefPage() {
                     onClick={() =>
                       toggleSaved(optionSavedIds[selectedOption.id])
                     }
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E8D8C4] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#241A12] transition-all hover:-translate-y-px hover:border-[#B6E8CD] hover:text-[#16834A]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-semibold text-ink transition-all hover:-translate-y-px hover:border-[#B6E8CD] hover:text-[#16834A] dark:text-[#6FE0A5]"
                   >
                     {isSaved(optionSavedIds[selectedOption.id]) ? (
                       <>
@@ -1683,24 +1683,24 @@ function AIChefPage() {
                     style={{ animationDelay: `${Math.min(i, 12) * 30}ms` }}
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="flex flex-wrap items-center gap-1.5 font-medium text-stone-900">
+                      <p className="flex flex-wrap items-center gap-1.5 font-medium text-ink">
                         {ing.name}
                         {ing.userAlreadyHas && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 text-[10px] font-semibold text-emerald-800 dark:text-emerald-300">
                             <Check size={9} /> you have
                           </span>
                         )}
                         {ing.optional && (
-                          <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[10px] font-medium text-stone-600">
+                          <span className="rounded-full bg-surface-sunken px-2 py-0.5 text-[10px] font-medium text-ink-muted">
                             optional
                           </span>
                         )}
                       </p>
-                      <p className="mt-0.5 text-xs text-stone-500">
+                      <p className="mt-0.5 text-xs text-ink-muted">
                         {ing.quantity} {ing.unit}
                       </p>
                     </div>
-                    <p className="text-sm font-semibold tabular-nums text-stone-900">
+                    <p className="text-sm font-semibold tabular-nums text-ink">
                       ${money(ing.estimatedCost)}
                     </p>
                   </li>
@@ -1727,7 +1727,7 @@ function AIChefPage() {
                     <span className="mt-0.5 grid h-7 w-7 flex-none place-items-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-xs font-bold text-white shadow-sm shadow-emerald-200">
                       {i + 1}
                     </span>
-                    <p className="leading-relaxed text-stone-800">{s}</p>
+                    <p className="leading-relaxed text-ink">{s}</p>
                   </li>
                 ))}
               </ol>
@@ -1739,11 +1739,11 @@ function AIChefPage() {
       {recipe && savedId && (
         <article className="space-y-6">
           {sourceMeta && (
-            <Card className="border-sky-200 bg-sky-50">
-              <p className="text-xs font-semibold uppercase tracking-wide text-sky-800">
+            <Card className="border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40">
+              <p className="text-xs font-semibold uppercase tracking-wide text-sky-800 dark:text-sky-300">
                 Recipe sources
               </p>
-              <p className="mt-1 text-sm text-sky-900">
+              <p className="mt-1 text-sm text-sky-900 dark:text-sky-300">
                 {sourceMeta.attributionText}
               </p>
               {sourceMeta.sourceUrl && (
@@ -1751,7 +1751,7 @@ function AIChefPage() {
                   href={sourceMeta.sourceUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-1 inline-block text-xs font-semibold text-sky-700 hover:underline"
+                  className="mt-1 inline-block text-xs font-semibold text-sky-700 dark:text-sky-300 hover:underline"
                 >
                   Open original source →
                 </a>
@@ -1759,7 +1759,7 @@ function AIChefPage() {
             </Card>
           )}
           <div className="group overflow-hidden rounded-3xl shadow-md">
-            <div className="relative aspect-[16/9] bg-stone-100">
+            <div className="relative aspect-[16/9] bg-surface-sunken">
               {savedImageDataUrl ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
@@ -1768,12 +1768,12 @@ function AIChefPage() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
                 />
               ) : imageLoading ? (
-                <div className="flex h-full items-center justify-center text-stone-600">
+                <div className="flex h-full items-center justify-center text-ink-muted">
                   <Loader2 size={20} className="mr-2 animate-spin" />
                   <span className="text-sm">Painting your dish…</span>
                 </div>
               ) : (
-                <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-violet-100 via-emerald-50 to-amber-50 text-stone-500">
+                <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-violet-100 via-emerald-50 to-amber-50 text-ink-muted">
                   <ChefHat size={48} />
                   <p className="mt-2 text-xs uppercase tracking-wide">
                     Image not generated
@@ -1815,7 +1815,7 @@ function AIChefPage() {
 
           <header className="space-y-3">
             {!savedImageDataUrl && (
-              <h2 className="text-3xl font-bold leading-tight text-stone-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold leading-tight text-ink sm:text-4xl">
                 {recipe.name}
               </h2>
             )}
@@ -1829,11 +1829,11 @@ function AIChefPage() {
                 </Badge>
               ))}
             </div>
-            <p className="max-w-3xl text-base leading-relaxed text-stone-700">
+            <p className="max-w-3xl text-base leading-relaxed text-ink-muted">
               {recipe.description}
             </p>
             {recipe.whyThisFits && (
-              <div className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+              <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 px-4 py-3 text-sm text-emerald-900 dark:text-emerald-300">
                 <p className="text-xs font-semibold uppercase tracking-wide">
                   Why this fits your request
                 </p>
@@ -1842,7 +1842,7 @@ function AIChefPage() {
             )}
             <Link
               href="/recipe-studio"
-              className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+              className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:bg-emerald-900/40"
               title="This recipe is stored in your Recipe Studio until you delete it"
             >
               <BookmarkCheck size={12} /> Saved to Recipe Studio
@@ -1854,7 +1854,7 @@ function AIChefPage() {
                 size="sm"
                 leftIcon={
                   isSaved(savedId) ? (
-                    <BookmarkCheck size={14} className="text-emerald-600" />
+                    <BookmarkCheck size={14} className="text-emerald-600 dark:text-emerald-400" />
                   ) : (
                     <Bookmark size={14} />
                   )
@@ -1874,7 +1874,7 @@ function AIChefPage() {
               )}
               <Link
                 href={`/recipes/custom?id=${savedId}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface px-4 py-2 text-sm font-semibold text-ink hover:bg-surface"
               >
                 Open full page <ArrowRight size={14} />
               </Link>
@@ -1886,7 +1886,7 @@ function AIChefPage() {
 
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
                 Ingredients
               </h3>
               <ul className="mt-3 divide-y divide-stone-100">
@@ -1899,20 +1899,20 @@ function AIChefPage() {
                       <p
                         className={
                           ing.userAlreadyHas
-                            ? "font-medium text-emerald-700"
-                            : "font-medium text-stone-800"
+                            ? "font-medium text-emerald-700 dark:text-emerald-300"
+                            : "font-medium text-ink"
                         }
                       >
                         {ing.name} {ing.optional && (
-                          <span className="text-xs text-stone-500">(optional)</span>
+                          <span className="text-xs text-ink-muted">(optional)</span>
                         )}
                       </p>
-                      <p className="text-xs text-stone-500">
+                      <p className="text-xs text-ink-muted">
                         {ing.quantity} {ing.unit}
                         {ing.userAlreadyHas && " · you have"}
                       </p>
                     </div>
-                    <p className="text-sm font-medium text-stone-900">
+                    <p className="text-sm font-medium text-ink">
                       ${money(ing.estimatedCost)}
                     </p>
                   </li>
@@ -1920,7 +1920,7 @@ function AIChefPage() {
               </ul>
             </Card>
             <Card>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
                 Steps
               </h3>
               <ol className="mt-3 space-y-3">
@@ -1937,21 +1937,21 @@ function AIChefPage() {
           </div>
 
           {(recipe.missingIngredients?.length ?? 0) > 0 && (
-            <Card className="border-amber-200 bg-amber-50">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-900">
+            <Card className="border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-900 dark:text-amber-300">
                 Missing ingredients
               </h3>
               <ul className="mt-3 divide-y divide-amber-100">
                 {recipe.missingIngredients!.map((m, i) => (
                   <li key={i} className="flex items-center justify-between py-2 text-sm">
                     <div>
-                      <p className="font-medium text-stone-900">{m.name}</p>
-                      <p className="text-xs text-stone-600">
+                      <p className="font-medium text-ink">{m.name}</p>
+                      <p className="text-xs text-ink-muted">
                         {m.importance}
                         {m.cheapSubstitute ? ` · or use ${m.cheapSubstitute}` : ""}
                       </p>
                     </div>
-                    <p className="font-medium text-stone-900">
+                    <p className="font-medium text-ink">
                       ${money(m.estimatedCost)}
                     </p>
                   </li>
@@ -1982,7 +1982,7 @@ function Chip({
       className={
         active
           ? "inline-flex items-center gap-1.5 rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.02]"
-          : "inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50 active:translate-y-0"
+          : "inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 active:translate-y-0"
       }
     >
       {children}
@@ -2007,7 +2007,7 @@ function ModeChip({
       className={
         active
           ? "inline-flex items-center gap-1.5 rounded-2xl border border-emerald-600 bg-gradient-to-br from-emerald-600 to-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.02]"
-          : "inline-flex items-center gap-1.5 rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50 active:translate-y-0"
+          : "inline-flex items-center gap-1.5 rounded-2xl border border-line bg-surface px-4 py-2 text-sm font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 active:translate-y-0"
       }
     >
       {children}

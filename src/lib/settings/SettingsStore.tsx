@@ -60,6 +60,26 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     el.dataset.reduceMotion = settings.appearance.reduceMotion ? "true" : "false";
   }, [settings.appearance.textSize, settings.appearance.reduceMotion]);
 
+  // Apply the color theme to <html data-theme>. "system" follows the OS and
+  // updates live when the OS scheme changes.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const el = document.documentElement;
+    const pref = settings.appearance.theme;
+    const mql = typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+      : null;
+    const apply = () => {
+      const dark = pref === "dark" || (pref === "system" && !!mql?.matches);
+      el.dataset.theme = dark ? "dark" : "light";
+    };
+    apply();
+    if (pref === "system" && mql) {
+      mql.addEventListener("change", apply);
+      return () => mql.removeEventListener("change", apply);
+    }
+  }, [settings.appearance.theme]);
+
   const update = useCallback((mut: (s: Settings) => Settings) => {
     setSettings((prev) => {
       const next = mut(prev);

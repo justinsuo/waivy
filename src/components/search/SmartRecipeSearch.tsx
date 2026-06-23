@@ -49,11 +49,11 @@ const KIND_META: Record<
   Suggestion["kind"],
   { label: string; icon: React.ReactNode; tone: string }
 > = {
-  recipe: { label: "Recipe", icon: <ChefHat size={11} />, tone: "text-emerald-700" },
-  ingredient: { label: "Ingredient", icon: <Carrot size={11} />, tone: "text-amber-700" },
-  tag: { label: "Tag", icon: <Tag size={11} />, tone: "text-violet-700" },
-  recent: { label: "Recent", icon: <Clock4 size={11} />, tone: "text-stone-500" },
-  trending: { label: "Trending", icon: <Sparkles size={11} />, tone: "text-sky-700" },
+  recipe: { label: "Recipe", icon: <ChefHat size={11} />, tone: "text-emerald-700 dark:text-emerald-300" },
+  ingredient: { label: "Ingredient", icon: <Carrot size={11} />, tone: "text-amber-700 dark:text-amber-300" },
+  tag: { label: "Tag", icon: <Tag size={11} />, tone: "text-violet-700 dark:text-violet-300" },
+  recent: { label: "Recent", icon: <Clock4 size={11} />, tone: "text-ink-muted" },
+  trending: { label: "Trending", icon: <Sparkles size={11} />, tone: "text-sky-700 dark:text-sky-300" },
 };
 
 export function SmartRecipeSearch({
@@ -182,7 +182,7 @@ export function SmartRecipeSearch({
         <Search
           size={16}
           aria-hidden
-          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint"
         />
         <input
           ref={inputRef}
@@ -203,7 +203,7 @@ export function SmartRecipeSearch({
           aria-activedescendant={
             activeIndex >= 0 ? `${listboxId}-opt-${activeIndex}` : undefined
           }
-          className="h-11 w-full rounded-full border border-stone-200 bg-white py-2.5 pl-10 pr-10 text-sm shadow-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+          className="h-11 w-full rounded-full border border-line bg-surface py-2.5 pl-10 pr-10 text-sm shadow-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
         />
         {value && (
           <button
@@ -213,7 +213,7 @@ export function SmartRecipeSearch({
               inputRef.current?.focus();
             }}
             aria-label="Clear search"
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
           >
             <X size={14} />
           </button>
@@ -223,7 +223,7 @@ export function SmartRecipeSearch({
       {/* Scope chips */}
       {onScopeChange && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium uppercase tracking-wide text-stone-500">
+          <span className="text-xs font-medium uppercase tracking-wide text-ink-muted">
             Search in
           </span>
           {SCOPES.map((s) => (
@@ -236,7 +236,7 @@ export function SmartRecipeSearch({
                 "rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
                 scope === s.value
                   ? "bg-emerald-600 text-white"
-                  : "border border-stone-200 bg-white text-stone-700 hover:bg-stone-50",
+                  : "border border-line bg-surface text-ink-muted hover:bg-surface",
               )}
             >
               {s.label}
@@ -250,10 +250,10 @@ export function SmartRecipeSearch({
         <div
           id={listboxId}
           role="listbox"
-          className="absolute z-30 mt-2 max-h-[24rem] w-full overflow-y-auto rounded-2xl border border-stone-200 bg-white shadow-lg"
+          className="absolute z-30 mt-2 max-h-[24rem] w-full overflow-y-auto rounded-2xl border border-line bg-surface shadow-lg"
         >
           {suggestions.length === 0 ? (
-            <div className="px-4 py-6 text-center text-sm text-stone-500">
+            <div className="px-4 py-6 text-center text-sm text-ink-muted">
               Keep typing to see suggestions…
             </div>
           ) : (
@@ -265,7 +265,7 @@ export function SmartRecipeSearch({
                 return (
                   <div
                     key={kind}
-                    className="border-b border-stone-100 last:border-b-0"
+                    className="border-b border-line last:border-b-0"
                   >
                     <div className="flex items-center justify-between px-3 pt-2">
                       <p
@@ -283,7 +283,7 @@ export function SmartRecipeSearch({
                             clearRecentSearches();
                             setRecents([]);
                           }}
-                          className="text-[11px] text-stone-500 hover:underline"
+                          className="text-[11px] text-ink-muted hover:underline"
                         >
                           Clear all
                         </button>
@@ -306,11 +306,11 @@ export function SmartRecipeSearch({
                               onClick={() => applySuggestion(s)}
                               className={clsx(
                                 "flex w-full items-center gap-2 px-3 py-2 text-left text-sm",
-                                active ? "bg-emerald-50" : "hover:bg-stone-50",
+                                active ? "bg-emerald-50 dark:bg-emerald-950/40" : "hover:bg-surface",
                               )}
                             >
-                              <span className="text-stone-400">{meta.icon}</span>
-                              <span className="flex-1 truncate text-stone-800">
+                              <span className="text-ink-faint">{meta.icon}</span>
+                              <span className="flex-1 truncate text-ink">
                                 {value.trim() ? (
                                   <HighlightedMatch text={s.value} query={value} />
                                 ) : (
@@ -326,7 +326,7 @@ export function SmartRecipeSearch({
                                     setRecents(getRecentSearches());
                                   }}
                                   aria-label={`Remove ${s.value} from recents`}
-                                  className="rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+                                  className="rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
                                 >
                                   <X size={11} />
                                 </button>

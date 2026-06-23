@@ -56,7 +56,7 @@ export default function NourishRecipesPage() {
       title="Recipes through Nourish."
       description="Every database recipe with its calories, macros, and cost — sorted for what you're trying to hit today."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -71,13 +71,13 @@ export default function NourishRecipesPage() {
           <div className="relative">
             <Search
               size={14}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint"
             />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search recipes (chickpeas, tofu, oats…)"
-              className="w-full rounded-full border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-100"
+              className="w-full rounded-full border border-line bg-surface py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-emerald-100"
             />
           </div>
           <button
@@ -87,7 +87,7 @@ export default function NourishRecipesPage() {
             className={
               highProteinOnly
                 ? "inline-flex items-center justify-center gap-1.5 rounded-full border border-violet-600 bg-violet-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm shadow-violet-200 motion-safe:scale-[1.02]"
-                : "inline-flex items-center justify-center gap-1.5 rounded-full border border-stone-200 bg-white px-4 py-2.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-violet-300 hover:bg-violet-50"
+                : "inline-flex items-center justify-center gap-1.5 rounded-full border border-line bg-surface px-4 py-2.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-violet-300 dark:border-violet-800 hover:bg-violet-50 dark:bg-violet-950/40"
             }
           >
             High protein (≥20g) only
@@ -105,7 +105,7 @@ export default function NourishRecipesPage() {
                 className={
                   active
                     ? "rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                    : "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+                    : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 }
               >
                 {label}
@@ -126,7 +126,7 @@ export default function NourishRecipesPage() {
           tone="emerald"
         />
         {ranked.length === 0 ? (
-          <div className="mt-5 rounded-2xl border border-dashed border-stone-200 bg-white p-8 text-center text-sm text-stone-600">
+          <div className="mt-5 rounded-2xl border border-dashed border-line bg-surface p-8 text-center text-sm text-ink-muted">
             No recipes match. Try clearing the search or the high-protein filter.
           </div>
         ) : (
@@ -134,39 +134,39 @@ export default function NourishRecipesPage() {
             {ranked.map(({ r, n, cps }) => (
               <li
                 key={r.id}
-                className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+                className="flex flex-col gap-3 rounded-2xl border border-line bg-surface p-4 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:border-emerald-300 dark:border-emerald-800 hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-2">
                   <Link
                     href={`/recipes/${r.id}?from=nourish-recipes`}
                     className="min-w-0 flex-1"
                   >
-                    <p className="truncate text-sm font-semibold text-stone-900 hover:text-emerald-700">
+                    <p className="truncate text-sm font-semibold text-ink hover:text-emerald-700 dark:text-emerald-300">
                       {r.name}
                     </p>
-                    <p className="mt-0.5 text-[11px] text-stone-500">
+                    <p className="mt-0.5 text-[11px] text-ink-muted">
                       {r.totalTimeMinutes} min · ${cps.toFixed(2)}/serving
                     </p>
                   </Link>
                   <Link
                     href={`/recipes/${r.id}?from=nourish-recipes`}
-                    className="rounded-full bg-stone-100 p-1.5 text-stone-500 transition-colors hover:bg-emerald-100 hover:text-emerald-700"
+                    className="rounded-full bg-surface-sunken p-1.5 text-ink-muted transition-colors hover:bg-emerald-100 dark:bg-emerald-900/40 hover:text-emerald-700 dark:text-emerald-300"
                     aria-label={`Open ${r.name}`}
                   >
                     <ArrowRight size={14} />
                   </Link>
                 </div>
                 <div className="flex flex-wrap gap-1.5 text-[10px] font-semibold uppercase tracking-wide">
-                  <span className="rounded-full bg-rose-100 px-2 py-0.5 text-rose-800">
+                  <span className="rounded-full bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 text-rose-800 dark:text-rose-300">
                     {Math.round(n.calories)} kcal
                   </span>
-                  <span className="rounded-full bg-violet-100 px-2 py-0.5 text-violet-800">
+                  <span className="rounded-full bg-violet-100 dark:bg-violet-900/40 px-2 py-0.5 text-violet-800 dark:text-violet-300">
                     {Math.round(n.protein)} g protein
                   </span>
-                  <span className="rounded-full bg-sky-100 px-2 py-0.5 text-sky-800">
+                  <span className="rounded-full bg-sky-100 dark:bg-sky-900/40 px-2 py-0.5 text-sky-800 dark:text-sky-300">
                     {Math.round(n.carbs)} g carbs
                   </span>
-                  <span className="rounded-full bg-amber-100 px-2 py-0.5 text-amber-800">
+                  <span className="rounded-full bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-amber-800 dark:text-amber-300">
                     {Math.round(n.fat)} g fat
                   </span>
                 </div>

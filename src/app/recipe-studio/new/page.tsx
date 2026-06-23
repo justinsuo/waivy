@@ -240,7 +240,7 @@ export default function ManualRecipeBuilderPage() {
     <div className="space-y-6">
       <Link
         href="/recipe-studio"
-        className="group inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
+        className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-emerald-700 dark:text-emerald-300"
       >
         <ArrowLeft
           size={14}
@@ -261,13 +261,13 @@ export default function ManualRecipeBuilderPage() {
       />
 
       {error && (
-        <Card className="border-red-200 bg-red-50 text-sm text-red-800">
+        <Card className="border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/40 text-sm text-red-800 dark:text-red-300">
           {error}
         </Card>
       )}
 
       <Card className="space-y-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
           Basics
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -276,14 +276,14 @@ export default function ManualRecipeBuilderPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Sticky honey garlic tofu bowl"
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
           </Field>
           <Field label="Meal type">
             <select
               value={mealType}
               onChange={(e) => setMealType(e.target.value as UserCreatedRecipe["mealType"])}
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             >
               <option value="breakfast">Breakfast</option>
               <option value="lunch">Lunch</option>
@@ -299,7 +299,7 @@ export default function ManualRecipeBuilderPage() {
             onChange={(e) => setDescription(e.target.value)}
             rows={2}
             placeholder="1–2 sentences describing the dish"
-            className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
           />
         </Field>
         <div className="grid gap-3 sm:grid-cols-4">
@@ -309,7 +309,7 @@ export default function ManualRecipeBuilderPage() {
               min={1}
               value={servings}
               onChange={(e) => setServings(coerceNumberInput(e.target.value, 1, 1))}
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
           </Field>
           <Field label="Prep min">
@@ -318,7 +318,7 @@ export default function ManualRecipeBuilderPage() {
               min={0}
               value={prepTime}
               onChange={(e) => setPrepTime(coerceNumberInput(e.target.value, 0, 0))}
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
           </Field>
           <Field label="Cook min">
@@ -327,7 +327,7 @@ export default function ManualRecipeBuilderPage() {
               min={0}
               value={cookTime}
               onChange={(e) => setCookTime(coerceNumberInput(e.target.value, 0, 0))}
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             />
           </Field>
           <Field label="Difficulty">
@@ -336,7 +336,7 @@ export default function ManualRecipeBuilderPage() {
               onChange={(e) =>
                 setDifficulty(e.target.value as UserCreatedRecipe["difficulty"])
               }
-              className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+              className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             >
               <option value="very easy">Very easy</option>
               <option value="easy">Easy</option>
@@ -354,7 +354,7 @@ export default function ManualRecipeBuilderPage() {
                 className={
                   equipment.includes(eq)
                     ? "rounded-full bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white"
-                    : "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                    : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                 }
               >
                 {eq}
@@ -366,7 +366,7 @@ export default function ManualRecipeBuilderPage() {
 
       <Card>
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Ingredients
           </h2>
           <Button size="sm" leftIcon={<Plus size={12} />} onClick={addIngredient}>
@@ -383,7 +383,7 @@ export default function ManualRecipeBuilderPage() {
                 value={row.name}
                 onChange={(e) => updateIngredient(i, { name: e.target.value })}
                 placeholder="Ingredient name"
-                className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <input
                 type="number"
@@ -394,13 +394,13 @@ export default function ManualRecipeBuilderPage() {
                   updateIngredient(i, { quantity: parseFloat(e.target.value || "0") })
                 }
                 placeholder="Qty"
-                className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <input
                 value={row.unit}
                 onChange={(e) => updateIngredient(i, { unit: e.target.value })}
                 placeholder="Unit"
-                className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <input
                 type="number"
@@ -413,11 +413,11 @@ export default function ManualRecipeBuilderPage() {
                   })
                 }
                 placeholder="$"
-                className="rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <button
                 onClick={() => removeIngredient(i)}
-                className="rounded-full p-2 text-stone-400 hover:text-red-600"
+                className="rounded-full p-2 text-ink-faint hover:text-red-600 dark:text-red-400"
                 aria-label="Remove"
               >
                 <Trash2 size={14} />
@@ -425,15 +425,15 @@ export default function ManualRecipeBuilderPage() {
             </div>
           ))}
         </div>
-        <div className="mt-3 flex justify-end gap-3 text-sm text-stone-700">
-          <span>Total: <span className="font-semibold text-stone-900">${totalCost.toFixed(2)}</span></span>
-          <span>Per serving: <span className="font-semibold text-stone-900">${costPerServing.toFixed(2)}</span></span>
+        <div className="mt-3 flex justify-end gap-3 text-sm text-ink-muted">
+          <span>Total: <span className="font-semibold text-ink">${totalCost.toFixed(2)}</span></span>
+          <span>Per serving: <span className="font-semibold text-ink">${costPerServing.toFixed(2)}</span></span>
         </div>
       </Card>
 
       <Card>
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Steps
           </h2>
           <Button size="sm" leftIcon={<Plus size={12} />} onClick={addStep}>
@@ -451,11 +451,11 @@ export default function ManualRecipeBuilderPage() {
                 onChange={(e) => updateStep(i, { instruction: e.target.value })}
                 rows={2}
                 placeholder="Describe the step"
-                className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+                className="flex-1 rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
               />
               <button
                 onClick={() => removeStep(i)}
-                className="mt-1 rounded-full p-2 text-stone-400 hover:text-red-600"
+                className="mt-1 rounded-full p-2 text-ink-faint hover:text-red-600 dark:text-red-400"
                 aria-label="Remove"
               >
                 <Trash2 size={14} />
@@ -466,7 +466,7 @@ export default function ManualRecipeBuilderPage() {
       </Card>
 
       <Card>
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
           Tags &amp; notes
         </h2>
         <Field label="Tags (comma-separated)">
@@ -474,7 +474,7 @@ export default function ManualRecipeBuilderPage() {
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             placeholder="dorm-friendly, high-protein, one-pot"
-            className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
           />
         </Field>
         <Field label="Notes">
@@ -482,26 +482,26 @@ export default function ManualRecipeBuilderPage() {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={2}
-            className="w-full rounded-2xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="w-full rounded-2xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
           />
         </Field>
       </Card>
 
       <Card>
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
           Recipe image
         </h2>
-        <label className="mt-3 flex items-center gap-2 text-sm text-stone-800">
+        <label className="mt-3 flex items-center gap-2 text-sm text-ink">
           <input
             type="checkbox"
             checked={autoImage}
             onChange={(e) => setAutoImage(e.target.checked)}
-            className="h-4 w-4 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"
+            className="h-4 w-4 rounded border-line-strong text-emerald-600 dark:text-emerald-400 focus:ring-emerald-500"
           />
           Generate an image for this recipe automatically
         </label>
         {!isWorkerConfigured() && (
-          <p className="mt-2 text-xs text-amber-700">
+          <p className="mt-2 text-xs text-amber-700 dark:text-amber-300">
             AI features are not configured on this build. We&apos;ll use a
             placeholder image for now.
           </p>
@@ -545,7 +545,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-stone-700">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-ink-muted">{label}</span>
       {children}
     </label>
   );

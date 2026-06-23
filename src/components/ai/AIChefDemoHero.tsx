@@ -58,7 +58,7 @@ export function AIChefDemoHero() {
         <div className="space-y-5">
           <Eyebrow />
           <Headline />
-          <p className="max-w-md text-sm leading-relaxed text-[#6B5A4A] sm:max-w-lg sm:text-base">
+          <p className="max-w-md text-sm leading-relaxed text-ink-muted sm:max-w-lg sm:text-base">
             AI Chef turns your pantry, cravings, and budget into a personalized
             recipe complete with macros, missing items, and a step-by-step
             guide.
@@ -87,11 +87,11 @@ function Eyebrow() {
         className="relative grid h-12 w-12 place-items-center rounded-2xl border-b-[3px] border-[#3F2BB8] bg-gradient-to-b from-[#A18FFF] to-[#7C5CFF] text-white shadow-sm"
       >
         <ChefHat size={20} strokeWidth={2.4} />
-        <span className="absolute -right-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-[#FFD166] text-[8px] text-[#5C3700] shadow">
+        <span className="absolute -right-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-[#FFD166] text-[8px] text-[#5C3700] dark:text-[#F2C97A] shadow">
           <Sparkles size={8} strokeWidth={3} />
         </span>
       </span>
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CDBEFF] bg-white/85 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#3F2BB8] backdrop-blur">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CDBEFF] bg-surface/85 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#3F2BB8] dark:text-[#C3B5FF] backdrop-blur">
         AI Chef
       </span>
     </div>
@@ -100,7 +100,7 @@ function Eyebrow() {
 
 function Headline() {
   return (
-    <h1 className="text-4xl font-extrabold leading-[1.02] tracking-tight text-[#241A12] sm:text-5xl lg:text-[3.25rem]">
+    <h1 className="text-4xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem]">
       From what you have,
       <br />
       to what you&apos;ll{" "}
@@ -124,29 +124,29 @@ function BenefitsRow() {
         href="/pantry"
         icon={<Briefcase size={16} strokeWidth={2.4} />}
         label="Use what you have"
-        toneIcon="bg-[#E8FAF0] text-[#0F5E33]"
-        focusRing="focus-visible:ring-[#2FBF71]"
+        toneIcon="bg-[#E8FAF0] dark:bg-[#122E20] text-[#0F5E33] dark:text-[#6FE0A5]"
+        focusRing="focus-visible:ring-[#2FBF71] dark:ring-white/10"
       />
       <BenefitCard
         href="/cheap-recipes"
         icon={<DollarSign size={16} strokeWidth={2.6} />}
         label="Respects your budget"
-        toneIcon="bg-[#FFF3CC] text-[#7A4A00]"
-        focusRing="focus-visible:ring-[#FFC93D]"
+        toneIcon="bg-[#FFF3CC] dark:bg-[#2E2710] text-[#7A4A00] dark:text-[#F2C97A]"
+        focusRing="focus-visible:ring-[#FFC93D] dark:ring-white/10"
       />
       <BenefitCard
         href="/nourish"
         icon={<BarChart3 size={16} strokeWidth={2.4} />}
         label="Macro & nutrition breakdown"
-        toneIcon="bg-[#EFE8FF] text-[#3F2BB8]"
-        focusRing="focus-visible:ring-[#7C5CFF]"
+        toneIcon="bg-[#EFE8FF] dark:bg-[#221A3D] text-[#3F2BB8] dark:text-[#C3B5FF]"
+        focusRing="focus-visible:ring-[#7C5CFF] dark:ring-white/10"
       />
       <BenefitCard
         href="/grocery-list"
         icon={<ListChecks size={16} strokeWidth={2.4} />}
         label="Auto grocery list"
-        toneIcon="bg-[#DCFAF1] text-[#0B6E55]"
-        focusRing="focus-visible:ring-[#20C7A5]"
+        toneIcon="bg-[#DCFAF1] dark:bg-[#0F2E28] text-[#0B6E55] dark:text-[#6FE0C8]"
+        focusRing="focus-visible:ring-[#20C7A5] dark:ring-white/10"
       />
     </div>
   );
@@ -168,7 +168,7 @@ function BenefitCard({
   return (
     <Link
       href={href}
-      className={`group flex items-center gap-2 rounded-xl border border-white/70 bg-white/70 px-2.5 py-2 shadow-sm backdrop-blur transition-all motion-safe:hover:-translate-y-px hover:border-white hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${focusRing}`}
+      className={`group flex items-center gap-2 rounded-xl border border-white/70 bg-surface/70 px-2.5 py-2 shadow-sm backdrop-blur transition-all motion-safe:hover:-translate-y-px hover:border-white hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-background ${focusRing}`}
     >
       <span
         aria-hidden
@@ -176,14 +176,14 @@ function BenefitCard({
       >
         {icon}
       </span>
-      <span className="min-w-0 flex-1 text-[11px] font-semibold leading-tight text-[#241A12] sm:text-xs">
+      <span className="min-w-0 flex-1 text-[11px] font-semibold leading-tight text-ink sm:text-xs">
         {label}
       </span>
       <ArrowRight
         aria-hidden
         size={12}
         strokeWidth={2.6}
-        className="flex-none text-[#6B5A4A] opacity-50 transition-all group-hover:opacity-100 motion-safe:group-hover:translate-x-0.5"
+        className="flex-none text-ink-muted opacity-50 transition-all group-hover:opacity-100 motion-safe:group-hover:translate-x-0.5"
       />
     </Link>
   );
@@ -196,9 +196,9 @@ function InputPreviewCard({ reduce, tick }: { reduce: boolean; tick: number }) {
       initial={false}
       animate={{ y: reduce ? 0 : pulseOn ? -1 : 1 }}
       transition={{ duration: 0.9, ease: "easeInOut" }}
-      className="rounded-2xl border border-[#E8D8C4] bg-white p-3 shadow-sm sm:p-4"
+      className="rounded-2xl border border-line bg-surface p-3 shadow-sm sm:p-4"
     >
-      <p className="text-[10px] font-bold uppercase tracking-wide text-[#241A12]">
+      <p className="text-[10px] font-bold uppercase tracking-wide text-ink">
         You have
       </p>
       <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -207,17 +207,17 @@ function InputPreviewCard({ reduce, tick }: { reduce: boolean; tick: number }) {
         <Chip emoji="🥦" label="Broccoli" tone="basil" />
       </div>
 
-      <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#241A12]">
+      <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-ink">
         You&apos;re craving
       </p>
       <div className="mt-1.5">
         <Chip emoji="🌶️" label="Something spicy" tone="tomato" />
       </div>
 
-      <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-[#241A12]">
+      <p className="mt-3 text-[10px] font-bold uppercase tracking-wide text-ink">
         Budget
       </p>
-      <p className="mt-1 text-xs font-extrabold text-[#16834A]">
+      <p className="mt-1 text-xs font-extrabold text-[#16834A] dark:text-[#6FE0A5]">
         $3 per serving
       </p>
     </motion.div>
@@ -235,19 +235,19 @@ function Chip({
 }) {
   const cls =
     tone === "carrot"
-      ? "bg-[#FFE8D6] text-[#9B3F0A] ring-[#FFC79A]"
+      ? "bg-[#FFE8D6] dark:bg-[#33210F] text-[#9B3F0A] dark:text-[#F2B07A] ring-[#FFC79A] dark:ring-white/10"
       : tone === "butter"
-        ? "bg-[#FFF3CC] text-[#7A4A00] ring-[#FFE08A]"
+        ? "bg-[#FFF3CC] dark:bg-[#2E2710] text-[#7A4A00] dark:text-[#F2C97A] ring-[#FFE08A] dark:ring-white/10"
         : tone === "basil"
-          ? "bg-[#E8FAF0] text-[#0F5E33] ring-[#B6E8CD]"
+          ? "bg-[#E8FAF0] dark:bg-[#122E20] text-[#0F5E33] dark:text-[#6FE0A5] ring-[#B6E8CD] dark:ring-white/10"
           : tone === "tomato"
-            ? "bg-[#FDE4E4] text-[#9B1C1C] ring-[#F8B4B4]"
+            ? "bg-[#FDE4E4] dark:bg-[#3A1717] text-[#9B1C1C] dark:text-[#F5A3A3] ring-[#F8B4B4] dark:ring-white/10"
             : tone === "grape"
-              ? "bg-[#EFE8FF] text-[#3F2BB8] ring-[#CDBEFF]"
-              : "bg-[#DCFAF1] text-[#0B6E55] ring-[#A4ECD8]";
+              ? "bg-[#EFE8FF] dark:bg-[#221A3D] text-[#3F2BB8] dark:text-[#C3B5FF] ring-[#CDBEFF] dark:ring-white/10"
+              : "bg-[#DCFAF1] dark:bg-[#0F2E28] text-[#0B6E55] dark:text-[#6FE0C8] ring-[#A4ECD8] dark:ring-white/10";
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border bg-white px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${cls}`}
+      className={`inline-flex items-center gap-1 rounded-full border bg-surface px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${cls}`}
     >
       {emoji && (
         <span aria-hidden className="text-sm leading-none">
@@ -312,7 +312,7 @@ function RecipePreviewCard({ reduce, tick }: { reduce: boolean; tick: number }) 
       initial={reduce ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: idleY }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="overflow-hidden rounded-2xl border border-[#E8D8C4] bg-white shadow-md"
+      className="overflow-hidden rounded-2xl border border-line bg-surface shadow-md"
     >
       {/* Image placeholder using a warm gradient + emoji — no external
           asset required, no broken image possible. */}
@@ -325,10 +325,10 @@ function RecipePreviewCard({ reduce, tick }: { reduce: boolean; tick: number }) 
         </div>
       </div>
       <div className="space-y-1.5 p-2.5 sm:p-3">
-        <p className="text-[11px] font-extrabold leading-tight text-[#241A12] sm:text-xs">
+        <p className="text-[11px] font-extrabold leading-tight text-ink sm:text-xs">
           Spicy Garlic Chicken Rice Bowl
         </p>
-        <p className="inline-flex rounded-full bg-[#E8FAF0] px-1.5 py-0.5 text-[10px] font-extrabold text-[#0F5E33]">
+        <p className="inline-flex rounded-full bg-[#E8FAF0] dark:bg-[#122E20] px-1.5 py-0.5 text-[10px] font-extrabold text-[#0F5E33] dark:text-[#6FE0A5]">
           $2.40 / serving
         </p>
         <div className="flex flex-wrap gap-1">
@@ -339,18 +339,18 @@ function RecipePreviewCard({ reduce, tick }: { reduce: boolean; tick: number }) 
         </div>
         <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 pt-1 text-[9px]">
           <div>
-            <p className="font-bold uppercase tracking-wide text-[#9B3F0A]">
+            <p className="font-bold uppercase tracking-wide text-[#9B3F0A] dark:text-[#F2B07A]">
               Missing
             </p>
-            <p className="truncate font-semibold text-[#9B3F0A]">
+            <p className="truncate font-semibold text-[#9B3F0A] dark:text-[#F2B07A]">
               Soy sauce, Garlic
             </p>
           </div>
           <div>
-            <p className="font-bold uppercase tracking-wide text-[#16834A]">
+            <p className="font-bold uppercase tracking-wide text-[#16834A] dark:text-[#6FE0A5]">
               Ready in
             </p>
-            <p className="font-semibold text-[#16834A]">25 mins</p>
+            <p className="font-semibold text-[#16834A] dark:text-[#6FE0A5]">25 mins</p>
           </div>
         </div>
         <div className="flex items-center justify-center gap-1 rounded-lg border-b-[2px] border-[#3F2BB8] bg-gradient-to-b from-[#A18FFF] to-[#7C5CFF] px-2 py-1.5 text-[10px] font-extrabold text-white">
@@ -371,12 +371,12 @@ function MicroBadge({
 }) {
   const cls =
     tone === "carrot"
-      ? "bg-[#FFE8D6] text-[#9B3F0A]"
+      ? "bg-[#FFE8D6] dark:bg-[#33210F] text-[#9B3F0A] dark:text-[#F2B07A]"
       : tone === "grape"
-        ? "bg-[#EFE8FF] text-[#3F2BB8]"
+        ? "bg-[#EFE8FF] dark:bg-[#221A3D] text-[#3F2BB8] dark:text-[#C3B5FF]"
         : tone === "sky"
-          ? "bg-[#E0F2FE] text-[#1F6FA8]"
-          : "bg-[#FFF3CC] text-[#7A4A00]";
+          ? "bg-[#E0F2FE] dark:bg-[#102532] text-[#1F6FA8] dark:text-[#8FD0F5]"
+          : "bg-[#FFF3CC] dark:bg-[#2E2710] text-[#7A4A00] dark:text-[#F2C97A]";
   return (
     <span
       className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-extrabold tabular-nums ${cls}`}

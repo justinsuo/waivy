@@ -98,9 +98,9 @@ export function ConfirmDialog({
         aria-modal="true"
         aria-labelledby="confirm-title"
         aria-describedby="confirm-body"
-        className="relative z-10 w-full max-w-md overflow-hidden rounded-t-3xl bg-white shadow-2xl motion-safe:animate-[fadeUp_220ms_ease-out] sm:rounded-3xl"
+        className="relative z-10 w-full max-w-md overflow-hidden rounded-t-3xl bg-surface shadow-2xl motion-safe:animate-[fadeUp_220ms_ease-out] sm:rounded-3xl"
       >
-        <div className="flex items-start gap-3 border-b border-stone-100 px-5 py-4">
+        <div className="flex items-start gap-3 border-b border-line px-5 py-4">
           <div
             className={clsx(
               "grid h-10 w-10 flex-none place-items-center rounded-xl text-white shadow-sm",
@@ -115,14 +115,14 @@ export function ConfirmDialog({
             <p
               className={clsx(
                 "text-[10px] font-semibold uppercase tracking-[0.14em]",
-                destructive ? "text-red-700" : "text-emerald-700",
+                destructive ? "text-red-700 dark:text-red-300" : "text-emerald-700 dark:text-emerald-300",
               )}
             >
               {destructive ? "Heads up" : "Confirm"}
             </p>
             <h2
               id="confirm-title"
-              className="text-base font-semibold text-stone-900"
+              className="text-base font-semibold text-ink"
             >
               {title}
             </h2>
@@ -131,22 +131,22 @@ export function ConfirmDialog({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="rounded-full p-2 text-stone-500 transition-colors hover:bg-stone-100"
+            className="rounded-full p-2 text-ink-muted transition-colors hover:bg-surface-sunken"
           >
             <X size={16} />
           </button>
         </div>
 
-        <div id="confirm-body" className="px-5 py-4 text-sm leading-relaxed text-stone-700">
+        <div id="confirm-body" className="px-5 py-4 text-sm leading-relaxed text-ink-muted">
           {body}
         </div>
 
-        <div className="flex flex-wrap justify-end gap-2 border-t border-stone-100 bg-stone-50/60 px-5 py-3">
+        <div className="flex flex-wrap justify-end gap-2 border-t border-line bg-surface/60 px-5 py-3">
           <button
             ref={cancelRef}
             type="button"
             onClick={onClose}
-            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3.5 text-sm font-semibold text-stone-700 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2"
+            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3.5 text-sm font-semibold text-ink-muted transition-colors hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2 ring-offset-background"
           >
             {cancelLabel}
           </button>
@@ -158,7 +158,7 @@ export function ConfirmDialog({
               onClose();
             }}
             className={clsx(
-              "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+              "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-background",
               destructive
                 ? "bg-gradient-to-br from-red-600 to-red-700 shadow-red-200 hover:from-red-700 hover:to-red-800 focus-visible:ring-red-500"
                 : "bg-gradient-to-br from-emerald-600 to-emerald-700 shadow-emerald-200 hover:from-emerald-700 hover:to-emerald-800 focus-visible:ring-emerald-500",

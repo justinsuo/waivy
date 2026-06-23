@@ -84,14 +84,14 @@ function StatCell({ label, value, unit, targetValue, higherIsBetter = false }: {
   const good = pct !== null && (higherIsBetter ? pct >= 90 : pct >= 85 && pct <= 115);
 
   return (
-    <div className="flex flex-col items-center rounded-xl bg-stone-50 px-3 py-2.5 text-center">
-      <p className={clsx("text-xl font-bold tabular-nums", good ? "text-emerald-600" : "text-stone-800")}>
+    <div className="flex flex-col items-center rounded-xl bg-surface px-3 py-2.5 text-center">
+      <p className={clsx("text-xl font-bold tabular-nums", good ? "text-emerald-600 dark:text-emerald-400" : "text-ink")}>
         {value.toLocaleString()}
         <span className="text-xs font-normal">{unit}</span>
       </p>
-      <p className="text-[10px] text-stone-500">{label}</p>
+      <p className="text-[10px] text-ink-muted">{label}</p>
       {pct !== null && (
-        <p className={clsx("text-[9px] font-medium mt-0.5", good ? "text-emerald-500" : "text-stone-400")}>
+        <p className={clsx("text-[9px] font-medium mt-0.5", good ? "text-emerald-500" : "text-ink-faint")}>
           {pct}% of target
         </p>
       )}
@@ -102,16 +102,16 @@ function StatCell({ label, value, unit, targetValue, higherIsBetter = false }: {
 function WeekCard({ stats, targets, label }: { stats: WeekStats; targets: TargetSnapshot; label: string }) {
   const wc = stats.weightChange;
   return (
-    <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm space-y-3">
+    <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-bold text-stone-900">{label}</h3>
-        <span className="text-[10px] text-stone-400">
+        <h3 className="text-sm font-bold text-ink">{label}</h3>
+        <span className="text-[10px] text-ink-faint">
           {stats.loggedDays}/7 days logged
         </span>
       </div>
 
       {stats.loggedDays === 0 ? (
-        <p className="text-xs text-stone-400 py-2">No meals logged this week.</p>
+        <p className="text-xs text-ink-faint py-2">No meals logged this week.</p>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -122,18 +122,18 @@ function WeekCard({ stats, targets, label }: { stats: WeekStats; targets: Target
           </div>
 
           {wc !== null && (
-            <div className="flex items-center gap-2 rounded-xl bg-stone-50 px-3 py-2">
+            <div className="flex items-center gap-2 rounded-xl bg-surface px-3 py-2">
               {wc < -0.05 ? (
                 <TrendingDown size={14} className="text-sky-500" />
               ) : wc > 0.05 ? (
                 <TrendingUp size={14} className="text-amber-500" />
               ) : (
-                <Minus size={14} className="text-stone-400" />
+                <Minus size={14} className="text-ink-faint" />
               )}
-              <p className="text-xs text-stone-700">
+              <p className="text-xs text-ink-muted">
                 Weight change:{" "}
                 <strong className={clsx(
-                  wc < -0.05 ? "text-sky-600" : wc > 0.05 ? "text-amber-600" : "text-stone-600",
+                  wc < -0.05 ? "text-sky-600 dark:text-sky-400" : wc > 0.05 ? "text-amber-600 dark:text-amber-400" : "text-ink-muted",
                 )}>
                   {wc >= 0 ? "+" : ""}
                   {wc.toFixed(2)} kg
@@ -145,7 +145,7 @@ function WeekCard({ stats, targets, label }: { stats: WeekStats; targets: Target
 
           {/* Adherence bar */}
           <div>
-            <div className="flex justify-between text-[10px] text-stone-400 mb-1">
+            <div className="flex justify-between text-[10px] text-ink-faint mb-1">
               <span>Logging adherence</span>
               <span>{Math.round((stats.loggedDays / 7) * 100)}%</span>
             </div>
@@ -158,7 +158,7 @@ function WeekCard({ stats, targets, label }: { stats: WeekStats; targets: Target
                     "h-2 flex-1 rounded-sm",
                     // mark future days lighter
                     d > todayString()
-                      ? "bg-stone-100"
+                      ? "bg-surface-sunken"
                       : stats.loggedDays > i
                         ? "bg-emerald-400"
                         : "bg-stone-200",

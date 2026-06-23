@@ -140,7 +140,7 @@ function extractTimer(s: string): number | null {
 
 export default function CookPageWrapper() {
   return (
-    <Suspense fallback={<div className="text-stone-500">Loading…</div>}>
+    <Suspense fallback={<div className="text-ink-muted">Loading…</div>}>
       <CookPage />
     </Suspense>
   );
@@ -300,14 +300,14 @@ function CookPage() {
 
   if (!id || !recipe) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-stone-200 bg-white px-6 py-20 text-center">
+      <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-line bg-surface px-6 py-20 text-center">
         <div className="mb-3 text-6xl" aria-hidden>
           🍳
         </div>
-        <h1 className="text-2xl font-bold text-stone-900">Recipe not found</h1>
-        <p className="mt-2 max-w-md text-sm text-stone-600">
+        <h1 className="text-2xl font-bold text-ink">Recipe not found</h1>
+        <p className="mt-2 max-w-md text-sm text-ink-muted">
           Open a recipe from{" "}
-          <Link href="/saved" className="text-emerald-700 underline">
+          <Link href="/saved" className="text-emerald-700 dark:text-emerald-300 underline">
             Saved
           </Link>{" "}
           first, then come back to cook it.
@@ -324,7 +324,7 @@ function CookPage() {
       <div className="flex items-center justify-between gap-3">
         <Link
           href={`/recipes/custom?id=${id}`}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-emerald-700 dark:text-emerald-300"
         >
           <ArrowLeft size={14} /> Back to recipe
         </Link>
@@ -337,10 +337,10 @@ function CookPage() {
         <p className="text-xs uppercase tracking-[0.18em] text-[#7A4A00]">
           {steps.length} steps · ~{totalMinutes} min
         </p>
-        <h1 className="mt-2 text-3xl font-bold text-stone-900 sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
           {recipe.name}
         </h1>
-        <p className="mt-2 max-w-2xl text-sm text-stone-700 sm:text-base">
+        <p className="mt-2 max-w-2xl text-sm text-ink-muted sm:text-base">
           Scroll through each step. Tap the timer button on any step with a
           countdown. The final card shows the plated dish.
         </p>
@@ -371,13 +371,13 @@ function CookPage() {
                   : "Generate AI photo for every step"}
           </Button>
           {photoedSteps === 0 && !bulkProgress && (
-            <span className="text-xs text-stone-500">
+            <span className="text-xs text-ink-muted">
               Free icons by default · paid AI photos optional
             </span>
           )}
         </div>
         {photoError && (
-          <div className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-xs text-red-700">
+          <div className="mt-3 rounded-xl bg-red-50 dark:bg-red-950/40 px-3 py-2 text-xs text-red-700 dark:text-red-300">
             {photoError}
           </div>
         )}
@@ -398,12 +398,12 @@ function CookPage() {
         ))}
       </ol>
 
-      <div className="rounded-3xl border border-emerald-200 bg-emerald-50/60 p-6 text-center">
-        <Salad size={28} className="mx-auto text-emerald-700" />
-        <h2 className="mt-3 text-lg font-bold text-emerald-900">
+      <div className="rounded-3xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40/60 p-6 text-center">
+        <Salad size={28} className="mx-auto text-emerald-700 dark:text-emerald-300" />
+        <h2 className="mt-3 text-lg font-bold text-emerald-900 dark:text-emerald-300">
           You&apos;re done — enjoy!
         </h2>
-        <p className="mt-1 text-sm text-emerald-800/80">
+        <p className="mt-1 text-sm text-emerald-800 dark:text-emerald-300/80">
           Tap below to mark it cooked or jump back to the recipe.
         </p>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
@@ -417,7 +417,7 @@ function CookPage() {
             <button
               type="button"
               onClick={handleRegenerateHero}
-              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50"
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300 dark:border-emerald-800 bg-surface px-4 py-2 text-sm font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:bg-emerald-950/40"
             >
               <RefreshCw size={14} /> Regenerate cover photo
             </button>
@@ -454,7 +454,7 @@ function StepCard({
 
   return (
     <li
-      className="scroll-mt-24 snap-start overflow-hidden rounded-3xl border border-[#E8D8C4] bg-white shadow-sm"
+      className="scroll-mt-24 snap-start overflow-hidden rounded-3xl border border-line bg-surface shadow-sm"
       style={{ borderLeftWidth: 6, borderLeftColor: meta.accent }}
     >
       <div className="grid gap-0 md:grid-cols-[1fr_1.1fr]">
@@ -471,18 +471,18 @@ function StepCard({
               >
                 Step {step.index + 1} · {meta.label}
               </p>
-              <h3 className="mt-0.5 text-lg font-bold text-stone-900">
+              <h3 className="mt-0.5 text-lg font-bold text-ink">
                 {step.title}
               </h3>
             </div>
           </div>
 
-          <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-stone-800">
+          <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-ink">
             {step.instruction}
           </p>
 
           {step.safetyNote && (
-            <p className="mt-3 rounded-2xl bg-amber-50 px-3 py-2 text-xs font-medium text-amber-900">
+            <p className="mt-3 rounded-2xl bg-amber-50 dark:bg-amber-950/40 px-3 py-2 text-xs font-medium text-amber-900 dark:text-amber-300">
               ⚠ {step.safetyNote}
             </p>
           )}
@@ -496,7 +496,7 @@ function StepCard({
                 type="button"
                 onClick={onGeneratePhoto}
                 disabled={isGenerating || !isWorkerConfigured()}
-                className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 transition-colors hover:border-emerald-400 hover:text-emerald-800 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface px-3 py-1.5 text-xs font-semibold text-ink-muted transition-colors hover:border-emerald-400 hover:text-emerald-800 dark:text-emerald-300 disabled:opacity-60"
               >
                 {isGenerating ? (
                   <>
@@ -594,7 +594,7 @@ function InlineTimer({ minutes }: { minutes: number }) {
       <button
         type="button"
         onClick={() => setRunning((r) => !r)}
-        className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15 hover:bg-white/25"
+        className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-surface/15 hover:bg-surface/25"
         aria-label={running ? "Pause timer" : "Start timer"}
       >
         {running ? <Pause size={11} /> : <Play size={11} />}
@@ -606,7 +606,7 @@ function InlineTimer({ minutes }: { minutes: number }) {
             setRunning(false);
             setRemaining(total);
           }}
-          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15 hover:bg-white/25"
+          className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-surface/15 hover:bg-surface/25"
           aria-label="Reset timer"
         >
           <RotateCcw size={11} />

@@ -46,7 +46,7 @@ export function FeedbackSection() {
     >
       <SettingRow
         icon={<BellRing size={18} />}
-        iconClass="bg-amber-100 text-amber-700"
+        iconClass="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
         title="Timer end sound"
         description="Play a short chime when a cooking timer finishes."
         control={
@@ -60,7 +60,7 @@ export function FeedbackSection() {
 
       <SettingRow
         icon={<Vibrate size={18} />}
-        iconClass="bg-violet-100 text-violet-700"
+        iconClass="bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300"
         title="Haptic feedback"
         description={
           vibrateSupported

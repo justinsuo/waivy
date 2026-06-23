@@ -33,7 +33,7 @@ export function Toggle({
       onClick={() => onChange(!checked)}
       className={clsx(
         "relative grid h-7 w-12 shrink-0 grid-cols-2 items-center rounded-full shadow-inner transition-colors",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ring-offset-background",
         "disabled:cursor-not-allowed disabled:opacity-50",
         checked ? "bg-gradient-to-br from-emerald-500 to-emerald-700" : "bg-stone-300",
       )}
@@ -41,7 +41,7 @@ export function Toggle({
       <span
         aria-hidden
         className={clsx(
-          "h-5 w-5 rounded-full bg-white shadow motion-safe:transition-transform",
+          "h-5 w-5 rounded-full bg-surface shadow motion-safe:transition-transform",
           checked ? "col-start-2 justify-self-end" : "col-start-1 justify-self-start",
         )}
         style={{ marginInline: "2px" }}

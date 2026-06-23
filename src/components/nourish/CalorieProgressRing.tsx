@@ -90,29 +90,29 @@ export function CalorieProgressRing({
           <p
             className={clsx(
               "inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em]",
-              over ? "text-amber-700" : "text-emerald-700",
+              over ? "text-amber-700 dark:text-amber-300" : "text-emerald-700 dark:text-emerald-300",
             )}
           >
             <Flame size={10} /> Today
           </p>
-          <p className="mt-1 text-4xl font-bold tabular-nums leading-none text-stone-900 sm:text-5xl">
+          <p className="mt-1 text-4xl font-bold tabular-nums leading-none text-ink sm:text-5xl">
             <AnimatedNumber value={Math.round(consumed)} duration={600} />
           </p>
-          <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-stone-500">
+          <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-ink-muted">
             of {Math.round(safeTarget).toLocaleString()} kcal
           </p>
         </div>
       </div>
 
       <div className="grid w-full grid-cols-2 gap-2 sm:max-w-xs sm:grid-cols-1 sm:gap-3">
-        <div className="rounded-2xl bg-emerald-50/60 px-4 py-3 ring-1 ring-inset ring-emerald-100">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+        <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-950/40/60 px-4 py-3 ring-1 ring-inset ring-emerald-100">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
             {over ? "Over goal by" : "Remaining"}
           </p>
           <p
             className={clsx(
               "mt-0.5 text-2xl font-bold tabular-nums",
-              over ? "text-amber-700" : "text-emerald-900",
+              over ? "text-amber-700 dark:text-amber-300" : "text-emerald-900 dark:text-emerald-300",
             )}
           >
             <AnimatedNumber
@@ -123,11 +123,11 @@ export function CalorieProgressRing({
           </p>
         </div>
         {exerciseKcal > 0 && (
-          <div className="rounded-2xl bg-stone-50 px-4 py-3 ring-1 ring-inset ring-stone-200">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+          <div className="rounded-2xl bg-surface px-4 py-3 ring-1 ring-inset ring-stone-200">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
               Exercise
             </p>
-            <p className="mt-0.5 text-2xl font-bold tabular-nums text-stone-900">
+            <p className="mt-0.5 text-2xl font-bold tabular-nums text-ink">
               <AnimatedNumber
                 value={Math.round(exerciseKcal)}
                 duration={600}

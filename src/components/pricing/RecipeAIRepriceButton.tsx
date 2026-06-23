@@ -114,7 +114,7 @@ export function RecipeAIRepriceButton({ recipe, onComplete }: Props) {
 
   if (success) {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900">
+      <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 p-3 text-sm text-emerald-900 dark:text-emerald-300">
         <div className="flex items-center gap-2">
           <CheckCircle2 size={14} />
           <span>{success}</span>
@@ -125,7 +125,7 @@ export function RecipeAIRepriceButton({ recipe, onComplete }: Props) {
 
   if (cachedCount === requiredIds.length) {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-900">
+      <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 p-3 text-xs text-emerald-900 dark:text-emerald-300">
         All ingredient prices in this recipe are already AI-estimated for{" "}
         <span className="font-semibold">{region.shortLabel ?? region.label}</span>.
       </div>
@@ -133,16 +133,16 @@ export function RecipeAIRepriceButton({ recipe, onComplete }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-violet-200 bg-violet-50 p-3">
+    <div className="rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 p-3">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-violet-100 text-violet-700">
+        <div className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300">
           <Sparkles size={16} />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-violet-900">
+          <p className="text-sm font-semibold text-violet-900 dark:text-violet-300">
             Use AI prices
           </p>
-          <p className="text-xs text-violet-900">
+          <p className="text-xs text-violet-900 dark:text-violet-300">
             Estimate every ingredient with AI web search for{" "}
             {region.shortLabel ?? region.label}.{" "}
             {cachedCount > 0 && (
@@ -170,7 +170,7 @@ export function RecipeAIRepriceButton({ recipe, onComplete }: Props) {
         </Button>
       </div>
       {error && (
-        <div className="mt-2 flex items-start gap-1.5 text-xs text-red-700">
+        <div className="mt-2 flex items-start gap-1.5 text-xs text-red-700 dark:text-red-300">
           <AlertCircle size={12} className="mt-0.5 flex-none" /> {error}
         </div>
       )}

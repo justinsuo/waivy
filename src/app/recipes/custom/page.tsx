@@ -42,7 +42,7 @@ function money(n: unknown): string {
 
 export default function CustomRecipePageWrapper() {
   return (
-    <Suspense fallback={<div className="text-stone-500">Loading…</div>}>
+    <Suspense fallback={<div className="text-ink-muted">Loading…</div>}>
       <CustomRecipePage />
     </Suspense>
   );
@@ -132,12 +132,12 @@ function CustomRecipePage() {
 
   if (!id || !recipe) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-stone-200 bg-white px-6 py-20 text-center">
+      <div className="flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-line bg-surface px-6 py-20 text-center">
         <div className="mb-3 text-6xl" aria-hidden>
           🍳
         </div>
-        <h1 className="text-2xl font-bold text-stone-900">Recipe not found</h1>
-        <p className="mt-2 max-w-md text-sm text-stone-600">
+        <h1 className="text-2xl font-bold text-ink">Recipe not found</h1>
+        <p className="mt-2 max-w-md text-sm text-ink-muted">
           This generated/custom recipe lives only in this browser&apos;s
           storage. It may have been cleared.
         </p>
@@ -157,13 +157,13 @@ function CustomRecipePage() {
     <div className="space-y-8">
       <Link
         href="/saved"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-emerald-700"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-emerald-700 dark:text-emerald-300"
       >
         <ArrowLeft size={14} /> Back to saved
       </Link>
 
       <div className="overflow-hidden rounded-3xl shadow-sm">
-        <div className="relative aspect-[16/9] bg-stone-100">
+        <div className="relative aspect-[16/9] bg-surface-sunken">
           {imageSrc ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -176,7 +176,7 @@ function CustomRecipePage() {
                 type="button"
                 onClick={handleGenerateImage}
                 disabled={imageLoading || !isWorkerConfigured()}
-                className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-stone-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:opacity-60"
+                className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-surface/90 px-3 py-1.5 text-xs font-semibold text-ink shadow-sm backdrop-blur transition-colors hover:bg-surface disabled:opacity-60"
                 title="Generate a new image — replaces the current one"
               >
                 {imageLoading ? (
@@ -190,16 +190,16 @@ function CustomRecipePage() {
                 )}
               </button>
               {imageError && (
-                <div className="absolute bottom-14 left-3 right-3 rounded-xl bg-red-50 px-3 py-2 text-xs text-red-700 shadow-sm">
+                <div className="absolute bottom-14 left-3 right-3 rounded-xl bg-red-50 dark:bg-red-950/40 px-3 py-2 text-xs text-red-700 dark:text-red-300 shadow-sm">
                   {imageError}
                 </div>
               )}
             </>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-emerald-100 to-amber-50 px-6 text-stone-500">
+            <div className="flex h-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-emerald-100 to-amber-50 px-6 text-ink-muted">
               {imageLoading ? (
                 <>
-                  <Loader2 size={32} className="animate-spin text-emerald-600" />
+                  <Loader2 size={32} className="animate-spin text-emerald-600 dark:text-emerald-400" />
                   <p className="text-xs uppercase tracking-wide">
                     Generating image…
                   </p>
@@ -219,7 +219,7 @@ function CustomRecipePage() {
                     Generate image
                   </Button>
                   {imageError && (
-                    <p className="max-w-xs text-center text-xs text-red-700">
+                    <p className="max-w-xs text-center text-xs text-red-700 dark:text-red-300">
                       {imageError}
                     </p>
                   )}
@@ -251,10 +251,10 @@ function CustomRecipePage() {
             {recipe.difficulty}
           </Badge>
         </div>
-        <h1 className="text-3xl font-bold text-stone-900 sm:text-4xl">
+        <h1 className="text-3xl font-bold text-ink sm:text-4xl">
           {recipe.name}
         </h1>
-        <p className="text-stone-700">{recipe.description}</p>
+        <p className="text-ink-muted">{recipe.description}</p>
         <div className="flex flex-wrap gap-2 pt-2">
           <Link
             href={`/recipes/cook?id=${id}`}
@@ -267,7 +267,7 @@ function CustomRecipePage() {
             onClick={() => toggleSaved(id)}
             leftIcon={
               saved ? (
-                <BookmarkCheck size={16} className="text-emerald-600" />
+                <BookmarkCheck size={16} className="text-emerald-600 dark:text-emerald-400" />
               ) : (
                 <Bookmark size={16} />
               )
@@ -280,7 +280,7 @@ function CustomRecipePage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Ingredients
           </h2>
           <ul className="mt-3 divide-y divide-stone-100">
@@ -290,17 +290,17 @@ function CustomRecipePage() {
                 className="flex items-center justify-between py-2 text-sm"
               >
                 <div>
-                  <p className="font-medium text-stone-800">
+                  <p className="font-medium text-ink">
                     {ing.name}{" "}
                     {ing.optional && (
-                      <span className="text-xs text-stone-500">(optional)</span>
+                      <span className="text-xs text-ink-muted">(optional)</span>
                     )}
                   </p>
-                  <p className="text-xs text-stone-500">
+                  <p className="text-xs text-ink-muted">
                     {ing.quantity} {ing.unit}
                   </p>
                 </div>
-                <p className="font-medium text-stone-900">
+                <p className="font-medium text-ink">
                   ${money(ing.estimatedCost)}
                 </p>
               </li>
@@ -308,7 +308,7 @@ function CustomRecipePage() {
           </ul>
         </Card>
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Steps
           </h2>
           <ol className="mt-3 space-y-3">
@@ -326,10 +326,10 @@ function CustomRecipePage() {
 
       {recipe.estimatedNutrition && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             🥗 Nutrition per serving
           </h2>
-          <p className="mt-1 text-xs text-stone-500">
+          <p className="mt-1 text-xs text-ink-muted">
             {recipe.isAIGenerated
               ? "Calculated from ingredient matches · estimated"
               : "From recipe author · estimated"}
@@ -345,7 +345,7 @@ function CustomRecipePage() {
               <NutritionCell label="Fiber" value={recipe.estimatedNutrition.fiber} unit="g" />
             </div>
           )}
-          <p className="mt-3 text-xs text-stone-500">
+          <p className="mt-3 text-xs text-ink-muted">
             Estimated from ingredients and serving size. Actual values vary by brand and preparation.
           </p>
         </Card>
@@ -353,10 +353,10 @@ function CustomRecipePage() {
 
       {(recipe.cheapTips?.length ?? 0) > 0 && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-amber-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
             Why it&apos;s cheap
           </h2>
-          <ul className="mt-3 space-y-1 text-sm text-stone-700">
+          <ul className="mt-3 space-y-1 text-sm text-ink-muted">
             {recipe.cheapTips!.map((t, i) => (
               <li key={i}>• {t}</li>
             ))}
@@ -366,14 +366,14 @@ function CustomRecipePage() {
 
       {recipe.storageInstructions && (
         <Card>
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
             Storage &amp; reheating
           </h2>
-          <p className="mt-2 text-sm text-stone-700">
+          <p className="mt-2 text-sm text-ink-muted">
             {recipe.storageInstructions}
           </p>
           {recipe.reheatingInstructions && (
-            <p className="mt-1 text-sm text-stone-700">
+            <p className="mt-1 text-sm text-ink-muted">
               {recipe.reheatingInstructions}
             </p>
           )}
@@ -399,13 +399,13 @@ function NutritionCell({
     <div
       className={
         highlight
-          ? "rounded-2xl bg-emerald-100 px-3 py-3 text-center"
-          : "rounded-2xl bg-stone-100 px-3 py-3 text-center"
+          ? "rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 px-3 py-3 text-center"
+          : "rounded-2xl bg-surface-sunken px-3 py-3 text-center"
       }
     >
       <p
         className={
-          highlight ? "text-xs font-medium text-emerald-800" : "text-xs font-medium text-stone-600"
+          highlight ? "text-xs font-medium text-emerald-800 dark:text-emerald-300" : "text-xs font-medium text-ink-muted"
         }
       >
         {label}
@@ -413,8 +413,8 @@ function NutritionCell({
       <p
         className={
           highlight
-            ? "text-lg font-bold text-emerald-900"
-            : "text-lg font-bold text-stone-900"
+            ? "text-lg font-bold text-emerald-900 dark:text-emerald-300"
+            : "text-lg font-bold text-ink"
         }
       >
         {safe}

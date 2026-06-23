@@ -74,7 +74,7 @@ export default function SavedPage() {
       ) : (
         <>
           <div className="sticky top-16 z-20 -mx-2 px-2 py-1">
-            <div className="rounded-2xl border border-stone-200 bg-white/85 p-2.5 shadow-sm backdrop-blur-md">
+            <div className="rounded-2xl border border-line bg-surface/85 p-2.5 shadow-sm backdrop-blur-md">
               <div className="flex flex-wrap items-center gap-2">
                 <FilterChip
                   active={filter === "all"}
@@ -100,7 +100,7 @@ export default function SavedPage() {
                 >
                   Created by you ({userCount})
                 </FilterChip>
-                <span className="ml-auto text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                <span className="ml-auto text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
                   <AnimatedNumber value={totalCount} duration={520} /> total
                 </span>
               </div>
@@ -157,7 +157,7 @@ function FilterChip({
       className={
         active
           ? "inline-flex items-center rounded-full border border-emerald-600 bg-emerald-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 transition-all motion-safe:scale-[1.02]"
-          : "inline-flex items-center rounded-full border border-stone-200 bg-white px-3.5 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+          : "inline-flex items-center rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
       }
     >
       {children}
@@ -197,9 +197,9 @@ function CustomCard({ recipe }: { recipe: CustomRecipe }) {
   return (
     <Link
       href={`/recipes/custom?id=${recipe.id}`}
-      className="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+      className="group overflow-hidden rounded-2xl border border-line bg-surface shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
-      <div className="relative aspect-[4/3] bg-stone-100">
+      <div className="relative aspect-[4/3] bg-surface-sunken">
         {src ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
@@ -208,7 +208,7 @@ function CustomCard({ recipe }: { recipe: CustomRecipe }) {
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-100 to-amber-50 text-stone-500">
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-100 to-amber-50 text-ink-muted">
             <ChefHat size={36} />
           </div>
         )}
@@ -225,10 +225,10 @@ function CustomCard({ recipe }: { recipe: CustomRecipe }) {
         </div>
       </div>
       <div className="space-y-1 p-3">
-        <p className="text-sm font-semibold text-stone-900 group-hover:text-emerald-700">
+        <p className="text-sm font-semibold text-ink group-hover:text-emerald-700 dark:text-emerald-300">
           {recipe.name}
         </p>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-ink-muted">
           ${Number.isFinite(Number(recipe.estimatedCostPerServing)) ? Number(recipe.estimatedCostPerServing).toFixed(2) : "—"}/serving ·{" "}
           {recipe.totalTimeMinutes} min
         </p>

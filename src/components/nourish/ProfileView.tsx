@@ -46,9 +46,9 @@ const GOAL_OPTIONS: { id: GoalMode; label: string; emoji: string }[] = [
 
 
 const MACRO_COLOURS = {
-  protein: { bar: "bg-emerald-500", text: "text-emerald-700", bg: "bg-emerald-50", ring: "ring-emerald-200" },
-  carbs: { bar: "bg-amber-400", text: "text-amber-700", bg: "bg-amber-50", ring: "ring-amber-200" },
-  fat: { bar: "bg-violet-400", text: "text-violet-700", bg: "bg-violet-50", ring: "ring-violet-200" },
+  protein: { bar: "bg-emerald-500", text: "text-emerald-700 dark:text-emerald-300", bg: "bg-emerald-50 dark:bg-emerald-950/40", ring: "ring-emerald-200" },
+  carbs: { bar: "bg-amber-400", text: "text-amber-700 dark:text-amber-300", bg: "bg-amber-50 dark:bg-amber-950/40", ring: "ring-amber-200" },
+  fat: { bar: "bg-violet-400", text: "text-violet-700 dark:text-violet-300", bg: "bg-violet-50 dark:bg-violet-950/40", ring: "ring-violet-200" },
 };
 
 interface Props {
@@ -160,16 +160,16 @@ export function ProfileView({ onResetProfile }: Props) {
   if (!hydrated) return null;
 
   const inputCls =
-    "w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
+    "w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm space-y-5">
-        <h2 className="text-lg font-bold text-stone-900">Body stats</h2>
+      <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm space-y-5">
+        <h2 className="text-lg font-bold text-ink">Body stats</h2>
 
         {/* Units */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-stone-600" id="profile-units-label">Units:</span>
+          <span className="text-xs font-medium text-ink-muted" id="profile-units-label">Units:</span>
           <div role="radiogroup" aria-labelledby="profile-units-label" className="flex items-center gap-2">
             {(["metric", "imperial"] as PreferredUnits[]).map((u) => (
               <SelectablePill key={u} active={units === u} onClick={() => handleUnitsChange(u)} ariaSemantics="checked" showCheck={false}>
@@ -181,7 +181,7 @@ export function ProfileView({ onResetProfile }: Props) {
 
         {/* Weight */}
         <label className="block space-y-1.5">
-          <span className="text-sm font-medium text-stone-700">
+          <span className="text-sm font-medium text-ink-muted">
             Weight ({units === "imperial" ? "lbs" : "kg"})
           </span>
           <input
@@ -203,7 +203,7 @@ export function ProfileView({ onResetProfile }: Props) {
 
         {/* Height */}
         <div className="space-y-1.5">
-          <span className="text-sm font-medium text-stone-700">
+          <span className="text-sm font-medium text-ink-muted">
             Height ({units === "imperial" ? "ft / in" : "cm"})
           </span>
           {units === "imperial" ? (
@@ -235,7 +235,7 @@ export function ProfileView({ onResetProfile }: Props) {
 
         {/* Age */}
         <label className="block space-y-1.5">
-          <span className="text-sm font-medium text-stone-700">Age</span>
+          <span className="text-sm font-medium text-ink-muted">Age</span>
           <input type="text" inputMode="numeric" placeholder="e.g. 22" value={ageStr}
             onChange={(e) => {
               setAgeStr(e.target.value);
@@ -246,7 +246,7 @@ export function ProfileView({ onResetProfile }: Props) {
 
         {/* Sex */}
         <div className="space-y-1.5">
-          <span className="text-sm font-medium text-stone-700" id="profile-sex-label">Sex <span className="font-normal text-stone-400">(optional)</span></span>
+          <span className="text-sm font-medium text-ink-muted" id="profile-sex-label">Sex <span className="font-normal text-ink-faint">(optional)</span></span>
           <div role="radiogroup" aria-labelledby="profile-sex-label" className="flex gap-2 flex-wrap">
             {([["male", "Male"], ["female", "Female"], [undefined, "Prefer not to say"]] as const).map(([v, label]) => (
               <SelectablePill key={label} active={sex === v} onClick={() => setSex(v)} ariaSemantics="checked" showCheck={false}>{label}</SelectablePill>
@@ -256,8 +256,8 @@ export function ProfileView({ onResetProfile }: Props) {
       </div>
 
       {/* Activity */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm space-y-3">
-        <h2 className="text-lg font-bold text-stone-900" id="profile-activity-label">Activity level</h2>
+      <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm space-y-3">
+        <h2 className="text-lg font-bold text-ink" id="profile-activity-label">Activity level</h2>
         <div role="radiogroup" aria-labelledby="profile-activity-label" className="flex flex-wrap gap-2">
           {ACTIVITY_OPTIONS.map((opt) => (
             <SelectablePill key={opt.id} active={activity === opt.id} onClick={() => setActivity(opt.id)} ariaSemantics="checked" showCheck={false}>
@@ -268,8 +268,8 @@ export function ProfileView({ onResetProfile }: Props) {
       </div>
 
       {/* Goal */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-bold text-stone-900">Goal</h2>
+      <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-bold text-ink">Goal</h2>
         <div className="grid grid-cols-2 gap-2">
           {GOAL_OPTIONS.map((opt) => (
             <button
@@ -279,11 +279,11 @@ export function ProfileView({ onResetProfile }: Props) {
               aria-pressed={mode === opt.id}
               className={clsx(
                 "flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
-                mode === opt.id ? "border-emerald-500 bg-emerald-50" : "border-stone-200 bg-white hover:border-emerald-300",
+                mode === opt.id ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40" : "border-line bg-surface hover:border-emerald-300 dark:border-emerald-800",
               )}
             >
               <span aria-hidden>{opt.emoji}</span>
-              <span className={clsx("text-sm font-semibold", mode === opt.id ? "text-emerald-800" : "text-stone-800")}>
+              <span className={clsx("text-sm font-semibold", mode === opt.id ? "text-emerald-800 dark:text-emerald-300" : "text-ink")}>
                 {opt.label}
               </span>
             </button>
@@ -293,14 +293,14 @@ export function ProfileView({ onResetProfile }: Props) {
       </div>
 
       {/* Live preview */}
-      <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 space-y-3">
-        <h3 className="text-sm font-semibold text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
+      <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-gradient-to-br from-emerald-50 to-surface p-5 space-y-3">
+        <h3 className="text-sm font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
           <Flame size={14} />
           Updated targets
         </h3>
         <div className="flex items-baseline gap-2">
-          <span className="text-4xl font-bold tabular-nums text-stone-900">{preview.calorieTarget.toLocaleString()}</span>
-          <span className="text-stone-500 text-sm">kcal/day</span>
+          <span className="text-4xl font-bold tabular-nums text-ink">{preview.calorieTarget.toLocaleString()}</span>
+          <span className="text-ink-muted text-sm">kcal/day</span>
         </div>
         <div className="grid grid-cols-3 gap-2">
           {(
@@ -314,12 +314,12 @@ export function ProfileView({ onResetProfile }: Props) {
             return (
               <div key={name} className={clsx("rounded-xl border p-2.5 text-center ring-1", c.bg, c.ring)}>
                 <p className={clsx("text-xl font-bold tabular-nums", c.text)}>{grams}<span className="text-xs font-normal">g</span></p>
-                <p className="text-[11px] text-stone-500">{name}</p>
+                <p className="text-[11px] text-ink-muted">{name}</p>
               </div>
             );
           })}
         </div>
-        <p className="text-xs text-stone-500 flex items-center gap-1"><Zap size={11} className="text-amber-500" />Fiber: {preview.fiberG} g/day</p>
+        <p className="text-xs text-ink-muted flex items-center gap-1"><Zap size={11} className="text-amber-500" />Fiber: {preview.fiberG} g/day</p>
       </div>
 
       {/* Actions */}
@@ -327,7 +327,7 @@ export function ProfileView({ onResetProfile }: Props) {
         <button
           type="button"
           onClick={() => { setOnboarded(false); onResetProfile(); }}
-          className="flex items-center gap-1.5 text-xs text-stone-400 hover:text-stone-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg"
+          className="flex items-center gap-1.5 text-xs text-ink-faint hover:text-ink-muted transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg"
         >
           <RefreshCw size={12} />
           Re-run setup wizard
@@ -345,7 +345,7 @@ export function ProfileView({ onResetProfile }: Props) {
 
       <DataExport />
 
-      <p className="text-center text-[11px] text-stone-400">
+      <p className="text-center text-[11px] text-ink-faint">
         ⚠️ Targets are estimates only — not medical advice. Consult a healthcare
         professional for medical conditions, pregnancy, or disordered eating history.
       </p>

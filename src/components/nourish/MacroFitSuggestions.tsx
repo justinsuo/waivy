@@ -36,9 +36,9 @@ export function MacroFitSuggestions({ recipes, targets, consumed }: Props) {
 
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-semibold text-stone-700">
+      <h3 className="text-sm font-semibold text-ink-muted">
         Fits your remaining budget
-        <span className="ml-1.5 text-xs font-normal text-stone-400">
+        <span className="ml-1.5 text-xs font-normal text-ink-faint">
           ~{Math.round(remaining.kcal)} kcal left
         </span>
       </h3>
@@ -50,14 +50,14 @@ export function MacroFitSuggestions({ recipes, targets, consumed }: Props) {
               key={recipe.id}
               href={`/recipes/${recipe.id}`}
               className={clsx(
-                "flex items-center justify-between rounded-xl border border-stone-100 bg-white px-3 py-2.5 transition-all hover:border-emerald-200 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
+                "flex items-center justify-between rounded-xl border border-line bg-surface px-3 py-2.5 transition-all hover:border-emerald-200 dark:border-emerald-900 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
               )}
             >
               <div className="flex items-center gap-2.5 min-w-0">
                 <span className="text-xl shrink-0" aria-hidden>{recipe.emoji}</span>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-stone-900">{recipe.name}</p>
-                  <p className="text-[10px] text-stone-400">
+                  <p className="truncate text-sm font-semibold text-ink">{recipe.name}</p>
+                  <p className="text-[10px] text-ink-faint">
                     {estimate.calories} kcal · {estimate.protein}g P · {estimate.carbs}g C · {estimate.fat}g F
                   </p>
                 </div>

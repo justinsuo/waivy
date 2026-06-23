@@ -25,7 +25,7 @@ export function SettingsSection({
   return (
     <section
       id={id}
-      className="scroll-mt-24 rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6"
+      className="scroll-mt-24 rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6"
     >
       <SectionHeading eyebrow={eyebrow} title={title} description={description} tone={tone} />
       <div className="mt-5 space-y-3">{children}</div>
@@ -40,7 +40,7 @@ export function SettingsSection({
  */
 export function SettingRow({
   icon,
-  iconClass = "bg-stone-100 text-stone-700",
+  iconClass = "bg-surface-sunken text-ink-muted",
   title,
   description,
   control,
@@ -54,7 +54,7 @@ export function SettingRow({
   children?: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-stone-200 bg-stone-50/60 p-4">
+    <div className="rounded-2xl border border-line bg-surface/60 p-4">
       <div className="flex items-center gap-3">
         {icon && (
           <span
@@ -68,9 +68,9 @@ export function SettingRow({
           </span>
         )}
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-stone-900">{title}</p>
+          <p className="text-sm font-semibold text-ink">{title}</p>
           {description && (
-            <p className="mt-0.5 text-xs leading-relaxed text-stone-600">
+            <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">
               {description}
             </p>
           )}
@@ -85,7 +85,7 @@ export function SettingRow({
 /** Small label above a control group. */
 export function FieldLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-stone-500">
+    <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-muted">
       {children}
     </p>
   );

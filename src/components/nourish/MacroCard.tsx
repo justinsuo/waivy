@@ -19,44 +19,44 @@ const TONE: Record<
   }
 > = {
   protein: {
-    eyebrow: "text-violet-700",
+    eyebrow: "text-violet-700 dark:text-violet-300",
     barFrom: "from-violet-500",
     barTo: "to-violet-700",
-    chip: "bg-violet-100 text-violet-800",
-    text: "text-violet-900",
-    bg: "from-violet-50/60 to-white border-violet-200/70",
+    chip: "bg-violet-100 dark:bg-violet-900/40 text-violet-800 dark:text-violet-300",
+    text: "text-violet-900 dark:text-violet-300",
+    bg: "from-violet-50/60 to-surface border-violet-200 dark:border-violet-900/70",
   },
   carbs: {
-    eyebrow: "text-sky-700",
+    eyebrow: "text-sky-700 dark:text-sky-300",
     barFrom: "from-sky-500",
     barTo: "to-sky-700",
-    chip: "bg-sky-100 text-sky-800",
-    text: "text-sky-900",
-    bg: "from-sky-50/60 to-white border-sky-200/70",
+    chip: "bg-sky-100 dark:bg-sky-900/40 text-sky-800 dark:text-sky-300",
+    text: "text-sky-900 dark:text-sky-300",
+    bg: "from-sky-50/60 to-surface border-sky-200 dark:border-sky-900/70",
   },
   fat: {
-    eyebrow: "text-amber-700",
+    eyebrow: "text-amber-700 dark:text-amber-300",
     barFrom: "from-amber-400",
     barTo: "to-amber-600",
-    chip: "bg-amber-100 text-amber-800",
-    text: "text-amber-900",
-    bg: "from-amber-50/60 to-white border-amber-200/70",
+    chip: "bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300",
+    text: "text-amber-900 dark:text-amber-300",
+    bg: "from-amber-50/60 to-surface border-amber-200 dark:border-amber-900/70",
   },
   fiber: {
-    eyebrow: "text-emerald-700",
+    eyebrow: "text-emerald-700 dark:text-emerald-300",
     barFrom: "from-emerald-500",
     barTo: "to-emerald-700",
-    chip: "bg-emerald-100 text-emerald-800",
-    text: "text-emerald-900",
-    bg: "from-emerald-50/60 to-white border-emerald-200/70",
+    chip: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300",
+    text: "text-emerald-900 dark:text-emerald-300",
+    bg: "from-emerald-50/60 to-surface border-emerald-200 dark:border-emerald-900/70",
   },
   water: {
-    eyebrow: "text-cyan-700",
+    eyebrow: "text-cyan-700 dark:text-cyan-300",
     barFrom: "from-cyan-500",
     barTo: "to-cyan-700",
-    chip: "bg-cyan-100 text-cyan-800",
-    text: "text-cyan-900",
-    bg: "from-cyan-50/60 to-white border-cyan-200/70",
+    chip: "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-800 dark:text-cyan-300",
+    text: "text-cyan-900 dark:text-cyan-300",
+    bg: "from-cyan-50/60 to-surface border-cyan-200 dark:border-cyan-900/70",
   },
 };
 
@@ -129,12 +129,12 @@ export function MacroCard({
         )}
       >
         <AnimatedNumber value={Math.round(consumed)} duration={500} />{" "}
-        <span className="text-sm font-normal text-stone-500">
+        <span className="text-sm font-normal text-ink-muted">
           / {Math.round(safeTarget)} {unit}
         </span>
       </p>
 
-      <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/80 ring-1 ring-inset ring-stone-200/60">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface/80 ring-1 ring-inset ring-stone-200/60">
         <div
           className={clsx(
             "h-full rounded-full bg-gradient-to-r",
@@ -150,7 +150,7 @@ export function MacroCard({
         />
       </div>
 
-      <p className="mt-2 text-[11px] text-stone-600">
+      <p className="mt-2 text-[11px] text-ink-muted">
         {over ? (
           <>
             <span className={clsx("font-semibold", t.text)}>
@@ -170,7 +170,7 @@ export function MacroCard({
           </span>
         ) : (
           <>
-            <span className="font-semibold text-stone-900">
+            <span className="font-semibold text-ink">
               {Math.round(remaining)} {unit}
             </span>{" "}
             left

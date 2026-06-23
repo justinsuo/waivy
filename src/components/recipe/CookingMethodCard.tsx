@@ -19,7 +19,7 @@ export function CookingMethodCard({ recipe }: { recipe: Recipe }) {
 
   return (
     <Card className="space-y-4">
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-stone-700">
+      <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
         Cooking notes
       </h2>
 
@@ -62,7 +62,7 @@ export function CookingMethodCard({ recipe }: { recipe: Recipe }) {
         />
       )}
 
-      <div className="flex items-start gap-2 rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-900">
+      <div className="flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 px-3 py-2 text-xs text-amber-900 dark:text-amber-300">
         <AlertCircle size={14} className="mt-0.5 flex-none" />
         Be careful when removing covers — steam burns fast. Let bowls cool a
         moment before eating.
@@ -83,8 +83,8 @@ function Section({
   rows: (string | null)[];
 }) {
   const colors: Record<string, string> = {
-    violet: "bg-violet-100 text-violet-700",
-    sky: "bg-sky-100 text-sky-700",
+    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
+    sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
   };
   return (
     <div>
@@ -94,12 +94,12 @@ function Section({
         >
           {icon}
         </span>
-        <p className="text-sm font-semibold text-stone-900">{title}</p>
+        <p className="text-sm font-semibold text-ink">{title}</p>
       </div>
-      <ul className="space-y-1 text-sm text-stone-700">
+      <ul className="space-y-1 text-sm text-ink-muted">
         {rows.filter(Boolean).map((r, i) => (
           <li key={i} className="flex gap-2">
-            <span className="text-stone-400">•</span>
+            <span className="text-ink-faint">•</span>
             <span>{r}</span>
           </li>
         ))}

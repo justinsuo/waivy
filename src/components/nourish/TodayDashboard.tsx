@@ -69,28 +69,28 @@ const MEAL_TONE: Record<
   { border: string; bg: string; iconBg: string; eyebrow: string }
 > = {
   breakfast: {
-    border: "border-amber-200/80",
-    bg: "bg-gradient-to-br from-amber-50/70 via-white to-white",
-    iconBg: "bg-amber-100 text-amber-700",
-    eyebrow: "text-amber-700",
+    border: "border-amber-200 dark:border-amber-900/80",
+    bg: "bg-gradient-to-br from-amber-50/70 via-surface to-surface",
+    iconBg: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300",
+    eyebrow: "text-amber-700 dark:text-amber-300",
   },
   lunch: {
-    border: "border-emerald-200/80",
-    bg: "bg-gradient-to-br from-emerald-50/70 via-white to-white",
-    iconBg: "bg-emerald-100 text-emerald-700",
-    eyebrow: "text-emerald-700",
+    border: "border-emerald-200 dark:border-emerald-900/80",
+    bg: "bg-gradient-to-br from-emerald-50/70 via-surface to-surface",
+    iconBg: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
+    eyebrow: "text-emerald-700 dark:text-emerald-300",
   },
   dinner: {
-    border: "border-sky-200/80",
-    bg: "bg-gradient-to-br from-sky-50/70 via-white to-white",
-    iconBg: "bg-sky-100 text-sky-700",
-    eyebrow: "text-sky-700",
+    border: "border-sky-200 dark:border-sky-900/80",
+    bg: "bg-gradient-to-br from-sky-50/70 via-surface to-surface",
+    iconBg: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
+    eyebrow: "text-sky-700 dark:text-sky-300",
   },
   snack: {
-    border: "border-rose-200/80",
-    bg: "bg-gradient-to-br from-rose-50/70 via-white to-white",
-    iconBg: "bg-rose-100 text-rose-700",
-    eyebrow: "text-rose-700",
+    border: "border-rose-200 dark:border-rose-900/80",
+    bg: "bg-gradient-to-br from-rose-50/70 via-surface to-surface",
+    iconBg: "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300",
+    eyebrow: "text-rose-700 dark:text-rose-300",
   },
 };
 
@@ -154,11 +154,11 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
   if (!hydrated) {
     return (
       <div className="space-y-4">
-        <div className="h-40 animate-pulse rounded-3xl bg-stone-100" />
+        <div className="h-40 animate-pulse rounded-3xl bg-surface-sunken" />
         <div className="grid grid-cols-3 gap-3">
-          <div className="h-28 animate-pulse rounded-2xl bg-stone-100" />
-          <div className="h-28 animate-pulse rounded-2xl bg-stone-100" />
-          <div className="h-28 animate-pulse rounded-2xl bg-stone-100" />
+          <div className="h-28 animate-pulse rounded-2xl bg-surface-sunken" />
+          <div className="h-28 animate-pulse rounded-2xl bg-surface-sunken" />
+          <div className="h-28 animate-pulse rounded-2xl bg-surface-sunken" />
         </div>
       </div>
     );
@@ -216,12 +216,12 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
     <div className="space-y-5">
       {/* ─── Date strip + Goals link ───────────────────────────────────── */}
       <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 rounded-full border border-stone-200 bg-white p-1 shadow-sm">
+        <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface p-1 shadow-sm">
           <button
             type="button"
             onClick={() => stepDate(-1)}
             aria-label="Previous day"
-            className="grid h-8 w-8 place-items-center rounded-full text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900"
+            className="grid h-8 w-8 place-items-center rounded-full text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink"
           >
             <ChevronLeft size={16} />
           </button>
@@ -232,7 +232,7 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
               "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-colors",
               date === today
                 ? "bg-stone-900 text-white"
-                : "text-stone-700 hover:bg-stone-100",
+                : "text-ink-muted hover:bg-surface-sunken",
             )}
           >
             <CalendarDays size={12} />
@@ -243,7 +243,7 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
             onClick={() => stepDate(1)}
             aria-label="Next day"
             disabled={date >= today}
-            className="grid h-8 w-8 place-items-center rounded-full text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-40"
+            className="grid h-8 w-8 place-items-center rounded-full text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ChevronRight size={16} />
           </button>
@@ -254,8 +254,8 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
               className={clsx(
                 "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-sm transition-all motion-safe:animate-[fadeUp_400ms_ease-out]",
                 streak >= 7
-                  ? "border border-amber-200 bg-gradient-to-br from-amber-50 to-amber-100 text-amber-800"
-                  : "border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 text-orange-800",
+                  ? "border border-amber-200 dark:border-amber-900 bg-gradient-to-br from-amber-50 to-amber-100 text-amber-800 dark:text-amber-300"
+                  : "border border-orange-200 dark:border-orange-900 bg-gradient-to-br from-orange-50 to-amber-50 text-orange-800 dark:text-orange-300",
               )}
               aria-label={`${streak} day logging streak${streak === bestEver && streak > 1 ? ", personal best" : ""}`}
               title={
@@ -269,7 +269,7 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
               <Flame
                 size={12}
                 className={clsx(
-                  streak >= 7 ? "text-amber-600" : "text-orange-500",
+                  streak >= 7 ? "text-amber-600 dark:text-amber-400" : "text-orange-500",
                   "motion-safe:animate-[emojiFloat_2.6s_ease-in-out_infinite]",
                 )}
               />
@@ -278,13 +278,13 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
                 day{streak === 1 ? "" : "s"}
               </span>
               {streak === bestEver && streak > 1 && (
-                <Trophy size={10} className="text-amber-600" />
+                <Trophy size={10} className="text-amber-600 dark:text-amber-400" />
               )}
             </span>
           )}
           <Link
             href="/nourish/goals"
-            className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-semibold text-stone-700 shadow-sm transition-all hover:-translate-y-px hover:border-emerald-300 hover:text-emerald-700"
+            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-ink-muted shadow-sm transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:text-emerald-700 dark:text-emerald-300"
           >
             <Target size={12} />
             Goals
@@ -293,7 +293,7 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
       </div>
 
       {/* ─── Hero: calorie ring ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-amber-50/30 p-5 shadow-sm sm:p-6">
+      <section className="relative overflow-hidden rounded-3xl border border-emerald-200 dark:border-emerald-900/70 bg-gradient-to-br from-emerald-50 via-surface to-amber-50/30 p-5 shadow-sm sm:p-6">
         <div
           aria-hidden
           className="dot-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(circle_at_70%_30%,black,transparent_60%)]"
@@ -345,7 +345,7 @@ export function TodayDashboard({ onSwitchToDiary }: Props) {
       {/* ─── Meal sections ─────────────────────────────────────────────── */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-stone-900">
+          <h3 className="text-sm font-semibold text-ink">
             {date === today ? "Today's meals" : `${dateLabel}'s meals`}
           </h3>
           <Button
@@ -456,7 +456,7 @@ function MealSection({
             >
               {MEAL_LABELS[meal]}
             </p>
-            <p className="text-[11px] font-medium text-stone-600">
+            <p className="text-[11px] font-medium text-ink-muted">
               {entries.length > 0
                 ? `${entries.length} item${entries.length === 1 ? "" : "s"} · ${Math.round(totals.kcal)} kcal · ${Math.round(totals.proteinG)} g P`
                 : "Nothing logged"}
@@ -467,14 +467,14 @@ function MealSection({
           type="button"
           onClick={onAdd}
           aria-label={`Add food to ${MEAL_LABELS[meal]}`}
-          className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-stone-700 shadow-sm backdrop-blur transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+          className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/80 px-3 py-1.5 text-xs font-semibold text-ink-muted shadow-sm backdrop-blur transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 hover:text-emerald-700 dark:text-emerald-300"
         >
           <Plus size={12} />
           Add
         </button>
       </div>
       {entries.length > 0 && (
-        <ul className="divide-y divide-stone-100 border-t border-stone-100">
+        <ul className="divide-y divide-stone-100 border-t border-line">
           {entries.map((e) => {
             const t = entryTotals(e);
             return (
@@ -483,18 +483,18 @@ function MealSection({
                 className="flex items-center justify-between gap-3 px-4 py-2.5"
               >
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-stone-900">
+                  <p className="truncate text-sm font-medium text-ink">
                     {e.food.name}
                   </p>
-                  <p className="text-[11px] text-stone-500">
+                  <p className="text-[11px] text-ink-muted">
                     {e.quantityServings} × {e.food.servingDescription}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-semibold tabular-nums text-stone-900">
+                  <p className="text-sm font-semibold tabular-nums text-ink">
                     {Math.round(t.kcal)} kcal
                   </p>
-                  <p className="text-[10px] text-stone-500">
+                  <p className="text-[10px] text-ink-muted">
                     {Math.round(t.proteinG)}P · {Math.round(t.carbG)}C ·{" "}
                     {Math.round(t.fatG)}F
                   </p>
@@ -503,7 +503,7 @@ function MealSection({
                   type="button"
                   onClick={() => onDeleteEntry(e)}
                   aria-label={`Remove ${e.food.name}`}
-                  className="text-stone-400 transition-colors hover:text-red-600"
+                  className="text-ink-faint transition-colors hover:text-red-600 dark:text-red-400"
                 >
                   <Trash2 size={13} />
                 </button>

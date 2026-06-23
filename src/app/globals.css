@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark mode is opt-in via data-theme="dark" on <html> (set by SettingsStore +
+   a no-flash inline script in layout.tsx). Light stays the default. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* ─── Pantry Pop theme tokens ────────────────────────────────────────────
    Canonical palette lives in `src/lib/design/tokens.ts` (PANTRY_POP).
    These CSS variables expose the same values to global styles, third-
@@ -13,11 +17,17 @@
   --surface-soft: #fff1d9; /* soft card tint */
   --oat: #f6e7cf;
   --border-soft: #e8d8c4;
+  --surface-sunken: #f6e7cf; /* inputs / wells / tracks */
+  --line: #e8d8c4;
+  --line-strong: #d8c4ac;
 
   /* Text */
   --text-main: #241a12; /* espresso */
   --text-muted: #6b5a4a;
   --foreground: var(--text-main);
+  --ink: #241a12;
+  --ink-muted: #6b5a4a;
+  --ink-faint: #a39685;
 
   /* Primary action — basil green + deeper 3D shadow */
   --primary: #2fbf71;
@@ -45,8 +55,51 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* Semantic surface/text/line tokens — utilities like bg-surface, text-ink,
+     border-line read these and auto-flip in the dark scope below. */
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* ─── Dark theme — warm charcoal. Opt-in via data-theme="dark" on <html>.
+   Overriding the semantic tokens here flips every bg-surface / text-ink /
+   border-line utility at once. The stone-50/100/200/300 re-point is a safety
+   net for any neutral utility not yet migrated (those four shades are used
+   only as surfaces/borders in this codebase). We never touch --color-white
+   (text-white must stay white) or stone-400..900. ──────────────────────── */
+[data-theme="dark"] {
+  --background: #120e0b;
+  --surface: #1c1714;
+  --surface-soft: #262019;
+  --surface-sunken: #15110e;
+  --oat: #262019;
+  --border-soft: #3a312a;
+  --line: #3a312a;
+  --line-strong: #4d423a;
+
+  --text-main: #f3ece2;
+  --text-muted: #b6a896;
+  --foreground: var(--text-main);
+  --ink: #f3ece2;
+  --ink-muted: #b6a896;
+  --ink-faint: #8a7c6c;
+
+  /* Brand action green nudged brighter so it pops on dark. */
+  --primary: #34cf7c;
+
+  /* Safety net for un-migrated neutral utilities. */
+  --color-stone-50: #1c1714;
+  --color-stone-100: #15110e;
+  --color-stone-200: #3a312a;
+  --color-stone-300: #4d423a;
 }
 
 html,

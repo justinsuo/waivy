@@ -85,17 +85,17 @@ export function ExerciseLogger({
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-white shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-md sm:rounded-3xl">
-        <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
+      <div className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-surface shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-md sm:rounded-3xl">
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div className="flex items-center gap-2.5">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-sm shadow-emerald-200">
               <Dumbbell size={18} />
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
                 Nourish
               </p>
-              <p className="text-sm font-semibold text-stone-900">
+              <p className="text-sm font-semibold text-ink">
                 Log exercise
               </p>
             </div>
@@ -103,7 +103,7 @@ export function ExerciseLogger({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-stone-500 transition-colors hover:bg-stone-100"
+            className="rounded-full p-2 text-ink-muted transition-colors hover:bg-surface-sunken"
             aria-label="Close"
           >
             <X size={18} />
@@ -112,7 +112,7 @@ export function ExerciseLogger({
 
         <div className="space-y-4 px-5 py-5">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
               Type
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -130,7 +130,7 @@ export function ExerciseLogger({
                     className={
                       active
                         ? "rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                        : "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+                        : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                     }
                   >
                     {EXERCISE_DEFAULTS[k].label}
@@ -141,7 +141,7 @@ export function ExerciseLogger({
           </div>
 
           <label className="block">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
               Name (optional)
             </span>
             <input
@@ -149,13 +149,13 @@ export function ExerciseLogger({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={EXERCISE_DEFAULTS[kind].label}
-              className="mt-1 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+              className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
             />
           </label>
 
           <div className="grid grid-cols-2 gap-3">
             <label className="block">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
                 Minutes
               </span>
               <input
@@ -167,11 +167,11 @@ export function ExerciseLogger({
                 onChange={(e) => {
                   setMinutes(parseInt(e.target.value, 10) || 0);
                 }}
-                className="mt-1 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-lg font-semibold tabular-nums text-stone-900 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+                className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-lg font-semibold tabular-nums text-ink focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
               />
             </label>
             <label className="block">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
                 Calories burned
               </span>
               <input
@@ -184,12 +184,12 @@ export function ExerciseLogger({
                   setCalories(parseInt(e.target.value, 10) || 0);
                   setTouched(true);
                 }}
-                className="mt-1 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-lg font-semibold tabular-nums text-stone-900 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+                className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-lg font-semibold tabular-nums text-ink focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
               />
             </label>
           </div>
           {!touched && (
-            <p className="text-[11px] text-stone-500">
+            <p className="text-[11px] text-ink-muted">
               Auto-estimated from a conservative MET table. Tap to override.
             </p>
           )}
@@ -197,28 +197,28 @@ export function ExerciseLogger({
           <Button onClick={save}>Save to today</Button>
 
           {todayList.length > 0 && (
-            <div className="border-t border-stone-100 pt-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+            <div className="border-t border-line pt-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
                 Today
               </p>
               <ul className="mt-2 space-y-1.5">
                 {todayList.map((e) => (
                   <li
                     key={e.id}
-                    className="flex items-center justify-between gap-3 rounded-xl bg-stone-50 px-3 py-2 text-xs"
+                    className="flex items-center justify-between gap-3 rounded-xl bg-surface px-3 py-2 text-xs"
                   >
-                    <span className="text-stone-700">
+                    <span className="text-ink-muted">
                       {e.name} · {e.durationMinutes} min
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold tabular-nums text-emerald-700">
+                      <span className="font-semibold tabular-nums text-emerald-700 dark:text-emerald-300">
                         {e.caloriesBurned} kcal
                       </span>
                       <button
                         type="button"
                         onClick={() => remove(e.id)}
                         aria-label={`Delete ${e.name}`}
-                        className="text-stone-400 transition-colors hover:text-red-600"
+                        className="text-ink-faint transition-colors hover:text-red-600 dark:text-red-400"
                       >
                         <Trash2 size={12} />
                       </button>
@@ -229,7 +229,7 @@ export function ExerciseLogger({
             </div>
           )}
 
-          <p className="text-[11px] text-stone-500">
+          <p className="text-[11px] text-ink-muted">
             Calorie burn is an estimate based on duration and exercise type.
             Use a fitness tracker for higher accuracy.
           </p>

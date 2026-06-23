@@ -60,19 +60,19 @@ export default function RecipeStudioPage() {
       <ScrollReveal as="section" className="grid gap-4 sm:grid-cols-2">
         <Link
           href="/ai-chef"
-          className="group flex flex-col gap-3 rounded-3xl border border-stone-200 bg-white p-6 transition-all motion-safe:hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg"
+          className="group flex flex-col gap-3 rounded-3xl border border-line bg-surface p-6 transition-all motion-safe:hover:-translate-y-1 hover:border-violet-300 dark:border-violet-800 hover:shadow-lg"
         >
-          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-violet-100 text-violet-700 transition-colors group-hover:bg-violet-600 group-hover:text-white">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 transition-colors group-hover:bg-violet-600 group-hover:text-white">
             <Sparkles size={22} />
           </div>
-          <h2 className="text-xl font-semibold text-stone-900">
+          <h2 className="text-xl font-semibold text-ink">
             Let AI make a recipe
           </h2>
-          <p className="text-sm leading-relaxed text-stone-600">
+          <p className="text-sm leading-relaxed text-ink-muted">
             AI Chef generates an original recipe from your ingredients, budget,
             and equipment — with an AI image attached.
           </p>
-          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700">
+          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
             Generate with AI Chef
             <ArrowRight
               size={14}
@@ -82,19 +82,19 @@ export default function RecipeStudioPage() {
         </Link>
         <Link
           href="/recipe-studio/new"
-          className="group flex flex-col gap-3 rounded-3xl border border-stone-200 bg-white p-6 transition-all motion-safe:hover:-translate-y-1 hover:border-emerald-300 hover:shadow-lg"
+          className="group flex flex-col gap-3 rounded-3xl border border-line bg-surface p-6 transition-all motion-safe:hover:-translate-y-1 hover:border-emerald-300 dark:border-emerald-800 hover:shadow-lg"
         >
-          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-100 text-emerald-700 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
             <ChefHat size={22} />
           </div>
-          <h2 className="text-xl font-semibold text-stone-900">
+          <h2 className="text-xl font-semibold text-ink">
             Create my own recipe card
           </h2>
-          <p className="text-sm leading-relaxed text-stone-600">
+          <p className="text-sm leading-relaxed text-ink-muted">
             Build a recipe by hand. We&apos;ll auto-generate an image for it by
             default.
           </p>
-          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700">
+          <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
             Build my recipe card
             <ArrowRight
               size={14}
@@ -122,7 +122,7 @@ export default function RecipeStudioPage() {
         title="Delete this recipe?"
         body={
           <>
-            <span className="font-semibold text-stone-900">
+            <span className="font-semibold text-ink">
               &ldquo;{pendingDelete?.name}&rdquo;
             </span>{" "}
             and any generated image will be removed from this device. This
@@ -157,7 +157,7 @@ function Section({
         tone={tone}
       />
       {recipes.length === 0 ? (
-        <div className="mt-5 rounded-2xl border-2 border-dashed border-stone-200 bg-white px-6 py-10 text-center text-sm text-stone-600">
+        <div className="mt-5 rounded-2xl border-2 border-dashed border-line bg-surface px-6 py-10 text-center text-sm text-ink-muted">
           <span className="mb-2 block text-3xl" aria-hidden>
             🍳
           </span>
@@ -184,10 +184,10 @@ function RecipeMiniCard({
   const stored = getStoredRecipeImage(recipe.id);
   const src = recipe.image?.src ?? (stored?.b64 ? imageDataUrl(stored.b64) : null);
   return (
-    <div className="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
+    <div className="group overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
       <Link
         href={`/recipes/custom?id=${recipe.id}`}
-        className="relative block aspect-[4/3] bg-stone-100"
+        className="relative block aspect-[4/3] bg-surface-sunken"
       >
         {src ? (
           /* eslint-disable-next-line @next/next/no-img-element */
@@ -197,7 +197,7 @@ function RecipeMiniCard({
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-100 to-amber-50 text-stone-500">
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-100 to-amber-50 text-ink-muted">
             <ChefHat size={36} />
           </div>
         )}
@@ -216,11 +216,11 @@ function RecipeMiniCard({
       <div className="space-y-1 p-3">
         <Link
           href={`/recipes/custom?id=${recipe.id}`}
-          className="block text-sm font-semibold text-stone-900 hover:text-emerald-700"
+          className="block text-sm font-semibold text-ink hover:text-emerald-700 dark:text-emerald-300"
         >
           {recipe.name}
         </Link>
-        <p className="text-xs text-stone-500">
+        <p className="text-xs text-ink-muted">
           ${Number.isFinite(Number(recipe.estimatedCostPerServing)) ? Number(recipe.estimatedCostPerServing).toFixed(2) : "—"}/serving ·{" "}
           {recipe.totalTimeMinutes} min
         </p>
@@ -228,7 +228,7 @@ function RecipeMiniCard({
           <button
             type="button"
             onClick={() => onRemove(recipe.id)}
-            className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold text-stone-500 transition-colors hover:bg-red-50 hover:text-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold text-ink-muted transition-colors hover:bg-red-50 dark:bg-red-950/40 hover:text-red-700 dark:text-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
             aria-label={`Delete ${recipe.name}`}
             title="Delete this recipe — can't be undone"
           >

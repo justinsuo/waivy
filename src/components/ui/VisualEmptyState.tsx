@@ -14,13 +14,13 @@ import type { ReactNode } from "react";
 type Tone = "basil" | "carrot" | "butter" | "grape" | "teal" | "sky" | "pink";
 
 const TONE: Record<Tone, { wash: string; ring: string; chipA: string; chipB: string; chipC: string; title: string; body: string }> = {
-  basil:  { wash: "from-[#E8FAF0] via-white to-[#FFF8ED]", ring: "ring-[#B6E8CD]", chipA: "bg-[#2FBF71]", chipB: "bg-[#FFD166]", chipC: "bg-[#FF8A3D]", title: "text-[#0F5E33]", body: "text-[#16834A]" },
-  carrot: { wash: "from-[#FFE8D6] via-white to-[#FFF8ED]", ring: "ring-[#FFC79A]", chipA: "bg-[#FF8A3D]", chipB: "bg-[#FFD166]", chipC: "bg-[#7C5CFF]", title: "text-[#7C3309]", body: "text-[#9B3F0A]" },
-  butter: { wash: "from-[#FFF3CC] via-white to-[#FFF8ED]", ring: "ring-[#FFE08A]", chipA: "bg-[#FFC93D]", chipB: "bg-[#2FBF71]", chipC: "bg-[#FF8A3D]", title: "text-[#5C3700]", body: "text-[#7A4A00]" },
-  grape:  { wash: "from-[#EFE8FF] via-white to-[#FFF8ED]", ring: "ring-[#CDBEFF]", chipA: "bg-[#7C5CFF]", chipB: "bg-[#20C7A5]", chipC: "bg-[#FFD166]", title: "text-[#2A1B8A]", body: "text-[#3F2BB8]" },
-  teal:   { wash: "from-[#DCFAF1] via-white to-[#FFF8ED]", ring: "ring-[#A4ECD8]", chipA: "bg-[#20C7A5]", chipB: "bg-[#3BA7FF]", chipC: "bg-[#FF8A3D]", title: "text-[#08503D]", body: "text-[#0B6E55]" },
-  sky:    { wash: "from-[#E0F2FE] via-white to-[#FFF8ED]", ring: "ring-[#BAE6FD]", chipA: "bg-[#3BA7FF]", chipB: "bg-[#2FBF71]", chipC: "bg-[#FFD166]", title: "text-[#0B4F7B]", body: "text-[#1F6FA8]" },
-  pink:   { wash: "from-[#FFE3EC] via-white to-[#FFF8ED]", ring: "ring-[#F9B6CD]", chipA: "bg-[#FF6B9E]", chipB: "bg-[#FFD166]", chipC: "bg-[#2FBF71]", title: "text-[#73214A]", body: "text-[#A23163]" },
+  basil:  { wash: "from-[#E8FAF0] via-surface to-[#FFF8ED]", ring: "ring-[#B6E8CD] dark:ring-white/10", chipA: "bg-[#2FBF71]", chipB: "bg-[#FFD166]", chipC: "bg-[#FF8A3D]", title: "text-[#0F5E33] dark:text-[#6FE0A5]", body: "text-[#16834A] dark:text-[#6FE0A5]" },
+  carrot: { wash: "from-[#FFE8D6] via-surface to-[#FFF8ED]", ring: "ring-[#FFC79A] dark:ring-white/10", chipA: "bg-[#FF8A3D]", chipB: "bg-[#FFD166]", chipC: "bg-[#7C5CFF]", title: "text-[#7C3309] dark:text-[#F2B07A]", body: "text-[#9B3F0A] dark:text-[#F2B07A]" },
+  butter: { wash: "from-[#FFF3CC] via-surface to-[#FFF8ED]", ring: "ring-[#FFE08A] dark:ring-white/10", chipA: "bg-[#FFC93D] dark:bg-[#33280C]", chipB: "bg-[#2FBF71]", chipC: "bg-[#FF8A3D]", title: "text-[#5C3700] dark:text-[#F2C97A]", body: "text-[#7A4A00] dark:text-[#F2C97A]" },
+  grape:  { wash: "from-[#EFE8FF] via-surface to-[#FFF8ED]", ring: "ring-[#CDBEFF] dark:ring-white/10", chipA: "bg-[#7C5CFF]", chipB: "bg-[#20C7A5]", chipC: "bg-[#FFD166]", title: "text-[#2A1B8A] dark:text-[#C3B5FF]", body: "text-[#3F2BB8] dark:text-[#C3B5FF]" },
+  teal:   { wash: "from-[#DCFAF1] via-surface to-[#FFF8ED]", ring: "ring-[#A4ECD8] dark:ring-white/10", chipA: "bg-[#20C7A5]", chipB: "bg-[#3BA7FF]", chipC: "bg-[#FF8A3D]", title: "text-[#08503D] dark:text-[#6FE0A5]", body: "text-[#0B6E55] dark:text-[#6FE0C8]" },
+  sky:    { wash: "from-[#E0F2FE] via-surface to-[#FFF8ED]", ring: "ring-[#BAE6FD] dark:ring-white/10", chipA: "bg-[#3BA7FF]", chipB: "bg-[#2FBF71]", chipC: "bg-[#FFD166]", title: "text-[#0B4F7B] dark:text-[#8FD0F5]", body: "text-[#1F6FA8] dark:text-[#8FD0F5]" },
+  pink:   { wash: "from-[#FFE3EC] via-surface to-[#FFF8ED]", ring: "ring-[#F9B6CD] dark:ring-white/10", chipA: "bg-[#FF6B9E]", chipB: "bg-[#FFD166]", chipC: "bg-[#2FBF71]", title: "text-[#73214A] dark:text-[#F5A8C6]", body: "text-[#A23163] dark:text-[#F5A8C6]" },
 };
 
 export function VisualEmptyState({

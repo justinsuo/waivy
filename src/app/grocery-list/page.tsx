@@ -140,7 +140,7 @@ export default function GroceryListPage() {
           }
         />
       ) : (
-        <ScrollReveal as="section" className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+        <ScrollReveal as="section" className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <SectionHeading
               eyebrow={
@@ -151,7 +151,7 @@ export default function GroceryListPage() {
               title={
                 <span className="inline-flex items-baseline gap-3">
                   <AnimatedNumber value={grocery.length} duration={500} />{" "}
-                  <span className="text-base font-normal text-stone-500">
+                  <span className="text-base font-normal text-ink-muted">
                     {grocery.length === 1 ? "item" : "items"}
                   </span>
                 </span>
@@ -161,10 +161,10 @@ export default function GroceryListPage() {
               className="flex-1"
             />
             <div className="rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 px-5 py-3 text-right shadow-sm ring-1 ring-inset ring-emerald-200">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                 Estimated total
               </p>
-              <p className="text-2xl font-bold text-emerald-900">
+              <p className="text-2xl font-bold text-emerald-900 dark:text-emerald-300">
                 <AnimatedNumber
                   value={grouped.total}
                   duration={900}
@@ -173,7 +173,7 @@ export default function GroceryListPage() {
                 />
               </p>
               {grouped.unchecked < grouped.total && (
-                <p className="text-xs text-emerald-700">
+                <p className="text-xs text-emerald-700 dark:text-emerald-300">
                   Remaining: $
                   <AnimatedNumber
                     value={grouped.unchecked}
@@ -188,12 +188,12 @@ export default function GroceryListPage() {
           <div className="space-y-5">
             {Array.from(grouped.map.entries()).map(([cat, items]) => (
               <div key={cat}>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                   {cat === "custom"
                     ? "Custom / AI-recognized"
                     : CATEGORY_LABEL[cat]}
                 </p>
-                <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-100">
+                <ul className="divide-y divide-stone-100 rounded-2xl border border-line">
                   {items.map((item) => (
                     <li
                       key={item.id}
@@ -203,21 +203,21 @@ export default function GroceryListPage() {
                         type="checkbox"
                         checked={item.checked}
                         onChange={() => toggleGroceryChecked(item.id)}
-                        className="mt-1 h-4 w-4 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"
+                        className="mt-1 h-4 w-4 rounded border-line-strong text-emerald-600 dark:text-emerald-400 focus:ring-emerald-500"
                         aria-label={`Check ${item.name}`}
                       />
                       <div className="min-w-0 flex-1">
                         <p
                           className={
                             item.checked
-                              ? "text-sm font-medium text-stone-500 line-through"
-                              : "text-sm font-medium text-stone-900"
+                              ? "text-sm font-medium text-ink-muted line-through"
+                              : "text-sm font-medium text-ink"
                           }
                         >
                           {item.name}
                         </p>
                         {item.recipeIds.length > 0 && (
-                          <p className="mt-0.5 text-xs text-stone-500">
+                          <p className="mt-0.5 text-xs text-ink-muted">
                             for{" "}
                             {item.recipeIds.slice(0, 2).map((rid, i) => {
                               const r = RECIPE_MAP.get(rid);
@@ -226,7 +226,7 @@ export default function GroceryListPage() {
                                 <span key={rid}>
                                   <Link
                                     href={`/recipes/${rid}`}
-                                    className="text-emerald-700 hover:underline"
+                                    className="text-emerald-700 dark:text-emerald-300 hover:underline"
                                   >
                                     {r.name}
                                   </Link>
@@ -242,12 +242,12 @@ export default function GroceryListPage() {
                         )}
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-semibold text-stone-900">
+                        <p className="text-sm font-semibold text-ink">
                           ${item.cost.toFixed(2)}
                         </p>
                         <button
                           onClick={() => removeGroceryItem(item.id)}
-                          className="mt-0.5 text-xs text-stone-400 hover:text-red-600"
+                          className="mt-0.5 text-xs text-ink-faint hover:text-red-600 dark:text-red-400"
                           aria-label={`Remove ${item.name}`}
                         >
                           remove
@@ -263,7 +263,7 @@ export default function GroceryListPage() {
       )}
 
       {smartBuys.length > 0 && (
-        <ScrollReveal as="section" className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 via-amber-50/70 to-white p-5 sm:p-6">
+        <ScrollReveal as="section" className="rounded-3xl border border-amber-200 dark:border-amber-900 bg-gradient-to-br from-amber-50 via-amber-50/70 to-surface p-5 sm:p-6">
           <SectionHeading
             eyebrow={
               <span className="inline-flex items-center gap-1.5">
@@ -284,14 +284,14 @@ export default function GroceryListPage() {
               return (
                 <div
                   key={sb.ingredientId}
-                  className="flex items-center justify-between gap-3 rounded-2xl border border-amber-100 bg-white p-3 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
+                  className="flex items-center justify-between gap-3 rounded-2xl border border-amber-100 dark:border-amber-900 bg-surface p-3 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
                   style={{ animationDelay: `${i * 50}ms` }}
                 >
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-stone-900">
+                    <p className="truncate text-sm font-semibold text-ink">
                       {ing.name}
                     </p>
-                    <p className="mt-0.5 text-xs text-amber-800">
+                    <p className="mt-0.5 text-xs text-amber-800 dark:text-amber-300">
                       Unlocks{" "}
                       <span className="font-semibold">
                         <AnimatedNumber value={sb.unlocks} duration={520} />
@@ -320,7 +320,7 @@ export default function GroceryListPage() {
         body={
           <>
             This removes all{" "}
-            <span className="font-semibold text-stone-900">{grocery.length}</span>{" "}
+            <span className="font-semibold text-ink">{grocery.length}</span>{" "}
             item{grocery.length === 1 ? "" : "s"} from your list. Your pantry
             and saved recipes aren&apos;t affected.
           </>

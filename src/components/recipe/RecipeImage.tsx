@@ -50,7 +50,7 @@ export function RecipeImage({
     <figure className={clsx("relative w-full", className)}>
       <div
         className={clsx(
-          "relative overflow-hidden bg-stone-100",
+          "relative overflow-hidden bg-surface-sunken",
           aspect,
           radius,
         )}
@@ -93,13 +93,13 @@ export function RecipeImage({
       </div>
 
       {showAttribution && img && img.attributionText && (
-        <figcaption className="mt-2 text-[11px] text-stone-500">
+        <figcaption className="mt-2 text-[11px] text-ink-muted">
           {img.attributionText}.{" "}
           <a
             href={img.sourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="underline hover:text-stone-700"
+            className="underline hover:text-ink-muted"
           >
             Source
           </a>
@@ -127,12 +127,18 @@ function Fallback({
   return (
     <div
       className={clsx(
-        "flex h-full w-full flex-col items-center justify-center bg-gradient-to-br to-white",
+        "relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-br to-surface",
         accentGradient,
       )}
     >
+      {/* Dim the bright accent tint on dark so the placeholder reads as a muted
+          glow instead of a glowing block. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden bg-black/30 dark:block"
+      />
       <span
-        className={variant === "hero" ? "text-[8rem]" : "text-7xl"}
+        className={clsx("relative z-10", variant === "hero" ? "text-[8rem]" : "text-7xl")}
         aria-hidden
       >
         {recipe.emoji}

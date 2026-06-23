@@ -55,7 +55,7 @@ export function HighlightedMatch({
     parts.push(
       <mark
         key={i}
-        className="rounded bg-emerald-100 px-0.5 font-semibold text-emerald-900"
+        className="rounded bg-emerald-100 dark:bg-emerald-900/40 px-0.5 font-semibold text-emerald-900 dark:text-emerald-300"
       >
         {text.slice(start, end)}
       </mark>,

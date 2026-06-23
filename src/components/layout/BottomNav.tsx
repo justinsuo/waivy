@@ -73,7 +73,7 @@ export function BottomNav() {
     <nav
       aria-label="Quick navigation"
       className={clsx(
-        "fixed inset-x-0 bottom-0 z-40 border-t border-[#E8D8C4] bg-[#FFF8ED]/95 backdrop-blur transition-transform duration-200 md:hidden",
+        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-background/95 backdrop-blur transition-transform duration-200 md:hidden",
         "pb-[env(safe-area-inset-bottom)]",
         hiddenByInput && "translate-y-full",
       )}
@@ -105,7 +105,7 @@ export function BottomNav() {
                   <span
                     className={clsx(
                       "mt-1 max-w-full truncate text-[10px] font-semibold uppercase tracking-wide",
-                      active ? "text-emerald-700" : "text-stone-600",
+                      active ? "text-emerald-700 dark:text-emerald-400" : "text-ink-muted",
                     )}
                   >
                     {link.label}
@@ -122,7 +122,7 @@ export function BottomNav() {
                 aria-current={active ? "page" : undefined}
                 className={clsx(
                   "flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
-                  active ? "text-emerald-700" : "text-stone-500",
+                  active ? "text-emerald-700 dark:text-emerald-400" : "text-ink-faint",
                 )}
               >
                 <span className="relative">
@@ -130,7 +130,7 @@ export function BottomNav() {
                   {active && (
                     <span
                       aria-hidden
-                      className="absolute -inset-1 -z-10 rounded-full bg-emerald-100 motion-safe:animate-[popIn_220ms_ease-out]"
+                      className="absolute -inset-1 -z-10 rounded-full bg-emerald-100 dark:bg-emerald-900/40 motion-safe:animate-[popIn_220ms_ease-out]"
                     />
                   )}
                 </span>

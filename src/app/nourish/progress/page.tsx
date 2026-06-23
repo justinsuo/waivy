@@ -38,18 +38,18 @@ export default function NourishProgressPage() {
       {hydrated && targets ? (
         <WeeklyReview diary={diary} weights={weights} targets={targets} />
       ) : hydrated ? (
-        <div className="rounded-3xl border border-stone-200 bg-white p-6 text-sm text-stone-700 shadow-sm">
+        <div className="rounded-3xl border border-line bg-surface p-6 text-sm text-ink-muted shadow-sm">
           Set up goals on the{" "}
           <Link
             href="/nourish/goals"
-            className="font-semibold text-emerald-700 hover:underline"
+            className="font-semibold text-emerald-700 dark:text-emerald-300 hover:underline"
           >
             Goals page
           </Link>{" "}
           to see weekly review.
         </div>
       ) : (
-        <div className="h-32 animate-pulse rounded-3xl bg-stone-100" />
+        <div className="h-32 animate-pulse rounded-3xl bg-surface-sunken" />
       )}
       <TrendsView />
     </NourishShell>

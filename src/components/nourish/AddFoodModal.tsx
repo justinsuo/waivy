@@ -65,56 +65,56 @@ function FoodResultCard({
   const [meal, setMeal] = useState<MealSlot>(defaultMeal);
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-white">
+    <div className="rounded-xl border border-line bg-surface">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-start justify-between gap-3 px-4 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500 rounded-xl"
       >
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-stone-900">{food.name}</p>
+          <p className="truncate text-sm font-semibold text-ink">{food.name}</p>
           {food.brand && (
-            <p className="truncate text-[11px] text-stone-400">{food.brand}</p>
+            <p className="truncate text-[11px] text-ink-faint">{food.brand}</p>
           )}
-          <p className="text-[11px] text-stone-500">per {food.servingDescription}</p>
+          <p className="text-[11px] text-ink-muted">per {food.servingDescription}</p>
         </div>
         <div className="flex shrink-0 items-center gap-3">
           <div className="text-right">
-            <p className="text-sm font-bold text-stone-900">{food.kcal} kcal</p>
-            <p className="text-[10px] text-stone-400">
+            <p className="text-sm font-bold text-ink">{food.kcal} kcal</p>
+            <p className="text-[10px] text-ink-faint">
               P {food.proteinG}g · C {food.carbG}g · F {food.fatG}g
             </p>
           </div>
-          {open ? <ChevronUp size={14} className="text-stone-400" /> : <ChevronDown size={14} className="text-stone-400" />}
+          {open ? <ChevronUp size={14} className="text-ink-faint" /> : <ChevronDown size={14} className="text-ink-faint" />}
         </div>
       </button>
 
       {open && (
-        <div className="border-t border-stone-100 px-4 py-3 space-y-3">
+        <div className="border-t border-line px-4 py-3 space-y-3">
           {/* Serving count */}
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-stone-600 w-16 shrink-0">Servings</span>
+            <span className="text-xs font-medium text-ink-muted w-16 shrink-0">Servings</span>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setServings((s) => Math.max(0.5, parseFloat((s - 0.5).toFixed(1))))}
-                className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               >−</button>
               <span className="w-8 text-center text-sm font-semibold tabular-nums">{servings}</span>
               <button
                 type="button"
                 onClick={() => setServings((s) => parseFloat((s + 0.5).toFixed(1)))}
-                className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               >+</button>
             </div>
-            <span className="text-xs text-stone-400">
+            <span className="text-xs text-ink-faint">
               = {Math.round(food.kcal * servings)} kcal
             </span>
           </div>
 
           {/* Meal picker */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-medium text-stone-600 w-16 shrink-0" id="add-food-search-meal-label">Meal</span>
+            <span className="text-xs font-medium text-ink-muted w-16 shrink-0" id="add-food-search-meal-label">Meal</span>
             <div role="radiogroup" aria-labelledby="add-food-search-meal-label" className="flex flex-wrap items-center gap-2">
               {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
                 <SelectablePill
@@ -161,20 +161,20 @@ function SearchTab({
   return (
     <div className="space-y-3">
       {usingDemoKey() && (
-        <p className="rounded-xl bg-amber-50 border border-amber-200 px-3 py-2 text-[11px] text-amber-700">
+        <p className="rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 px-3 py-2 text-[11px] text-amber-700 dark:text-amber-300">
           ⚡ Using demo search key — limited to 30 requests/hour. Add{" "}
-          <code className="bg-amber-100 px-1 rounded">NEXT_PUBLIC_USDA_API_KEY</code> for unlimited.
+          <code className="bg-amber-100 dark:bg-amber-900/40 px-1 rounded">NEXT_PUBLIC_USDA_API_KEY</code> for unlimited.
         </p>
       )}
       <div className="relative">
-        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
+        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint pointer-events-none" />
         <input
           type="text"
           placeholder="Search foods, e.g. chicken breast, oats…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           autoFocus
-          className="w-full rounded-xl border border-stone-300 pl-9 pr-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          className="w-full rounded-xl border border-line-strong pl-9 pr-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
         {loading && (
           <Loader2 size={15} className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin text-emerald-500" />
@@ -182,11 +182,11 @@ function SearchTab({
       </div>
 
       {error && (
-        <p className="rounded-xl bg-rose-50 px-3 py-2 text-xs text-rose-700">{error}</p>
+        <p className="rounded-xl bg-rose-50 dark:bg-rose-950/40 px-3 py-2 text-xs text-rose-700 dark:text-rose-300">{error}</p>
       )}
 
       {query.trim().length >= 2 && !loading && results.length === 0 && !error && (
-        <p className="text-center text-sm text-stone-400 py-4">No results for &ldquo;{query}&rdquo;</p>
+        <p className="text-center text-sm text-ink-faint py-4">No results for &ldquo;{query}&rdquo;</p>
       )}
 
       <div className="space-y-2 max-h-72 overflow-y-auto">
@@ -213,8 +213,8 @@ function RecentTab({
     return (
       <div className="flex flex-col items-center gap-2 py-8 text-center">
         <Clock size={28} className="text-stone-300" />
-        <p className="text-sm font-medium text-stone-500">No recent foods yet</p>
-        <p className="text-xs text-stone-400">
+        <p className="text-sm font-medium text-ink-muted">No recent foods yet</p>
+        <p className="text-xs text-ink-faint">
           Foods you log will appear here for fast re-logging.
         </p>
       </div>
@@ -254,18 +254,18 @@ function RecipesTab({
   return (
     <div className="space-y-3">
       <div className="relative">
-        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
+        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint pointer-events-none" />
         <input
           type="text"
           placeholder="Filter recipes…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-xl border border-stone-300 pl-9 pr-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+          className="w-full rounded-xl border border-line-strong pl-9 pr-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
         />
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-center text-sm text-stone-400 py-4">
+        <p className="text-center text-sm text-ink-faint py-4">
           No recipes match &ldquo;{query}&rdquo;
         </p>
       )}
@@ -348,17 +348,17 @@ function CustomFoodTab({
   }
 
   const inputCls =
-    "w-full rounded-xl border border-stone-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
+    "w-full rounded-xl border border-line-strong px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
 
   return (
     <div className="space-y-3">
       <label className="block space-y-1">
-        <span className="text-xs font-medium text-stone-700">Food name *</span>
+        <span className="text-xs font-medium text-ink-muted">Food name *</span>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Homemade granola" className={inputCls} />
       </label>
 
       <label className="block space-y-1">
-        <span className="text-xs font-medium text-stone-700">Serving size</span>
+        <span className="text-xs font-medium text-ink-muted">Serving size</span>
         <input type="text" value={serving} onChange={(e) => setServing(e.target.value)} placeholder="e.g. 100g, 1 cup" className={inputCls} />
       </label>
 
@@ -370,7 +370,7 @@ function CustomFoodTab({
           ["Fat (g) *", fatG, setFatG],
         ] as [string, string, (v: string) => void][]).map(([label, val, setter]) => (
           <label key={label} className="block space-y-1">
-            <span className="text-xs font-medium text-stone-700">{label}</span>
+            <span className="text-xs font-medium text-ink-muted">{label}</span>
             <input
               type="number"
               min={0}
@@ -383,7 +383,7 @@ function CustomFoodTab({
       </div>
 
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs font-medium text-stone-600" id="custom-food-meal-label">Meal:</span>
+        <span className="text-xs font-medium text-ink-muted" id="custom-food-meal-label">Meal:</span>
         <div role="radiogroup" aria-labelledby="custom-food-meal-label" className="flex flex-wrap items-center gap-2">
           {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
             <SelectablePill key={id} active={meal === id} onClick={() => setMeal(id)} ariaSemantics="checked" showCheck={false} size="sm">
@@ -440,11 +440,11 @@ function QuickAddTab({
   }
 
   const inputCls =
-    "w-full rounded-xl border border-stone-300 px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
+    "w-full rounded-xl border border-line-strong px-3 py-2.5 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-stone-500">
+      <p className="text-xs text-ink-muted">
         Just enter calories (required) and optional macros — no food name needed.
       </p>
 
@@ -456,14 +456,14 @@ function QuickAddTab({
           ["Fat (g)", fatG, setFatG],
         ] as [string, string, (v: string) => void][]).map(([label, val, setter]) => (
           <label key={label} className="block space-y-1">
-            <span className="text-xs font-medium text-stone-700">{label}</span>
+            <span className="text-xs font-medium text-ink-muted">{label}</span>
             <input type="number" min={0} value={val} onChange={(e) => setter(e.target.value)} className={inputCls} />
           </label>
         ))}
       </div>
 
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs font-medium text-stone-600" id="quick-add-meal-label">Meal:</span>
+        <span className="text-xs font-medium text-ink-muted" id="quick-add-meal-label">Meal:</span>
         <div role="radiogroup" aria-labelledby="quick-add-meal-label" className="flex flex-wrap items-center gap-2">
           {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
             <SelectablePill key={id} active={meal === id} onClick={() => setMeal(id)} ariaSemantics="checked" showCheck={false} size="sm">
@@ -591,24 +591,24 @@ export function AddFoodModal({ onClose, onLogged, defaultMeal = "lunch" }: Props
         role="dialog"
         aria-modal="true"
         aria-label="Add food"
-        className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-lg rounded-2xl border border-stone-200 bg-white shadow-xl motion-safe:animate-[fadeUp_220ms_ease-out] flex flex-col max-h-[85vh]"
+        className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-lg rounded-2xl border border-line bg-surface shadow-xl motion-safe:animate-[fadeUp_220ms_ease-out] flex flex-col max-h-[85vh]"
       >
         {/* Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-stone-100 px-5 py-4">
-          <h2 className="text-base font-bold text-stone-900">Add food</h2>
+        <div className="flex shrink-0 items-center justify-between border-b border-line px-5 py-4">
+          <h2 className="text-base font-bold text-ink">Add food</h2>
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid h-8 w-8 place-items-center rounded-full text-stone-500 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="grid h-8 w-8 place-items-center rounded-full text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             <X size={16} />
           </button>
         </div>
 
         {/* Mode tabs — scrollable on narrow screens */}
-        <div className="shrink-0 flex gap-0.5 overflow-x-auto border-b border-stone-100 px-3 pt-2.5 pb-0 scrollbar-hide">
+        <div className="shrink-0 flex gap-0.5 overflow-x-auto border-b border-line px-3 pt-2.5 pb-0 scrollbar-hide">
           {(
             [
               ["search",  "Search",   Search],
@@ -627,8 +627,8 @@ export function AddFoodModal({ onClose, onLogged, defaultMeal = "lunch" }: Props
               className={clsx(
                 "flex shrink-0 items-center gap-1 rounded-t-xl border-b-2 px-2.5 py-2 text-[11px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                 mode === id
-                  ? "border-emerald-500 text-emerald-700"
-                  : "border-transparent text-stone-500 hover:text-stone-700",
+                  ? "border-emerald-500 text-emerald-700 dark:text-emerald-300"
+                  : "border-transparent text-ink-muted hover:text-ink-muted",
               )}
             >
               <Icon size={11} />
@@ -642,7 +642,7 @@ export function AddFoodModal({ onClose, onLogged, defaultMeal = "lunch" }: Props
           {flash ? (
             <div className="flex flex-col items-center gap-2 py-8">
               <CheckCircle2 size={36} className="text-emerald-500 motion-safe:animate-[popIn_220ms_ease-out]" />
-              <p className="text-sm font-semibold text-stone-800">Logged!</p>
+              <p className="text-sm font-semibold text-ink">Logged!</p>
             </div>
           ) : (
             <>

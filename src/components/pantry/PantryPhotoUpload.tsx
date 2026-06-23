@@ -148,12 +148,12 @@ export function PantryPhotoUpload() {
   }
 
   return (
-    <section className="rounded-3xl border border-violet-200 bg-violet-50/50 p-5 sm:p-6">
+    <section className="rounded-3xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40/50 p-5 sm:p-6">
       <div>
-        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-violet-800">
+        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-violet-800 dark:text-violet-300">
           <Sparkles size={16} /> Scan your fridge
         </h2>
-        <p className="mt-1 text-sm text-violet-900">
+        <p className="mt-1 text-sm text-violet-900 dark:text-violet-300">
           Snap or upload a photo of your fridge or pantry — we&apos;ll spot the
           ingredients and add them. You can fill in anything we missed.
         </p>
@@ -163,13 +163,13 @@ export function PantryPhotoUpload() {
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <button
             onClick={() => cameraRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-2xl border border-violet-300 bg-white px-4 py-4 text-sm font-semibold text-violet-800 hover:bg-violet-100"
+            className="flex items-center justify-center gap-2 rounded-2xl border border-violet-300 dark:border-violet-800 bg-surface px-4 py-4 text-sm font-semibold text-violet-800 dark:text-violet-300 hover:bg-violet-100 dark:bg-violet-900/40"
           >
             <Camera size={18} /> Take photo
           </button>
           <button
             onClick={() => inputRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-2xl border border-violet-300 bg-white px-4 py-4 text-sm font-semibold text-violet-800 hover:bg-violet-100"
+            className="flex items-center justify-center gap-2 rounded-2xl border border-violet-300 dark:border-violet-800 bg-surface px-4 py-4 text-sm font-semibold text-violet-800 dark:text-violet-300 hover:bg-violet-100 dark:bg-violet-900/40"
           >
             <ImageIcon size={18} /> Upload image
           </button>
@@ -200,7 +200,7 @@ export function PantryPhotoUpload() {
 
       {previewUrl && (
         <div className="mt-4 space-y-4">
-          <div className="relative overflow-hidden rounded-2xl border border-violet-200 bg-white">
+          <div className="relative overflow-hidden rounded-2xl border border-violet-200 dark:border-violet-900 bg-surface">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={previewUrl}
@@ -209,7 +209,7 @@ export function PantryPhotoUpload() {
             />
             <button
               onClick={reset}
-              className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-stone-700 shadow-sm hover:bg-white"
+              className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-surface/90 text-ink-muted shadow-sm hover:bg-surface"
               aria-label="Remove image"
             >
               <X size={16} />
@@ -217,14 +217,14 @@ export function PantryPhotoUpload() {
           </div>
 
           {loading && (
-            <div className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm text-violet-800">
+            <div className="flex items-center gap-2 rounded-2xl bg-surface px-4 py-3 text-sm text-violet-800 dark:text-violet-300">
               <Loader2 size={16} className="animate-spin" /> Scanning your
               photo for ingredients…
             </div>
           )}
 
           {error && (
-            <div className="flex items-start gap-2 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800">
+            <div className="flex items-start gap-2 rounded-2xl bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm text-red-800 dark:text-red-300">
               <AlertCircle size={16} className="mt-0.5 flex-none" />
               <div>
                 <p className="font-medium">Couldn&apos;t identify ingredients</p>
@@ -235,9 +235,9 @@ export function PantryPhotoUpload() {
 
           {result && (
             <div className="space-y-3">
-              <div className="rounded-2xl bg-white p-4">
+              <div className="rounded-2xl bg-surface p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-stone-900">
+                  <h3 className="text-sm font-semibold text-ink">
                     Recognized ({result.recognized.length})
                   </h3>
                   {result.recognized.length > 0 && (
@@ -251,7 +251,7 @@ export function PantryPhotoUpload() {
                   )}
                 </div>
                 {result.recognized.length === 0 ? (
-                  <p className="mt-2 text-sm text-stone-600">
+                  <p className="mt-2 text-sm text-ink-muted">
                     Didn&apos;t spot anything from the catalog. Try a clearer
                     photo or add items manually below.
                   </p>
@@ -272,8 +272,8 @@ export function PantryPhotoUpload() {
                           }}
                           className={
                             already
-                              ? "inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-medium text-emerald-700"
-                              : "inline-flex items-center gap-1 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-800 hover:bg-emerald-50 hover:border-emerald-300"
+                              ? "inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300"
+                              : "inline-flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink hover:bg-emerald-50 dark:bg-emerald-950/40 hover:border-emerald-300 dark:border-emerald-800"
                           }
                         >
                           {already ? (
@@ -282,7 +282,7 @@ export function PantryPhotoUpload() {
                             <Plus size={12} />
                           )}
                           {ing?.name ?? r.name}
-                          <span className="ml-0.5 text-stone-400">
+                          <span className="ml-0.5 text-ink-faint">
                             {(r.confidence * 100).toFixed(0)}%
                           </span>
                         </button>
@@ -293,11 +293,11 @@ export function PantryPhotoUpload() {
               </div>
 
               {result.unrecognized.length > 0 && (
-                <div className="rounded-2xl bg-amber-50 p-4">
-                  <h3 className="text-sm font-semibold text-amber-900">
+                <div className="rounded-2xl bg-amber-50 dark:bg-amber-950/40 p-4">
+                  <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-300">
                     Not in our catalog ({result.unrecognized.length})
                   </h3>
-                  <p className="mt-1 text-xs text-amber-800">
+                  <p className="mt-1 text-xs text-amber-800 dark:text-amber-300">
                     We saw these but they aren&apos;t in our ingredient list.
                     Add them manually below if you want.
                   </p>
@@ -305,7 +305,7 @@ export function PantryPhotoUpload() {
                     {result.unrecognized.map((u, i) => (
                       <span
                         key={`${u}-${i}`}
-                        className="rounded-full bg-white px-3 py-1.5 text-xs text-amber-900"
+                        className="rounded-full bg-surface px-3 py-1.5 text-xs text-amber-900 dark:text-amber-300"
                       >
                         {u}
                       </span>

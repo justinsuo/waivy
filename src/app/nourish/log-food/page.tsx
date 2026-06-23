@@ -81,7 +81,7 @@ function LogFoodBody() {
       title="Log food."
       description="Six ways in. Pick the fastest for the moment — search for typed items, quick-add from a label, voice, photo, receipt, or pull from a recipe."
     >
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow="Logging method"
           title="How do you want to log it?"
@@ -100,7 +100,7 @@ function LogFoodBody() {
                   "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all",
                   active
                     ? `${TONE_TINT[tone]} text-white shadow-sm motion-safe:scale-[1.02]`
-                    : "border-stone-200 bg-white text-stone-700 hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50",
+                    : "border-line bg-surface text-ink-muted hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40",
                 )}
               >
                 <Icon size={12} />
@@ -225,7 +225,7 @@ function LogFoodBody() {
                   </Link>
                   <Link
                     href="/ai-chef"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface px-4 py-2 text-sm font-semibold text-ink hover:bg-surface"
                   >
                     <ChefHat size={14} />
                     AI Chef
@@ -252,7 +252,7 @@ function LogFoodBody() {
         />
       )}
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Nutrition estimates are for general tracking only and may vary by
         brand, portion, and preparation. Not medical advice.
       </p>
@@ -276,12 +276,12 @@ function Panel({
   tone: "emerald" | "sky" | "violet" | "amber" | "rose" | "indigo";
 }) {
   const TONE_BG: Record<string, string> = {
-    emerald: "from-emerald-50 to-white border-emerald-200/70",
-    sky: "from-sky-50 to-white border-sky-200/70",
-    violet: "from-violet-50 to-white border-violet-200/70",
-    amber: "from-amber-50 to-white border-amber-200/70",
-    rose: "from-rose-50 to-white border-rose-200/70",
-    indigo: "from-indigo-50 to-white border-indigo-200/70",
+    emerald: "from-emerald-50 to-surface border-emerald-200 dark:border-emerald-900/70",
+    sky: "from-sky-50 to-surface border-sky-200 dark:border-sky-900/70",
+    violet: "from-violet-50 to-surface border-violet-200 dark:border-violet-900/70",
+    amber: "from-amber-50 to-surface border-amber-200 dark:border-amber-900/70",
+    rose: "from-rose-50 to-surface border-rose-200 dark:border-rose-900/70",
+    indigo: "from-indigo-50 to-surface border-indigo-200 dark:border-indigo-900/70",
   };
   const TONE_ICON: Record<string, string> = {
     emerald: "bg-gradient-to-br from-emerald-500 to-emerald-700",
@@ -292,12 +292,12 @@ function Panel({
     indigo: "bg-gradient-to-br from-indigo-500 to-indigo-700",
   };
   const TONE_EYEBROW: Record<string, string> = {
-    emerald: "text-emerald-700",
-    sky: "text-sky-700",
-    violet: "text-violet-700",
-    amber: "text-amber-700",
-    rose: "text-rose-700",
-    indigo: "text-indigo-700",
+    emerald: "text-emerald-700 dark:text-emerald-300",
+    sky: "text-sky-700 dark:text-sky-300",
+    violet: "text-violet-700 dark:text-violet-300",
+    amber: "text-amber-700 dark:text-amber-300",
+    rose: "text-rose-700 dark:text-rose-300",
+    indigo: "text-indigo-700 dark:text-indigo-300",
   };
   return (
     <div
@@ -324,10 +324,10 @@ function Panel({
           >
             {eyebrow}
           </p>
-          <p className="mt-1 text-base font-semibold text-stone-900">
+          <p className="mt-1 text-base font-semibold text-ink">
             {title}
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">{body}</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted">{body}</p>
           <div className="mt-4">{cta}</div>
         </div>
       </div>

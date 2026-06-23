@@ -47,6 +47,8 @@ export interface AiSettings {
 
 export interface AppearanceSettings {
   textSize: "default" | "large" | "xlarge";
+  /** Color theme. "system" follows the OS prefers-color-scheme. */
+  theme: "system" | "light" | "dark";
   /** Manual reduce-motion, complements the prefers-reduced-motion media query. */
   reduceMotion: boolean;
 }
@@ -91,6 +93,7 @@ export const DEFAULT_SETTINGS: Settings = {
   },
   appearance: {
     textSize: "default",
+    theme: "light",
     reduceMotion: false,
   },
   feedback: {

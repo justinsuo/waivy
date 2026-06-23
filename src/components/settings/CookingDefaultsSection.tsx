@@ -90,7 +90,7 @@ export function CookingDefaultsSection() {
         description={`Recipes scale to ${c.servings} serving${c.servings === 1 ? "" : "s"} by default.`}
       >
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-stone-500">1</span>
+          <span className="text-xs font-medium text-ink-muted">1</span>
           <Slider
             label="Default servings"
             min={1}
@@ -99,7 +99,7 @@ export function CookingDefaultsSection() {
             value={c.servings}
             onChange={(n) => setCooking({ servings: n })}
           />
-          <span className="w-8 text-right text-sm font-semibold text-stone-900">
+          <span className="w-8 text-right text-sm font-semibold text-ink">
             {c.servings}
           </span>
         </div>
@@ -110,7 +110,7 @@ export function CookingDefaultsSection() {
         description={`Target cost ceiling: $${c.budgetPerServing.toFixed(2)} per serving.`}
       >
         <div className="flex items-center gap-3">
-          <span className="text-xs font-medium text-stone-500">$1</span>
+          <span className="text-xs font-medium text-ink-muted">$1</span>
           <Slider
             label="Budget per serving"
             min={1}
@@ -119,7 +119,7 @@ export function CookingDefaultsSection() {
             value={c.budgetPerServing}
             onChange={(n) => setCooking({ budgetPerServing: n })}
           />
-          <span className="w-12 text-right text-sm font-semibold text-stone-900">
+          <span className="w-12 text-right text-sm font-semibold text-ink">
             ${c.budgetPerServing.toFixed(2)}
           </span>
         </div>

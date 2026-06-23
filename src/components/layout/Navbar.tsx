@@ -63,7 +63,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#E8D8C4] bg-[#FFF8ED]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[#FFF8ED]/75">
+    <header className="sticky top-0 z-40 border-b border-line bg-background/90 backdrop-blur-md supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
@@ -84,11 +84,11 @@ export function Navbar() {
             </span>
           </span>
           <div className="flex flex-col leading-tight">
-            <span className="text-base font-extrabold tracking-tight text-[#241A12] transition-colors group-hover:text-[#16834A]">
+            <span className="text-base font-extrabold tracking-tight text-ink transition-colors group-hover:text-[#16834A] dark:group-hover:text-[#6FE0A5]">
               Waivy
             </span>
             {/* Tagline only on larger screens so it never crowds the nav. */}
-            <span className="hidden text-[11px] text-[#6B5A4A] lg:inline">
+            <span className="hidden text-[11px] text-ink-muted lg:inline">
               Cook smart on a student budget.
             </span>
           </div>
@@ -112,10 +112,10 @@ export function Navbar() {
                   className={clsx(
                     "group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                     active
-                      ? "text-stone-900"
+                      ? "text-ink"
                       : link.emphasis
-                        ? "border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
-                        : "text-stone-700 hover:bg-stone-100",
+                        ? "border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300 dark:hover:bg-emerald-900/40"
+                        : "text-ink-muted hover:bg-surface-sunken",
                   )}
                 >
                   <Icon
@@ -149,7 +149,7 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
             aria-label={open ? "Close menu" : "More navigation"}
-            className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="inline-flex h-10 items-center justify-center gap-1.5 rounded-xl px-2.5 text-sm font-medium text-ink-muted hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
             <span className="hidden text-sm md:inline">{open ? "" : "More"}</span>
@@ -170,7 +170,7 @@ export function Navbar() {
           <nav
             id="mobile-nav-drawer"
             aria-label="Main navigation"
-            className="absolute inset-x-0 top-full z-40 border-b border-stone-200 bg-white shadow-lg motion-safe:animate-[fadeUp_220ms_ease-out]"
+            className="absolute inset-x-0 top-full z-40 border-b border-line bg-surface shadow-lg motion-safe:animate-[fadeUp_220ms_ease-out]"
           >
             <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
               {/* Primary group */}
@@ -185,9 +185,9 @@ export function Navbar() {
                         aria-current={active ? "page" : undefined}
                         className={clsx(
                           "flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
-                          active ? "bg-emerald-50 text-emerald-800"
-                          : link.emphasis ? "border border-emerald-300 bg-emerald-50 text-emerald-800"
-                          : "text-stone-700 hover:bg-stone-100",
+                          active ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300"
+                          : link.emphasis ? "border border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300"
+                          : "text-ink-muted hover:bg-surface-sunken",
                         )}
                       >
                         <Icon size={18} className={active ? "text-emerald-600" : undefined} />
@@ -202,7 +202,7 @@ export function Navbar() {
                 })}
               </ul>
               {/* Secondary group */}
-              <div className="my-2 border-t border-stone-100" />
+              <div className="my-2 border-t border-line" />
               <ul>
                 {links.filter((l) => !l.primary).map((link) => {
                   const Icon = link.icon;
@@ -214,7 +214,7 @@ export function Navbar() {
                         aria-current={active ? "page" : undefined}
                         className={clsx(
                           "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
-                          active ? "bg-emerald-50 text-emerald-800" : "text-stone-500 hover:bg-stone-100 hover:text-stone-700",
+                          active ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300" : "text-ink-faint hover:bg-surface-sunken hover:text-ink-muted",
                         )}
                       >
                         <Icon size={16} className={active ? "text-emerald-600" : undefined} />

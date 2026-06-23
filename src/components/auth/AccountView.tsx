@@ -42,11 +42,11 @@ export function AccountView() {
   if (!enabled) {
     return (
       <Centered>
-        <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-stone-100 text-stone-500">
+        <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-surface-sunken text-ink-muted">
           <ShieldOff size={22} />
         </span>
-        <h1 className="mt-4 text-xl font-bold text-stone-900">Accounts aren&apos;t set up</h1>
-        <p className="mt-2 text-sm text-stone-600">
+        <h1 className="mt-4 text-xl font-bold text-ink">Accounts aren&apos;t set up</h1>
+        <p className="mt-2 text-sm text-ink-muted">
           Sign-in isn&apos;t configured on this build. Your data is saved locally on
           this device and works without an account.
         </p>
@@ -58,8 +58,8 @@ export function AccountView() {
   if (loading || !user) {
     return (
       <Centered>
-        <Loader2 size={24} className="mx-auto text-stone-400 motion-safe:animate-spin" />
-        <p className="mt-3 text-sm text-stone-500">Loading your account…</p>
+        <Loader2 size={24} className="mx-auto text-ink-faint motion-safe:animate-spin" />
+        <p className="mt-3 text-sm text-ink-muted">Loading your account…</p>
       </Centered>
     );
   }
@@ -95,9 +95,9 @@ export function AccountView() {
 
   return (
     <div className="mx-auto max-w-lg">
-      <h1 className="mb-5 text-2xl font-bold tracking-tight text-stone-900">Your account</h1>
+      <h1 className="mb-5 text-2xl font-bold tracking-tight text-ink">Your account</h1>
 
-      <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-line bg-surface p-6 shadow-sm">
         <div className="flex items-center gap-4">
           {user.photoURL ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -108,7 +108,7 @@ export function AccountView() {
               className="h-16 w-16 flex-none rounded-full object-cover ring-1 ring-stone-200"
             />
           ) : (
-            <span className="grid h-16 w-16 flex-none place-items-center rounded-full bg-emerald-100 text-lg font-bold text-emerald-700">
+            <span className="grid h-16 w-16 flex-none place-items-center rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-lg font-bold text-emerald-700 dark:text-emerald-300">
               {initials(user.displayName, user.email)}
             </span>
           )}
@@ -121,46 +121,46 @@ export function AccountView() {
                   onChange={(e) => setName(e.target.value)}
                   disabled={saving}
                   aria-label="Display name"
-                  className="min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-2.5 py-1.5 text-sm focus:border-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                  className="min-w-0 flex-1 rounded-lg border border-line-strong bg-surface px-2.5 py-1.5 text-sm focus:border-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 />
                 <button onClick={onSaveName} disabled={saving} aria-label="Save name"
                   className="grid h-8 w-8 place-items-center rounded-full bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50">
                   {saving ? <Loader2 size={15} className="motion-safe:animate-spin" /> : <Check size={15} />}
                 </button>
                 <button onClick={() => setEditing(false)} disabled={saving} aria-label="Cancel"
-                  className="grid h-8 w-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-stone-200">
+                  className="grid h-8 w-8 place-items-center rounded-full bg-surface-sunken text-ink-muted hover:bg-stone-200">
                   <X size={15} />
                 </button>
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <p className="truncate text-lg font-semibold text-stone-900">
+                <p className="truncate text-lg font-semibold text-ink">
                   {user.displayName || "No name set"}
                 </p>
                 <button
                   onClick={() => { setName(user.displayName || ""); setEditing(true); }}
                   aria-label="Edit display name"
-                  className="flex-none rounded-full p-1.5 text-stone-400 hover:bg-stone-100 hover:text-stone-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                  className="flex-none rounded-full p-1.5 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 >
                   <Pencil size={15} />
                 </button>
               </div>
             )}
-            <p className="truncate text-sm text-stone-500">{user.email}</p>
+            <p className="truncate text-sm text-ink-muted">{user.email}</p>
           </div>
         </div>
 
-        <dl className="mt-6 space-y-3 border-t border-stone-100 pt-5 text-sm">
+        <dl className="mt-6 space-y-3 border-t border-line pt-5 text-sm">
           <Row label="Sign-in method" value={provider} />
           <Row
             label="Email verified"
             value={
               user.emailVerified ? (
-                <span className="inline-flex items-center gap-1 text-emerald-700">
+                <span className="inline-flex items-center gap-1 text-emerald-700 dark:text-emerald-300">
                   <BadgeCheck size={15} /> Verified
                 </span>
               ) : (
-                <span className="text-amber-700">Not verified</span>
+                <span className="text-amber-700 dark:text-amber-300">Not verified</span>
               )
             }
           />
@@ -170,7 +170,7 @@ export function AccountView() {
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <Link
           href="/settings"
-          className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-sm font-medium text-stone-800 transition-colors hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="inline-flex items-center justify-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           <Settings size={16} /> Settings
         </Link>
@@ -180,7 +180,7 @@ export function AccountView() {
         </Button>
       </div>
 
-      <p className="mt-4 text-center text-xs text-stone-400">
+      <p className="mt-4 text-center text-xs text-ink-faint">
         Signing out keeps your pantry, recipes, and lists on this device.
       </p>
     </div>
@@ -190,8 +190,8 @@ export function AccountView() {
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <dt className="text-stone-500">{label}</dt>
-      <dd className="font-medium text-stone-800">{value}</dd>
+      <dt className="text-ink-muted">{label}</dt>
+      <dd className="font-medium text-ink">{value}</dd>
     </div>
   );
 }
@@ -199,7 +199,7 @@ function Row({ label, value }: { label: string; value: React.ReactNode }) {
 function Centered({ children }: { children: React.ReactNode }) {
   return (
     <div className="mx-auto max-w-md py-6">
-      <div className="rounded-3xl border border-stone-200 bg-white p-8 text-center shadow-sm">
+      <div className="rounded-3xl border border-line bg-surface p-8 text-center shadow-sm">
         {children}
       </div>
     </div>

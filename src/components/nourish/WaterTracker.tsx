@@ -56,10 +56,10 @@ export function WaterTracker() {
   const met = entry.mlConsumed >= safeGoal;
 
   return (
-    <div className="rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-4 shadow-sm space-y-3">
+    <div className="rounded-2xl border border-sky-200 dark:border-sky-900 bg-gradient-to-br from-sky-50 to-surface p-4 shadow-sm space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-sky-600">
+        <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">
           <Droplets size={13} />
           Water today
         </p>
@@ -67,7 +67,7 @@ export function WaterTracker() {
           type="button"
           onClick={() => setEditGoal((v) => !v)}
           aria-label="Set water goal"
-          className="grid h-6 w-6 place-items-center rounded-full text-stone-400 hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+          className="grid h-6 w-6 place-items-center rounded-full text-ink-faint hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
         >
           <Settings2 size={12} />
         </button>
@@ -75,8 +75,8 @@ export function WaterTracker() {
 
       {/* Goal editor */}
       {editGoal && (
-        <div className="flex items-center gap-2 rounded-xl bg-sky-50 border border-sky-200 px-3 py-2">
-          <span className="text-xs text-stone-600">Goal (ml):</span>
+        <div className="flex items-center gap-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-900 px-3 py-2">
+          <span className="text-xs text-ink-muted">Goal (ml):</span>
           <input
             type="number"
             min={500}
@@ -85,24 +85,24 @@ export function WaterTracker() {
             value={goalInput}
             onChange={(e) => setGoalInput(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter") saveGoal(); }}
-            className="w-20 rounded-lg border border-sky-300 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-sky-400"
+            className="w-20 rounded-lg border border-sky-300 dark:border-sky-800 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-sky-400"
             autoFocus
           />
-          <button type="button" onClick={saveGoal} className="text-xs font-medium text-sky-700 hover:underline">Save</button>
-          <button type="button" onClick={() => setEditGoal(false)} className="text-xs text-stone-400 hover:text-stone-600">Cancel</button>
+          <button type="button" onClick={saveGoal} className="text-xs font-medium text-sky-700 dark:text-sky-300 hover:underline">Save</button>
+          <button type="button" onClick={() => setEditGoal(false)} className="text-xs text-ink-faint hover:text-ink-muted">Cancel</button>
         </div>
       )}
 
       {/* Progress */}
       <div className="flex items-end gap-3">
         <div>
-          <p className="text-3xl font-bold tabular-nums text-stone-900">
+          <p className="text-3xl font-bold tabular-nums text-ink">
             {mlToDisplay(entry.mlConsumed)}
           </p>
-          <p className="text-xs text-stone-400">of {mlToDisplay(entry.goalMl)} goal · {pct}%</p>
+          <p className="text-xs text-ink-faint">of {mlToDisplay(entry.goalMl)} goal · {pct}%</p>
         </div>
         {met && (
-          <span className="mb-1 rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">
+          <span className="mb-1 rounded-full bg-sky-100 dark:bg-sky-900/40 px-2 py-0.5 text-[10px] font-semibold text-sky-700 dark:text-sky-300">
             Goal met! 🎉
           </span>
         )}
@@ -115,14 +115,14 @@ export function WaterTracker() {
             key={i}
             className={clsx(
               "h-5 flex-1 rounded-sm transition-colors",
-              i < glassesConsumed ? "bg-sky-400" : "bg-sky-100",
+              i < glassesConsumed ? "bg-sky-400" : "bg-sky-100 dark:bg-sky-900/40",
             )}
           />
         ))}
       </div>
 
       {/* Fill bar */}
-      <div className="h-2 overflow-hidden rounded-full bg-sky-100">
+      <div className="h-2 overflow-hidden rounded-full bg-sky-100 dark:bg-sky-900/40">
         <div
           className="h-full rounded-full bg-sky-400 motion-safe:transition-all motion-safe:duration-500"
           style={{ width: `${pct}%` }}
@@ -139,7 +139,7 @@ export function WaterTracker() {
             key={ml}
             type="button"
             onClick={() => update(entry.mlConsumed + ml)}
-            className="rounded-full border border-sky-200 bg-white px-2.5 py-1 text-xs font-medium text-sky-700 hover:bg-sky-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+            className="rounded-full border border-sky-200 dark:border-sky-900 bg-surface px-2.5 py-1 text-xs font-medium text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:bg-sky-950/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
           >
             +{mlToDisplay(ml)}
           </button>
@@ -156,7 +156,7 @@ export function WaterTracker() {
           type="button"
           onClick={() => update(entry.mlConsumed - 250)}
           aria-label="Remove 250ml"
-          className="grid h-7 w-7 place-items-center rounded-full border border-sky-200 text-sky-500 hover:bg-sky-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+          className="grid h-7 w-7 place-items-center rounded-full border border-sky-200 dark:border-sky-900 text-sky-500 hover:bg-sky-50 dark:bg-sky-950/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
         >
           <Minus size={13} />
         </button>

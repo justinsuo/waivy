@@ -50,20 +50,20 @@ import type { Ingredient, IngredientCategory } from "@/lib/types";
 // a chip with extra controls (toggle use-soon / remove) without
 // breaking CategoryChip's simple-label contract.
 const PANTRY_TONE = {
-  useSoon:  "bg-[#FFF3CC] text-[#5C3700] ring-[#FFE08A]",
-  fallback: "bg-[#FFF1D9] text-[#3A2A12] ring-[#E8D8C4]",
+  useSoon:  "bg-[#FFF3CC] dark:bg-[#2E2710] text-[#5C3700] dark:text-[#F2C97A] ring-[#FFE08A] dark:ring-white/10",
+  fallback: "bg-[#FFF1D9] dark:bg-[#262019] text-[#3A2A12] dark:text-[#E8D8C4] ring-[#E8D8C4] dark:ring-white/10",
 };
 const PANTRY_TONE_BY_CATEGORY: Record<string, string> = {
-  grain:     "bg-[#FFF3CC] text-[#7A4A00] ring-[#FFE08A]",
-  protein:   "bg-[#EFE8FF] text-[#3F2BB8] ring-[#CDBEFF]",
-  vegetable: "bg-[#E8FAF0] text-[#16834A] ring-[#B6E8CD]",
-  fruit:     "bg-[#FFE3EC] text-[#A23163] ring-[#F9B6CD]",
-  dairy:     "bg-[#E0F2FE] text-[#1F6FA8] ring-[#BAE6FD]",
-  canned:    "bg-[#FFE8D6] text-[#9B3F0A] ring-[#FFC79A]",
-  condiment: "bg-[#DCFAF1] text-[#0B6E55] ring-[#A4ECD8]",
-  spice:     "bg-[#FDE4E4] text-[#9B1C1C] ring-[#F8B4B4]",
-  frozen:    "bg-[#E0F2FE] text-[#1F6FA8] ring-[#BAE6FD]",
-  snack:     "bg-[#FFE3EC] text-[#A23163] ring-[#F9B6CD]",
+  grain:     "bg-[#FFF3CC] dark:bg-[#2E2710] text-[#7A4A00] dark:text-[#F2C97A] ring-[#FFE08A] dark:ring-white/10",
+  protein:   "bg-[#EFE8FF] dark:bg-[#221A3D] text-[#3F2BB8] dark:text-[#C3B5FF] ring-[#CDBEFF] dark:ring-white/10",
+  vegetable: "bg-[#E8FAF0] dark:bg-[#122E20] text-[#16834A] dark:text-[#6FE0A5] ring-[#B6E8CD] dark:ring-white/10",
+  fruit:     "bg-[#FFE3EC] dark:bg-[#3A1722] text-[#A23163] dark:text-[#F5A8C6] ring-[#F9B6CD] dark:ring-white/10",
+  dairy:     "bg-[#E0F2FE] dark:bg-[#102532] text-[#1F6FA8] dark:text-[#8FD0F5] ring-[#BAE6FD] dark:ring-white/10",
+  canned:    "bg-[#FFE8D6] dark:bg-[#33210F] text-[#9B3F0A] dark:text-[#F2B07A] ring-[#FFC79A] dark:ring-white/10",
+  condiment: "bg-[#DCFAF1] dark:bg-[#0F2E28] text-[#0B6E55] dark:text-[#6FE0C8] ring-[#A4ECD8] dark:ring-white/10",
+  spice:     "bg-[#FDE4E4] dark:bg-[#3A1717] text-[#9B1C1C] dark:text-[#F5A3A3] ring-[#F8B4B4] dark:ring-white/10",
+  frozen:    "bg-[#E0F2FE] dark:bg-[#102532] text-[#1F6FA8] dark:text-[#8FD0F5] ring-[#BAE6FD] dark:ring-white/10",
+  snack:     "bg-[#FFE3EC] dark:bg-[#3A1722] text-[#A23163] dark:text-[#F5A8C6] ring-[#F9B6CD] dark:ring-white/10",
 };
 
 export default function PantryPage() {
@@ -216,7 +216,7 @@ export default function PantryPage() {
         );
       })()}
 
-      <ScrollReveal as="section" className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <ScrollReveal as="section" className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -239,7 +239,7 @@ export default function PantryPage() {
                   ids: preset.ingredientIds,
                 })
               }
-              className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border border-stone-200 bg-gradient-to-br from-stone-50 to-white p-4 text-left transition-all motion-safe:hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
+              className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-stone-50 to-surface p-4 text-left transition-all motion-safe:hover:-translate-y-0.5 hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
               style={{ animationDelay: `${i * 40}ms` }}
             >
               <span
@@ -248,13 +248,13 @@ export default function PantryPage() {
               >
                 {preset.emoji}
               </span>
-              <p className="text-sm font-semibold text-stone-900 group-hover:text-emerald-800">
+              <p className="text-sm font-semibold text-ink group-hover:text-emerald-800 dark:text-emerald-300">
                 {preset.name}
               </p>
-              <p className="text-xs leading-relaxed text-stone-600">
+              <p className="text-xs leading-relaxed text-ink-muted">
                 {preset.description}
               </p>
-              <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+              <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                 +{preset.ingredientIds.length} items
               </span>
             </button>
@@ -272,7 +272,7 @@ export default function PantryPage() {
 
       <PantryAIChat />
 
-      <ScrollReveal as="section" className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <ScrollReveal as="section" className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -282,7 +282,7 @@ export default function PantryPage() {
           title={
             <span className="inline-flex items-baseline gap-3">
               <AnimatedNumber value={pantry.length} duration={520} />{" "}
-              <span className="text-base font-normal text-stone-500">
+              <span className="text-base font-normal text-ink-muted">
                 {pantry.length === 1 ? "ingredient" : "ingredients"}
               </span>
             </span>
@@ -291,7 +291,7 @@ export default function PantryPage() {
             pantry.length > 0 ? (
               <button
                 onClick={() => setConfirm({ kind: "clear" })}
-                className="text-xs font-medium text-stone-500 hover:text-red-600"
+                className="text-xs font-medium text-ink-muted hover:text-red-600 dark:text-red-400"
               >
                 Clear all
               </button>
@@ -302,17 +302,17 @@ export default function PantryPage() {
         <div className="relative mt-4">
           <Search
             size={16}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint"
           />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search to add ingredients (rice, eggs, tofu…)"
-            className="w-full rounded-full border border-stone-200 bg-stone-50 py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-white focus:outline-none"
+            className="w-full rounded-full border border-line bg-surface py-2.5 pl-10 pr-4 text-sm focus:border-emerald-400 focus:bg-surface focus:outline-none"
             aria-label="Search ingredients"
           />
           {filtered.length > 0 && (
-            <div className="absolute z-20 mt-2 max-h-72 w-full overflow-y-auto rounded-2xl border border-stone-200 bg-white shadow-lg">
+            <div className="absolute z-20 mt-2 max-h-72 w-full overflow-y-auto rounded-2xl border border-line bg-surface shadow-lg">
               {filtered.map((ing) => (
                 <button
                   key={ing.id}
@@ -320,10 +320,10 @@ export default function PantryPage() {
                     addPantryItem({ ingredientId: ing.id });
                     setSearch("");
                   }}
-                  className="flex w-full items-center justify-between px-4 py-2.5 text-left text-sm hover:bg-emerald-50"
+                  className="flex w-full items-center justify-between px-4 py-2.5 text-left text-sm hover:bg-emerald-50 dark:bg-emerald-950/40"
                 >
-                  <span className="font-medium text-stone-800">{ing.name}</span>
-                  <span className="text-xs text-stone-500">
+                  <span className="font-medium text-ink">{ing.name}</span>
+                  <span className="text-xs text-ink-muted">
                     {CATEGORY_LABEL[ing.category]}
                   </span>
                 </button>
@@ -333,7 +333,7 @@ export default function PantryPage() {
         </div>
 
         <div className="mt-5">
-          <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
+          <p className="text-xs font-medium uppercase tracking-wide text-ink-muted">
             Quick add staples
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -348,8 +348,8 @@ export default function PantryPage() {
                   onClick={() => addPantryItem({ ingredientId: id })}
                   className={
                     alreadyAdded
-                      ? "rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-medium text-emerald-700"
-                      : "inline-flex items-center gap-1 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                      ? "rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300"
+                      : "inline-flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                   }
                 >
                   {!alreadyAdded && <Plus size={12} />}
@@ -364,7 +364,7 @@ export default function PantryPage() {
           <div className="mt-6 space-y-4">
             {Array.from(grouped.entries()).map(([category, items]) => (
               <div key={category}>
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-stone-500">
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-ink-muted">
                   {category === "custom"
                     ? "Custom / AI-recognized"
                     : CATEGORY_LABEL[category]}
@@ -393,7 +393,7 @@ export default function PantryPage() {
                         </button>
                         <button
                           onClick={() => removePantryItem(ing.id)}
-                          className="ml-0.5 opacity-60 hover:text-red-700 hover:opacity-100"
+                          className="ml-0.5 opacity-60 hover:text-red-700 dark:text-red-300 hover:opacity-100"
                           aria-label={`Remove ${ing.name}`}
                         >
                           <X size={12} />
@@ -418,7 +418,7 @@ export default function PantryPage() {
       ) : (
         <div className="space-y-10">
           {smartBuys.length > 0 && (
-            <ScrollReveal as="section" className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 via-amber-50/70 to-white p-5 sm:p-6">
+            <ScrollReveal as="section" className="rounded-3xl border border-amber-200 dark:border-amber-900 bg-gradient-to-br from-amber-50 via-amber-50/70 to-surface p-5 sm:p-6">
               <SectionHeading
                 eyebrow={
                   <span className="inline-flex items-center gap-1.5">
@@ -436,14 +436,14 @@ export default function PantryPage() {
                   return (
                     <div
                       key={sb.ingredientId}
-                      className="flex items-center justify-between gap-3 rounded-2xl border border-amber-100 bg-white p-3 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-amber-100 dark:border-amber-900 bg-surface p-3 shadow-sm transition-all motion-safe:hover:-translate-y-0.5 hover:shadow-md motion-safe:animate-[fadeUp_500ms_ease-out_both]"
                       style={{ animationDelay: `${i * 50}ms` }}
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-stone-900">
+                        <p className="truncate text-sm font-semibold text-ink">
                           {ing.name}
                         </p>
-                        <p className="mt-0.5 text-xs text-amber-800">
+                        <p className="mt-0.5 text-xs text-amber-800 dark:text-amber-300">
                           Unlocks{" "}
                           <span className="font-semibold">
                             <AnimatedNumber value={sb.unlocks} duration={520} />
@@ -508,7 +508,7 @@ export default function PantryPage() {
           confirm?.kind === "preset" ? (
             <>
               This adds{" "}
-              <span className="font-semibold text-stone-900">
+              <span className="font-semibold text-ink">
                 {confirm.ids.filter((id) => !pantry.some((p) => p.ingredientId === id)).length}{" "}
                 new item
                 {confirm.ids.filter((id) => !pantry.some((p) => p.ingredientId === id)).length === 1
@@ -536,7 +536,7 @@ export default function PantryPage() {
         body={
           <>
             This removes all{" "}
-            <span className="font-semibold text-stone-900">{pantry.length}</span>{" "}
+            <span className="font-semibold text-ink">{pantry.length}</span>{" "}
             pantry items from this device. Saved recipes and your grocery
             list aren&apos;t affected.
           </>

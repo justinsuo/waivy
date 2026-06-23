@@ -69,7 +69,7 @@ export default function HomePage() {
   return (
     <div className="space-y-20">
       {/* ─── 1. Hero ───────────────────────────────────────────────────── */}
-      <section className="relative -mt-2 overflow-hidden rounded-[2rem] border border-[#E8D8C4] bg-gradient-to-br from-[#FFF1D9] via-white to-[#FFE8D6] px-5 pb-10 pt-10 sm:px-10 sm:pb-14 sm:pt-14">
+      <section className="relative -mt-2 overflow-hidden rounded-[2rem] border border-line bg-gradient-to-br from-[#FFF1D9] via-surface to-[#FFE8D6] px-5 pb-10 pt-10 sm:px-10 sm:pb-14 sm:pt-14">
         {/* Animated shader-gradient background — CSS only, soft tint,
             masked off the content area so text stays legible. Auto-
             disables under prefers-reduced-motion. */}
@@ -86,7 +86,7 @@ export default function HomePage() {
             {/* Pantry Pop hero pill — cream surface, biscuit border, basil
                 count, carrot sparkle. Bigger, friendlier hit than the old
                 emerald outline bubble. */}
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-[#E8D8C4] bg-[#FFF8ED]/95 px-4 py-1.5 text-sm font-semibold text-[#16834A] shadow-[0_1px_0_#E8D8C4] backdrop-blur">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-background/95 px-4 py-1.5 text-sm font-semibold text-[#16834A] shadow-[0_1px_0_#E8D8C4] backdrop-blur">
               <span
                 aria-hidden
                 className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-b from-[#FFB07A] to-[#FF8A3D] text-white shadow-sm"
@@ -97,15 +97,15 @@ export default function HomePage() {
                 <AnimatedNumber
                   value={CATALOG_RECIPES.length}
                   duration={1100}
-                  className="text-[#241A12]"
+                  className="text-ink"
                 />
-                <span className="text-[#241A12]">+</span>
-                <span className="text-[#6B5A4A]">student-friendly recipes</span>
+                <span className="text-ink">+</span>
+                <span className="text-ink-muted">student-friendly recipes</span>
               </span>
             </span>
-            <h1 className="text-4xl font-bold leading-[1.02] tracking-tight text-stone-900 sm:text-5xl md:text-[3.5rem]">
+            <h1 className="text-4xl font-bold leading-[1.02] tracking-tight text-ink sm:text-5xl md:text-[3.5rem]">
               Eat well on a{" "}
-              <span className="relative inline-block text-emerald-600">
+              <span className="relative inline-block text-emerald-600 dark:text-emerald-400">
                 student budget.
                 <span
                   aria-hidden
@@ -113,7 +113,7 @@ export default function HomePage() {
                 />
               </span>
             </h1>
-            <p className="max-w-lg text-base leading-relaxed text-[#6B5A4A] sm:text-lg">
+            <p className="max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg">
               Turn your pantry into cheap meals with AI.
             </p>
 
@@ -145,7 +145,7 @@ export default function HomePage() {
               </ThreeDLink>
               <Link
                 href="/cheap-recipes"
-                className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline sm:self-center"
+                className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 hover:underline sm:self-center"
               >
                 Browse cheap recipes <ArrowRight size={14} />
               </Link>
@@ -202,7 +202,7 @@ export default function HomePage() {
                   <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow shadow-emerald-900/30">
                     <Coins size={11} /> ${cheapestCps?.toFixed(2)}/serving
                   </span>
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-stone-800 backdrop-blur">
+                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink backdrop-blur">
                     Today&apos;s cheapest
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white sm:p-5">
@@ -356,7 +356,7 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* ─── 5. Benefits ────────────────────────────────────────────────── */}
-      <ScrollReveal as="section" className="rounded-3xl border border-stone-200 bg-white p-6 sm:p-10">
+      <ScrollReveal as="section" className="rounded-3xl border border-line bg-surface p-6 sm:p-10">
         <SectionHeading
           eyebrow="Why students love it"
           title="The boring stuff, made fast."
@@ -399,7 +399,7 @@ export default function HomePage() {
           trailing={
             <Link
               href="/cheap-recipes"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 hover:underline"
             >
               Browse all recipes <ArrowRight size={14} />
             </Link>
@@ -413,7 +413,7 @@ export default function HomePage() {
         <div className="sm:hidden">
           <Link
             href="/cheap-recipes"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 hover:underline"
           >
             Browse all recipes <ArrowRight size={14} />
           </Link>
@@ -421,22 +421,22 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* ─── 6.5. Nourish promo ────────────────────────────────────────── */}
-      <ScrollReveal as="section" className="relative overflow-hidden rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50/70 via-white to-violet-50/40 p-6 sm:p-10">
+      <ScrollReveal as="section" className="relative overflow-hidden rounded-3xl border border-emerald-200 dark:border-emerald-900/70 bg-gradient-to-br from-emerald-50/70 via-surface to-violet-50/40 p-6 sm:p-10">
         <div
           aria-hidden
           className="dot-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(circle_at_70%_30%,black,transparent_60%)]"
         />
         <div className="relative grid gap-8 md:grid-cols-[1.1fr_1fr] md:items-center">
           <div className="space-y-3">
-            <p className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700 backdrop-blur">
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 dark:border-emerald-900 bg-surface/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300 backdrop-blur">
               <Sparkles size={12} /> Nourish
             </p>
-            <h2 className="text-2xl font-semibold leading-tight text-stone-900 sm:text-3xl">
+            <h2 className="text-2xl font-semibold leading-tight text-ink sm:text-3xl">
               Track what fuels you.
               <br className="hidden sm:block" />
               Cook to hit your goals.
             </h2>
-            <p className="text-sm leading-relaxed text-stone-600">
+            <p className="text-sm leading-relaxed text-ink-muted">
               Log meals by search, voice, photo, or a grocery receipt. See
               calories and macros remaining. Plan the week, save your usual
               meals, and let the Coach surface the cheapest high-protein
@@ -455,65 +455,65 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/nourish/goals"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+                className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2.5 text-sm font-semibold text-ink hover:bg-surface"
               >
                 Set goals
               </Link>
               <Link
                 href="/nourish/meal-planner"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+                className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2.5 text-sm font-semibold text-ink hover:bg-surface"
               >
                 Plan the week
               </Link>
             </div>
           </div>
           <div className="grid gap-3">
-            <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+            <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                 Today
               </p>
               <div className="mt-1 flex items-baseline gap-1.5">
-                <span className="text-3xl font-bold tabular-nums text-stone-900">
+                <span className="text-3xl font-bold tabular-nums text-ink">
                   1,420
                 </span>
-                <span className="text-sm text-stone-400">/ 2,200 kcal</span>
+                <span className="text-sm text-ink-faint">/ 2,200 kcal</span>
               </div>
-              <div className="mt-2 h-2 overflow-hidden rounded-full bg-stone-100">
+              <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface-sunken">
                 <div className="h-full w-[65%] rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700" />
               </div>
-              <p className="mt-2 text-xs text-stone-600">
-                <span className="font-semibold text-emerald-700">780 kcal</span> and{" "}
-                <span className="font-semibold text-violet-700">48 g protein</span>{" "}
+              <p className="mt-2 text-xs text-ink-muted">
+                <span className="font-semibold text-emerald-700 dark:text-emerald-300">780 kcal</span> and{" "}
+                <span className="font-semibold text-violet-700 dark:text-violet-300">48 g protein</span>{" "}
                 left.
               </p>
             </div>
             <div className="grid gap-2.5 sm:grid-cols-3">
-              <div className="rounded-xl border border-violet-200 bg-violet-50/60 p-3">
-                <p className="text-[9px] font-semibold uppercase tracking-wide text-violet-700">
+              <div className="rounded-xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40/60 p-3">
+                <p className="text-[9px] font-semibold uppercase tracking-wide text-violet-700 dark:text-violet-300">
                   Protein
                 </p>
-                <p className="mt-0.5 text-lg font-bold tabular-nums text-violet-900">
+                <p className="mt-0.5 text-lg font-bold tabular-nums text-violet-900 dark:text-violet-300">
                   92 g
                 </p>
-                <p className="text-[10px] text-violet-700">of 140</p>
+                <p className="text-[10px] text-violet-700 dark:text-violet-300">of 140</p>
               </div>
-              <div className="rounded-xl border border-sky-200 bg-sky-50/60 p-3">
-                <p className="text-[9px] font-semibold uppercase tracking-wide text-sky-700">
+              <div className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40/60 p-3">
+                <p className="text-[9px] font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
                   Carbs
                 </p>
-                <p className="mt-0.5 text-lg font-bold tabular-nums text-sky-900">
+                <p className="mt-0.5 text-lg font-bold tabular-nums text-sky-900 dark:text-sky-300">
                   165 g
                 </p>
-                <p className="text-[10px] text-sky-700">of 250</p>
+                <p className="text-[10px] text-sky-700 dark:text-sky-300">of 250</p>
               </div>
-              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-3">
-                <p className="text-[9px] font-semibold uppercase tracking-wide text-amber-700">
+              <div className="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40/60 p-3">
+                <p className="text-[9px] font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
                   Fat
                 </p>
-                <p className="mt-0.5 text-lg font-bold tabular-nums text-amber-900">
+                <p className="mt-0.5 text-lg font-bold tabular-nums text-amber-900 dark:text-amber-300">
                   48 g
                 </p>
-                <p className="text-[10px] text-amber-700">of 70</p>
+                <p className="text-[10px] text-amber-700 dark:text-amber-300">of 70</p>
               </div>
             </div>
           </div>
@@ -521,18 +521,18 @@ export default function HomePage() {
       </ScrollReveal>
 
       {/* ─── 7. AI Chef demo ────────────────────────────────────────────── */}
-      <ScrollReveal as="section" className="overflow-hidden rounded-3xl border border-stone-200 bg-gradient-to-br from-violet-50/60 via-stone-50 to-amber-50/60 p-6 sm:p-10">
+      <ScrollReveal as="section" className="overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-violet-50/60 via-stone-50 to-amber-50/60 p-6 sm:p-10">
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
           <div className="space-y-3">
-            <p className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/10 px-3 py-1 text-xs font-semibold text-violet-700">
+            <p className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/10 px-3 py-1 text-xs font-semibold text-violet-700 dark:text-violet-300">
               <Sparkles size={12} /> AI Chef demo
             </p>
-            <h2 className="text-2xl font-semibold leading-tight text-stone-900 sm:text-3xl">
+            <h2 className="text-2xl font-semibold leading-tight text-ink sm:text-3xl">
               Tell AI Chef what you have.
               <br className="hidden sm:block" />
               Get back a real recipe.
             </h2>
-            <p className="text-sm text-stone-600">
+            <p className="text-sm text-ink-muted">
               Drop in pantry items, equipment, and a craving. AI Chef returns
               four options — best-match, cheapest, fastest, wildcard — with
               cost per serving, macros, and a step-by-step guide.
@@ -546,15 +546,15 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/explore"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-50"
+                className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2.5 text-sm font-semibold text-ink hover:bg-surface"
               >
                 <Globe size={14} /> Explore world recipes
               </Link>
             </div>
           </div>
           <div className="grid gap-3">
-            <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+            <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                 Pantry
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -562,7 +562,7 @@ export default function HomePage() {
                   (x, i) => (
                     <span
                       key={x}
-                      className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-800 motion-safe:animate-[fadeUp_500ms_ease-out_both]"
+                      className="inline-flex items-center gap-1 rounded-full border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 motion-safe:animate-[fadeUp_500ms_ease-out_both]"
                       style={{ animationDelay: `${i * 60}ms` }}
                     >
                       {x}
@@ -570,32 +570,32 @@ export default function HomePage() {
                   ),
                 )}
               </div>
-              <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+              <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                 Notes
               </p>
-              <p className="mt-1 text-xs text-stone-700">
+              <p className="mt-1 text-xs text-ink-muted">
                 Make something like a sushi roll, but cheap and easy.
               </p>
             </div>
-            <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-violet-700">
+            <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-violet-700 dark:text-violet-300">
                 AI Chef idea
               </p>
-              <p className="mt-1 text-base font-semibold text-stone-900">
+              <p className="mt-1 text-base font-semibold text-ink">
                 Sushi-Inspired Seaweed Rice Bowl
               </p>
-              <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-stone-600">
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 font-semibold text-emerald-800">
+              <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-ink-muted">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 font-semibold text-emerald-800 dark:text-emerald-300">
                   <Coins size={11} /> $1.84/serving
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 font-semibold text-amber-800">
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 font-semibold text-amber-800 dark:text-amber-300">
                   <Timer size={11} /> 15 min
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2 py-0.5 font-semibold text-violet-800">
+                <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 dark:bg-violet-900/40 px-2 py-0.5 font-semibold text-violet-800 dark:text-violet-300">
                   22g protein
                 </span>
               </div>
-              <p className="mt-2 text-[11px] text-stone-500">Uses 5 pantry items.</p>
+              <p className="mt-2 text-[11px] text-ink-muted">Uses 5 pantry items.</p>
             </div>
           </div>
         </div>
@@ -609,7 +609,7 @@ export default function HomePage() {
         />
         <div className="relative grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-center">
           <div className="space-y-3">
-            <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold tracking-wide text-white">
+            <p className="inline-flex items-center gap-2 rounded-full bg-surface/15 px-3 py-1 text-xs font-semibold tracking-wide text-white">
               <Sparkles size={12} /> Cook tonight
             </p>
             <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
@@ -621,7 +621,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-2 pt-2">
               <Link
                 href="/ai-chef"
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-emerald-700 shadow-sm transition-all hover:bg-emerald-50 motion-safe:hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-full bg-surface px-5 py-3 text-sm font-semibold text-emerald-700 dark:text-emerald-300 shadow-sm transition-all hover:bg-emerald-50 dark:bg-emerald-950/40 motion-safe:hover:-translate-y-0.5"
               >
                 <Sparkles
                   size={16}
@@ -643,7 +643,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="rounded-2xl bg-white/15 px-4 py-3 text-sm backdrop-blur">
+          <div className="rounded-2xl bg-surface/15 px-4 py-3 text-sm backdrop-blur">
             &ldquo;What can I make tonight with rice, eggs, and frozen veg?&rdquo;
             <p className="mt-2 text-xs text-emerald-50">
               — Pesto answers in seconds. Tap the floating chat icon any time.
@@ -666,10 +666,10 @@ function HeroStat({
 }) {
   return (
     <div>
-      <dt className="text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+      <dt className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
         {label}
       </dt>
-      <dd className="mt-0.5 text-xl font-semibold text-stone-900">{value}</dd>
+      <dd className="mt-0.5 text-xl font-semibold text-ink">{value}</dd>
     </div>
   );
 }
@@ -690,24 +690,24 @@ function FeatureCard({
   cta: string;
 }) {
   const tones: Record<string, string> = {
-    violet: "bg-violet-100 text-violet-700 group-hover:bg-violet-600 group-hover:text-white",
-    emerald: "bg-emerald-100 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white",
-    amber: "bg-amber-100 text-amber-700 group-hover:bg-amber-600 group-hover:text-white",
-    sky: "bg-sky-100 text-sky-700 group-hover:bg-sky-600 group-hover:text-white",
+    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 group-hover:bg-violet-600 group-hover:text-white",
+    emerald: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 group-hover:bg-emerald-600 group-hover:text-white",
+    amber: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 group-hover:bg-amber-600 group-hover:text-white",
+    sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 group-hover:bg-sky-600 group-hover:text-white",
   };
   return (
     <Link
       href={href}
-      className="group relative flex flex-col gap-3 overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 transition-all motion-safe:hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+      className="group relative flex flex-col gap-3 overflow-hidden rounded-3xl border border-line bg-surface p-6 transition-all motion-safe:hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
     >
       <div
         className={`grid h-12 w-12 place-items-center rounded-2xl transition-colors ${tones[tone]}`}
       >
         {icon}
       </div>
-      <h3 className="text-xl font-semibold text-stone-900">{title}</h3>
-      <p className="text-sm text-stone-600">{description}</p>
-      <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700">
+      <h3 className="text-xl font-semibold text-ink">{title}</h3>
+      <p className="text-sm text-ink-muted">{description}</p>
+      <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
         {cta}{" "}
         <ArrowRight
           size={14}
@@ -728,12 +728,12 @@ function StepCard({
   description: string;
 }) {
   return (
-    <li className="relative rounded-3xl border border-stone-200 bg-white p-6 transition-shadow hover:shadow-md">
+    <li className="relative rounded-3xl border border-line bg-surface p-6 transition-shadow hover:shadow-md">
       <span className="grid h-10 w-10 place-items-center rounded-full bg-emerald-600 text-base font-bold text-white shadow-sm shadow-emerald-200">
         {n}
       </span>
-      <h3 className="mt-3 text-lg font-semibold text-stone-900">{title}</h3>
-      <p className="mt-1 text-sm leading-relaxed text-stone-600">{description}</p>
+      <h3 className="mt-3 text-lg font-semibold text-ink">{title}</h3>
+      <p className="mt-1 text-sm leading-relaxed text-ink-muted">{description}</p>
       <span
         aria-hidden
         className="absolute right-5 top-5 text-3xl font-bold text-stone-100"
@@ -762,9 +762,9 @@ function ToolCard({
   bgImage?: string;
 }) {
   const tones: Record<string, string> = {
-    sky: "bg-sky-100 text-sky-700",
-    violet: "bg-violet-100 text-violet-700",
-    emerald: "bg-emerald-100 text-emerald-700",
+    sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
+    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
+    emerald: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
   };
   return (
     <Link
@@ -818,10 +818,10 @@ function Stat({
   tone: "amber" | "green" | "violet" | "sky";
 }) {
   const tones: Record<string, string> = {
-    amber: "bg-amber-100 text-amber-700",
-    green: "bg-emerald-100 text-emerald-700",
-    violet: "bg-violet-100 text-violet-700",
-    sky: "bg-sky-100 text-sky-700",
+    amber: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300",
+    green: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
+    violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
+    sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
   };
   return (
     <div>
@@ -830,8 +830,8 @@ function Stat({
       >
         {icon}
       </div>
-      <h3 className="text-sm font-semibold text-stone-900">{title}</h3>
-      <p className="mt-1 text-sm leading-relaxed text-stone-600">{description}</p>
+      <h3 className="text-sm font-semibold text-ink">{title}</h3>
+      <p className="mt-1 text-sm leading-relaxed text-ink-muted">{description}</p>
     </div>
   );
 }

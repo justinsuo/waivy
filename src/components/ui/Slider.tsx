@@ -41,7 +41,7 @@ export function Slider({
       onChange={(e) => onChange(parseFloat(e.target.value))}
       className={clsx(
         "h-2 w-full cursor-pointer appearance-none rounded-full bg-stone-200 accent-emerald-600",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ring-offset-background",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}

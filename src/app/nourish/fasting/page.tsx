@@ -62,7 +62,7 @@ export default function NourishFastingPage() {
     >
       <FastingTracker />
 
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow={
             <span className="inline-flex items-center gap-1.5">
@@ -73,9 +73,9 @@ export default function NourishFastingPage() {
           tone="indigo"
         />
         {!hydrated ? (
-          <div className="mt-5 h-20 animate-pulse rounded-2xl bg-stone-100" />
+          <div className="mt-5 h-20 animate-pulse rounded-2xl bg-surface-sunken" />
         ) : summary.last14Count === 0 ? (
-          <p className="mt-5 rounded-2xl border border-dashed border-stone-200 bg-stone-50 p-6 text-center text-sm text-stone-600">
+          <p className="mt-5 rounded-2xl border border-dashed border-line bg-surface p-6 text-center text-sm text-ink-muted">
             Start a fast above and we&apos;ll roll up your stats here.
           </p>
         ) : (
@@ -102,19 +102,19 @@ export default function NourishFastingPage() {
         )}
       </section>
 
-      <section className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-3xl border border-line bg-surface p-5 shadow-sm sm:p-6">
         <SectionHeading
           eyebrow="Log"
           title={`${log.length} session${log.length === 1 ? "" : "s"}`}
           tone="violet"
         />
         {log.length === 0 ? (
-          <p className="mt-5 rounded-2xl border border-dashed border-stone-200 bg-stone-50 p-6 text-center text-sm text-stone-600">
+          <p className="mt-5 rounded-2xl border border-dashed border-line bg-surface p-6 text-center text-sm text-ink-muted">
             Once you finish your first fast, it&apos;ll show up here with the
             duration and whether you hit the target window.
           </p>
         ) : (
-          <ul className="mt-5 divide-y divide-stone-100 rounded-2xl border border-stone-200">
+          <ul className="mt-5 divide-y divide-stone-100 rounded-2xl border border-line">
             {log.map((e) => (
               <li
                 key={e.id}
@@ -122,20 +122,20 @@ export default function NourishFastingPage() {
               >
                 <span className="flex items-center gap-2">
                   {e.completed ? (
-                    <Check size={12} className="text-emerald-600" />
+                    <Check size={12} className="text-emerald-600 dark:text-emerald-400" />
                   ) : (
-                    <Square size={10} className="text-stone-400" />
+                    <Square size={10} className="text-ink-faint" />
                   )}
-                  <span className="font-medium text-stone-800">
+                  <span className="font-medium text-ink">
                     {new Date(e.startedAt).toLocaleDateString()}
                   </span>
-                  <span className="text-stone-500">
+                  <span className="text-ink-muted">
                     → {new Date(e.endedAt).toLocaleDateString()}
                   </span>
                 </span>
-                <span className="font-semibold tabular-nums text-stone-900">
+                <span className="font-semibold tabular-nums text-ink">
                   {fmtHours(e.durationMs)}{" "}
-                  <span className="font-normal text-stone-500">
+                  <span className="font-normal text-ink-muted">
                     / {fmtHours(e.targetMs)}
                   </span>
                 </span>
@@ -145,7 +145,7 @@ export default function NourishFastingPage() {
         )}
       </section>
 
-      <p className="text-[11px] text-stone-500">
+      <p className="text-[11px] text-ink-muted">
         Intermittent fasting is one approach among many — not medical advice.
         Skip it any day if it doesn&apos;t suit you.
       </p>
@@ -165,9 +165,9 @@ function SummaryStat({
   tone: "indigo" | "emerald" | "violet";
 }) {
   const TONE: Record<string, string> = {
-    indigo: "from-indigo-50 to-white border-indigo-200/70 text-indigo-900",
-    emerald: "from-emerald-50 to-white border-emerald-200/70 text-emerald-900",
-    violet: "from-violet-50 to-white border-violet-200/70 text-violet-900",
+    indigo: "from-indigo-50 to-surface border-indigo-200 dark:border-indigo-900/70 text-indigo-900 dark:text-indigo-300",
+    emerald: "from-emerald-50 to-surface border-emerald-200 dark:border-emerald-900/70 text-emerald-900 dark:text-emerald-300",
+    violet: "from-violet-50 to-surface border-violet-200 dark:border-violet-900/70 text-violet-900 dark:text-violet-300",
   };
   return (
     <div

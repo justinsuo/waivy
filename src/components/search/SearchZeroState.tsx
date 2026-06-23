@@ -40,18 +40,18 @@ export function SearchZeroState({
   const aiChefUrl = `/ai-chef?notes=${encodeURIComponent(`Make me a recipe based on: ${query}`)}`;
 
   return (
-    <div className="rounded-3xl border-2 border-dashed border-stone-200 bg-white p-6 sm:p-8">
+    <div className="rounded-3xl border-2 border-dashed border-line bg-surface p-6 sm:p-8">
       <div className="flex items-start gap-3">
-        <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-stone-100 text-stone-500">
+        <div className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-surface-sunken text-ink-muted">
           <ChefHat size={20} />
         </div>
         <div className="flex-1 space-y-3">
           <div>
-            <p className="text-base font-semibold text-stone-900">
+            <p className="text-base font-semibold text-ink">
               No recipes found for &ldquo;{query}&rdquo;
             </p>
             {filtersHidingMatches && (
-              <p className="mt-1 flex items-start gap-1 text-sm text-amber-800">
+              <p className="mt-1 flex items-start gap-1 text-sm text-amber-800 dark:text-amber-300">
                 <AlertCircle size={14} className="mt-0.5 flex-none" />
                 Your search has matches, but active filters are hiding them.
               </p>
@@ -60,14 +60,14 @@ export function SearchZeroState({
 
           {fuzzy && (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Did you mean
               </p>
               <div className="mt-1 flex flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={() => onApplySuggestion?.(fuzzy.match)}
-                  className="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100"
+                  className="rounded-full border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:bg-emerald-900/40"
                 >
                   {fuzzy.match}
                 </button>
@@ -76,7 +76,7 @@ export function SearchZeroState({
                     type="button"
                     key={s}
                     onClick={() => onApplySuggestion?.(s)}
-                    className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 hover:border-emerald-300 hover:bg-emerald-50"
+                    className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                   >
                     {s}
                   </button>
@@ -87,7 +87,7 @@ export function SearchZeroState({
 
           {hidingFilters.length > 0 && (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <p className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
                 Try removing a filter
               </p>
               <div className="mt-1 flex flex-wrap gap-2">

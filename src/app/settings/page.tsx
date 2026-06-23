@@ -30,14 +30,14 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <header className="mb-6">
-        <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+        <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">
           <span aria-hidden className="h-[2px] w-6 rounded-full bg-emerald-500" />
           <SettingsIcon size={12} /> Settings
         </p>
-        <h1 className="mt-1.5 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+        <h1 className="mt-1.5 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
           Make Waivy yours.
         </h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600">
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
           Set a natural cooking voice, your default diet and kitchen, your
           region for pricing, and how much AI you want. Everything is stored on
           this device.
@@ -49,7 +49,7 @@ export default function SettingsPage() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-600 transition-colors hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-colors hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 hover:text-emerald-800 dark:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
               {l.label}
             </a>

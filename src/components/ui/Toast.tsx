@@ -159,7 +159,7 @@ function ToastView({
     <div
       role="status"
       className={clsx(
-        "pointer-events-auto flex items-center gap-2 rounded-full bg-white px-3 py-2 text-sm shadow-lg ring-1 transition-all duration-200 motion-reduce:transition-none",
+        "pointer-events-auto flex items-center gap-2 rounded-full bg-surface px-3 py-2 text-sm shadow-lg ring-1 transition-all duration-200 motion-reduce:transition-none",
         style.ring,
         show ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0",
       )}
@@ -173,11 +173,11 @@ function ToastView({
       >
         {style.icon}
       </span>
-      <span className="text-stone-800">{item.message}</span>
+      <span className="text-ink">{item.message}</span>
       <button
         type="button"
         onClick={onDismiss}
-        className="ml-1 rounded-full p-1 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
+        className="ml-1 rounded-full p-1 text-ink-faint hover:bg-surface-sunken hover:text-ink-muted"
         aria-label="Dismiss notification"
       >
         <X size={12} />

@@ -79,13 +79,13 @@ export function FoodsView() {
       {/* Header actions */}
       <div className="flex items-center gap-2">
         <div className="relative flex-1">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint pointer-events-none" />
           <input
             type="text"
             placeholder="Search saved foods…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-xl border border-stone-300 pl-9 pr-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full rounded-xl border border-line-strong pl-9 pr-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <Button
@@ -99,8 +99,8 @@ export function FoodsView() {
       </div>
 
       {/* Meal log target (quick-log control) */}
-      <div className="flex items-center gap-2 rounded-xl bg-stone-50 border border-stone-200 px-3 py-2">
-        <span className="text-xs font-medium text-stone-600 shrink-0">Log to:</span>
+      <div className="flex items-center gap-2 rounded-xl bg-surface border border-line px-3 py-2">
+        <span className="text-xs font-medium text-ink-muted shrink-0">Log to:</span>
         {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
           <button
             key={id}
@@ -109,7 +109,7 @@ export function FoodsView() {
             className={`text-xs px-2 py-1 rounded-full transition-colors ${
               logMeal === id
                 ? "bg-emerald-600 text-white"
-                : "text-stone-600 hover:bg-stone-200"
+                : "text-ink-muted hover:bg-stone-200"
             }`}
           >
             {label}
@@ -141,7 +141,7 @@ export function FoodsView() {
           {filtered.map((food) => (
             <div
               key={food.id}
-              className="flex items-center gap-3 rounded-xl border border-stone-100 bg-white px-3 py-2.5"
+              className="flex items-center gap-3 rounded-xl border border-line bg-surface px-3 py-2.5"
             >
               {/* Tap to quick-log */}
               <button
@@ -152,20 +152,20 @@ export function FoodsView() {
                 className="min-w-0 flex-1 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg"
                 aria-label={`Log ${food.name}`}
               >
-                <p className="truncate text-sm font-medium text-stone-900">{food.name}</p>
-                <p className="text-[10px] text-stone-400">
+                <p className="truncate text-sm font-medium text-ink">{food.name}</p>
+                <p className="text-[10px] text-ink-faint">
                   {food.servingDescription} · {food.kcal} kcal · {food.proteinG}g P
                 </p>
               </button>
 
               {flash === food.id ? (
-                <span className="text-xs font-semibold text-emerald-600 shrink-0">✓ Logged!</span>
+                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 shrink-0">✓ Logged!</span>
               ) : (
                 <button
                   type="button"
                   onClick={() => handleDelete(food.id)}
                   aria-label={`Delete ${food.name}`}
-                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-stone-400 hover:bg-rose-50 hover:text-rose-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-ink-faint hover:bg-rose-50 dark:bg-rose-950/40 hover:text-rose-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
                 >
                   <Trash2 size={14} />
                 </button>

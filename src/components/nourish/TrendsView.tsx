@@ -94,8 +94,8 @@ function WeightChart({ weights }: { weights: WeightEntry[] }) {
   return (
     <div className="space-y-2">
       <div className="flex items-baseline justify-between">
-        <h3 className="text-sm font-semibold text-stone-800">Weight trend</h3>
-        <p className="text-xs text-stone-500">
+        <h3 className="text-sm font-semibold text-ink">Weight trend</h3>
+        <p className="text-xs text-ink-muted">
           {weeklyRate >= 0 ? "+" : ""}
           {weeklyRate.toFixed(2)} kg/wk (smoothed)
         </p>
@@ -195,8 +195,8 @@ function WeeklyCalorieChart({
   return (
     <div className="space-y-2">
       <div className="flex items-baseline justify-between">
-        <h3 className="text-sm font-semibold text-stone-800">Daily calories (14 days)</h3>
-        <div className="flex items-center gap-2 text-[10px] text-stone-400">
+        <h3 className="text-sm font-semibold text-ink">Daily calories (14 days)</h3>
+        <div className="flex items-center gap-2 text-[10px] text-ink-faint">
           <span className="inline-block h-1 w-4 rounded-full bg-rose-400" />target
         </div>
       </div>
@@ -230,8 +230,8 @@ function WeeklyCalorieChart({
         </BarChart>
       </ResponsiveContainer>
       {todayIdx >= 0 && data[todayIdx].kcal !== null && (
-        <p className="text-center text-xs text-stone-500">
-          Today: <strong className="text-stone-700">{data[todayIdx].kcal} kcal</strong>
+        <p className="text-center text-xs text-ink-muted">
+          Today: <strong className="text-ink-muted">{data[todayIdx].kcal} kcal</strong>
           {" "}vs target {target}
         </p>
       )}
@@ -267,13 +267,13 @@ export function TrendsView() {
     <div className="space-y-6">
       {/* Current weight summary */}
       {currentWeight !== undefined && (
-        <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">Current weight (smoothed)</p>
-          <p className="mt-1 text-3xl font-bold tabular-nums text-stone-900">
-            {currentWeight.toFixed(1)} <span className="text-base font-normal text-stone-500">kg</span>
+        <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wider text-ink-faint">Current weight (smoothed)</p>
+          <p className="mt-1 text-3xl font-bold tabular-nums text-ink">
+            {currentWeight.toFixed(1)} <span className="text-base font-normal text-ink-muted">kg</span>
           </p>
           {weights.length > 0 && (
-            <p className="mt-0.5 text-xs text-stone-400">
+            <p className="mt-0.5 text-xs text-ink-faint">
               From {weights.length} weigh-in{weights.length !== 1 ? "s" : ""}
             </p>
           )}
@@ -283,17 +283,17 @@ export function TrendsView() {
       {/* Adaptive TDEE card */}
       <div className={clsx(
         "rounded-2xl border p-4 shadow-sm space-y-2",
-        adaptive?.hasEnoughData ? "border-emerald-200 bg-gradient-to-br from-emerald-50 to-white" : "border-stone-200 bg-white",
+        adaptive?.hasEnoughData ? "border-emerald-200 dark:border-emerald-900 bg-gradient-to-br from-emerald-50 to-surface" : "border-line bg-surface",
       )}>
         <div className="flex items-center justify-between">
-          <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-600">
+          <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             <RefreshCw size={11} />
             Adaptive TDEE
           </p>
           {targets?.source && (
             <span className={clsx(
               "rounded-full px-2 py-0.5 text-[10px] font-semibold",
-              targets.source === "adaptive" ? "bg-emerald-100 text-emerald-700" : "bg-stone-100 text-stone-600",
+              targets.source === "adaptive" ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300" : "bg-surface-sunken text-ink-muted",
             )}>
               {targets.source === "adaptive" ? "Targets: adaptive" : targets.source === "formula" ? "Targets: formula" : "Targets: manual"}
             </span>
@@ -303,17 +303,17 @@ export function TrendsView() {
         {adaptive?.hasEnoughData && adaptive.adaptiveTdee ? (
           <>
             <p className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold tabular-nums text-stone-900">{adaptive.adaptiveTdee.toLocaleString()}</span>
-              <span className="text-sm text-stone-500">kcal/day (estimated from your data)</span>
+              <span className="text-3xl font-bold tabular-nums text-ink">{adaptive.adaptiveTdee.toLocaleString()}</span>
+              <span className="text-sm text-ink-muted">kcal/day (estimated from your data)</span>
             </p>
             {targets && (
-              <p className="text-xs text-stone-500">
-                Current calorie target: <strong className="text-stone-700">{targets.calorieTarget.toLocaleString()} kcal</strong>
+              <p className="text-xs text-ink-muted">
+                Current calorie target: <strong className="text-ink-muted">{targets.calorieTarget.toLocaleString()} kcal</strong>
                 {targets.source === "adaptive" && " (adaptive)"}
               </p>
             )}
             {adaptive.daysSinceLastUpdate !== null && (
-              <p className="text-[10px] text-stone-400">
+              <p className="text-[10px] text-ink-faint">
                 Last updated {adaptive.daysSinceLastUpdate === 0 ? "today" : `${adaptive.daysSinceLastUpdate} day${adaptive.daysSinceLastUpdate !== 1 ? "s" : ""} ago`}
                 {" · "}targets re-derive weekly
               </p>
@@ -321,8 +321,8 @@ export function TrendsView() {
           </>
         ) : (
           <div>
-            <p className="text-sm font-medium text-stone-700">Not enough data yet</p>
-            <p className="text-xs text-stone-500 mt-0.5">
+            <p className="text-sm font-medium text-ink-muted">Not enough data yet</p>
+            <p className="text-xs text-ink-muted mt-0.5">
               Log meals for 3+ days and weigh in 2+ times over 14 days for a personalised TDEE estimate.
               The more data you log, the more accurate it becomes.
             </p>
@@ -331,12 +331,12 @@ export function TrendsView() {
       </div>
 
       {/* Weight chart */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
         <WeightChart weights={weights} />
       </div>
 
       {/* Calorie chart */}
-      <div className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-line bg-surface p-4 shadow-sm">
         {targets ? (
           <WeeklyCalorieChart diary={diary} target={targets.calorieTarget} />
         ) : (
@@ -355,7 +355,7 @@ export function TrendsView() {
         <WeeklyReview diary={diary} weights={weights} targets={targets} />
       )}
 
-      <p className="text-center text-[11px] text-stone-400">
+      <p className="text-center text-[11px] text-ink-faint">
         ⚠️ Trends are estimates. The smoothed weight line uses exponential
         weighting (10-day memory) to reduce daily noise.
       </p>

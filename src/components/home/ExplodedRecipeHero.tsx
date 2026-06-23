@@ -64,12 +64,12 @@ const TARGET_RECIPE_ID = "egg-fried-rice";
 
 type Tone = { bg: string; text: string; ring: string };
 
-const BASIL: Tone = { bg: "bg-[#E8FAF0]", text: "text-[#0F5E33]", ring: "ring-[#B6E8CD]" };
-const BUTTER: Tone = { bg: "bg-[#FFF3CC]", text: "text-[#7A4A00]", ring: "ring-[#FFE08A]" };
-const CARROT: Tone = { bg: "bg-[#FFE8D6]", text: "text-[#9B3F0A]", ring: "ring-[#FFC79A]" };
-const GRAPE: Tone = { bg: "bg-[#EFE8FF]", text: "text-[#3F2BB8]", ring: "ring-[#CDBEFF]" };
-const PINK: Tone = { bg: "bg-[#FFE3EC]", text: "text-[#A23163]", ring: "ring-[#F9B6CD]" };
-const TEAL: Tone = { bg: "bg-[#DCFAF1]", text: "text-[#0B6E55]", ring: "ring-[#A4ECD8]" };
+const BASIL: Tone = { bg: "bg-[#E8FAF0] dark:bg-[#122E20]", text: "text-[#0F5E33] dark:text-[#6FE0A5]", ring: "ring-[#B6E8CD] dark:ring-white/10" };
+const BUTTER: Tone = { bg: "bg-[#FFF3CC] dark:bg-[#2E2710]", text: "text-[#7A4A00] dark:text-[#F2C97A]", ring: "ring-[#FFE08A] dark:ring-white/10" };
+const CARROT: Tone = { bg: "bg-[#FFE8D6] dark:bg-[#33210F]", text: "text-[#9B3F0A] dark:text-[#F2B07A]", ring: "ring-[#FFC79A] dark:ring-white/10" };
+const GRAPE: Tone = { bg: "bg-[#EFE8FF] dark:bg-[#221A3D]", text: "text-[#3F2BB8] dark:text-[#C3B5FF]", ring: "ring-[#CDBEFF] dark:ring-white/10" };
+const PINK: Tone = { bg: "bg-[#FFE3EC] dark:bg-[#3A1722]", text: "text-[#A23163] dark:text-[#F5A8C6]", ring: "ring-[#F9B6CD] dark:ring-white/10" };
+const TEAL: Tone = { bg: "bg-[#DCFAF1] dark:bg-[#0F2E28]", text: "text-[#0B6E55] dark:text-[#6FE0C8]", ring: "ring-[#A4ECD8] dark:ring-white/10" };
 
 type Part = {
   key: string;
@@ -223,14 +223,14 @@ function PinnedScrollScene({
         {/* Center recipe card */}
         <motion.div
           style={{ scale: bowlScale, opacity: bowlOpacity }}
-          className="absolute inset-0 m-auto grid h-44 w-72 place-items-center rounded-[28px] border border-[#E8D8C4] bg-white p-4 text-center shadow-[0_24px_60px_-24px_rgba(36,26,18,0.25)] sm:h-52 sm:w-80"
+          className="absolute inset-0 m-auto grid h-44 w-72 place-items-center rounded-[28px] border border-line bg-surface p-4 text-center shadow-[0_24px_60px_-24px_rgba(36,26,18,0.25)] sm:h-52 sm:w-80"
         >
           <div>
             <div aria-hidden className="text-5xl sm:text-6xl">🍚</div>
-            <p className="mt-2 text-sm font-bold text-[#241A12] sm:text-base">
+            <p className="mt-2 text-sm font-bold text-ink sm:text-base">
               {recipe?.name ?? "Egg Fried Rice"}
             </p>
-            <p className="mt-0.5 text-xs text-[#6B5A4A]">
+            <p className="mt-0.5 text-xs text-ink-muted">
               ${cps.toFixed(2)}/serving · {Math.round(macros.protein)}g protein
             </p>
           </div>
@@ -265,7 +265,7 @@ function PinnedScrollScene({
           style={{ opacity: ctaOpacity, scale: ctaScale }}
           className="absolute inset-0 m-auto grid place-items-center"
         >
-          <div className="flex flex-col items-center gap-3 rounded-[28px] border border-[#B6E8CD] bg-white px-6 py-5 text-center shadow-[0_24px_60px_-20px_rgba(22,131,74,0.35)] sm:px-8 sm:py-6">
+          <div className="flex flex-col items-center gap-3 rounded-[28px] border border-[#B6E8CD] bg-surface px-6 py-5 text-center shadow-[0_24px_60px_-20px_rgba(22,131,74,0.35)] sm:px-8 sm:py-6">
             <span
               aria-hidden
               className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border-b-[3px] border-[#16834A] bg-gradient-to-b from-[#3AD081] to-[#2FBF71] text-white shadow-sm"
@@ -273,10 +273,10 @@ function PinnedScrollScene({
               <Sparkles size={20} strokeWidth={2.4} />
             </span>
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#16834A]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#16834A] dark:text-[#6FE0A5]">
                 Pantry → recipe in seconds
               </p>
-              <p className="mt-1 text-2xl font-extrabold tracking-tight text-[#241A12] sm:text-3xl">
+              <p className="mt-1 text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
                 Start with AI Chef.
               </p>
             </div>
@@ -386,7 +386,7 @@ function FloatingBadge({
 function StageIndicator({ stepIndex }: { stepIndex: MotionValue<number> }) {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center px-4 sm:bottom-10">
-      <div className="flex items-center gap-1.5 rounded-full border border-[#E8D8C4] bg-white/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#6B5A4A] shadow-sm backdrop-blur sm:gap-2 sm:text-[11px]">
+      <div className="flex items-center gap-1.5 rounded-full border border-line bg-surface/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-ink-muted shadow-sm backdrop-blur sm:gap-2 sm:text-[11px]">
         {STAGES.map((label, i) => (
           <StageDot key={label} index={i} label={label} stepIndex={stepIndex} />
         ))}
@@ -417,7 +417,7 @@ function StageDot({
         style={{ opacity: dotOpacity }}
         className="h-1.5 w-1.5 rounded-full bg-[#2FBF71]"
       />
-      <span className="text-[#241A12]">{label}</span>
+      <span className="text-ink">{label}</span>
       {index < STAGES.length - 1 && (
         <span aria-hidden className="text-[#E8D8C4]">/</span>
       )}
@@ -437,13 +437,13 @@ function StaticFallback({
   macros: { calories: number; protein: number };
 }) {
   return (
-    <section className="relative -mx-4 overflow-hidden rounded-[2rem] border border-[#E8D8C4] bg-gradient-to-br from-[#FFF1D9] via-white to-[#FFE8D6] px-5 py-10 sm:-mx-6 sm:px-10 sm:py-12">
+    <section className="relative -mx-4 overflow-hidden rounded-[2rem] border border-line bg-gradient-to-br from-[#FFF1D9] via-surface to-[#FFE8D6] px-5 py-10 sm:-mx-6 sm:px-10 sm:py-12">
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#9B3F0A]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#9B3F0A] dark:text-[#F2B07A]">
             Pantry → recipe → cost
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-[#241A12] sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Turn your pantry into cheap meals.
           </h2>
           <div className="mt-5">
@@ -452,12 +452,12 @@ function StaticFallback({
             </ThreeDLink>
           </div>
         </div>
-        <div className="rounded-3xl border border-[#B6E8CD] bg-white p-5 shadow-sm">
+        <div className="rounded-3xl border border-[#B6E8CD] bg-surface p-5 shadow-sm">
           <div aria-hidden className="text-5xl text-center">🍚</div>
-          <p className="mt-2 text-center text-base font-bold text-[#241A12]">
+          <p className="mt-2 text-center text-base font-bold text-ink">
             {recipe?.name ?? "Egg Fried Rice"}
           </p>
-          <p className="mt-1 text-center text-sm text-[#6B5A4A]">
+          <p className="mt-1 text-center text-sm text-ink-muted">
             ${cps.toFixed(2)}/serving · {Math.round(macros.calories)} cal · {Math.round(macros.protein)}g protein
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-1.5">

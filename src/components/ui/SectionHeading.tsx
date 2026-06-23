@@ -25,12 +25,12 @@ export function SectionHeading({
   className?: string;
 }) {
   const TONES: Record<string, string> = {
-    emerald: "text-emerald-700 bg-emerald-500",
-    amber: "text-amber-700 bg-amber-500",
-    violet: "text-violet-700 bg-violet-500",
-    sky: "text-sky-700 bg-sky-500",
-    rose: "text-rose-700 bg-rose-500",
-    indigo: "text-indigo-700 bg-indigo-500",
+    emerald: "text-emerald-700 dark:text-emerald-300 bg-emerald-500",
+    amber: "text-amber-700 dark:text-amber-300 bg-amber-500",
+    violet: "text-violet-700 dark:text-violet-300 bg-violet-500",
+    sky: "text-sky-700 dark:text-sky-300 bg-sky-500",
+    rose: "text-rose-700 dark:text-rose-300 bg-rose-500",
+    indigo: "text-indigo-700 dark:text-indigo-300 bg-indigo-500",
   };
   const [textTone, barTone] = TONES[tone].split(" ");
   return (
@@ -57,11 +57,11 @@ export function SectionHeading({
             {eyebrow}
           </p>
         )}
-        <h2 className="mt-1.5 text-2xl font-semibold leading-tight text-stone-900 sm:text-[28px]">
+        <h2 className="mt-1.5 text-2xl font-semibold leading-tight text-ink sm:text-[28px]">
           {title}
         </h2>
         {description && (
-          <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-stone-600">
+          <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-ink-muted">
             {description}
           </p>
         )}

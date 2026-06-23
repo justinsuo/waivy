@@ -56,59 +56,59 @@ export function LogRecipeButton({ recipe }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-stone-200 bg-white shadow-sm">
+    <div className="rounded-xl border border-line bg-surface shadow-sm">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500 rounded-xl"
       >
         <div className="flex items-center gap-2">
-          <Apple size={15} className="text-emerald-600" />
-          <span className="text-sm font-semibold text-stone-800">Log to Nourish</span>
+          <Apple size={15} className="text-emerald-600 dark:text-emerald-400" />
+          <span className="text-sm font-semibold text-ink">Log to Nourish</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-stone-400">
+          <span className="text-xs text-ink-faint">
             {food.kcal} kcal · {food.proteinG}g P per serving
           </span>
-          {open ? <ChevronUp size={14} className="text-stone-400" /> : <ChevronDown size={14} className="text-stone-400" />}
+          {open ? <ChevronUp size={14} className="text-ink-faint" /> : <ChevronDown size={14} className="text-ink-faint" />}
         </div>
       </button>
 
       {open && (
-        <div className="border-t border-stone-100 px-4 py-3 space-y-3">
+        <div className="border-t border-line px-4 py-3 space-y-3">
           {done ? (
             <div className="flex items-center gap-2 py-2">
               <CheckCircle2 size={18} className="text-emerald-500 motion-safe:animate-[popIn_220ms_ease-out]" />
-              <p className="text-sm font-semibold text-stone-800">Logged to {MEAL_LABELS[meal]}!</p>
+              <p className="text-sm font-semibold text-ink">Logged to {MEAL_LABELS[meal]}!</p>
             </div>
           ) : (
             <>
               {/* Serving count */}
               <div className="flex items-center gap-3">
-                <span className="text-xs font-medium text-stone-600 w-16">Servings</span>
+                <span className="text-xs font-medium text-ink-muted w-16">Servings</span>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     aria-label="Decrease servings"
                     onClick={() => setServings((s) => Math.max(0.5, parseFloat((s - 0.5).toFixed(1))))}
-                    className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >−</button>
                   <span className="w-8 text-center text-sm font-semibold tabular-nums">{servings}</span>
                   <button
                     type="button"
                     aria-label="Increase servings"
                     onClick={() => setServings((s) => parseFloat((s + 0.5).toFixed(1)))}
-                    className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="grid h-7 w-7 place-items-center rounded-full border border-line text-ink-muted hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >+</button>
                 </div>
-                <span className={clsx("text-xs tabular-nums", Math.round(food.kcal * servings) > 0 ? "text-stone-500" : "text-stone-300")}>
+                <span className={clsx("text-xs tabular-nums", Math.round(food.kcal * servings) > 0 ? "text-ink-muted" : "text-stone-300")}>
                   = {Math.round(food.kcal * servings)} kcal
                 </span>
               </div>
 
               {/* Meal picker */}
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-medium text-stone-600 w-16" id="log-recipe-meal-label">Meal</span>
+                <span className="text-xs font-medium text-ink-muted w-16" id="log-recipe-meal-label">Meal</span>
                 <div role="radiogroup" aria-labelledby="log-recipe-meal-label" className="flex flex-wrap items-center gap-2">
                   {(Object.entries(MEAL_LABELS) as [MealSlot, string][]).map(([id, label]) => (
                     <SelectablePill key={id} active={meal === id} onClick={() => setMeal(id)} ariaSemantics="checked" showCheck={false} size="sm">

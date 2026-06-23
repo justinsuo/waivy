@@ -29,50 +29,50 @@ const FACE: Record<Tone, { tile: string; icon: string; label: string; ring: stri
   basil: {
     tile: "from-[#E8FAF0] to-[#FFFFFF] border-[#B6E8CD]",
     icon: "bg-gradient-to-b from-[#3AD081] to-[#2FBF71] text-white border-[#16834A]",
-    label: "text-[#0F5E33]",
-    ring: "focus-visible:ring-[#2FBF71]",
+    label: "text-[#0F5E33] dark:text-[#6FE0A5]",
+    ring: "focus-visible:ring-[#2FBF71] dark:ring-white/10",
   },
   carrot: {
     tile: "from-[#FFE8D6] to-[#FFFFFF] border-[#FFC79A]",
     icon: "bg-gradient-to-b from-[#FFB07A] to-[#FF8A3D] text-white border-[#B85A1A]",
-    label: "text-[#7C3309]",
-    ring: "focus-visible:ring-[#FF8A3D]",
+    label: "text-[#7C3309] dark:text-[#F2B07A]",
+    ring: "focus-visible:ring-[#FF8A3D] dark:ring-white/10",
   },
   butter: {
     tile: "from-[#FFF3CC] to-[#FFFFFF] border-[#FFE08A]",
-    icon: "bg-gradient-to-b from-[#FFE08A] to-[#FFC93D] text-[#3A2A0F] border-[#B97A12]",
-    label: "text-[#7A4A00]",
-    ring: "focus-visible:ring-[#FFC93D]",
+    icon: "bg-gradient-to-b from-[#FFE08A] to-[#FFC93D] text-[#3A2A0F] dark:text-[#F2C97A] border-[#B97A12]",
+    label: "text-[#7A4A00] dark:text-[#F2C97A]",
+    ring: "focus-visible:ring-[#FFC93D] dark:ring-white/10",
   },
   grape: {
     tile: "from-[#EFE8FF] to-[#FFFFFF] border-[#CDBEFF]",
     icon: "bg-gradient-to-b from-[#A18FFF] to-[#7C5CFF] text-white border-[#3F2BB8]",
-    label: "text-[#3F2BB8]",
-    ring: "focus-visible:ring-[#7C5CFF]",
+    label: "text-[#3F2BB8] dark:text-[#C3B5FF]",
+    ring: "focus-visible:ring-[#7C5CFF] dark:ring-white/10",
   },
   teal: {
     tile: "from-[#DCFAF1] to-[#FFFFFF] border-[#A4ECD8]",
     icon: "bg-gradient-to-b from-[#4DDEC0] to-[#20C7A5] text-white border-[#0B6E55]",
-    label: "text-[#0B6E55]",
-    ring: "focus-visible:ring-[#20C7A5]",
+    label: "text-[#0B6E55] dark:text-[#6FE0C8]",
+    ring: "focus-visible:ring-[#20C7A5] dark:ring-white/10",
   },
   sky: {
     tile: "from-[#E0F2FE] to-[#FFFFFF] border-[#BAE6FD]",
     icon: "bg-gradient-to-b from-[#7CC8FF] to-[#3BA7FF] text-white border-[#1F6FA8]",
-    label: "text-[#1F6FA8]",
-    ring: "focus-visible:ring-[#3BA7FF]",
+    label: "text-[#1F6FA8] dark:text-[#8FD0F5]",
+    ring: "focus-visible:ring-[#3BA7FF] dark:ring-white/10",
   },
   pink: {
     tile: "from-[#FFE3EC] to-[#FFFFFF] border-[#F9B6CD]",
     icon: "bg-gradient-to-b from-[#FF9CBC] to-[#FF6B9E] text-white border-[#A23163]",
-    label: "text-[#A23163]",
-    ring: "focus-visible:ring-[#FF6B9E]",
+    label: "text-[#A23163] dark:text-[#F5A8C6]",
+    ring: "focus-visible:ring-[#FF6B9E] dark:ring-white/10",
   },
   indigo: {
     tile: "from-[#E0E7FF] to-[#FFFFFF] border-[#C7D2FE]",
     icon: "bg-gradient-to-b from-[#8AA0FF] to-[#6366F1] text-white border-[#3730A3]",
-    label: "text-[#3730A3]",
-    ring: "focus-visible:ring-[#6366F1]",
+    label: "text-[#3730A3] dark:text-[#C3B5FF]",
+    ring: "focus-visible:ring-[#6366F1] dark:ring-white/10",
   },
 };
 
@@ -116,7 +116,7 @@ export function IconTile({
     <span
       className={clsx(
         "group flex h-full w-full bg-gradient-to-b transition-all motion-safe:hover:-translate-y-0.5",
-        "rounded-2xl border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "rounded-2xl border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-background",
         face.tile,
         face.ring,
         s.tile,
@@ -138,7 +138,7 @@ export function IconTile({
           {label}
         </span>
         {meta && (
-          <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-[#6B5A4A]">
+          <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold text-ink-muted dark:text-[#B6A896]">
             {meta}
           </span>
         )}
@@ -148,7 +148,7 @@ export function IconTile({
           aria-hidden
           size={14}
           className={clsx(
-            "flex-none text-[#6B5A4A] transition-transform motion-safe:group-hover:translate-x-0.5",
+            "flex-none text-ink-muted dark:text-[#B6A896] transition-transform motion-safe:group-hover:translate-x-0.5",
             row ? "ml-2" : "mt-2 self-end",
           )}
         />

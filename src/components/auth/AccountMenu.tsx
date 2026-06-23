@@ -51,7 +51,7 @@ export function AccountMenu() {
     // eslint-disable-next-line @next/next/no-img-element
     <img src={user.photoURL} alt="" referrerPolicy="no-referrer" className="h-8 w-8 rounded-full object-cover" />
   ) : (
-    <span className="grid h-8 w-8 place-items-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
+    <span className="grid h-8 w-8 place-items-center rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-xs font-bold text-emerald-700 dark:text-emerald-300">
       {initials(user.displayName, user.email)}
     </span>
   );
@@ -70,10 +70,10 @@ export function AccountMenu() {
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label="Account menu"
-        className="inline-flex items-center gap-1 rounded-full p-0.5 pr-1.5 transition-colors hover:bg-stone-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+        className="inline-flex items-center gap-1 rounded-full p-0.5 pr-1.5 transition-colors hover:bg-surface-sunken focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
       >
         {avatar}
-        <ChevronDown size={14} className="text-stone-500" />
+        <ChevronDown size={14} className="text-ink-muted" />
       </button>
 
       {open && (
@@ -88,13 +88,13 @@ export function AccountMenu() {
           <div
             role="menu"
             aria-label="Account"
-            className="absolute right-0 top-full z-40 mt-2 w-60 overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-lg motion-safe:animate-[fadeUp_180ms_ease-out]"
+            className="absolute right-0 top-full z-40 mt-2 w-60 overflow-hidden rounded-2xl border border-line bg-surface shadow-lg motion-safe:animate-[fadeUp_180ms_ease-out]"
           >
-            <div className="border-b border-stone-100 px-4 py-3">
-              <p className="truncate text-sm font-semibold text-stone-900">
+            <div className="border-b border-line px-4 py-3">
+              <p className="truncate text-sm font-semibold text-ink">
                 {user.displayName || "Your account"}
               </p>
-              <p className="truncate text-xs text-stone-500">{user.email}</p>
+              <p className="truncate text-xs text-ink-muted">{user.email}</p>
             </div>
             <MenuLink href="/account" icon={<UserIcon size={16} />} label="Account" />
             <MenuLink href="/settings" icon={<Settings size={16} />} label="Settings" />
@@ -102,7 +102,7 @@ export function AccountMenu() {
               type="button"
               role="menuitem"
               onClick={onSignOut}
-              className="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm font-medium text-red-600 hover:bg-red-50 focus:outline-none focus-visible:bg-red-50"
+              className="flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:bg-red-950/40 focus:outline-none focus-visible:bg-red-50 dark:bg-red-950/40"
             >
               <LogOut size={16} /> Sign out
             </button>
@@ -118,7 +118,7 @@ function MenuLink({ href, icon, label }: { href: string; icon: React.ReactNode; 
     <Link
       href={href}
       role="menuitem"
-      className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-50 focus:outline-none focus-visible:bg-stone-50"
+      className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-ink-muted hover:bg-surface focus:outline-none focus-visible:bg-surface"
     >
       {icon} {label}
     </Link>

@@ -36,9 +36,9 @@ export function NourishShell({
   if (onboarded === null) {
     return (
       <div className="space-y-6">
-        <div className="h-36 animate-pulse rounded-3xl bg-stone-100" />
-        <div className="h-12 animate-pulse rounded-2xl bg-stone-100" />
-        <div className="h-48 animate-pulse rounded-2xl bg-stone-100" />
+        <div className="h-36 animate-pulse rounded-3xl bg-surface-sunken" />
+        <div className="h-12 animate-pulse rounded-2xl bg-surface-sunken" />
+        <div className="h-48 animate-pulse rounded-2xl bg-surface-sunken" />
       </div>
     );
   }

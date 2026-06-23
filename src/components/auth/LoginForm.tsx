@@ -12,7 +12,7 @@ import { GoogleIcon } from "./GoogleIcon";
 type Mode = "signin" | "signup";
 
 const inputCls =
-  "w-full rounded-xl border border-stone-200 bg-white pl-10 pr-3 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:border-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500";
+  "w-full rounded-xl border border-line bg-surface pl-10 pr-3 py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500";
 
 function isValidEmail(e: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
@@ -41,12 +41,12 @@ export function LoginForm() {
   if (!enabled) {
     return (
       <div className="mx-auto max-w-md py-6">
-        <div className="rounded-3xl border border-stone-200 bg-white p-8 text-center shadow-sm">
-          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-stone-100 text-stone-500">
+        <div className="rounded-3xl border border-line bg-surface p-8 text-center shadow-sm">
+          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-surface-sunken text-ink-muted">
             <ShieldOff size={22} />
           </span>
-          <h1 className="mt-4 text-xl font-bold text-stone-900">Sign-in isn&apos;t set up yet</h1>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
+          <h1 className="mt-4 text-xl font-bold text-ink">Sign-in isn&apos;t set up yet</h1>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted">
             Accounts aren&apos;t configured on this build. Everything in Waivy still
             works — your pantry, recipes, and lists are saved on this device.
           </p>
@@ -109,17 +109,17 @@ export function LoginForm() {
   return (
     <div className="mx-auto max-w-md py-2">
       <header className="mb-6 text-center">
-        <h1 className="text-2xl font-bold tracking-tight text-stone-900">
+        <h1 className="text-2xl font-bold tracking-tight text-ink">
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
-        <p className="mt-1.5 text-sm text-stone-600">
+        <p className="mt-1.5 text-sm text-ink-muted">
           {mode === "signin"
             ? "Sign in to sync your account across devices."
             : "Save your account so it travels with you."}
         </p>
       </header>
 
-      <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-line bg-surface p-6 shadow-sm">
         {/* Google */}
         <Button
           variant="outline"
@@ -133,7 +133,7 @@ export function LoginForm() {
 
         <div className="my-4 flex items-center gap-3">
           <span className="h-px flex-1 bg-stone-200" />
-          <span className="text-xs font-medium uppercase tracking-wide text-stone-400">or</span>
+          <span className="text-xs font-medium uppercase tracking-wide text-ink-faint">or</span>
           <span className="h-px flex-1 bg-stone-200" />
         </div>
 
@@ -196,7 +196,7 @@ export function LoginForm() {
           )}
 
           {error && (
-            <p role="alert" className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">
+            <p role="alert" className="rounded-xl bg-red-50 dark:bg-red-950/40 px-3 py-2 text-sm text-red-700 dark:text-red-300">
               {error}
             </p>
           )}
@@ -214,26 +214,26 @@ export function LoginForm() {
             type="button"
             onClick={onForgot}
             disabled={disabled}
-            className="mt-3 w-full text-center text-sm font-medium text-emerald-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:opacity-50"
+            className="mt-3 w-full text-center text-sm font-medium text-emerald-700 dark:text-emerald-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:opacity-50"
           >
             Forgot password?
           </button>
         )}
       </div>
 
-      <p className="mt-5 text-center text-sm text-stone-600">
+      <p className="mt-5 text-center text-sm text-ink-muted">
         {mode === "signin" ? "New to Waivy? " : "Already have an account? "}
         <button
           type="button"
           onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); }}
-          className="font-semibold text-emerald-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="font-semibold text-emerald-700 dark:text-emerald-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           {mode === "signin" ? "Create an account" : "Sign in"}
         </button>
       </p>
 
-      <p className="mt-3 text-center text-xs text-stone-400">
-        <Link href="/" className="hover:text-stone-600">← Back to Waivy</Link>
+      <p className="mt-3 text-center text-xs text-ink-faint">
+        <Link href="/" className="hover:text-ink-muted">← Back to Waivy</Link>
       </p>
     </div>
   );
@@ -242,7 +242,7 @@ export function LoginForm() {
 function Field({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="relative">
-      <span aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">
+      <span aria-hidden className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-faint">
         {icon}
       </span>
       {children}

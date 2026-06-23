@@ -122,18 +122,18 @@ export function QuickAddMacrosModal({
         role="dialog"
         aria-modal="true"
         aria-label="Quick add macros"
-        className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-white shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-md sm:rounded-3xl"
+        className="relative z-10 max-h-[90dvh] w-full overflow-y-auto rounded-t-3xl bg-surface shadow-2xl motion-safe:animate-[fadeUp_240ms_ease-out] sm:max-w-md sm:rounded-3xl"
       >
-        <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div className="flex items-center gap-2.5">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-sm shadow-sky-200">
               <Zap size={18} />
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sky-700">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sky-700 dark:text-sky-300">
                 Nourish
               </p>
-              <p className="text-sm font-semibold text-stone-900">
+              <p className="text-sm font-semibold text-ink">
                 Quick add macros
               </p>
             </div>
@@ -141,7 +141,7 @@ export function QuickAddMacrosModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-stone-500 transition-colors hover:bg-stone-100"
+            className="rounded-full p-2 text-ink-muted transition-colors hover:bg-surface-sunken"
             aria-label="Close"
           >
             <X size={18} />
@@ -149,7 +149,7 @@ export function QuickAddMacrosModal({
         </div>
 
         <div className="space-y-4 px-5 py-5">
-          <p className="text-xs text-stone-600">
+          <p className="text-xs text-ink-muted">
             Punch in numbers from a nutrition label or a back-of-napkin
             estimate. Logs as a one-off entry — won&apos;t be saved as a
             reusable food.
@@ -167,7 +167,7 @@ export function QuickAddMacrosModal({
                   className={
                     active
                       ? "rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-200 motion-safe:scale-[1.02]"
-                      : "rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-all hover:-translate-y-px hover:border-emerald-300 hover:bg-emerald-50"
+                      : "rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-all hover:-translate-y-px hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                   }
                 >
                   {label}
@@ -177,7 +177,7 @@ export function QuickAddMacrosModal({
           </div>
 
           <label className="block">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
               Name (optional)
             </span>
             <input
@@ -185,7 +185,7 @@ export function QuickAddMacrosModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Protein bar / leftover pasta"
-              className="mt-1 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+              className="mt-1 w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
             />
           </label>
 
@@ -200,7 +200,7 @@ export function QuickAddMacrosModal({
             Log to today
           </Button>
           {blockReason && (
-            <p className="text-[11px] text-stone-500" aria-live="polite">
+            <p className="text-[11px] text-ink-muted" aria-live="polite">
               {blockReason}
             </p>
           )}
@@ -224,10 +224,10 @@ function Num({
 }) {
   return (
     <label className="block">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
         {label}
       </span>
-      <div className="mt-1 flex items-center gap-1.5 rounded-xl border border-stone-200 bg-white px-3 py-2 focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100">
+      <div className="mt-1 flex items-center gap-1.5 rounded-xl border border-line bg-surface px-3 py-2 focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-100">
         <input
           type="number"
           inputMode="decimal"
@@ -236,9 +236,9 @@ function Num({
           value={value}
           placeholder="0"
           onChange={(e) => set(e.target.value)}
-          className="w-full bg-transparent text-lg font-semibold tabular-nums text-stone-900 outline-none placeholder:text-stone-300"
+          className="w-full bg-transparent text-lg font-semibold tabular-nums text-ink outline-none placeholder:text-stone-300"
         />
-        <span className="text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+        <span className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
           {unit}
         </span>
       </div>

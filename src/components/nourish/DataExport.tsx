@@ -85,10 +85,10 @@ function exportWeightCsv() {
 
 export function DataExport() {
   return (
-    <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm space-y-4">
+    <div className="rounded-2xl border border-line bg-surface p-5 shadow-sm space-y-4">
       <div>
-        <h3 className="text-sm font-bold text-stone-900">Export your data</h3>
-        <p className="mt-0.5 text-xs text-stone-500">
+        <h3 className="text-sm font-bold text-ink">Export your data</h3>
+        <p className="mt-0.5 text-xs text-ink-muted">
           Download everything stored on this device. Your data never leaves your browser.
         </p>
       </div>
@@ -123,7 +123,7 @@ export function DataExport() {
         </Button>
       </div>
 
-      <p className="text-[10px] text-stone-400">
+      <p className="text-[10px] text-ink-faint">
         Exported files contain your diary entries, weight log, profile, and custom foods.
         No data is sent to any server.
       </p>

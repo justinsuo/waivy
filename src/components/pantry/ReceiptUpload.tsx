@@ -160,16 +160,16 @@ export function ReceiptUpload({
 
   const shellCls =
     variant === "compact"
-      ? "rounded-2xl border border-amber-200 bg-amber-50/50 p-4"
-      : "rounded-3xl border border-amber-200 bg-amber-50/50 p-5 sm:p-6";
+      ? "rounded-2xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40/50 p-4"
+      : "rounded-3xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40/50 p-5 sm:p-6";
 
   return (
     <section className={shellCls}>
       <div>
-        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-amber-800">
+        <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-amber-800 dark:text-amber-300">
           <Receipt size={16} /> Scan a grocery receipt
         </h2>
-        <p className="mt-1 text-sm text-amber-900">
+        <p className="mt-1 text-sm text-amber-900 dark:text-amber-300">
           Snap or upload a photo of your latest receipt. We&apos;ll pull out
           the food line items and add them to your pantry. Totals, tax, bag
           fees, and store info are ignored.
@@ -186,13 +186,13 @@ export function ReceiptUpload({
         >
           <button
             onClick={() => cameraRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-2xl border border-amber-300 bg-white px-4 py-3.5 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-100"
+            className="flex items-center justify-center gap-2 rounded-2xl border border-amber-300 dark:border-amber-800 bg-surface px-4 py-3.5 text-sm font-semibold text-amber-800 dark:text-amber-300 transition-colors hover:bg-amber-100 dark:bg-amber-900/40"
           >
             <Camera size={18} /> Take photo
           </button>
           <button
             onClick={() => inputRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-2xl border border-amber-300 bg-white px-4 py-3.5 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-100"
+            className="flex items-center justify-center gap-2 rounded-2xl border border-amber-300 dark:border-amber-800 bg-surface px-4 py-3.5 text-sm font-semibold text-amber-800 dark:text-amber-300 transition-colors hover:bg-amber-100 dark:bg-amber-900/40"
           >
             <ImageIcon size={18} /> Upload image
           </button>
@@ -223,7 +223,7 @@ export function ReceiptUpload({
 
       {previewUrl && (
         <div className="mt-4 space-y-4">
-          <div className="relative overflow-hidden rounded-2xl border border-amber-200 bg-white">
+          <div className="relative overflow-hidden rounded-2xl border border-amber-200 dark:border-amber-900 bg-surface">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={previewUrl}
@@ -232,7 +232,7 @@ export function ReceiptUpload({
             />
             <button
               onClick={reset}
-              className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-stone-700 shadow-sm hover:bg-white"
+              className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-surface/90 text-ink-muted shadow-sm hover:bg-surface"
               aria-label="Remove image"
             >
               <X size={16} />
@@ -240,14 +240,14 @@ export function ReceiptUpload({
           </div>
 
           {loading && (
-            <div className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm text-amber-800">
+            <div className="flex items-center gap-2 rounded-2xl bg-surface px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
               <Loader2 size={16} className="animate-spin" /> Transcribing the
               receipt and matching items to your pantry…
             </div>
           )}
 
           {error && (
-            <div className="flex items-start gap-2 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-800">
+            <div className="flex items-start gap-2 rounded-2xl bg-red-50 dark:bg-red-950/40 px-4 py-3 text-sm text-red-800 dark:text-red-300">
               <AlertCircle size={16} className="mt-0.5 flex-none" />
               <div>
                 <p className="font-medium">Couldn&apos;t read the receipt</p>
@@ -258,9 +258,9 @@ export function ReceiptUpload({
 
           {result && (
             <div className="space-y-3">
-              <div className="rounded-2xl bg-white p-4">
+              <div className="rounded-2xl bg-surface p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-sm font-semibold text-stone-900">
+                  <h3 className="text-sm font-semibold text-ink">
                     Items found ({result.recognized.length})
                   </h3>
                   {result.recognized.length > 0 && (
@@ -274,7 +274,7 @@ export function ReceiptUpload({
                   )}
                 </div>
                 {result.recognized.length === 0 ? (
-                  <p className="mt-2 text-sm text-stone-600">
+                  <p className="mt-2 text-sm text-ink-muted">
                     We didn&apos;t find any catalog items on this receipt. Try
                     a sharper photo, or add items manually.
                   </p>
@@ -295,8 +295,8 @@ export function ReceiptUpload({
                           }}
                           className={
                             already
-                              ? "inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-medium text-emerald-700"
-                              : "inline-flex items-center gap-1 rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-800 transition-colors hover:border-emerald-300 hover:bg-emerald-50"
+                              ? "inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300"
+                              : "inline-flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40"
                           }
                         >
                           {already ? (
@@ -305,7 +305,7 @@ export function ReceiptUpload({
                             <Plus size={12} />
                           )}
                           {ing?.name ?? r.name}
-                          <span className="ml-0.5 text-stone-400">
+                          <span className="ml-0.5 text-ink-faint">
                             {(r.confidence * 100).toFixed(0)}%
                           </span>
                         </button>
@@ -316,11 +316,11 @@ export function ReceiptUpload({
               </div>
 
               {result.unrecognized.length > 0 && (
-                <div className="rounded-2xl bg-white p-4 ring-1 ring-inset ring-amber-100">
-                  <h3 className="text-sm font-semibold text-amber-900">
+                <div className="rounded-2xl bg-surface p-4 ring-1 ring-inset ring-amber-100">
+                  <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-300">
                     Not in our catalog ({result.unrecognized.length})
                   </h3>
-                  <p className="mt-1 text-xs text-amber-800">
+                  <p className="mt-1 text-xs text-amber-800 dark:text-amber-300">
                     We read these from the receipt but they aren&apos;t in the
                     catalog yet. Add any of these as a custom ingredient on
                     the pantry page if you want them tracked.
@@ -329,7 +329,7 @@ export function ReceiptUpload({
                     {result.unrecognized.map((u, i) => (
                       <span
                         key={`${u}-${i}`}
-                        className="rounded-full bg-stone-50 px-3 py-1.5 text-xs text-stone-700"
+                        className="rounded-full bg-surface px-3 py-1.5 text-xs text-ink-muted"
                       >
                         {u}
                       </span>

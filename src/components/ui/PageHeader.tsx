@@ -5,15 +5,15 @@ type Tone = "emerald" | "amber" | "violet" | "sky" | "rose" | "indigo";
 
 const TONE_BG: Record<Tone, string> = {
   emerald:
-    "from-emerald-50/70 via-white to-stone-50 border-emerald-200/70 text-emerald-700",
+    "from-emerald-50/70 via-surface to-stone-50 border-emerald-200 dark:border-emerald-900/70 text-emerald-700 dark:text-emerald-300",
   amber:
-    "from-amber-50/70 via-white to-stone-50 border-amber-200/70 text-amber-800",
+    "from-amber-50/70 via-surface to-stone-50 border-amber-200 dark:border-amber-900/70 text-amber-800 dark:text-amber-300",
   violet:
-    "from-violet-50/70 via-white to-stone-50 border-violet-200/70 text-violet-700",
-  sky: "from-sky-50/70 via-white to-stone-50 border-sky-200/70 text-sky-700",
-  rose: "from-rose-50/70 via-white to-stone-50 border-rose-200/70 text-rose-700",
+    "from-violet-50/70 via-surface to-stone-50 border-violet-200 dark:border-violet-900/70 text-violet-700 dark:text-violet-300",
+  sky: "from-sky-50/70 via-surface to-stone-50 border-sky-200 dark:border-sky-900/70 text-sky-700 dark:text-sky-300",
+  rose: "from-rose-50/70 via-surface to-stone-50 border-rose-200 dark:border-rose-900/70 text-rose-700 dark:text-rose-300",
   indigo:
-    "from-indigo-50/70 via-white to-stone-50 border-indigo-200/70 text-indigo-700",
+    "from-indigo-50/70 via-surface to-stone-50 border-indigo-200 dark:border-indigo-900/70 text-indigo-700 dark:text-indigo-300",
 };
 
 const TONE_BAR: Record<Tone, string> = {
@@ -52,7 +52,7 @@ export function PageHeader({
   const barTone = TONE_BAR[tone];
   // Pull the eyebrow text-tone out of the bg block by re-reading the last
   // class — kept inline for simplicity.
-  const textTone = toneClasses.split(" ").pop() ?? "text-stone-700";
+  const textTone = toneClasses.split(" ").pop() ?? "text-ink-muted";
 
   return (
     <header
@@ -83,14 +83,14 @@ export function PageHeader({
             </p>
           )}
           <h1
-            className="text-3xl font-bold leading-[1.05] tracking-tight text-stone-900 motion-safe:animate-[fadeUp_540ms_ease-out_both] sm:text-[2.5rem]"
+            className="text-3xl font-bold leading-[1.05] tracking-tight text-ink motion-safe:animate-[fadeUp_540ms_ease-out_both] sm:text-[2.5rem]"
             style={{ animationDelay: "60ms" }}
           >
             {title}
           </h1>
           {description && (
             <p
-              className="max-w-2xl text-sm leading-relaxed text-stone-600 motion-safe:animate-[fadeUp_620ms_ease-out_both] sm:text-base"
+              className="max-w-2xl text-sm leading-relaxed text-ink-muted motion-safe:animate-[fadeUp_620ms_ease-out_both] sm:text-base"
               style={{ animationDelay: "140ms" }}
             >
               {description}

@@ -66,7 +66,7 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
 
   if (!hydrated) {
     return (
-      <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 text-sm text-stone-500">
+      <div className="rounded-2xl border border-line bg-surface p-4 text-sm text-ink-muted">
         Loading pantry…
       </div>
     );
@@ -74,12 +74,12 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
 
   if (items.length === 0) {
     return (
-      <div className="rounded-2xl border-2 border-dashed border-stone-200 bg-stone-50 p-5 text-center">
-        <Refrigerator size={28} className="mx-auto text-stone-400" />
-        <p className="mt-2 text-sm font-semibold text-stone-900">
+      <div className="rounded-2xl border-2 border-dashed border-line bg-surface p-5 text-center">
+        <Refrigerator size={28} className="mx-auto text-ink-faint" />
+        <p className="mt-2 text-sm font-semibold text-ink">
           Your pantry is empty
         </p>
-        <p className="mt-1 text-xs text-stone-600">
+        <p className="mt-1 text-xs text-ink-muted">
           Add what you have so AI Chef can build recipes from your actual
           ingredients.
         </p>
@@ -106,17 +106,17 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-stone-200 bg-white p-4">
-      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+    <div className="rounded-2xl border border-line bg-surface p-4">
+      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
         Step 1 · Pick ingredients AI Chef can use
       </p>
-      <p className="mb-3 text-xs text-stone-500">
+      <p className="mb-3 text-xs text-ink-muted">
         Everything in your pantry is selected by default. Uncheck anything
         you don&apos;t want in this recipe — items stay in your pantry either way.
       </p>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm text-stone-700">
-          <span className="font-semibold text-emerald-700">
+        <p className="text-sm text-ink-muted">
+          <span className="font-semibold text-emerald-700 dark:text-emerald-300">
             {selectedIds.size} of {items.length}
           </span>{" "}
           pantry {items.length === 1 ? "item" : "items"} selected
@@ -125,20 +125,20 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
           <button
             type="button"
             onClick={selectAll}
-            className="inline-flex items-center gap-1 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            className="inline-flex items-center gap-1 rounded-full border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 transition-colors hover:bg-emerald-100 dark:bg-emerald-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             Select all
           </button>
           <button
             type="button"
             onClick={selectNone}
-            className="inline-flex items-center gap-1 rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold text-stone-700 transition-colors hover:bg-stone-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
+            className="inline-flex items-center gap-1 rounded-full border border-line-strong bg-surface px-3 py-1 text-xs font-semibold text-ink-muted transition-colors hover:bg-surface focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400"
           >
             Select none
           </button>
           <Link
             href="/pantry"
-            className="inline-flex items-center gap-1 rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-medium text-stone-700 transition-colors hover:bg-stone-50"
+            className="inline-flex items-center gap-1 rounded-full border border-line-strong bg-surface px-3 py-1 text-xs font-medium text-ink-muted transition-colors hover:bg-surface"
           >
             <Refrigerator size={11} /> Edit pantry
           </Link>
@@ -162,7 +162,7 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
                 className={
                   active
                     ? "inline-flex items-center gap-1 rounded-full border border-emerald-600 bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
-                    : "inline-flex items-center gap-1 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-medium text-stone-700 transition-colors hover:border-emerald-300 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                    : "inline-flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-muted transition-colors hover:border-emerald-300 dark:border-emerald-800 hover:bg-emerald-50 dark:bg-emerald-950/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 }
               >
                 {active ? <Check size={11} /> : <Plus size={11} />}
@@ -171,8 +171,8 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
                   <span
                     className={
                       active
-                        ? "ml-0.5 inline-flex items-center gap-0.5 rounded-full bg-amber-200 px-1 text-[9px] font-semibold text-amber-900"
-                        : "ml-0.5 inline-flex items-center gap-0.5 rounded-full bg-amber-100 px-1 text-[9px] font-semibold text-amber-800"
+                        ? "ml-0.5 inline-flex items-center gap-0.5 rounded-full bg-amber-200 px-1 text-[9px] font-semibold text-amber-900 dark:text-amber-300"
+                        : "ml-0.5 inline-flex items-center gap-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 px-1 text-[9px] font-semibold text-amber-800 dark:text-amber-300"
                     }
                   >
                     <Clock4 size={9} /> use soon
@@ -184,7 +184,7 @@ export function AIChefPantrySelector({ selectedIds, onChange }: Props) {
         })}
       </ul>
 
-      <p className="mt-3 inline-flex items-center gap-1 text-[11px] text-stone-500">
+      <p className="mt-3 inline-flex items-center gap-1 text-[11px] text-ink-muted">
         <Sparkles size={10} /> AI Chef will prioritize these and only suggest
         cheap items you don&apos;t have when needed.
       </p>

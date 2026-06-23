@@ -9,21 +9,21 @@ interface Stat {
 }
 
 const TONE_BG: Record<Stat["tone"], string> = {
-  emerald: "from-emerald-50 to-white text-emerald-900 ring-emerald-200/70",
-  amber: "from-amber-50 to-white text-amber-900 ring-amber-200/70",
-  rose: "from-rose-50 to-white text-rose-900 ring-rose-200/70",
-  violet: "from-violet-50 to-white text-violet-900 ring-violet-200/70",
-  sky: "from-sky-50 to-white text-sky-900 ring-sky-200/70",
-  stone: "from-stone-50 to-white text-stone-900 ring-stone-200",
+  emerald: "from-emerald-50 to-surface text-emerald-900 dark:text-emerald-300 ring-emerald-200/70",
+  amber: "from-amber-50 to-surface text-amber-900 dark:text-amber-300 ring-amber-200/70",
+  rose: "from-rose-50 to-surface text-rose-900 dark:text-rose-300 ring-rose-200/70",
+  violet: "from-violet-50 to-surface text-violet-900 dark:text-violet-300 ring-violet-200/70",
+  sky: "from-sky-50 to-surface text-sky-900 dark:text-sky-300 ring-sky-200/70",
+  stone: "from-stone-50 to-surface text-ink ring-stone-200",
 };
 
 const TONE_ICON: Record<Stat["tone"], string> = {
-  emerald: "bg-emerald-100 text-emerald-700",
-  amber: "bg-amber-100 text-amber-700",
-  rose: "bg-rose-100 text-rose-700",
-  violet: "bg-violet-100 text-violet-700",
-  sky: "bg-sky-100 text-sky-700",
-  stone: "bg-stone-100 text-stone-700",
+  emerald: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300",
+  amber: "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300",
+  rose: "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300",
+  violet: "bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300",
+  sky: "bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300",
+  stone: "bg-surface-sunken text-ink-muted",
 };
 
 /**

@@ -28,10 +28,10 @@ export function LiquidGlassPanel({
   rounded?: "xl" | "2xl" | "3xl" | "full";
 }) {
   const TINT: Record<typeof tone, string> = {
-    cream: "bg-white/55 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#FFF8ED]",
-    basil: "bg-[#E8FAF0]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#E8FAF0]",
-    grape: "bg-[#EFE8FF]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#EFE8FF]",
-    carrot: "bg-[#FFE8D6]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#FFE8D6]",
+    cream: "bg-surface/55 supports-[not_(backdrop-filter:_blur(0px))]:bg-background",
+    basil: "bg-[#E8FAF0] dark:bg-[#122E20]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#E8FAF0] dark:bg-[#122E20]",
+    grape: "bg-[#EFE8FF] dark:bg-[#221A3D]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#EFE8FF] dark:bg-[#221A3D]",
+    carrot: "bg-[#FFE8D6] dark:bg-[#33210F]/65 supports-[not_(backdrop-filter:_blur(0px))]:bg-[#FFE8D6] dark:bg-[#33210F]",
   };
   const RADIUS: Record<typeof rounded, string> = {
     xl: "rounded-xl",
