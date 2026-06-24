@@ -4,6 +4,7 @@ import { RECIPE_IMAGE_OVERRIDES } from "@/data/recipeImageOverrides";
 import { GEN_RECIPE_PHOTOS } from "@/data/genRecipes";
 import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
 import { RICE_COOKER_RECIPE_PHOTOS } from "@/data/riceCookerRecipePhotos";
+import { NEW_RICE_COOKER_RECIPE_PHOTOS } from "@/data/newRiceCookerRecipePhotos";
 import { DRINK_RECIPE_PHOTOS } from "@/data/drinkRecipePhotos";
 import { CURATED_RECIPE_PHOTOS } from "@/data/curatedRecipePhotos";
 import { BAKING_RECIPE_PHOTOS } from "@/data/bakingRecipePhotos";
@@ -17,6 +18,7 @@ import { BAKING_RECIPE_PHOTOS_2 } from "@/data/bakingRecipePhotos2";
 export const RECIPE_IMAGES: Record<string, RecipeImage> = {
   ...SOCIAL_RECIPE_PHOTOS,
   ...RICE_COOKER_RECIPE_PHOTOS,
+  ...NEW_RICE_COOKER_RECIPE_PHOTOS,
   ...DRINK_RECIPE_PHOTOS,
   ...CURATED_RECIPE_PHOTOS,
   ...BAKING_RECIPE_PHOTOS,

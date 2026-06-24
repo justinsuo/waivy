@@ -6,6 +6,7 @@ import { WEB_RECIPES } from "./webRecipes";
 import { GEN_RECIPES } from "./genRecipes";
 import { SOCIAL_RECIPES } from "./socialRecipes";
 import { RICE_COOKER_RECIPES } from "./riceCookerRecipes";
+import { NEW_RICE_COOKER_RECIPES } from "./newRiceCookerRecipes";
 import { DRINK_RECIPES } from "./drinkRecipes";
 import { CURATED_RECIPES } from "./curatedRecipes";
 import { BAKING_RECIPES } from "./bakingRecipes";
@@ -4561,6 +4562,7 @@ export const RECIPES: Recipe[] = [
   ...AIR_FRYER_RECIPES,
   ...MICROWAVE_RECIPES,
   ...RICE_COOKER_RECIPES,
+  ...NEW_RICE_COOKER_RECIPES,
 ];
 
 function originalVariantsOnly(recipes: Recipe[]): Recipe[] {

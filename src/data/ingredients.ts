@@ -1321,6 +1321,12 @@ export const INGREDIENTS: Ingredient[] = [
   { id: "whole-wheat-couscous", name: "Whole wheat couscous", category: "grain", estimatedUnitCost: 1.50, unit: "cup-dry", commonPackageSize: "12 oz (~$3)", shelfLifeDays: 365 },
   { id: "wild-rice-blend", name: "Wild rice blend", category: "grain", estimatedUnitCost: 0.60, unit: "cup", commonPackageSize: "1 lb (~$5)", shelfLifeDays: 365 },
   { id: "yellow-split-peas", name: "Yellow split peas", category: "grain", estimatedUnitCost: 1.09, unit: "cup-dry", commonPackageSize: "1 lb (~$2.50)", shelfLifeDays: 730 },
+
+  // ===== Added for rice-cooker batch 2 (viral social-media recipes) =====
+  { id: "spam", name: "Spam (canned cooked pork)", category: "protein", estimatedUnitCost: 0.30, unit: "oz", commonPackageSize: "12 oz can (~$3.50)", shelfLifeDays: 1095, tags: ["staple"] },
+  { id: "tteok", name: "Korean rice cakes (tteok)", category: "grain", estimatedUnitCost: 1.00, unit: "cup", commonPackageSize: "1 lb bag (~$3)", shelfLifeDays: 60, tags: ["vegan"] },
+  { id: "sweet-rice", name: "Sweet (glutinous) rice", category: "grain", estimatedUnitCost: 0.35, unit: "cup-dry", commonPackageSize: "2 lb bag (~$4)", shelfLifeDays: 730, tags: ["staple", "vegan", "gluten-free"] },
+  { id: "yakult", name: "Yakult (probiotic drink)", category: "dairy", estimatedUnitCost: 0.55, unit: "bottle", commonPackageSize: "5-pack (~$2.75)", shelfLifeDays: 40 },
 ];
 
 // Alias map: maps alternative ingredient IDs used in macro recipe batches to the
