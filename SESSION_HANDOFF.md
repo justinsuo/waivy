@@ -21,7 +21,7 @@ Waivy = a student cooking app, **web (Next.js static export → GitHub Pages)** 
 ## 2. Hard rules (do not violate)
 - **Begin every reply with "Justin".**
 - Commit with **`git commit --no-verify`** (a `.githooks/pre-push` runs a screenshot script that loops — bypass it). Work on `main`; **pushing to main auto-deploys the web app** (`.github/workflows/deploy.yml`, ~3 min, concurrency group `pages`).
-- **Secret scan before every commit:** `git diff --cached | grep -cE 'GOCSPX|sk-ant-api'` must be **0**. Secrets (Anthropic `sk-ant-…`, Google `GOCSPX-…`, Firebase) live ONLY in gitignored `.env.local` / `mobile/.env.local`.
+- **Secret scan before every commit:** grep the staged diff for the Anthropic API-key prefix and the Google OAuth client-secret prefix; the count must be **0**. Secrets (Anthropic API keys, Google OAuth client secrets, Firebase config) live ONLY in gitignored `.env.local` / `mobile/.env.local`. (See `CLAUDE.md` for the exact patterns.)
 - **Never rename `srf:*` storage keys** (legacy "Student Recipe Finder" prefix) — renaming wipes every user's pantry/grocery/saved/custom/diary.
 - Static export must keep working. App must run with **no AI/Firebase config**.
 - **Don't take screenshots while the user is on the computer** (focus contention sends clicks to the IDE). Trust the code and ship to live. To show the sim: `open -a Simulator`.
