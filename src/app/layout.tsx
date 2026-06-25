@@ -48,7 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nunito.variable} ${inter.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${nunito.variable} ${inter.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Set the color theme before first paint to avoid a light→dark flash.
             Reads the saved appearance.theme from srf:settings; honors "system". */}
