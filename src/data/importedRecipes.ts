@@ -1294,6 +1294,132 @@ export const IMPORTED_RECIPES: Recipe[] = [
     ]
   },
   {
+    "id": "ba-parker-house-rolls-recipe",
+    "name": "Parker House Rolls (Bon Appétit)",
+    "description": "Soft, buttery, fold-over dinner rolls with a tender crumb and golden, flaky-salt-flecked tops that pull apart in pillowy rows. A timeless Thanksgiving classic worth the rise. Recipe from Bon Appétit: https://www.bonappetit.com/recipe/parker-house-rolls-recipe",
+    "mealType": "snack",
+    "servings": 36,
+    "ingredients": [
+      {
+        "ingredientId": "active-dry-yeast",
+        "quantity": 1,
+        "note": "1 (¼-oz.) envelope, about 2¼ tsp."
+      },
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 1,
+        "note": "1 cup"
+      },
+      {
+        "ingredientId": "lard",
+        "quantity": 4,
+        "note": "¼ cup vegetable shortening"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 3,
+        "note": "3 Tbsp."
+      },
+      {
+        "ingredientId": "kosher-salt",
+        "quantity": 1.5,
+        "note": "1½ tsp Diamond Crystal or 1 tsp Morton"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 1,
+        "note": "1 large egg, room temperature"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 3.5,
+        "note": "3½ cups (438 g) all-purpose flour, plus more"
+      },
+      {
+        "ingredientId": "vegetable-oil",
+        "quantity": 1,
+        "note": "for greasing the bowl"
+      },
+      {
+        "ingredientId": "unsalted-butter",
+        "quantity": 4,
+        "note": "¼ cup, melted"
+      },
+      {
+        "ingredientId": "flaky-sea-salt",
+        "quantity": 0.5,
+        "note": "for sprinkling",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Whisk the yeast with ¼ cup warm water (110°–115°F) in a small bowl; let sit until foamy, about 5 minutes.",
+      "Heat the whole milk in a small saucepan over medium until just warm. In a large bowl, combine the shortening, sugar, and kosher salt. Pour in the warm milk, whisking constantly to blend and break the shortening into small clumps (it may not melt completely).",
+      "Whisk in the yeast mixture and the egg until combined. Add the flour and stir vigorously with a wooden spoon until a dough forms.",
+      "Turn the dough out onto a lightly floured surface and knead with floured hands until smooth, about 5 minutes.",
+      "Lightly coat a large bowl with vegetable oil; transfer the dough and turn to coat. Cover loosely with plastic wrap and let sit in a warm spot until doubled in size, about 1½ hours.",
+      "Lightly brush a 13x9\" baking dish with some of the melted butter. Punch down the dough and divide into 4 equal pieces.",
+      "Working one piece at a time, roll out to a 12x6\" rectangle. Cut lengthwise into three 2\"-wide strips, then cut each strip crosswise to make three 4x2\" rectangles (9 per piece, 36 total).",
+      "Brush half of each rectangle (about 2x2\") with melted butter, then fold the unbuttered side over the buttered side, leaving ¼\" uncovered at the end.",
+      "Place the rolls flat side down, folded edge against a short side of the dish, side by side to form long rows until you have 4 rows.",
+      "Brush the tops with melted butter, loosely cover with plastic, and chill at least 30 minutes and up to 6 hours.",
+      "Preheat the oven to 350°F. Bake until golden and puffed, 25–35 minutes.",
+      "Brush with more melted butter and sprinkle with flaky sea salt. Let cool slightly before serving."
+    ],
+    "totalTimeMinutes": 180,
+    "prepTimeMinutes": 40,
+    "cookTimeMinutes": 30,
+    "difficulty": "medium",
+    "equipment": [
+      "oven",
+      "stovetop"
+    ],
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Active dry yeast is far cheaper bought in a jar than in single envelopes; one jar makes dozens of batches.",
+      "Vegetable shortening (or lard) is one of the cheapest baking fats and gives these rolls their classic soft, tender crumb.",
+      "Make the dough a day ahead and chill the shaped rolls overnight; baking fresh from the fridge means zero waste and no last-minute rush."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "lard",
+        "swap": "Use ¼ cup softened unsalted butter for a richer, all-butter roll",
+        "savings": "Often on hand; skips buying shortening"
+      },
+      {
+        "forIngredientId": "whole-milk",
+        "swap": "Use 2% milk or buttermilk thinned slightly",
+        "savings": "Uses what's in the fridge"
+      },
+      {
+        "forIngredientId": "active-dry-yeast",
+        "swap": "Use 2¼ tsp instant yeast and skip the proofing step, adding it directly to the flour",
+        "savings": "Saves 5 minutes"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 95,
+      "protein": 2,
+      "carbs": 13,
+      "fat": 4,
+      "fiber": 1
+    },
+    "emoji": "🍞",
+    "accentColor": "bg-amber-100",
+    "cuisine": "American",
+    "tags": [
+      "dinner rolls",
+      "bread",
+      "thanksgiving",
+      "baking",
+      "yeast bread",
+      "holiday",
+      "side dish"
+    ]
+  },
+  {
     "id": "ba-peanut-meringue-cookies",
     "name": "Peanut Meringue Cookies",
     "description": "Light, crackly meringue cookies studded with crushed roasted peanuts for a salty-sweet crunch and an airy marshmallowy center. They come together with just five pantry ingredients and a stand mixer. Recipe from Bon Appétit: https://www.bonappetit.com/recipe/peanut-meringue-cookies",
@@ -3849,6 +3975,151 @@ export const IMPORTED_RECIPES: Recipe[] = [
     ]
   },
   {
+    "id": "she-chicken-fried-rice",
+    "name": "Chicken Fried Rice (Simple Home Edit)",
+    "description": "Tender soy-marinated chicken, crispy bacon, sweet corn and peas, and fluffy egg tossed through golden fried rice with a hit of sesame oil and scallions. A fast, satisfying one-pan dinner that beats takeout. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/chicken-fried-rice/",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-breast",
+        "quantity": 4,
+        "note": "2 boneless skinless breasts, cut into bite-sized pieces"
+      },
+      {
+        "ingredientId": "mirin",
+        "quantity": 2,
+        "note": "2 tbsp",
+        "optional": true
+      },
+      {
+        "ingredientId": "soy-sauce",
+        "quantity": 4,
+        "note": "2 tbsp for marinade + 2 tbsp for the rice"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 2,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "bacon",
+        "quantity": 3,
+        "note": "70g finely diced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 1,
+        "note": "1 tsp freshly minced"
+      },
+      {
+        "ingredientId": "frozen-corn",
+        "quantity": 0.5,
+        "note": "75g frozen kernels"
+      },
+      {
+        "ingredientId": "frozen-peas",
+        "quantity": 0.5,
+        "note": "80g frozen"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 4,
+        "note": "whisked"
+      },
+      {
+        "ingredientId": "rice",
+        "quantity": 2,
+        "note": "370g cooked long-grain white rice"
+      },
+      {
+        "ingredientId": "sesame-oil",
+        "quantity": 3,
+        "note": "1 tbsp"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 2,
+        "note": "2 spring onions, finely sliced"
+      },
+      {
+        "ingredientId": "shallot",
+        "quantity": 1,
+        "note": "crispy fried shallots, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "chili-oil",
+        "quantity": 1,
+        "note": "chilli oil, to serve",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Place the chicken, mirin and 2 tbsp soy sauce in a medium bowl and toss to coat well.",
+      "Heat 1 tbsp of the olive oil in a large heavy-based frying pan over medium-high heat.",
+      "Cook the chicken for 4-6 minutes until just cooked through, then remove from the pan and set aside.",
+      "Add the remaining 1 tbsp oil to the same pan along with the bacon. Cook 2-3 minutes until golden, adding a splash of water to scrape up any sticky bits if needed.",
+      "Add the garlic and cook, stirring, for 30 seconds.",
+      "Add the frozen corn and peas and cook, stirring, for 1 minute until just thawed.",
+      "Push everything to one side of the pan and pour in the whisked egg. Cook 1-2 minutes until set, then stir the egg through the bacon, corn and pea mixture.",
+      "Return the chicken to the pan along with the cooked rice, remaining 2 tbsp soy sauce, sesame oil and spring onion. Toss to combine and heat through.",
+      "Serve topped with crispy fried shallots and chilli oil, if using."
+    ],
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 13,
+    "totalTimeMinutes": 18,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Use day-old leftover rice instead of cooking fresh - it fries up firmer and saves money and time.",
+      "Swap chicken breast for cheaper chicken thighs; they stay juicier and cost less per serving.",
+      "Skip the optional mirin, fried shallots and chilli oil - the dish is great without them and they add the most cost."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-breast",
+        "swap": "chicken-thighs",
+        "savings": "~$0.20/serving and stays juicier"
+      },
+      {
+        "forIngredientId": "olive-oil",
+        "swap": "vegetable-oil",
+        "savings": "~$0.20/tbsp and a more neutral flavor for stir-frying"
+      },
+      {
+        "forIngredientId": "bacon",
+        "swap": "turkey-bacon",
+        "savings": "~$0.13/slice and lower in fat"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 480,
+      "protein": 38,
+      "carbs": 38,
+      "fat": 18,
+      "fiber": 3
+    },
+    "emoji": "🍚",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Asian-inspired",
+    "tags": [
+      "fried-rice",
+      "chicken",
+      "one-pan",
+      "quick",
+      "weeknight",
+      "takeout-at-home",
+      "high-protein"
+    ]
+  },
+  {
     "id": "she-chicken-green-curry",
     "name": "Chicken Green Curry",
     "description": "Tender chicken thighs simmered in a fragrant green curry and creamy coconut sauce with crisp vegetables, ready in just 15 minutes. Bright, savory, and perfect over steamed jasmine rice. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/chicken-green-curry/",
@@ -3979,6 +4250,148 @@ export const IMPORTED_RECIPES: Recipe[] = [
       "thai",
       "gluten-free",
       "dairy-free"
+    ]
+  },
+  {
+    "id": "she-chicken-gyros",
+    "name": "Chicken Gyros (Simple Home Edit)",
+    "description": "Juicy paprika-and-oregano marinated chicken thighs seared until golden, then piled into warm pita with cool tzatziki, fresh tomato, red onion and kalamata olives. A fast, vibrant Greek-style dinner that comes together in 20 minutes. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/chicken-gyros/",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "chicken-thighs",
+        "quantity": 7,
+        "note": "1 kg boneless, skinless"
+      },
+      {
+        "ingredientId": "sweet-paprika",
+        "quantity": 1,
+        "note": "1 tsp"
+      },
+      {
+        "ingredientId": "dried-oregano",
+        "quantity": 2,
+        "note": "2 tsp"
+      },
+      {
+        "ingredientId": "flaky-sea-salt",
+        "quantity": 1,
+        "note": "1 tsp sea salt flakes"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.5,
+        "note": "1/2 tsp freshly cracked"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "1 tbsp freshly minced"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 1,
+        "note": "1 lemon, juiced and zested"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 4,
+        "note": "60 ml"
+      },
+      {
+        "ingredientId": "pita",
+        "quantity": 4,
+        "note": "4 pita breads / flatbreads"
+      },
+      {
+        "ingredientId": "tzatziki",
+        "quantity": 4,
+        "note": "4 tbsp"
+      },
+      {
+        "ingredientId": "tomato",
+        "quantity": 2,
+        "note": "2, sliced"
+      },
+      {
+        "ingredientId": "red-onion",
+        "quantity": 1,
+        "note": "1, finely sliced"
+      },
+      {
+        "ingredientId": "parsley-fresh",
+        "quantity": 1,
+        "note": "1 tbsp chopped flat-leaf",
+        "optional": true
+      },
+      {
+        "ingredientId": "kalamata-olives",
+        "quantity": 0.2,
+        "note": "2 tbsp sliced",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "In a large bowl, combine the chicken thighs with the paprika, oregano, sea salt, black pepper, minced garlic, lemon juice and zest, and olive oil. Use your hands to coat the chicken evenly.",
+      "Cook immediately, or cover and marinate in the fridge for up to 24 hours for deeper flavour.",
+      "Heat a large pan over medium-high heat. Add the chicken and cook for about 10 minutes until golden and cooked through, turning once halfway.",
+      "If the pan gets too sticky, add 1/4 cup (60 ml) of water at the halfway mark.",
+      "Transfer the chicken to a board and let it rest for 5 minutes, then slice.",
+      "Warm the pita or flatbreads. Spread each with tzatziki.",
+      "Pile on the sliced chicken, tomato, red onion, parsley and kalamata olives. Fold and serve."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 10,
+    "totalTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Buy bone-in thighs and debone them yourself, or swap in chicken breast on sale, to cut the meat cost.",
+      "Make your own tzatziki from plain yogurt, cucumber and garlic instead of buying a tub.",
+      "Skip the kalamata olives and fresh parsley if you're trimming the budget; they're optional garnishes."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "chicken-thighs",
+        "swap": "Chicken breast, sliced thin so it stays juicy",
+        "savings": "Often cheaper per serving on sale"
+      },
+      {
+        "forIngredientId": "pita",
+        "swap": "Flatbread, naan, or any soft wrap",
+        "savings": "Use whatever bread you already have"
+      },
+      {
+        "forIngredientId": "flaky-sea-salt",
+        "swap": "Regular table or kosher salt (use a bit less)",
+        "savings": "~$0.10/tsp cheaper"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 540,
+      "protein": 42,
+      "carbs": 38,
+      "fat": 24,
+      "fiber": 4
+    },
+    "emoji": "🥙",
+    "accentColor": "bg-sky-100",
+    "cuisine": "Greek",
+    "tags": [
+      "gyros",
+      "chicken",
+      "greek",
+      "wrap",
+      "weeknight",
+      "high-protein",
+      "marinated",
+      "quick"
     ]
   },
   {
@@ -7857,6 +8270,164 @@ export const IMPORTED_RECIPES: Recipe[] = [
     ]
   },
   {
+    "id": "she-drunken-noodles",
+    "name": "Drunken Noodles (Simple Home Edit)",
+    "description": "Wide rice noodles tossed with seared chicken and crisp veggies in a savory-sweet soy and oyster sauce, finished with fragrant Thai basil and a hit of chili oil. Fast, bold, and far better than takeout. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/drunken-noodles/",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "oyster-sauce",
+        "quantity": 3,
+        "note": "3 tbsp"
+      },
+      {
+        "ingredientId": "light-soy-sauce",
+        "quantity": 2,
+        "note": "2 tbsp light soy sauce"
+      },
+      {
+        "ingredientId": "dark-soy",
+        "quantity": 2,
+        "note": "2 tbsp dark soy sauce"
+      },
+      {
+        "ingredientId": "rice-vinegar",
+        "quantity": 1,
+        "note": "1 tbsp rice wine vinegar"
+      },
+      {
+        "ingredientId": "fish-sauce",
+        "quantity": 1.5,
+        "note": "1/2 tbsp fish sauce"
+      },
+      {
+        "ingredientId": "brown-sugar",
+        "quantity": 1,
+        "note": "1 tbsp brown sugar"
+      },
+      {
+        "ingredientId": "wide-rice-noodles",
+        "quantity": 4,
+        "note": "200g dried wide rice noodles"
+      },
+      {
+        "ingredientId": "sesame-oil",
+        "quantity": 3,
+        "note": "1 tbsp sesame oil"
+      },
+      {
+        "ingredientId": "chicken-breast",
+        "quantity": 4,
+        "note": "500g boneless skinless chicken breast, finely sliced"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "1 brown onion, sliced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "1 tbsp freshly grated garlic"
+      },
+      {
+        "ingredientId": "carrot",
+        "quantity": 1,
+        "note": "1 carrot, julienned"
+      },
+      {
+        "ingredientId": "bok-choy",
+        "quantity": 1,
+        "note": "1 bunch bok choy, shredded"
+      },
+      {
+        "ingredientId": "scallion",
+        "quantity": 4,
+        "note": "4 spring onion stems, cut into batons"
+      },
+      {
+        "ingredientId": "thai-basil",
+        "quantity": 1,
+        "note": "50g Thai basil leaves, picked"
+      },
+      {
+        "ingredientId": "chili-oil",
+        "quantity": 2,
+        "note": "chilli oil vinegar, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "roasted-peanuts",
+        "quantity": 1,
+        "note": "crushed roasted peanuts, to serve",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Make the sauce: In a small bowl, whisk together the oyster sauce, light soy, dark soy, rice vinegar, fish sauce, brown sugar and 2 tbsp water until the sugar dissolves.",
+      "Cook the noodles: Cook the wide rice noodles per packet instructions only until just pliable (about 3 minutes, not the full 6-8), then rinse under cold water and drain. They will finish cooking in the pan.",
+      "Sear the chicken: Heat the sesame oil in a large deep frying pan or wok over high heat. Add the sliced chicken and stir-fry until it just starts to change colour.",
+      "Add aromatics: Add the onion and garlic and cook, stirring, for about 30 seconds until fragrant.",
+      "Combine: Add the carrot, bok choy, spring onion, partially cooked noodles and the sauce. Toss with tongs until well combined and simmer 2-3 minutes, until the veg softens slightly and the noodles absorb the sauce.",
+      "Finish: Remove from the heat and stir through the Thai basil leaves.",
+      "Serve: Divide among bowls and top with chilli oil vinegar and crushed roasted peanuts, if using."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 8,
+    "totalTimeMinutes": 18,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "dietTags": [
+      "high-protein",
+      "dairy-free"
+    ],
+    "cheapTips": [
+      "Buy a value pack of chicken breast and freeze in portions — it's cheaper per serving than pre-sliced.",
+      "Dark and light soy plus a pinch of sugar can stand in for pricier specialty sauces if you're missing one.",
+      "Skip the peanuts and chili oil garnish if budget is tight — the dish is complete without them."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "dark-soy",
+        "swap": "tamari or all-purpose soy sauce",
+        "savings": "uses what you already have"
+      },
+      {
+        "forIngredientId": "rice-vinegar",
+        "swap": "white vinegar or apple cider vinegar",
+        "savings": "~$0.05/tbsp"
+      },
+      {
+        "forIngredientId": "thai-basil",
+        "swap": "regular fresh basil",
+        "savings": "often cheaper and easier to find"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 470,
+      "protein": 38,
+      "carbs": 52,
+      "fat": 12,
+      "fiber": 4
+    },
+    "emoji": "🍜",
+    "accentColor": "bg-red-100",
+    "cuisine": "Thai",
+    "tags": [
+      "stir-fry",
+      "noodles",
+      "chicken",
+      "thai",
+      "quick",
+      "weeknight",
+      "dairy-free",
+      "high-protein"
+    ]
+  },
+  {
     "id": "she-easy-butter-chicken",
     "name": "Easy Butter Chicken",
     "description": "Tender chicken thighs simmered in a velvety, spiced tomato-cream sauce that comes together in just 20 minutes. Serve over fluffy basmati rice for a weeknight takeaway favorite made at home. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/easy-butter-chicken/",
@@ -8523,6 +9094,143 @@ export const IMPORTED_RECIPES: Recipe[] = [
       "mediterranean",
       "gluten-free",
       "pan-seared"
+    ]
+  },
+  {
+    "id": "she-falafel-bowl",
+    "name": "Falafel Bowl (Simple Home Edit)",
+    "description": "A vibrant Mediterranean-style bowl piling crispy falafel, fluffy brown rice, fresh veg, briny olives and feta over a swoosh of beetroot hummus. Ready in 10 minutes for a no-fuss, satisfying lunch. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/falafel-bowl/",
+    "mealType": "lunch",
+    "servings": 2,
+    "ingredients": [
+      {
+        "ingredientId": "brown-rice",
+        "quantity": 2.5,
+        "note": "250g brown rice medley microwave pouch"
+      },
+      {
+        "ingredientId": "falafel-mix",
+        "quantity": 6,
+        "note": "6 falafel balls"
+      },
+      {
+        "ingredientId": "spinach",
+        "quantity": 2,
+        "note": "50g baby spinach leaves"
+      },
+      {
+        "ingredientId": "cucumber",
+        "quantity": 1,
+        "note": "1 small cucumber, sliced"
+      },
+      {
+        "ingredientId": "grape-tomatoes",
+        "quantity": 0.5,
+        "note": "75g grape (baby roma/plum) tomatoes"
+      },
+      {
+        "ingredientId": "chickpeas",
+        "quantity": 1,
+        "note": "400g canned chickpeas, drained"
+      },
+      {
+        "ingredientId": "feta",
+        "quantity": 1,
+        "note": "35g crumbled feta"
+      },
+      {
+        "ingredientId": "red-onion",
+        "quantity": 0.3,
+        "note": "30g finely sliced red onion"
+      },
+      {
+        "ingredientId": "kalamata-olives",
+        "quantity": 0.3,
+        "note": "45g pitted kalamata olives"
+      },
+      {
+        "ingredientId": "hummus",
+        "quantity": 1,
+        "note": "4 tbsp beetroot (beet) hummus"
+      },
+      {
+        "ingredientId": "lemon",
+        "quantity": 0.5,
+        "note": "lemon wedges, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 1,
+        "note": "olive oil, to drizzle",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Heat the brown rice medley pouch according to the packet instructions (usually about 90 seconds in the microwave).",
+      "Heat the falafel balls as per the packet instructions until hot and crisp.",
+      "Drain and rinse the canned chickpeas.",
+      "Slice the cucumber, halve the grape tomatoes, and finely slice the red onion.",
+      "Divide the warm rice between two bowls as a base.",
+      "Arrange the baby spinach, cucumber, tomatoes, chickpeas, red onion and olives over the rice.",
+      "Top each bowl with three falafel balls and a swoosh of beetroot hummus.",
+      "Scatter over the crumbled feta.",
+      "Finish with a squeeze of lemon juice and a drizzle of olive oil, then serve."
+    ],
+    "totalTimeMinutes": 10,
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 5,
+    "difficulty": "easy",
+    "equipment": [
+      "microwave",
+      "no-kitchen"
+    ],
+    "dietTags": [
+      "vegetarian",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Make your own falafel from a boxed falafel mix instead of buying pre-made balls — it's a fraction of the cost.",
+      "Cook a big batch of brown rice from dry instead of using single-serve microwave pouches to slash the per-bowl price.",
+      "Swap the beetroot hummus for regular plain hummus, or blend a can of chickpeas with tahini, lemon and garlic to make your own."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "hummus",
+        "swap": "Use regular hummus or tzatziki in place of beetroot hummus",
+        "savings": "Often cheaper than specialty beetroot hummus"
+      },
+      {
+        "forIngredientId": "kalamata-olives",
+        "swap": "Use black olives or green olives instead",
+        "savings": "Roughly $1-2 less per jar"
+      },
+      {
+        "forIngredientId": "feta",
+        "swap": "Use goat cheese or skip for a vegan bowl",
+        "savings": "Saves ~$0.75 per serving when omitted"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 520,
+      "protein": 18,
+      "carbs": 62,
+      "fat": 23,
+      "fiber": 12
+    },
+    "emoji": "🥗",
+    "accentColor": "bg-emerald-100",
+    "cuisine": "Mediterranean",
+    "tags": [
+      "falafel",
+      "bowl",
+      "mediterranean",
+      "vegetarian",
+      "quick",
+      "lunch",
+      "meal-prep",
+      "no-cook",
+      "high-fiber"
     ]
   },
   {
@@ -9723,6 +10431,118 @@ export const IMPORTED_RECIPES: Recipe[] = [
       "weeknight",
       "15-minute",
       "comfort-food"
+    ]
+  },
+  {
+    "id": "she-macaroni-and-cheese",
+    "name": "Macaroni and Cheese (Simple Home Edit)",
+    "description": "Creamy stovetop mac and cheese with a silky cheddar sauce, finished under the broiler with a golden panko crunch. Comfort food on the table in 20 minutes. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/macaroni-and-cheese/",
+    "mealType": "dinner",
+    "servings": 6,
+    "ingredients": [
+      {
+        "ingredientId": "macaroni",
+        "quantity": 10,
+        "note": "500 g elbow macaroni (dry)"
+      },
+      {
+        "ingredientId": "unsalted-butter",
+        "quantity": 2,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "flour",
+        "quantity": 0.25,
+        "note": "30 g plain (all-purpose) flour"
+      },
+      {
+        "ingredientId": "whole-milk",
+        "quantity": 3,
+        "note": "750 ml full-cream (whole) milk"
+      },
+      {
+        "ingredientId": "chicken-bouillon",
+        "quantity": 1,
+        "note": "1 tsp chicken stock powder"
+      },
+      {
+        "ingredientId": "shredded-cheddar",
+        "quantity": 13,
+        "note": "375 g freshly grated cheddar"
+      },
+      {
+        "ingredientId": "panko",
+        "quantity": 0.125,
+        "note": "2 tbsp panko breadcrumbs"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 0.5,
+        "note": "olive oil spray, for the top",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Cook the macaroni according to the packet instructions, minus 1 minute. Drain and run under cold water to cool immediately.",
+      "Meanwhile, melt the butter in a large, deep frying pan over low heat.",
+      "Once melted, add the flour and stir for about 30 seconds until a smooth paste forms.",
+      "Pour in about one-quarter of the milk, whisking for 30 seconds until combined.",
+      "Add the remaining milk and whisk over low heat for about 5 minutes, until the sauce thickens enough to coat the back of a spoon.",
+      "Stir in the chicken stock powder and grated cheddar until melted. Turn off the heat and stir the cooked pasta through. Serve as is, or continue for extra crunch.",
+      "Preheat the oven grill (broiler). Transfer to a baking dish if needed, sprinkle with panko breadcrumbs, and spray with olive oil.",
+      "Grill (broil) for 2-3 minutes until golden, watching closely as it browns quickly."
+    ],
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 15,
+    "totalTimeMinutes": 20,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop",
+      "oven"
+    ],
+    "dietTags": [
+      "vegetarian"
+    ],
+    "cheapTips": [
+      "Buy a block of cheddar and grate it yourself - it melts smoother than pre-shredded and costs less per ounce.",
+      "Store-brand elbow macaroni and whole milk are just as good here and save the most on a family-sized batch.",
+      "Skip the chicken stock powder if you don't have it; a good pinch of salt seasons the sauce just fine."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "shredded-cheddar",
+        "swap": "Use sharp-cheddar or white-cheddar for a tangier, more grown-up flavor.",
+        "savings": "Similar cost"
+      },
+      {
+        "forIngredientId": "whole-milk",
+        "swap": "Two-percent milk works fine and is slightly lighter.",
+        "savings": "Saves a little"
+      },
+      {
+        "forIngredientId": "panko",
+        "swap": "Regular breadcrumbs give the same golden crunch.",
+        "savings": "Slightly cheaper"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 620,
+      "protein": 26,
+      "carbs": 68,
+      "fat": 27,
+      "fiber": 3
+    },
+    "emoji": "🧀",
+    "accentColor": "bg-amber-100",
+    "cuisine": "American",
+    "tags": [
+      "mac and cheese",
+      "pasta",
+      "comfort food",
+      "vegetarian",
+      "kid-friendly",
+      "cheesy",
+      "weeknight"
     ]
   },
   {
@@ -13709,6 +14529,156 @@ export const IMPORTED_RECIPES: Recipe[] = [
     ]
   },
   {
+    "id": "she-shakshuka",
+    "name": "Shakshuka (Simple Home Edit)",
+    "description": "Eggs gently poached in a smoky, spiced tomato and capsicum sauce, finished with creamy avocado, salty feta and fresh herbs. A one-pan brunch classic that comes together in under 20 minutes. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/shakshuka/",
+    "mealType": "breakfast",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 2,
+        "note": "2 tbsp"
+      },
+      {
+        "ingredientId": "onion",
+        "quantity": 1,
+        "note": "1 brown onion, finely diced"
+      },
+      {
+        "ingredientId": "red-bell-pepper",
+        "quantity": 1,
+        "note": "1 red capsicum, finely diced"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 3,
+        "note": "1 tbsp freshly minced garlic (~3 cloves)"
+      },
+      {
+        "ingredientId": "sweet-paprika",
+        "quantity": 3,
+        "note": "1 tbsp sweet paprika"
+      },
+      {
+        "ingredientId": "cumin",
+        "quantity": 1,
+        "note": "1 tsp ground cumin"
+      },
+      {
+        "ingredientId": "crushed-tomato",
+        "quantity": 1,
+        "note": "400g canned crushed tomatoes"
+      },
+      {
+        "ingredientId": "flaky-sea-salt",
+        "quantity": 1,
+        "note": "1 tsp sea salt flakes, plus extra to serve"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.5,
+        "note": "1/2 tsp cracked black pepper, plus extra to serve"
+      },
+      {
+        "ingredientId": "sugar",
+        "quantity": 0.33,
+        "note": "1 tsp sugar"
+      },
+      {
+        "ingredientId": "eggs",
+        "quantity": 5,
+        "note": "5 eggs, or more if you prefer"
+      },
+      {
+        "ingredientId": "avocado",
+        "quantity": 1,
+        "note": "1 avocado, sliced, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "feta",
+        "quantity": 2,
+        "note": "75g crumbled feta, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "cilantro",
+        "quantity": 4,
+        "note": "25g chopped coriander or parsley, to serve",
+        "optional": true
+      },
+      {
+        "ingredientId": "sourdough",
+        "quantity": 4,
+        "note": "crusty bread, to serve",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Heat the olive oil in a large, heavy-based frying pan over medium heat. Add the onion, capsicum and garlic and cook, stirring, for 3-5 minutes until softened.",
+      "Add the paprika, cumin, crushed tomatoes, salt, pepper and sugar. Bring the sauce to a gentle simmer.",
+      "Using a wooden spoon, make wells in the sauce. Crack the eggs one at a time (into a glass first to catch any shell) and slide one into each well.",
+      "Cover the pan and cook for 5-6 minutes, until the eggs are set to your liking. They will keep cooking off the heat, so pull them slightly underdone if you like runny yolks.",
+      "Season with extra salt and pepper, paying particular attention to the eggs.",
+      "Top with sliced avocado, crumbled feta and chopped coriander or parsley. Serve straight from the pan with crusty bread."
+    ],
+    "totalTimeMinutes": 19,
+    "prepTimeMinutes": 8,
+    "cookTimeMinutes": 11,
+    "difficulty": "easy",
+    "equipment": [
+      "stovetop"
+    ],
+    "dietTags": [
+      "vegetarian",
+      "gluten-free",
+      "high-protein"
+    ],
+    "cheapTips": [
+      "A can of crushed tomatoes is the cheap backbone here - buy store brand and stock up when on sale.",
+      "Skip the avocado and feta garnishes to cut the cost almost in half; the spiced egg-and-tomato base is delicious on its own.",
+      "Use whatever fresh herb is cheapest - parsley and coriander are interchangeable, and even the stems can go in."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "feta",
+        "swap": "Crumbled goat cheese or a spoonful of ricotta",
+        "savings": "Often cheaper per serving and just as creamy"
+      },
+      {
+        "forIngredientId": "red-bell-pepper",
+        "swap": "Any color bell pepper, or a diced zucchini",
+        "savings": "Green peppers are usually the cheapest"
+      },
+      {
+        "forIngredientId": "sweet-paprika",
+        "swap": "Smoked paprika for a deeper, smoky flavor",
+        "savings": "Use what is already in your spice rack"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 290,
+      "protein": 14,
+      "carbs": 18,
+      "fat": 19,
+      "fiber": 6
+    },
+    "emoji": "🍳",
+    "accentColor": "bg-red-100",
+    "cuisine": "Middle Eastern",
+    "tags": [
+      "shakshuka",
+      "eggs",
+      "brunch",
+      "one-pan",
+      "vegetarian",
+      "tomato",
+      "spicy",
+      "high-protein"
+    ]
+  },
+  {
     "id": "she-smoked-salmon-bagels",
     "name": "Smoked Salmon Bagels",
     "description": "Toasted bagels piled with creamy spread, ribbons of smoked salmon, crisp cucumber, briny capers and zingy quick-pickled red onion — a fresh, no-cook brunch that comes together in 15 minutes. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/smoked-salmon-bagels/",
@@ -14197,6 +15167,117 @@ export const IMPORTED_RECIPES: Recipe[] = [
       "crispy",
       "weeknight",
       "high-protein"
+    ]
+  },
+  {
+    "id": "she-spaghetti-carbonara",
+    "name": "Spaghetti Carbonara (Simple Home Edit)",
+    "description": "Silky, glossy carbonara made the proper way — no cream, just egg yolks, parmesan, and crisp bacon emulsified with starchy pasta water. A 17-minute Italian classic that tastes like a restaurant plate. Recipe from Simple Home Edit: https://simplehomeedit.com/recipe/spaghetti-carbonara/",
+    "mealType": "dinner",
+    "servings": 4,
+    "ingredients": [
+      {
+        "ingredientId": "flaky-sea-salt",
+        "quantity": 2,
+        "note": "2 tsp, for the pasta water"
+      },
+      {
+        "ingredientId": "egg-yolks",
+        "quantity": 5,
+        "note": "5 egg yolks"
+      },
+      {
+        "ingredientId": "grated-parmesan",
+        "quantity": 10,
+        "note": "65g freshly grated parmesan"
+      },
+      {
+        "ingredientId": "black-pepper",
+        "quantity": 0.5,
+        "note": "1/2 tsp freshly cracked"
+      },
+      {
+        "ingredientId": "spaghetti",
+        "quantity": 4,
+        "note": "400g spaghetti"
+      },
+      {
+        "ingredientId": "olive-oil",
+        "quantity": 1,
+        "note": "1 tbsp"
+      },
+      {
+        "ingredientId": "garlic",
+        "quantity": 1,
+        "note": "1 clove, partially crushed"
+      },
+      {
+        "ingredientId": "bacon",
+        "quantity": 12,
+        "note": "350g, cut into bite-sized pieces"
+      }
+    ],
+    "steps": [
+      "Bring a large pot of water to a boil and season generously with the sea salt flakes.",
+      "In a small bowl, whisk together the egg yolks, grated parmesan, and black pepper with a fork until well combined. Set aside.",
+      "Add the spaghetti to the boiling water and cook until al dente (about 2 minutes less than the packet suggests). Before draining, reserve 1 cup (250 ml) of the starchy pasta water.",
+      "Partially crush the garlic clove with the side of your hand. Heat the olive oil in a frying pan over medium heat, add the garlic, and cook for 1 minute.",
+      "Add the bacon and cook for 3-4 minutes until crisp and golden.",
+      "Remove and discard the garlic. Add the drained pasta to the pan and toss with tongs so it soaks up the bacon and garlic flavour.",
+      "Take the pan completely off the heat and let it cool for at least 1 minute. Toss in half the reserved pasta water, then pour in the egg mixture, tossing constantly so the residual heat gently cooks the eggs into a silky sauce rather than scrambling them.",
+      "Add more pasta water a splash at a time until the sauce coats the spaghetti at your desired consistency. Serve immediately with extra parmesan and black pepper."
+    ],
+    "totalTimeMinutes": 17,
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 12,
+    "difficulty": "medium",
+    "equipment": [
+      "stovetop"
+    ],
+    "dietTags": [
+      "high-protein"
+    ],
+    "cheapTips": [
+      "Bacon stands in beautifully for guanciale or pancetta at a fraction of the cost — buy a thick-cut slab and dice it yourself.",
+      "Save the leftover egg whites for an omelette or to brush on bread so nothing goes to waste.",
+      "Buy a block of parmesan and grate it fresh — it's cheaper per ounce than pre-grated and melts into a smoother sauce."
+    ],
+    "substitutions": [
+      {
+        "forIngredientId": "bacon",
+        "swap": "Pancetta or guanciale for a more traditional flavour",
+        "savings": "Costs more, but more authentic"
+      },
+      {
+        "forIngredientId": "grated-parmesan",
+        "swap": "Pecorino romano for a sharper, saltier classic carbonara",
+        "savings": "Similar price"
+      },
+      {
+        "forIngredientId": "spaghetti",
+        "swap": "Bucatini or linguine work just as well",
+        "savings": "Similar price"
+      }
+    ],
+    "estimatedNutrition": {
+      "calories": 640,
+      "protein": 31,
+      "carbs": 78,
+      "fat": 23,
+      "fiber": 3
+    },
+    "emoji": "🍝",
+    "accentColor": "bg-amber-100",
+    "cuisine": "Italian",
+    "tags": [
+      "pasta",
+      "carbonara",
+      "quick",
+      "dinner",
+      "italian",
+      "bacon",
+      "comfort-food",
+      "no-cream"
     ]
   },
   {

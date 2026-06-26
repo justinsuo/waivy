@@ -101,6 +101,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "attributionText": "Photo: Bon Appétit",
     "verifiedMatch": true
   },
+  "ba-parker-house-rolls-recipe": {
+    "src": "https://assets.bonappetit.com/photos/6917520bae24eb7b4b2d7b90/16:9/w_1909,h_1074,c_limit/parker-house-rolls-ba-111425.jpg",
+    "alt": "Photo of Parker House Rolls",
+    "sourceName": "Bon Appétit",
+    "sourceUrl": "https://www.bonappetit.com/recipe/parker-house-rolls-recipe",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Bon Appétit",
+    "verifiedMatch": true
+  },
   "ba-peanut-meringue-cookies": {
     "src": "https://assets.bonappetit.com/photos/589e39a809ffa8f71863477e/16:9/w_4991,h_2807,c_limit/peanut-meringue-cookies.jpg",
     "alt": "Photo of Peanut Meringue Cookies",
@@ -301,11 +311,31 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "attributionText": "Photo: Simple Home Edit",
     "verifiedMatch": true
   },
+  "she-chicken-fried-rice": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2023/07/Chicken-Fried-Rice.webp",
+    "alt": "Photo of Chicken Fried Rice",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/chicken-fried-rice/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
   "she-chicken-green-curry": {
     "src": "https://simplehomeedit.com/wp-content/uploads/2022/11/Chicken-Green-Curry-Recipe.webp",
     "alt": "Photo of Chicken Green Curry",
     "sourceName": "Simple Home Edit",
     "sourceUrl": "https://simplehomeedit.com/recipe/chicken-green-curry/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
+  "she-chicken-gyros": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2022/12/Chicken-Gyros-Recipe.webp",
+    "alt": "Photo of Chicken Gyros",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/chicken-gyros/",
     "license": "Editorial / source site",
     "attributionRequired": true,
     "attributionText": "Photo: Simple Home Edit",
@@ -591,6 +621,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "attributionText": "Photo: Simple Home Edit",
     "verifiedMatch": true
   },
+  "she-drunken-noodles": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2024/11/Drunken-Noodles-2.webp",
+    "alt": "Photo of Drunken Noodles",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/drunken-noodles/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
   "she-easy-butter-chicken": {
     "src": "https://simplehomeedit.com/wp-content/uploads/2022/07/Easy-Butter-Chicken-Recipe.webp",
     "alt": "Photo of Easy Butter Chicken",
@@ -636,6 +676,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "alt": "Photo of Easy Greek Chicken",
     "sourceName": "Simple Home Edit",
     "sourceUrl": "https://simplehomeedit.com/recipe/easy-greek-chicken/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
+  "she-falafel-bowl": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2022/11/Falafel-Bowl-Recipe.webp",
+    "alt": "Photo of Falafel Bowl",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/falafel-bowl/",
     "license": "Editorial / source site",
     "attributionRequired": true,
     "attributionText": "Photo: Simple Home Edit",
@@ -716,6 +766,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "alt": "Photo of One-pan Lemon Gnocchi Chicken",
     "sourceName": "Simple Home Edit",
     "sourceUrl": "https://simplehomeedit.com/recipe/lemon-gnocchi-chicken/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
+  "she-macaroni-and-cheese": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2022/12/Macaroni-and-Cheese-Recipe.webp",
+    "alt": "Photo of Macaroni and Cheese",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/macaroni-and-cheese/",
     "license": "Editorial / source site",
     "attributionRequired": true,
     "attributionText": "Photo: Simple Home Edit",
@@ -1001,6 +1061,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "attributionText": "Photo: Simple Home Edit",
     "verifiedMatch": true
   },
+  "she-shakshuka": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2023/06/Shakshuka.webp",
+    "alt": "Photo of Shakshuka",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/shakshuka/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
   "she-smoked-salmon-bagels": {
     "src": "https://simplehomeedit.com/wp-content/uploads/2022/10/Smoked-Salmon-Bagels-Recipe.webp",
     "alt": "Photo of Smoked Salmon Bagels",
@@ -1036,6 +1106,16 @@ export const IMPORTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     "alt": "Photo of Southern Fried Chicken",
     "sourceName": "Simple Home Edit",
     "sourceUrl": "https://simplehomeedit.com/recipe/southern-fried-chicken/",
+    "license": "Editorial / source site",
+    "attributionRequired": true,
+    "attributionText": "Photo: Simple Home Edit",
+    "verifiedMatch": true
+  },
+  "she-spaghetti-carbonara": {
+    "src": "https://simplehomeedit.com/wp-content/uploads/2023/07/Spaghetti-Carbonara.webp",
+    "alt": "Photo of Spaghetti Carbonara",
+    "sourceName": "Simple Home Edit",
+    "sourceUrl": "https://simplehomeedit.com/recipe/spaghetti-carbonara/",
     "license": "Editorial / source site",
     "attributionRequired": true,
     "attributionText": "Photo: Simple Home Edit",
