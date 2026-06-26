@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { View, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { Feather } from "@expo/vector-icons";
@@ -8,11 +8,14 @@ import { RecipeCard } from "~/components/RecipeCard";
 import { ProgressRing, MacroBar } from "~/components/Charts";
 import { space, radius, AccentKey, shadow } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
-import { allSeedViews } from "~/lib/recipes";
+import { seedToView } from "~/lib/recipes";
+import { CATALOG_RECIPES } from "@/data/recipes";
+import { RECIPE_IMAGES } from "@/data/recipeImages";
+import { rankedHomePool, pickHomeShowcase } from "@/lib/homeShowcase";
 import { usePantry, useGrocery } from "~/lib/stores/app";
 import { useToday } from "~/lib/stores/nourish";
 import { useStreak } from "~/lib/streak";
-import { rankPantryCatalog } from "~/lib/catalog";
+import { rankPantryCatalog, ALL_RECIPES } from "~/lib/catalog";
 
 function greeting() {
   const h = new Date().getHours();
@@ -36,10 +39,33 @@ export default function HomeScreen() {
   const today = useToday();
   const streak = useStreak();
 
-  const allViews = allSeedViews();
-  const cheapest = useMemo(() => {
-    return [...allViews].sort((a, b) => a.costPerServing - b.costPerServing).slice(0, 10);
-  }, [allViews]);
+  // Fresh seed per screen mount (app launch) AND on pull-to-refresh, so the home
+  // rotates and shows different recipes each time instead of the same set.
+  const [seed, setSeed] = useState(() => Math.floor(Math.random() * 2 ** 31));
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setSeed(Math.floor(Math.random() * 2 ** 31)); // re-roll the picks
+    setTimeout(() => setRefreshing(false), 450); // brief spinner; re-pick is instant
+  }, []);
+
+  // Ranked pool of curated-photo recipes (same predicate as web for parity, and
+  // these images load reliably in-app): de-prioritizes baking/desserts + involved
+  // dishes (see homeShowcase) so cheap bakes/plain staples no longer dominate.
+  const picksPool = useMemo(
+    () =>
+      rankedHomePool(
+        CATALOG_RECIPES.filter((r) => RECIPE_IMAGES[r.id] && r.mealType !== "drink"),
+        72,
+      ),
+    [],
+  );
+  // 15 picks: first 12 fill the carousel, the last 3 the "Quick & cheap" row, so
+  // no recipe appears twice on screen.
+  const cheapest = useMemo(
+    () => pickHomeShowcase(picksPool, 15, seed).map(seedToView),
+    [picksPool, seed],
+  );
 
   const canMakeNow = useMemo(() => {
     if (pantry.length === 0) return null;
@@ -51,7 +77,7 @@ export default function HomeScreen() {
   const calPct = today.target.calorieTarget ? today.totals.kcal / today.target.calorieTarget : 0;
 
   return (
-    <Screen>
+    <Screen refreshing={refreshing} onRefresh={onRefresh}>
       <Row justify="space-between" style={{ marginBottom: space.lg }}>
         <View style={{ flex: 1, marginRight: space.md }}>
           <Txt variant="label" numberOfLines={1}>{greeting()} 👋</Txt>
@@ -92,14 +118,14 @@ export default function HomeScreen() {
       </Row>
 
       {/* Today's pick */}
-      <SectionHeading title="Today's cheapest picks" action="See all" onAction={() => router.push("/cheap")} />
+      <SectionHeading title="Fresh picks for you" action="See all" onAction={() => router.push("/cheap")} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ gap: 12, paddingRight: space.lg }}
         style={{ marginHorizontal: -space.lg, paddingHorizontal: space.lg, marginBottom: space.md }}
       >
-        {cheapest.map((v) => (
+        {cheapest.slice(0, 12).map((v) => (
           <RecipeCard key={v.id} view={v} width={250} />
         ))}
       </ScrollView>
@@ -114,7 +140,7 @@ export default function HomeScreen() {
               </View>
               <View>
                 <Txt variant="subheading">Browse all recipes</Txt>
-                <Txt variant="caption" muted>{allViews.length} student-friendly recipes — search & filter</Txt>
+                <Txt variant="caption" muted>{ALL_RECIPES.length} student-friendly recipes — search & filter</Txt>
               </View>
             </Row>
             <Feather name="chevron-right" size={20} color={colors.textFaint} />
@@ -195,7 +221,7 @@ export default function HomeScreen() {
       {/* Recommendations */}
       <SectionHeading title="Quick & cheap ideas" action="Browse" onAction={() => router.push("/recipes")} />
       <Row gap={space.md} style={{ marginLeft: -2 }}>
-        {cheapest.slice(1, 3).map((v) => (
+        {cheapest.slice(12, 15).map((v) => (
           <View key={v.id} style={{ flex: 1 }}>
             <RecipeCard view={v} />
           </View>

@@ -27,11 +27,10 @@ import {
   Home as HomeIcon,
   Bookmark,
 } from "lucide-react";
-import { RecipeCard } from "@/components/recipe/RecipeCard";
-import { RECIPES, CATALOG_RECIPES } from "@/data/recipes";
+import { CATALOG_RECIPES } from "@/data/recipes";
 import { RECIPE_IMAGES } from "@/data/recipeImages";
 import { calculateCostPerServing } from "@/lib/recipeScoring";
-import type { Recipe } from "@/lib/types";
+import { rankedHomePool } from "@/lib/homeShowcase";
 import {
   isAirFryerRecipe,
   isMicrowaveRecipe,
@@ -45,45 +44,36 @@ import { ThreeDLink } from "@/components/ui/ThreeDButton";
 import { ShaderGradientBackground } from "@/components/visual-effects/ShaderGradientBackground";
 import { LiquidGlassPanel } from "@/components/visual-effects/LiquidGlassPanel";
 import { PantryToRecipePreview } from "@/components/home/PantryToRecipePreview";
-
-// Home-only: gently bias the cheap picks toward quick, everyday meals. Returns a
-// $/serving-equivalent surcharge added to cost before sorting — NOT a filter, so a
-// truly cheap bake can still win. Does not touch /cheap-recipes or pantry match.
-function homeSurcharge(r: Recipe): number {
-  let s = 0;
-  if (r.tags?.includes("baking")) s += 2.5; // soft "tend not to show" on home
-  const ing = r.ingredients?.length ?? 0;
-  if (ing > 8) s += (ing - 8) * 0.06; // involved: many ingredients
-  const t = r.totalTimeMinutes ?? 0;
-  if (t > 30) s += (t - 30) * 0.012; // involved: long time
-  if (r.difficulty === "medium") s += 0.25;
-  else if (r.difficulty === "hard") s += 0.7; // involved: harder
-  const sv = r.servings ?? 0;
-  if (sv > 6) s += (sv - 6) * 0.08; // large batch
-  return s;
-}
-const homeRank = (r: Recipe) => calculateCostPerServing(r) + homeSurcharge(r);
+import { HomeHeroCollage } from "@/components/home/HomeHeroCollage";
+import { RotatingShowcase } from "@/components/home/RotatingShowcase";
 
 export default function HomePage() {
-  // Hero collage prefers recipes with curated photos; ranking leans toward quick,
-  // cheap everyday meals and away from baking / big recipes (see homeSurcharge).
-  const recipesWithPhotos = RECIPES.filter((r) => RECIPE_IMAGES[r.id]);
-  const heroFeatured = [...recipesWithPhotos].sort(
-    (a, b) => homeRank(a) - homeRank(b),
-  )[0];
-  const heroSecondaries = [...recipesWithPhotos]
-    .sort((a, b) => homeRank(a) - homeRank(b))
-    .slice(1, 3);
-
-  const featured = [...CATALOG_RECIPES]
-    .sort((a, b) => homeRank(a) - homeRank(b))
-    .slice(0, 6);
+  // Candidate pools, ranked cheap-and-non-baking first (see homeShowcase). The
+  // hero + picks rotate client-side from these pools so the home looks fresh each
+  // visit instead of always surfacing the same (often baking-heavy) cheapest set.
+  // Draw the hero + picks from photographed recipes so the cards always look
+  // great and the rotation surfaces the catalog's genuinely cool dishes (curated,
+  // global, rice-cooker) instead of the rock-bottom-cheapest plain staples.
+  const photographed = CATALOG_RECIPES.filter(
+    (r) => RECIPE_IMAGES[r.id] && r.mealType !== "drink",
+  );
+  // Disjoint pools so the hero spotlight and the picks grid never surface the
+  // same recipe on one screen: the hero rotates the cheapest 24, the grid the
+  // next 48.
+  const ranked = rankedHomePool(photographed, 72);
+  const heroPool = ranked.slice(0, 24);
+  const picksPool = ranked.slice(24, 72);
 
   const airFryerCount = CATALOG_RECIPES.filter(isAirFryerRecipe).length;
   const microwaveCount = CATALOG_RECIPES.filter(isMicrowaveRecipe).length;
   const noStoveCount = CATALOG_RECIPES.filter(isNoStoveRecipe).length;
-  const cheapestCps = heroFeatured
-    ? calculateCostPerServing(heroFeatured)
+  // True cheapest-per-serving across photographed recipes — a stable database
+  // stat, independent of which recipe the hero happens to be rotating right now.
+  const cheapestCps = photographed.length
+    ? photographed.reduce(
+        (min, r) => Math.min(min, calculateCostPerServing(r)),
+        Infinity,
+      )
     : null;
 
   return (
@@ -199,71 +189,8 @@ export default function HomePage() {
             </LiquidGlassPanel>
           </Stagger>
 
-          {/* Hero collage */}
-          <div>
-            <div className="grid grid-cols-2 grid-rows-[1fr_1fr] gap-3 sm:gap-4">
-              {heroFeatured && (
-                <Link
-                  href={`/recipes/${heroFeatured.id}`}
-                  className="group relative col-span-2 overflow-hidden rounded-3xl shadow-md motion-safe:animate-[fadeUp_700ms_ease-out_both]"
-                  style={{
-                    aspectRatio: "16 / 10",
-                    animationDelay: "120ms",
-                  }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={RECIPE_IMAGES[heroFeatured.id].src}
-                    alt={RECIPE_IMAGES[heroFeatured.id].alt || heroFeatured.name}
-                    loading="eager"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
-                  <span className="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow shadow-emerald-900/30">
-                    <Coins size={11} /> ${cheapestCps?.toFixed(2)}/serving
-                  </span>
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink backdrop-blur">
-                    Today&apos;s cheapest
-                  </span>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white sm:p-5">
-                    <p className="text-base font-semibold sm:text-lg">
-                      {heroFeatured.name}
-                    </p>
-                    <p className="mt-1 text-xs sm:text-sm">
-                      {heroFeatured.totalTimeMinutes} min ·{" "}
-                      {heroFeatured.estimatedNutrition.protein}g protein ·{" "}
-                      {heroFeatured.estimatedNutrition.calories} cal
-                    </p>
-                  </div>
-                </Link>
-              )}
-              {heroSecondaries.map((r, i) => (
-                <Link
-                  key={r.id}
-                  href={`/recipes/${r.id}`}
-                  className="group relative aspect-square overflow-hidden rounded-3xl shadow-sm motion-safe:animate-[fadeUp_700ms_ease-out_both]"
-                  style={{ animationDelay: `${260 + i * 110}ms` }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={RECIPE_IMAGES[r.id].src}
-                    alt={RECIPE_IMAGES[r.id].alt || r.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
-                    <p className="text-sm font-semibold leading-tight">
-                      {r.name}
-                    </p>
-                    <p className="mt-0.5 text-[11px] opacity-90">
-                      ${calculateCostPerServing(r).toFixed(2)}/serving
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+          {/* Hero collage — rotates on each visit (client-side) */}
+          <HomeHeroCollage pool={heroPool} />
         </div>
       </section>
 
@@ -413,9 +340,9 @@ export default function HomePage() {
       {/* ─── 6. Cheapest picks ──────────────────────────────────────────── */}
       <ScrollReveal as="section" className="space-y-6">
         <SectionHeading
-          eyebrow="Updated daily"
-          title="Today's cheapest picks"
-          description="The most affordable recipes per serving in the database."
+          eyebrow="Fresh every visit"
+          title="Fresh picks for you"
+          description="A rotating mix of cheap, low-effort recipes — different every time you stop by."
           trailing={
             <Link
               href="/cheap-recipes"
@@ -425,11 +352,7 @@ export default function HomePage() {
             </Link>
           }
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((r) => (
-            <RecipeCard key={r.id} recipe={r} />
-          ))}
-        </div>
+        <RotatingShowcase pool={picksPool} count={6} />
         <div className="sm:hidden">
           <Link
             href="/cheap-recipes"
