@@ -219,7 +219,7 @@ export default function HomeScreen() {
       </Press>
 
       {/* Recommendations */}
-      <SectionHeading title="Quick & cheap ideas" action="Browse" onAction={() => router.push("/recipes")} />
+      <SectionHeading title="Quick & cheap ideas" action="Browse" onAction={() => router.push("/recipes")} style={{ marginTop: space.xl }} />
       <Row gap={space.md} style={{ marginLeft: -2 }}>
         {cheapest.slice(12, 15).map((v) => (
           <View key={v.id} style={{ flex: 1 }}>

@@ -573,14 +573,16 @@ export function SectionHeading({
   title,
   action,
   onAction,
+  style,
 }: {
   title: string;
   action?: string;
   onAction?: () => void;
+  style?: any;
 }) {
   const { colors } = useTheme();
   return (
-    <Row justify="space-between" style={{ marginBottom: space.sm }}>
+    <Row justify="space-between" style={[{ marginBottom: space.sm }, style]}>
       <Txt variant="heading">{title}</Txt>
       {action ? (
         <Press onPress={onAction} haptic="selection">
