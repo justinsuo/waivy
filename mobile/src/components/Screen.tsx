@@ -74,7 +74,15 @@ export function Screen({
       alwaysBounceVertical={!!onRefresh}
       refreshControl={
         onRefresh ? (
-          <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={colors.basil} />
+          <RefreshControl
+            refreshing={!!refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.basil}
+            colors={[colors.basil]}
+            // Drop the spinner below the status bar / notch so it reads as a
+            // proper top refresh wheel, not a box jammed under the clock.
+            progressViewOffset={insets.top + 4}
+          />
         ) : undefined
       }
     >

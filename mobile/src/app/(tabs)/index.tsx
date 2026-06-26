@@ -16,6 +16,7 @@ import { usePantry, useGrocery } from "~/lib/stores/app";
 import { useToday } from "~/lib/stores/nourish";
 import { useStreak } from "~/lib/streak";
 import { rankPantryCatalog, ALL_RECIPES } from "~/lib/catalog";
+import { light as hapticLight } from "~/lib/haptics";
 
 function greeting() {
   const h = new Date().getHours();
@@ -44,9 +45,11 @@ export default function HomeScreen() {
   const [seed, setSeed] = useState(() => Math.floor(Math.random() * 2 ** 31));
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() => {
+    hapticLight();
     setRefreshing(true);
     setSeed(Math.floor(Math.random() * 2 ** 31)); // re-roll the picks
-    setTimeout(() => setRefreshing(false), 450); // brief spinner; re-pick is instant
+    // Let the native spinner make a visible turn before it snaps closed.
+    setTimeout(() => setRefreshing(false), 700);
   }, []);
 
   // Ranked pool of curated-photo recipes (same predicate as web for parity, and

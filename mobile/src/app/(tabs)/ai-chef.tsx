@@ -21,6 +21,7 @@ import {
 } from "~/lib/ai";
 import { tap } from "~/lib/haptics";
 import type { FoodItem, MealSlot } from "@/lib/nourish/types";
+import type { GenCourse } from "@/lib/recipeCourse";
 
 const EQUIPMENT = ["microwave", "stovetop", "oven", "air-fryer", "rice-cooker", "no-kitchen"] as const;
 const DIET = ["vegetarian", "vegan", "high-protein", "gluten-free", "dairy-free"] as const;
@@ -50,6 +51,7 @@ export default function AiChefScreen() {
   const [equipment, setEquipment] = useState<Set<string>>(new Set(["stovetop", "microwave"]));
   const [diet, setDiet] = useState<Set<string>>(new Set());
   const [creativity, setCreativity] = useState<"practical" | "balanced" | "creative">("balanced");
+  const [course, setCourse] = useState<GenCourse>("meal");
 
   const [loading, setLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
@@ -98,6 +100,7 @@ export default function AiChefScreen() {
       equipment: Array.from(equipment),
       dietTags: Array.from(diet),
       creativityLevel: (opts?.creative ? "creative" : creativity) as "practical" | "balanced" | "creative",
+      course,
     };
 
     setLoading(true);
@@ -310,6 +313,12 @@ export default function AiChefScreen() {
           </>
         ) : usePantryItems ? <Txt variant="caption" muted>Your pantry is empty — add items or describe what you have below.</Txt> : null}
       </Card>
+
+      <View style={{ marginBottom: space.md }}>
+        <Txt variant="label" style={{ marginBottom: 6 }}>What are you making?</Txt>
+        <SegmentedControl value={course} onChange={setCourse}
+          options={[{ label: "Meal", value: "meal" }, { label: "Dessert", value: "dessert" }, { label: "Drink", value: "drink" }]} />
+      </View>
 
       <Field label="Notes / cravings" placeholder="e.g. something spicy and high-protein, under 20 min" value={notes} onChangeText={setNotes} style={{ marginBottom: space.md }} />
 

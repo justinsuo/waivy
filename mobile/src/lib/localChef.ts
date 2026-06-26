@@ -13,6 +13,7 @@ import {
 } from "@/lib/recipeScoring";
 import { bestEffortNutrition } from "@/lib/nutritionEngine";
 import { ALL_RECIPES, rankPantryCatalog, rankCheapCatalog } from "./catalog";
+import { matchesCourse, type GenCourse } from "@/lib/recipeCourse";
 import { recipeFitsEquipment } from "@/lib/equipmentFilters";
 import type { Recipe, Equipment, DietTag } from "@/lib/types";
 import type { GeneratedRecipe, GeneratedRecipeOptionSet, OptionLabel } from "@/lib/workerClient";
@@ -30,6 +31,8 @@ export interface LocalChefInput {
   notes?: string;
   /** "Surprise me" — lead with a random, unexpected pick instead of the top match. */
   surprise?: boolean;
+  /** Restrict instant picks to a course: real "meal", "dessert", or "drink". */
+  course?: GenCourse;
 }
 
 function mapDifficulty(d: Recipe["difficulty"]): GeneratedRecipe["difficulty"] {
@@ -171,6 +174,14 @@ function candidatePool(input: LocalChefInput): { recipe: Recipe; score: number }
       .slice()
       .sort((a, b) => calculateCostPerServing(a) - calculateCostPerServing(b))
       .map((recipe) => ({ recipe, score: 0 }));
+  }
+
+  // Course filter: keep only recipes of the requested course (e.g. "meal" hides
+  // desserts/drinks) so instant picks match what the user asked to make. Don't
+  // empty the pool if nothing matches — fall back to the unfiltered ranking.
+  if (input.course) {
+    const onCourse = ranked.filter((x) => matchesCourse(x.recipe, input.course!));
+    if (onCourse.length) ranked = onCourse;
   }
 
   // Apply the note boost + a soft over-budget penalty across the whole pool, so

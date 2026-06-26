@@ -1,5 +1,6 @@
 import { INGREDIENT_MAP } from "@/data/ingredients";
 import { CATALOG_RECIPES } from "@/data/recipes";
+import { matchesCourse } from "@/lib/recipeCourse";
 import { WEB_RECIPE_COSTS } from "@/data/webRecipes";
 import { GEN_RECIPE_COSTS } from "@/data/genRecipes";
 import {
@@ -208,6 +209,7 @@ export function rankCheapRecipes(filters: CheapFilters): RecipeScoreResult[] {
     if (recipe.totalTimeMinutes > maxTime) continue;
     if (filters.cuisine && filters.cuisine !== "any" && recipe.cuisine !== filters.cuisine) continue;
     if (filters.mealType && filters.mealType !== "any" && recipe.mealType !== filters.mealType) continue;
+    if (filters.course && filters.course !== "all" && !matchesCourse(recipe, filters.course)) continue;
 
     const costPerServing = calculateCostPerServing(recipe);
     if (costPerServing > filters.budgetPerServing) continue;

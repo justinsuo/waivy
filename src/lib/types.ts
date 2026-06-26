@@ -185,6 +185,8 @@ export interface CheapFilters {
   time: TimeBucket | "any";
   cuisine?: string;
   mealType?: MealType | "any";
+  /** Coarse course category: real meals, desserts, or drinks (see recipeCourse). */
+  course?: "all" | "meal" | "dessert" | "drink";
 }
 
 export interface PantryItem {

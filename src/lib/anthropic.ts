@@ -3,6 +3,7 @@
 import { INGREDIENTS } from "@/data/ingredients";
 import { calculateNutritionForFreeForm } from "@/lib/nutritionEngine";
 import { config } from "@shared/platform/config";
+import { courseDirective, type GenCourse } from "@/lib/recipeCourse";
 
 const API_URL = "https://api.anthropic.com/v1/messages";
 const MODEL = "claude-haiku-4-5-20251001";
@@ -319,6 +320,12 @@ export interface HaikuRecipeInput {
   timeLimit?: string;
   refinement?: string;
   /**
+   * What KIND of recipe to make: a real "meal" (default), a "dessert", or a
+   * "drink". Stops the model defaulting to a sweet treat when the user wants a
+   * real meal. Injected as a strong directive into the prompt.
+   */
+  course?: GenCourse;
+  /**
    * When true, the prompt nudges Haiku to be genuinely bold — unusual
    * ingredient combinations, fusion mashups, surprising formats — and
    * the temperature is raised. Set this when the user picked the
@@ -378,7 +385,7 @@ Respond with ONLY valid JSON in this exact shape (no markdown):
   "name": "string",
   "description": "1 sentence",
   "whyThisFits": "1 sentence",
-  "mealType": "breakfast|lunch|dinner|snack|meal-prep",
+  "mealType": "breakfast|lunch|dinner|snack|meal-prep|drink",
   "cuisineStyle": "string",
   "servings": <1-6>,
   "prepTimeMinutes": <number>,
@@ -425,6 +432,8 @@ If the user typed cravings, honor them but lean into the bold version of what th
 
 function buildQuickRecipeUserPrompt(opts: HaikuRecipeInput): string {
   const lines: string[] = ["What can I cook tonight with what I have?"];
+  // Course directive first so it anchors everything below it.
+  lines.push(courseDirective(opts.course));
   if (opts.pantryIngredients?.length) {
     lines.push(`Pantry: ${opts.pantryIngredients.join(", ")}`);
   }
@@ -456,6 +465,9 @@ function buildQuickRecipeUserPrompt(opts: HaikuRecipeInput): string {
   if (opts.creativeSeed) {
     lines.push(`Creative seed (use to vary direction): ${opts.creativeSeed}`);
   }
+  // Re-state the course last so it wins over any creative tangents above.
+  lines.push("");
+  lines.push(courseDirective(opts.course));
   lines.push("\nReturn ONLY valid JSON matching the schema. No markdown.");
   return lines.join("\n");
 }

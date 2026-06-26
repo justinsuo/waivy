@@ -15,6 +15,7 @@ import { space, radius } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
 
 import { rankCheapCatalog } from "~/lib/catalog";
+import { matchesCourse, COURSE_FILTER_LABELS, type CourseFilter } from "@/lib/recipeCourse";
 import type {
   CheapFilters,
   Equipment,
@@ -97,6 +98,7 @@ export default function CheapScreen() {
   const [equipment, setEquipment] = useState<Equipment[]>([]);
   const [diet, setDiet] = useState<DietTag[]>([]);
   const [time, setTime] = useState<TimeBucket | "any">("any");
+  const [course, setCourse] = useState<CourseFilter>("all");
 
   const toggleEquipment = (v: Equipment) => {
     tap();
@@ -108,7 +110,7 @@ export default function CheapScreen() {
   };
 
   const filtersActive =
-    budget !== 5 || equipment.length > 0 || diet.length > 0 || time !== "any";
+    budget !== 5 || equipment.length > 0 || diet.length > 0 || time !== "any" || course !== "all";
 
   const resetFilters = () => {
     tap();
@@ -116,6 +118,7 @@ export default function CheapScreen() {
     setEquipment([]);
     setDiet([]);
     setTime("any");
+    setCourse("all");
   };
 
   const { results, error } = useMemo(() => {
@@ -131,7 +134,11 @@ export default function CheapScreen() {
     }
   }, [budget, equipment, diet, time]);
 
-  const views = useMemo(() => results.map((r) => seedToView(r.recipe)), [results]);
+  const courseResults = useMemo(
+    () => (course === "all" ? results : results.filter((r) => matchesCourse(r.recipe, course))),
+    [results, course],
+  );
+  const views = useMemo(() => courseResults.map((r) => seedToView(r.recipe)), [courseResults]);
   const cheapest = views.length > 0 ? views[0].costPerServing : 0;
 
   return (
@@ -149,6 +156,23 @@ export default function CheapScreen() {
 
       {/* Filters */}
       <Card style={{ gap: space.lg, marginBottom: space.lg }}>
+        <FilterGroup title="Type" icon="grid">
+          {(["all", "meal", "dessert", "drink"] as CourseFilter[]).map((c) => (
+            <Pill
+              key={c}
+              label={COURSE_FILTER_LABELS[c]}
+              tone="ai-chef"
+              selected={course === c}
+              onPress={() => {
+                tap();
+                setCourse(c);
+              }}
+            />
+          ))}
+        </FilterGroup>
+
+        <Divider />
+
         <FilterGroup title="Budget / serving" icon="dollar-sign">
           {BUDGET_OPTIONS.map((o) => (
             <Pill

@@ -34,6 +34,7 @@ import type { NutritionEstimate } from "@/lib/types";
 import { saveRecipeImageB64, saveRecipeImageFromUrl } from "./imageStore";
 import { generateOptionsLocal, refineLocal, type LocalChefInput } from "./localChef";
 import { rankPantryCatalog } from "./catalog";
+import type { GenCourse } from "@/lib/recipeCourse";
 
 /** A backend AI (worker or browser Haiku) is configured. */
 export function aiBackendAvailable(): boolean {
@@ -60,6 +61,7 @@ function toLocalInput(input: ChefInput): LocalChefInput {
     dietTags: input.dietTags,
     notes: [input.cravingText, input.aiNotes].filter(Boolean).join(". "),
     surprise: input.creativityLevel === "creative",
+    course: input.course,
   };
 }
 
@@ -74,6 +76,8 @@ export interface ChefInput {
   dietTags?: string[];
   creativityLevel?: "practical" | "balanced" | "creative";
   refinement?: string;
+  /** What to make: real "meal" (default), "dessert", or "drink". */
+  course?: GenCourse;
 }
 
 /** Try the real AI backends (worker → Haiku). Returns null if none configured. */
@@ -90,6 +94,7 @@ async function tryAiOptions(input: ChefInput): Promise<GeneratedRecipeOptionSet 
       equipment: input.equipment,
       dietTags: input.dietTags,
       creativityLevel: input.creativityLevel,
+      course: input.course,
     };
     return repairOptionNutrition(await generateRecipeOptions(wInput));
   }
@@ -103,6 +108,7 @@ async function tryAiOptions(input: ChefInput): Promise<GeneratedRecipeOptionSet 
       dietTags: input.dietTags,
       refinement: input.refinement,
       creativityBoost: input.creativityLevel === "creative",
+      course: input.course,
     } as HaikuRecipeInput;
     return repairOptionNutrition(await generateRecipeQuickOptions(hInput));
   }

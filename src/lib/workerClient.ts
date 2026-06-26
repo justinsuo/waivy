@@ -191,6 +191,8 @@ export interface GenerateRecipeInput {
   cravings?: string;
   creativity?: "practical" | "balanced" | "creative";
   refinement?: string;
+  /** What to make: real "meal" (default), "dessert", or "drink". */
+  course?: "meal" | "dessert" | "drink";
 }
 
 export interface GeneratedRecipe {
@@ -306,6 +308,8 @@ export interface GenerateOptionsInput {
   creativityLevel?: "practical" | "balanced" | "creative";
   appendToExisting?: boolean;
   previousOptions?: Array<{ recipe: { name: string } }>;
+  /** What to make: real "meal" (default), "dessert", or "drink". */
+  course?: "meal" | "dessert" | "drink";
 }
 
 export async function generateRecipeOptions(

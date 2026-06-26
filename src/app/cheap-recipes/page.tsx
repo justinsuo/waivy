@@ -15,6 +15,7 @@ import {
   recipeMakeability,
 } from "@/lib/recipeScoring";
 import { useAppStore } from "@/lib/AppStore";
+import { COURSE_FILTER_LABELS } from "@/lib/recipeCourse";
 import {
   isAirFryerRecipe,
   isMicrowaveRecipe,
@@ -82,6 +83,7 @@ const DEFAULTS: CheapFilters = {
   diet: [],
   time: "any",
   mealType: "any",
+  course: "all",
 };
 
 type Sort = "cheapest" | "fastest" | "protein" | "best" | "makeable";
@@ -258,6 +260,12 @@ export default function CheapRecipesPage() {
     activeChips.push({
       label: `Meal: ${filters.mealType}`,
       clear: () => setFilters((f) => ({ ...f, mealType: "any" })),
+    });
+  }
+  if (filters.course && filters.course !== "all") {
+    activeChips.push({
+      label: COURSE_FILTER_LABELS[filters.course],
+      clear: () => setFilters((f) => ({ ...f, course: "all" })),
     });
   }
   if (filters.budgetPerServing < DEFAULTS.budgetPerServing) {
@@ -471,6 +479,20 @@ export default function CheapRecipesPage() {
                     onClick={() => setFilters((f) => ({ ...f, time: opt.value }))}
                   >
                     {opt.label}
+                  </Chip>
+                ))}
+              </div>
+            </FilterGroup>
+
+            <FilterGroup label="Type">
+              <div className="flex flex-wrap gap-2">
+                {(["all", "meal", "dessert", "drink"] as const).map((opt) => (
+                  <Chip
+                    key={opt}
+                    active={(filters.course ?? "all") === opt}
+                    onClick={() => setFilters((f) => ({ ...f, course: opt }))}
+                  >
+                    {COURSE_FILTER_LABELS[opt]}
                   </Chip>
                 ))}
               </div>

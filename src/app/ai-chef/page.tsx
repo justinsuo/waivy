@@ -52,6 +52,7 @@ import { PantrySmartAdd } from "@/components/pantry/PantrySmartAdd";
 import { Refrigerator } from "lucide-react";
 import { calculateNutritionForFreeForm } from "@/lib/nutritionEngine";
 import { generateRecipeQuick, generateRecipeQuickOptions, isAiEnabled } from "@/lib/anthropic";
+import type { GenCourse } from "@/lib/recipeCourse";
 import { useSettings } from "@/lib/settings/SettingsStore";
 import { profileEquipment } from "@/lib/equipmentFilters";
 import { useToast } from "@/components/ui/Toast";
@@ -249,6 +250,7 @@ function AIChefPage() {
   const [diet, setDiet] = useState<string[]>([]);
   const [timeLimit, setTimeLimit] = useState("any");
   const [creativity, setCreativity] = useState<"practical" | "balanced" | "creative">("balanced");
+  const [course, setCourse] = useState<GenCourse>("meal");
   const [autoImage, setAutoImage] = useState(true);
 
   // Prefill filters from the user's saved cooking defaults (Settings →
@@ -396,6 +398,7 @@ function AIChefPage() {
                 ? cravings
                 : undefined,
             refinement,
+            course,
           });
         } else {
           r = await generateRecipe({
@@ -405,6 +408,7 @@ function AIChefPage() {
             equipment,
             timeLimit,
             dietTags: diet,
+            course,
             cravings:
               mode === "imagine" || (mode === "pantry" && cravings.trim())
                 ? cravings
@@ -722,6 +726,7 @@ function AIChefPage() {
             dietTags: diet,
             creativityBoost: wantsCreative,
             creativeSeed,
+            course,
           })
         : await generateRecipeOptions({
             pantryIngredients: pantryNames,
@@ -736,6 +741,7 @@ function AIChefPage() {
             // setting too when the user picked the imagine mode, so both
             // code paths behave consistently.
             creativityLevel: wantsCreative ? "creative" : creativity,
+            course,
             appendToExisting: append,
             previousOptions: append
               ? options.map((o) => ({ recipe: { name: o.recipe.name } }))
@@ -1200,6 +1206,16 @@ function AIChefPage() {
                   onClick={() => setDiet(toggleSet(diet, d))}
                 >
                   {d}
+                </Chip>
+              ))}
+            </div>
+            <label className="mt-3 block text-sm font-medium text-ink">
+              What are you making?
+            </label>
+            <div className="mt-2 flex gap-2">
+              {(["meal", "dessert", "drink"] as const).map((v) => (
+                <Chip key={v} active={course === v} onClick={() => setCourse(v)}>
+                  {v === "meal" ? "Meal" : v === "dessert" ? "Dessert" : "Drink"}
                 </Chip>
               ))}
             </div>
