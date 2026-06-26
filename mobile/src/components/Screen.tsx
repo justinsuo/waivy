@@ -68,6 +68,10 @@ export function Screen({
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
       automaticallyAdjustKeyboardInsets // lift the focused field/CTA above the keyboard
+      // iOS only lets you pull-to-refresh when the scroll view can bounce; force
+      // it when a refresh handler is present so the gesture works even if the
+      // content is shorter than the screen.
+      alwaysBounceVertical={!!onRefresh}
       refreshControl={
         onRefresh ? (
           <RefreshControl refreshing={!!refreshing} onRefresh={onRefresh} tintColor={colors.basil} />
