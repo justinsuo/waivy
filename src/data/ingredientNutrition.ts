@@ -389,6 +389,7 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   "pork-ribs": { calories: 290, protein: 22, carbs: 0, fat: 22, confidence: "high" }, // 1 serving ~5 oz
   "lamb-chops": { calories: 200, protein: 14, carbs: 0, fat: 16, confidence: "high" }, // 1 chop ~3 oz
   "shishito-peppers": { calories: 30, protein: 1, carbs: 6, fat: 0, fiber: 2, confidence: "medium" }, // 1 cup
+  "fried-shallots": { calories: 35, protein: 0.5, carbs: 3, fat: 2.5, confidence: "medium" }, // 1 tbsp
 
   // ===== Per-unit nutrition for ingredients used by rice-cooker batch 2 =====
   "adobo-seasoning": { calories: 5, protein: 0, carbs: 1, fat: 0, confidence: "medium" },

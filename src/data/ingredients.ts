@@ -1338,6 +1338,7 @@ export const INGREDIENTS: Ingredient[] = [
   { id: "pork-ribs", name: "Pork ribs", category: "protein", estimatedUnitCost: 2.25, unit: "serving", commonPackageSize: "rack ~2.5 lb (~$10)", shelfLifeDays: 4, tags: ["high-protein"] },
   { id: "lamb-chops", name: "Lamb chops", category: "protein", estimatedUnitCost: 2.50, unit: "piece", commonPackageSize: "~$15/lb (3-4 chops/lb)", shelfLifeDays: 4, tags: ["high-protein"] },
   { id: "shishito-peppers", name: "Shishito peppers", category: "vegetable", estimatedUnitCost: 1.50, unit: "cup", commonPackageSize: "6 oz bag (~$3.50)", shelfLifeDays: 10 },
+  { id: "fried-shallots", name: "Crispy fried shallots", category: "condiment", estimatedUnitCost: 0.10, unit: "tbsp", commonPackageSize: "tub (~$3.50)", shelfLifeDays: 180, tags: ["garnish"] },
 
   // ===== Comprehensive pantry expansion (common kitchen ingredients) =====
   ...EXTRA_INGREDIENTS,
