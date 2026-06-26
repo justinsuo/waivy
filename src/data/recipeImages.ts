@@ -5,6 +5,7 @@ import { GEN_RECIPE_PHOTOS } from "@/data/genRecipes";
 import { SOCIAL_RECIPE_PHOTOS } from "@/data/socialRecipePhotos";
 import { RICE_COOKER_RECIPE_PHOTOS } from "@/data/riceCookerRecipePhotos";
 import { NEW_RICE_COOKER_RECIPE_PHOTOS } from "@/data/newRiceCookerRecipePhotos";
+import { NEW_AIR_FRYER_RECIPE_PHOTOS } from "@/data/newAirFryerRecipePhotos";
 import { DRINK_RECIPE_PHOTOS } from "@/data/drinkRecipePhotos";
 import { CURATED_RECIPE_PHOTOS } from "@/data/curatedRecipePhotos";
 import { BAKING_RECIPE_PHOTOS } from "@/data/bakingRecipePhotos";
@@ -19,6 +20,7 @@ export const RECIPE_IMAGES: Record<string, RecipeImage> = {
   ...SOCIAL_RECIPE_PHOTOS,
   ...RICE_COOKER_RECIPE_PHOTOS,
   ...NEW_RICE_COOKER_RECIPE_PHOTOS,
+  ...NEW_AIR_FRYER_RECIPE_PHOTOS,
   ...DRINK_RECIPE_PHOTOS,
   ...CURATED_RECIPE_PHOTOS,
   ...BAKING_RECIPE_PHOTOS,

@@ -1,6 +1,7 @@
 import type { Ingredient } from "@/lib/types";
 import { WEB_INGREDIENTS } from "@/data/webIngredients";
 import { GEN_INGREDIENTS } from "@/data/genIngredients";
+import { EXTRA_INGREDIENTS } from "@/data/extraIngredients";
 
 // Prices are 2026 US grocery estimates (mid-tier chain — Kroger/Safeway/Aldi
 // blend) per the listed unit. Each row's `estimatedUnitCost` is computed
@@ -1327,6 +1328,19 @@ export const INGREDIENTS: Ingredient[] = [
   { id: "tteok", name: "Korean rice cakes (tteok)", category: "grain", estimatedUnitCost: 1.00, unit: "cup", commonPackageSize: "1 lb bag (~$3)", shelfLifeDays: 60, tags: ["vegan"] },
   { id: "sweet-rice", name: "Sweet (glutinous) rice", category: "grain", estimatedUnitCost: 0.35, unit: "cup-dry", commonPackageSize: "2 lb bag (~$4)", shelfLifeDays: 730, tags: ["staple", "vegan", "gluten-free"] },
   { id: "yakult", name: "Yakult (probiotic drink)", category: "dairy", estimatedUnitCost: 0.55, unit: "bottle", commonPackageSize: "5-pack (~$2.75)", shelfLifeDays: 40 },
+
+  // ===== Added for air-fryer batch 2 (viral social-media recipes) =====
+  { id: "tonkatsu-sauce", name: "Tonkatsu sauce", category: "condiment", estimatedUnitCost: 0.15, unit: "tbsp", commonPackageSize: "16 oz bottle (~$4.50)", shelfLifeDays: 365 },
+  { id: "canned-biscuits", name: "Refrigerated biscuit dough", category: "grain", estimatedUnitCost: 0.31, unit: "piece", commonPackageSize: "8-count can (~$2.50)", shelfLifeDays: 30 },
+  { id: "crescent-rolls", name: "Refrigerated crescent roll dough", category: "grain", estimatedUnitCost: 0.31, unit: "piece", commonPackageSize: "8-count can (~$2.50)", shelfLifeDays: 30 },
+  { id: "canned-cinnamon-rolls", name: "Canned cinnamon rolls", category: "grain", estimatedUnitCost: 0.38, unit: "roll", commonPackageSize: "8-count can (~$3)", shelfLifeDays: 30, tags: ["dessert"] },
+  { id: "brownie-mix", name: "Boxed brownie mix", category: "grain", estimatedUnitCost: 0.30, unit: "serving", commonPackageSize: "18 oz box (~$3)", shelfLifeDays: 365, tags: ["baking", "dessert"] },
+  { id: "pork-ribs", name: "Pork ribs", category: "protein", estimatedUnitCost: 2.25, unit: "serving", commonPackageSize: "rack ~2.5 lb (~$10)", shelfLifeDays: 4, tags: ["high-protein"] },
+  { id: "lamb-chops", name: "Lamb chops", category: "protein", estimatedUnitCost: 2.50, unit: "piece", commonPackageSize: "~$15/lb (3-4 chops/lb)", shelfLifeDays: 4, tags: ["high-protein"] },
+  { id: "shishito-peppers", name: "Shishito peppers", category: "vegetable", estimatedUnitCost: 1.50, unit: "cup", commonPackageSize: "6 oz bag (~$3.50)", shelfLifeDays: 10 },
+
+  // ===== Comprehensive pantry expansion (common kitchen ingredients) =====
+  ...EXTRA_INGREDIENTS,
 ];
 
 // Alias map: maps alternative ingredient IDs used in macro recipe batches to the

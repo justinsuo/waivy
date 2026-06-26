@@ -1,5 +1,6 @@
 import type { Recipe } from "@/lib/types";
 import { AIR_FRYER_RECIPES } from "./airFryerRecipes";
+import { NEW_AIR_FRYER_RECIPES } from "./newAirFryerRecipes";
 import { MICROWAVE_RECIPES } from "./microwaveRecipes";
 import { MACRO_RECIPES } from "./macroRecipes";
 import { WEB_RECIPES } from "./webRecipes";
@@ -4560,6 +4561,7 @@ const BASE_RECIPES: Recipe[] = [
 export const RECIPES: Recipe[] = [
   ...BASE_RECIPES,
   ...AIR_FRYER_RECIPES,
+  ...NEW_AIR_FRYER_RECIPES,
   ...MICROWAVE_RECIPES,
   ...RICE_COOKER_RECIPES,
   ...NEW_RICE_COOKER_RECIPES,

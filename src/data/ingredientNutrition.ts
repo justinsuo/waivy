@@ -380,6 +380,16 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   "sweet-rice": { calories: 685, protein: 13, carbs: 151, fat: 0.9, fiber: 5, confidence: "medium" }, // 1 cup dry glutinous rice
   yakult: { calories: 50, protein: 1, carbs: 12, fat: 0, confidence: "high" }, // 1 bottle (65ml)
 
+  // Added for air-fryer batch 2
+  "tonkatsu-sauce": { calories: 16, protein: 0, carbs: 4, fat: 0, confidence: "high" }, // 1 tbsp
+  "canned-biscuits": { calories: 110, protein: 2, carbs: 14, fat: 5, fiber: 0.5, confidence: "medium" }, // 1 biscuit
+  "crescent-rolls": { calories: 100, protein: 2, carbs: 11, fat: 6, confidence: "medium" }, // 1 roll
+  "canned-cinnamon-rolls": { calories: 145, protein: 2, carbs: 23, fat: 5, confidence: "medium" }, // 1 roll w/ icing
+  "brownie-mix": { calories: 140, protein: 1, carbs: 28, fat: 3, fiber: 1, confidence: "medium" }, // 1 serving dry mix
+  "pork-ribs": { calories: 290, protein: 22, carbs: 0, fat: 22, confidence: "high" }, // 1 serving ~5 oz
+  "lamb-chops": { calories: 200, protein: 14, carbs: 0, fat: 16, confidence: "high" }, // 1 chop ~3 oz
+  "shishito-peppers": { calories: 30, protein: 1, carbs: 6, fat: 0, fiber: 2, confidence: "medium" }, // 1 cup
+
   // ===== Per-unit nutrition for ingredients used by rice-cooker batch 2 =====
   "adobo-seasoning": { calories: 5, protein: 0, carbs: 1, fat: 0, confidence: "medium" },
   "american-singles": { calories: 60, protein: 3, carbs: 2, fat: 4.5, confidence: "high" },
@@ -462,8 +472,10 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
 // New ingredients used by imported web recipes (TheMealDB).
 import { WEB_INGREDIENT_NUTRITION } from "@/data/webIngredients";
 import { GEN_INGREDIENT_NUTRITION } from "@/data/genIngredients";
+import { EXTRA_INGREDIENT_NUTRITION } from "@/data/extraIngredients";
 export const INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   ...BASE_INGREDIENT_NUTRITION,
   ...WEB_INGREDIENT_NUTRITION,
   ...GEN_INGREDIENT_NUTRITION,
+  ...EXTRA_INGREDIENT_NUTRITION,
 };
