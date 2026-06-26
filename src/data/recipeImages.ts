@@ -8,6 +8,7 @@ import { NEW_RICE_COOKER_RECIPE_PHOTOS } from "@/data/newRiceCookerRecipePhotos"
 import { NEW_AIR_FRYER_RECIPE_PHOTOS } from "@/data/newAirFryerRecipePhotos";
 import { NEW_EGG_RECIPE_PHOTOS } from "@/data/newEggRecipePhotos";
 import { IMPORTED_RECIPE_PHOTOS } from "@/data/importedRecipePhotos";
+import { TASTE_OF_HOME_RECIPE_PHOTOS } from "@/data/tasteOfHomeRecipePhotos";
 import { DRINK_RECIPE_PHOTOS } from "@/data/drinkRecipePhotos";
 import { CURATED_RECIPE_PHOTOS } from "@/data/curatedRecipePhotos";
 import { BAKING_RECIPE_PHOTOS } from "@/data/bakingRecipePhotos";
@@ -25,6 +26,7 @@ export const RECIPE_IMAGES: Record<string, RecipeImage> = {
   ...NEW_AIR_FRYER_RECIPE_PHOTOS,
   ...NEW_EGG_RECIPE_PHOTOS,
   ...IMPORTED_RECIPE_PHOTOS,
+  ...TASTE_OF_HOME_RECIPE_PHOTOS,
   ...DRINK_RECIPE_PHOTOS,
   ...CURATED_RECIPE_PHOTOS,
   ...BAKING_RECIPE_PHOTOS,
