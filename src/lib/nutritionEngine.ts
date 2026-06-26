@@ -1,6 +1,18 @@
 import type { Recipe, NutritionEstimate } from "@/lib/types";
 import { INGREDIENT_NUTRITION, type NutritionPerUnit } from "@/data/ingredientNutrition";
-import { INGREDIENTS } from "@/data/ingredients";
+import { INGREDIENTS, INGREDIENT_MAP } from "@/data/ingredients";
+
+/**
+ * Nutrition for an ingredient id, falling back through the alias map: a recipe
+ * that uses an alias id (e.g. "tomatoes", "white-rice", "vegetable-broth")
+ * inherits the canonical ingredient's macros instead of silently computing 0.
+ */
+function resolveNut(id: string): NutritionPerUnit | undefined {
+  const direct = INGREDIENT_NUTRITION[id];
+  if (direct) return direct;
+  const canon = INGREDIENT_MAP.get(id);
+  return canon && canon.id !== id ? INGREDIENT_NUTRITION[canon.id] : undefined;
+}
 
 /**
  * Deterministic recipe macros, computed from each ingredient's per-unit
@@ -57,7 +69,7 @@ function pickWorstConfidence(
 export function getIngredientNutrition(
   ingredientId: string,
 ): NutritionPerUnit | undefined {
-  return INGREDIENT_NUTRITION[ingredientId];
+  return resolveNut(ingredientId);
 }
 
 /**
@@ -70,7 +82,7 @@ export function calculateIngredientMacros(
   quantity: number,
   unit: string,
 ): IngredientMacroLine {
-  const nut = INGREDIENT_NUTRITION[ingredientId];
+  const nut = resolveNut(ingredientId);
   if (!nut) {
     return {
       ingredientId,
@@ -117,7 +129,7 @@ export function calculateRecipeMacros(recipe: Recipe): RecipeMacros {
     hasAnyFiber = false;
 
   for (const ing of recipe.ingredients) {
-    const nut = INGREDIENT_NUTRITION[ing.ingredientId];
+    const nut = resolveNut(ing.ingredientId);
     confidence = pickWorstConfidence(confidence, nut?.confidence ?? "unknown");
     if (!nut) missing.push(ing.ingredientId);
 
@@ -321,7 +333,7 @@ export function calculateNutritionForFreeForm(
   for (const ing of ingredients) {
     const id = matchIngredientByName(ing.name);
     if (!id) continue;
-    const nut = INGREDIENT_NUTRITION[id];
+    const nut = resolveNut(id);
     if (!nut) continue;
     matched++;
     confidence = pickWorstConfidence(confidence, nut.confidence);
