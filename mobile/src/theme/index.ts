@@ -131,6 +131,31 @@ export const accent = makeAccent(colorsLight);
 
 export type AccentKey = keyof ReturnType<typeof makeAccent>;
 
+/**
+ * Soft tint + text/icon color + a Feather icon for each of the 10 ingredient
+ * CATEGORIES, so pantry items can be color-coded by category. Mirrors the web
+ * `PANTRY_TONE_BY_CATEGORY` intent (grain→gold, protein→grape, veg→basil,
+ * fruit→pink, dairy→sky, canned→carrot, condiment→teal, spice→tomato) using
+ * existing palette tokens so it flips in dark mode for free. `icon` strings are
+ * valid Feather glyph names.
+ */
+export function makeCategoryTone(c: Palette) {
+  return {
+    protein: { tint: c.grapeTint, color: c.grapeShadow, icon: "zap" },
+    vegetable: { tint: c.basilTint, color: c.basilShadow, icon: "feather" },
+    fruit: { tint: c.pinkTint, color: c.pinkShadow, icon: "heart" },
+    dairy: { tint: c.skyTint, color: c.skyShadow, icon: "droplet" },
+    grain: { tint: c.butterTint, color: c.butterShadow, icon: "circle" },
+    canned: { tint: c.carrotTint, color: c.carrotShadow, icon: "archive" },
+    frozen: { tint: c.skyTint, color: c.skyShadow, icon: "cloud-snow" },
+    condiment: { tint: c.tealTint, color: c.tealShadow, icon: "coffee" },
+    spice: { tint: c.tomatoTint, color: c.tomatoShadow, icon: "thermometer" },
+    snack: { tint: c.oat, color: c.textMuted, icon: "box" },
+  } as const;
+}
+
+export type CategoryToneKey = keyof ReturnType<typeof makeCategoryTone>;
+
 export const radius = {
   sm: 12,
   md: 16,

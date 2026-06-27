@@ -5,19 +5,22 @@ import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Screen } from "~/components/Screen";
 import { Sheet } from "~/components/Sheet";
-import { Txt, Row, Card, Button, Field, Press, Badge, IconButton, EmptyState } from "~/components/ui";
+import { Txt, Row, Card, Button, Field, Press, Badge, IconButton, EmptyState, SectionHeading } from "~/components/ui";
+import { RecipeRow } from "~/components/RecipeCard";
 import { toast } from "~/components/Toast";
-import { space, radius } from "~/theme";
+import { space, radius, makeCategoryTone, CategoryToneKey } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
 import { usePantry } from "~/lib/stores/app";
 import { usePantries } from "~/lib/stores/pantries";
-import { ingredientLabel, categoryLabel } from "~/lib/recipes";
+import { ingredientLabel, categoryLabel, seedToView } from "~/lib/recipes";
 import { parsePantryText, aiAvailable } from "~/lib/ai";
 import { tap } from "~/lib/haptics";
-import { INGREDIENTS, INGREDIENT_MAP, QUICK_ADD_STAPLES } from "@/data/ingredients";
+import { INGREDIENT_MAP, QUICK_ADD_STAPLES } from "@/data/ingredients";
 import { PANTRY_PRESETS } from "@/data/pantryPresets";
 import { matchIngredientByName } from "@/lib/nutritionEngine";
 import { rankPantryCatalog } from "~/lib/catalog";
+import { groupPantryResults, recommendSmartBuys } from "@/lib/recipeScoring";
+import { rankIngredients } from "~/lib/ingredientSearch";
 import { recognizeIngredientsFromImage } from "@/lib/anthropic";
 
 const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "canned", "frozen", "condiment", "spice", "snack"];
@@ -29,6 +32,7 @@ export default function PantryScreen() {
   const [addOpen, setAddOpen] = useState(false);
   const [pasteOpen, setPasteOpen] = useState(false);
   const [presetConfirm, setPresetConfirm] = useState<(typeof PANTRY_PRESETS)[number] | null>(null);
+  const [optionsOpen, setOptionsOpen] = useState(false);
   const [manageOpen, setManageOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
   const [nameDraft, setNameDraft] = useState("");
@@ -37,6 +41,9 @@ export default function PantryScreen() {
   const [pasteText, setPasteText] = useState("");
   const [busy, setBusy] = useState(false);
   const activePantry = pantries.find((p) => p.id === active);
+
+  const catTone = makeCategoryTone(colors);
+  const toneFor = (cat: string) => (cat in catTone ? catTone[cat as CategoryToneKey] : catTone.snack);
 
   // Items matching the in-pantry search (used for both the use-soon strip + groups).
   const shownItems = useMemo(() => {
@@ -57,16 +64,23 @@ export default function PantryScreen() {
     return g;
   }, [shownItems]);
 
-  const readyCount = useMemo(() => {
-    if (pantry.length === 0) return 0;
-    return rankPantryCatalog(pantry).filter((r) => r.missingIngredients.length === 0).length;
-  }, [pantry]);
+  // The reward loop: what the pantry already cooks, what one buy unlocks.
+  const ranked = useMemo(() => (pantry.length ? rankPantryCatalog(pantry) : []), [pantry]);
+  const groups = useMemo(() => groupPantryResults(ranked, pantry), [ranked, pantry]);
+  const needFew = useMemo(() => {
+    const seen = new Set<string>();
+    const out: typeof groups.buyOneUnlock = [];
+    for (const r of [...groups.buyOneUnlock, ...groups.needFewItems]) {
+      if (seen.has(r.recipe.id)) continue;
+      seen.add(r.recipe.id);
+      out.push(r);
+    }
+    return out;
+  }, [groups]);
+  const smartBuys = useMemo(() => (pantry.length ? recommendSmartBuys(pantry) : []), [pantry]);
+  const topBuy = smartBuys.find((b) => b.unlocks > 0) ?? null;
 
-  const matches = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return INGREDIENTS.filter((i) => i.name.toLowerCase().includes(q) && !has(i.id)).slice(0, 8);
-  }, [query, pantry]);
+  const searchResults = useMemo(() => rankIngredients(query, has, 12), [query, pantry]);
 
   async function handlePaste() {
     const text = pasteText.trim();
@@ -124,87 +138,131 @@ export default function PantryScreen() {
     }
   }
 
-  const itemChip = (p: (typeof pantry)[number]) => (
-    <Press key={p.ingredientId} haptic="selection" onPress={() => toggleUseSoon(p.ingredientId)}
-      style={{ flexDirection: "row", alignItems: "center", gap: 6, backgroundColor: p.useSoon ? accent.cheap.tint : colors.surface, borderWidth: 1.5, borderColor: p.useSoon ? accent.cheap.main : colors.border, borderRadius: radius.pill, paddingLeft: 12, paddingRight: 5, paddingVertical: 8 }}>
-      {p.useSoon ? <Feather name="clock" size={12} color={accent.cheap.shadow} /> : null}
-      <Txt variant="caption" weight="600">{ingredientLabel(p.ingredientId)}</Txt>
-      <Press onPress={() => { remove(p.ingredientId); tap(); toast(`Removed ${ingredientLabel(p.ingredientId)}`, "info"); }}
-        style={{ width: 22, height: 22, borderRadius: 11, backgroundColor: colors.oat, alignItems: "center", justifyContent: "center" }}>
-        <Feather name="x" size={13} color={colors.textMuted} />
-      </Press>
-    </Press>
-  );
+  // A pantry item, color-coded by category. The body toggles "use soon"; a
+  // separate, generously-tapped button removes it (no more accidental deletes).
+  const itemChip = (p: (typeof pantry)[number]) => {
+    const cat = INGREDIENT_MAP.get(p.ingredientId)?.category ?? "snack";
+    const t = toneFor(cat);
+    const bg = p.useSoon ? accent.cheap.tint : t.tint;
+    const fg = p.useSoon ? accent.cheap.shadow : t.color;
+    const bd = p.useSoon ? accent.cheap.main : t.tint;
+    const name = ingredientLabel(p.ingredientId);
+    return (
+      <View key={p.ingredientId}
+        style={{ flexDirection: "row", alignItems: "center", backgroundColor: bg, borderWidth: 1.5, borderColor: bd, borderRadius: radius.pill, paddingLeft: 12, paddingRight: 4, paddingVertical: 3 }}>
+        <Press haptic="selection" onPress={() => toggleUseSoon(p.ingredientId)} accessibilityLabel={`Mark ${name} use soon`}
+          style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingVertical: 6, paddingRight: 4 }}>
+          {p.useSoon ? <Feather name="clock" size={12} color={fg} /> : null}
+          <Txt variant="caption" weight="700" color={fg}>{name}</Txt>
+        </Press>
+        <Press onPress={() => { remove(p.ingredientId); tap(); toast(`Removed ${name}`, "info"); }}
+          accessibilityLabel={`Remove ${name}`} hitSlop={8}
+          style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }}>
+          <Feather name="x" size={14} color={fg} />
+        </Press>
+      </View>
+    );
+  };
+
+  const stats = [
+    { value: pantry.length, label: "ingredients", color: colors.text },
+    { value: groups.canMakeNow.length, label: "ready now", color: accent.pantry.shadow },
+    { value: useSoonItems.length, label: "use soon", color: accent.cheap.shadow },
+    { value: topBuy?.unlocks ?? 0, label: "1 buy unlocks", color: accent["ai-chef"].shadow },
+  ];
 
   return (
     <View style={{ flex: 1 }}>
     <Screen>
-      <Row justify="space-between" align="flex-start" style={{ marginBottom: space.md }}>
-        <View style={{ flex: 1 }}>
+      {/* Compact header — pantry name is a dropdown into all pantry options. */}
+      <Row justify="space-between" align="center" style={{ marginBottom: space.md }}>
+        <Press onPress={() => setOptionsOpen(true)} haptic="selection" containerStyle={{ flex: 1, marginRight: space.md }}>
           <Txt variant="label">PANTRY</Txt>
-          <Txt variant="title" numberOfLines={1}>{activePantry?.name ?? "My Pantry"}</Txt>
-          <Txt variant="caption" muted>{pantry.length} ingredient{pantry.length === 1 ? "" : "s"}</Txt>
-        </View>
-        {pantry.length > 0 ? <IconButton icon="trash-2" onPress={() => { clear(); tap(); toast("Pantry cleared", "info"); }} bg={colors.tomatoTint} color={colors.tomato} /> : null}
+          <Row gap={6} align="center">
+            <Txt variant="title" numberOfLines={1} style={{ flexShrink: 1 }}>{activePantry?.name ?? "My Pantry"}</Txt>
+            <Feather name="chevron-down" size={18} color={colors.textFaint} />
+          </Row>
+        </Press>
+        <Row gap={8} align="center">
+          <Badge label={`${pantry.length}`} tone="pantry" icon="archive" />
+          <IconButton icon="more-horizontal" onPress={() => setOptionsOpen(true)} />
+        </Row>
       </Row>
 
-      {/* Pantry switcher — multiple saved pantries; tap the active one to manage. */}
-      <Txt variant="label" style={{ marginBottom: 8 }}>YOUR PANTRIES</Txt>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ gap: 8, paddingRight: space.lg }}
-        style={{ marginHorizontal: -space.lg, paddingHorizontal: space.lg, marginBottom: 6 }}>
-        {pantries.map((p) => {
-          const on = p.id === active;
-          return (
-            <Press key={p.id} haptic="selection"
-              onPress={() => { if (on) { setNameDraft(p.name); setManageOpen(true); } else switchTo(p.id); }}
-              style={{ flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, maxWidth: 180, backgroundColor: on ? colors.basil : colors.surface, borderWidth: 1.5, borderColor: on ? colors.basil : colors.border }}>
-              <Feather name="archive" size={13} color={on ? "#fff" : colors.textMuted} />
-              <Txt variant="label" weight="700" color={on ? "#fff" : colors.text} numberOfLines={1} style={{ flexShrink: 1 }}>{p.name}</Txt>
-              {on ? <Feather name="more-horizontal" size={14} color="rgba(255,255,255,0.85)" /> : null}
-            </Press>
-          );
-        })}
-        <Press haptic="selection" onPress={() => { setNameDraft(""); setCreateOpen(true); }}
-          style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, backgroundColor: colors.basilSoft }}>
-          <Feather name="plus" size={14} color={colors.basilShadow} />
-          <Txt variant="label" weight="700" color={colors.basilShadow}>New</Txt>
-        </Press>
-      </ScrollView>
-      <Txt variant="caption" muted style={{ marginBottom: space.md }}>
-        {pantries.length > 1 ? "Tap a pantry to switch · tap the active one to rename or delete." : "Keep separate pantries for different situations — tap + New."}
-      </Txt>
-
-      {/* Shuffle into a dedicated, non-destructive "Surprise" pantry. */}
-      <Press haptic="selection" onPress={() => { const name = shuffle(); tap(); toast(`Rolled a fresh ${name} pantry 🎲`, "reward"); }}
-        style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 7, paddingVertical: 12, borderRadius: radius.md, backgroundColor: accent["ai-chef"].tint, marginBottom: space.lg }}>
-        <Txt style={{ fontSize: 16 }}>🎲</Txt>
-        <Txt variant="label" weight="800" color={accent["ai-chef"].shadow}>Surprise me — shuffle a random pantry</Txt>
+      {/* Search-first add — the #1 action, always one tap away. */}
+      <Press onPress={() => { setQuery(""); setAddOpen(true); }} haptic="light"
+        style={{ flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.md, paddingHorizontal: 14, paddingVertical: 13, marginBottom: space.lg }}>
+        <Feather name="search" size={18} color={colors.textFaint} />
+        <Txt variant="body" color={colors.textFaint} style={{ flex: 1 }}>Add ingredients (rice, eggs, tofu…)</Txt>
+        <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: accent.pantry.tint, alignItems: "center", justifyContent: "center" }}>
+          <Feather name="plus" size={16} color={accent.pantry.shadow} />
+        </View>
       </Press>
 
-      {readyCount >= 3 ? (
-        <Press onPress={() => router.push("/recipes")}>
-          <Card soft style={{ marginBottom: space.lg }}>
-            <Row justify="space-between">
-              <Row gap={10}>
-                <Feather name="check-circle" size={20} color={colors.basilShadow} />
-                <Txt variant="body"><Txt weight="700">{readyCount} recipes</Txt> you can cook right now</Txt>
-              </Row>
-              <Feather name="chevron-right" size={18} color={colors.textFaint} />
-            </Row>
-          </Card>
-        </Press>
-      ) : null}
-
       {pantry.length === 0 ? (
-        <EmptyState emoji="🥫" title="This pantry is empty"
-          subtitle="Add what you already have and Waivy matches recipes to it — or roll a Surprise pantry above."
-          action={<Button title="Add ingredients" icon="plus" accentKey="pantry" variant="accent" onPress={() => setAddOpen(true)} />} />
+        <EmptyState emoji="🥫" title="Your pantry is empty"
+          subtitle="Add what you already have and Waivy instantly matches recipes you can cook right now."
+          action={<Button title="Add ingredients" icon="plus" accentKey="pantry" variant="accent" onPress={() => { setQuery(""); setAddOpen(true); }} />} />
       ) : (
         <>
+          {/* Stat strip — orientation + a sense of progress at a glance. */}
+          <Row gap={8} align="stretch" style={{ marginBottom: space.lg }}>
+            {stats.map((s) => (
+              <View key={s.label} style={{ flex: 1, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: radius.md, paddingVertical: 11, paddingHorizontal: 6, alignItems: "center", gap: 2 }}>
+                <Txt weight="800" color={s.color} style={{ fontSize: 19 }}>{s.value}</Txt>
+                <Txt variant="caption" muted center numberOfLines={2} style={{ fontSize: 10.5, lineHeight: 13 }}>{s.label}</Txt>
+              </View>
+            ))}
+          </Row>
+
+          {/* WHAT YOU CAN COOK — the payoff, surfaced above the item list. */}
+          {groups.canMakeNow.length > 0 ? (
+            <View style={{ marginBottom: space.lg }}>
+              <SectionHeading title={`${groups.canMakeNow.length} ready to cook now`} action="See all" onAction={() => router.push("/recipes")} />
+              <View style={{ gap: space.sm }}>
+                {groups.canMakeNow.slice(0, 3).map((r) => <RecipeRow key={r.recipe.id} view={seedToView(r.recipe)} />)}
+              </View>
+            </View>
+          ) : null}
+
+          {needFew.length > 0 ? (
+            <View style={{ marginBottom: space.lg }}>
+              <Txt variant="heading" style={{ marginBottom: space.sm }}>Almost there — need 1–2 more</Txt>
+              <View style={{ gap: space.sm }}>
+                {needFew.slice(0, 2).map((r) => (
+                  <View key={r.recipe.id} style={{ gap: 4 }}>
+                    <RecipeRow view={seedToView(r.recipe)} />
+                    <Row gap={5} align="center" style={{ paddingHorizontal: 4 }}>
+                      <Feather name="shopping-cart" size={11} color={colors.carrotShadow} />
+                      <Txt variant="caption" muted style={{ flex: 1 }}>
+                        Grab {r.missingIngredients.map((m) => ingredientLabel(m.ingredientId)).slice(0, 2).join(" + ")}
+                      </Txt>
+                    </Row>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : null}
+
+          {topBuy ? (
+            <Card soft style={{ marginBottom: space.lg }}>
+              <Row justify="space-between" align="center" gap={10}>
+                <Row gap={10} align="center" style={{ flex: 1 }}>
+                  <Txt style={{ fontSize: 22 }}>🛒</Txt>
+                  <Txt variant="body" style={{ flex: 1 }}>
+                    Buy <Txt weight="800">{ingredientLabel(topBuy.ingredientId)}</Txt> to unlock <Txt weight="800">{topBuy.unlocks}</Txt> more recipe{topBuy.unlocks === 1 ? "" : "s"}
+                  </Txt>
+                </Row>
+                <Button title="Add" icon="plus" accentKey="pantry" variant="accent" size="sm"
+                  onPress={() => { add({ ingredientId: topBuy.ingredientId }); tap(); toast(`Added ${ingredientLabel(topBuy.ingredientId)}`, "success"); }} />
+              </Row>
+            </Card>
+          ) : null}
+
+          {/* YOUR INGREDIENTS — color-coded by category. */}
           <Row justify="space-between" align="center" style={{ marginBottom: space.md }}>
             <Txt variant="heading">Your ingredients</Txt>
-            <Button title="Add" icon="plus" accentKey="pantry" variant="accent" size="sm" onPress={() => setAddOpen(true)} />
+            <Button title="Add" icon="plus" accentKey="pantry" variant="accent" size="sm" onPress={() => { setQuery(""); setAddOpen(true); }} />
           </Row>
           {pantry.length >= 8 || itemQuery ? (
             <Field placeholder="Search your items…" value={itemQuery} onChangeText={setItemQuery} style={{ marginBottom: space.md }} />
@@ -212,36 +270,68 @@ export default function PantryScreen() {
 
           {useSoonItems.length ? (
             <View style={{ marginBottom: space.lg }}>
-              <Txt variant="label" style={{ marginBottom: 8, color: accent.cheap.shadow }}>⏱ USE SOON</Txt>
+              <Row gap={6} align="center" style={{ marginBottom: 8 }}>
+                <Feather name="clock" size={13} color={accent.cheap.shadow} />
+                <Txt variant="label" style={{ color: accent.cheap.shadow }}>USE SOON</Txt>
+                <Badge label={`${useSoonItems.length}`} tone="cheap" />
+              </Row>
               <Row gap={8} wrap>{useSoonItems.map(itemChip)}</Row>
             </View>
           ) : null}
 
-          {CATEGORY_ORDER.filter((c) => grouped[c]?.length).map((cat) => (
-            <View key={cat} style={{ marginBottom: space.lg }}>
-              <Txt variant="label" style={{ marginBottom: 8 }}>{categoryLabel(cat).toUpperCase()}</Txt>
-              <Row gap={8} wrap>{grouped[cat].map(itemChip)}</Row>
-            </View>
-          ))}
+          {CATEGORY_ORDER.filter((c) => grouped[c]?.length).map((cat) => {
+            const t = toneFor(cat);
+            return (
+              <View key={cat} style={{ marginBottom: space.lg }}>
+                <Row gap={7} align="center" style={{ marginBottom: 8 }}>
+                  <View style={{ width: 22, height: 22, borderRadius: 7, backgroundColor: t.tint, alignItems: "center", justifyContent: "center" }}>
+                    <Feather name={t.icon} size={12} color={t.color} />
+                  </View>
+                  <Txt variant="label" style={{ color: t.color }}>{categoryLabel(cat).toUpperCase()}</Txt>
+                  <Txt variant="caption" muted>{grouped[cat].length}</Txt>
+                </Row>
+                <Row gap={8} wrap>{grouped[cat].map(itemChip)}</Row>
+              </View>
+            );
+          })}
           {shownItems.length === 0 ? <Txt variant="caption" muted center>No items match "{itemQuery.trim()}".</Txt> : null}
           {pantry.length < 5 ? (
             <Txt variant="caption" muted>Add a few more items (or load a Starter pack via + Add) so Waivy can match more recipes.</Txt>
           ) : (
-            <Txt variant="caption" muted>Tap an item to flag "use soon" ⏱ · tap ✕ to remove.</Txt>
+            <Txt variant="caption" muted>Tap an item to flag "use soon" ⏱ · tap the ✕ to remove.</Txt>
           )}
         </>
       )}
 
+      {/* ── Add to pantry (search-first) ────────────────────────────────── */}
       <Sheet visible={addOpen} onClose={() => { setAddOpen(false); setQuery(""); }} title="Add to pantry">
-        <Field placeholder="Search ingredients…" value={query} onChangeText={setQuery} />
+        <Field placeholder="Search 1,900+ ingredients…" value={query} onChangeText={setQuery} autoFocus style={{ marginBottom: space.sm }} />
         {query.trim() ? (
-          matches.length ? matches.map((i) => (
-            <Press key={i.id} onPress={() => { add({ ingredientId: i.id }); tap(); toast(`Added ${i.name}`); setQuery(""); }}
-              style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: colors.border }}>
-              <Txt variant="body">{i.name}</Txt>
-              <Feather name="plus-circle" size={20} color={colors.basil} />
-            </Press>
-          )) : <Txt variant="caption" muted style={{ paddingVertical: 12 }}>No ingredient matches “{query.trim()}”. Try the Paste option below.</Txt>
+          searchResults.length ? (
+            <View>
+              {searchResults.map((i) => {
+                const t = toneFor(i.category);
+                return (
+                  <Press key={i.id} onPress={() => { add({ ingredientId: i.id }); tap(); toast(`Added ${i.name}`, "success"); }}
+                    style={{ flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 11, borderBottomWidth: 1, borderBottomColor: colors.border }}>
+                    <View style={{ width: 30, height: 30, borderRadius: 9, backgroundColor: t.tint, alignItems: "center", justifyContent: "center" }}>
+                      <Feather name={t.icon} size={14} color={t.color} />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Txt variant="body">{i.name}</Txt>
+                      <Txt variant="caption" muted>{categoryLabel(i.category)}</Txt>
+                    </View>
+                    <Feather name="plus-circle" size={24} color={colors.basil} />
+                  </Press>
+                );
+              })}
+            </View>
+          ) : (
+            <View style={{ paddingVertical: 16, alignItems: "center", gap: 10 }}>
+              <Txt variant="caption" muted center>No ingredient matches "{query.trim()}".</Txt>
+              <Button title="Paste a list instead" icon="clipboard" variant="secondary" size="sm" onPress={() => { setAddOpen(false); setPasteOpen(true); }} />
+            </View>
+          )
         ) : (
           <View style={{ gap: space.lg, marginTop: space.sm }}>
             <View>
@@ -278,6 +368,36 @@ export default function PantryScreen() {
         )}
       </Sheet>
 
+      {/* ── Pantry options — switch / new / rename / shuffle / clear ─────── */}
+      <Sheet visible={optionsOpen} onClose={() => setOptionsOpen(false)} title="Your pantries">
+        <View style={{ gap: space.sm }}>
+          {pantries.map((p) => {
+            const on = p.id === active;
+            return (
+              <Press key={p.id} haptic="selection" onPress={() => { if (!on) switchTo(p.id); setOptionsOpen(false); }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 10, padding: 12, borderRadius: radius.md, backgroundColor: on ? accent.pantry.tint : colors.surface, borderWidth: 1.5, borderColor: on ? accent.pantry.main : colors.border }}>
+                <Feather name="archive" size={16} color={on ? accent.pantry.shadow : colors.textMuted} />
+                <Txt variant="body" weight={on ? "700" : "500"} style={{ flex: 1 }} numberOfLines={1}>{p.name}</Txt>
+                {on ? <Feather name="check" size={16} color={accent.pantry.shadow} /> : null}
+              </Press>
+            );
+          })}
+          <View style={{ height: 1, backgroundColor: colors.border, marginVertical: space.xs }} />
+          <Row gap={10}>
+            <Button title="New pantry" icon="plus" accentKey="pantry" variant="accent" style={{ flex: 1 }}
+              onPress={() => { setOptionsOpen(false); setNameDraft(""); setCreateOpen(true); }} />
+            <Button title="Rename" icon="edit-2" variant="secondary" style={{ flex: 1 }}
+              onPress={() => { setOptionsOpen(false); setNameDraft(activePantry?.name ?? ""); setManageOpen(true); }} />
+          </Row>
+          <Button title="Shuffle a random pantry 🎲" icon="shuffle" variant="ghost" full
+            onPress={() => { const name = shuffle(); tap(); setOptionsOpen(false); toast(`Rolled a fresh ${name} pantry 🎲`, "reward"); }} />
+          {pantry.length > 0 ? (
+            <Button title="Clear this pantry" icon="trash-2" variant="danger" full
+              onPress={() => { clear(); tap(); setOptionsOpen(false); toast("Pantry cleared", "info"); }} />
+          ) : null}
+        </View>
+      </Sheet>
+
       <Sheet visible={pasteOpen} onClose={() => setPasteOpen(false)} title="Paste your ingredients">
         <Txt variant="caption" muted>e.g. "eggs, half a bag of frozen broccoli, old tortillas, soy sauce"</Txt>
         <Field placeholder="Type or paste a messy list…" value={pasteText} onChangeText={setPasteText} multiline style={{ minHeight: 110, textAlignVertical: "top" }} />
@@ -308,7 +428,7 @@ export default function PantryScreen() {
         </View>
       </Sheet>
 
-      <Sheet visible={manageOpen} onClose={() => setManageOpen(false)} title="Manage pantry" scroll={false}>
+      <Sheet visible={manageOpen} onClose={() => setManageOpen(false)} title="Rename or delete" scroll={false}>
         <View style={{ gap: space.md }}>
           <Field label="Name" value={nameDraft} onChangeText={setNameDraft} />
           <Button title="Save name" icon="check" accentKey="pantry" variant="accent" full
@@ -324,7 +444,7 @@ export default function PantryScreen() {
     </Screen>
 
       {/* Floating add button — outside the scroll so it stays put. */}
-      <Press onPress={() => setAddOpen(true)} haptic="light"
+      <Press onPress={() => { setQuery(""); setAddOpen(true); }} haptic="light"
         containerStyle={{ position: "absolute", right: space.lg, bottom: 30 }}
         style={{ width: 58, height: 58, borderRadius: 29, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center", shadowColor: colors.basilShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
         <Feather name="plus" size={26} color="#fff" />
