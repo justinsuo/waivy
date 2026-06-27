@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { Screen } from "~/components/Screen";
 import { Txt, Row, Card, Press, IconButton, Badge, SectionHeading, Button } from "~/components/ui";
-import { RecipeCard } from "~/components/RecipeCard";
+import { RecipeCard, RecipeRow } from "~/components/RecipeCard";
 import { ProgressRing, MacroBar } from "~/components/Charts";
 import { space, radius, AccentKey, shadow } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
@@ -221,15 +221,13 @@ export default function HomeScreen() {
         </Card>
       </Press>
 
-      {/* Recommendations */}
+      {/* Recommendations — full-width rows so titles/macros aren't crammed */}
       <SectionHeading title="Quick & cheap ideas" action="Browse" onAction={() => router.push("/recipes")} style={{ marginTop: space.xl }} />
-      <Row gap={space.md} style={{ marginLeft: -2 }}>
+      <View style={{ gap: space.sm }}>
         {cheapest.slice(12, 15).map((v) => (
-          <View key={v.id} style={{ flex: 1 }}>
-            <RecipeCard view={v} />
-          </View>
+          <RecipeRow key={v.id} view={v} />
         ))}
-      </Row>
+      </View>
 
       <Button
         title="Generate a recipe with AI Chef"
