@@ -66,5 +66,9 @@ Every browseable recipe, by collection. Imageless collections (AI-generated & ma
 
 **[all-recipes.csv](all-recipes.csv)** — every one of the 7,214 browseable recipes with id, name, collection, cuisine, meal type, equipment, difficulty, **cost/serving**, calories, protein, carbs, fat, fiber, time, servings, photo flag, and live link. Opens in any spreadsheet.
 
+## 🧂 Ingredient catalog
+
+**[ingredients.md](ingredients.md)** — the full pantry: every ingredient Waivy knows about, grouped by category with unit, $/unit, and per-unit macros. **[ingredients.csv](ingredients.csv)** has the same data plus package size, shelf life, and tags for spreadsheets. Regenerate with `npx tsx scripts/generateIngredientDocs.ts`.
+
 ---
 <sub>Photos are freely licensed (Wikimedia Commons / Unsplash) and hand-verified to depict the dish; attribution is on each card and in the app. Costs use Waivy's regional pricing engine (national average); nutrition is USDA-derived per-ingredient.</sub>
