@@ -474,11 +474,13 @@ const BASE_INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
 import { WEB_INGREDIENT_NUTRITION } from "@/data/webIngredients";
 import { GEN_INGREDIENT_NUTRITION } from "@/data/genIngredients";
 import { EXTRA_INGREDIENT_NUTRITION } from "@/data/extraIngredients";
+import { EXTRA_INGREDIENT_NUTRITION_2 } from "@/data/extraIngredients2";
 import { BACKFILL_NUTRITION } from "@/data/backfillNutrition";
 export const INGREDIENT_NUTRITION: Record<string, NutritionPerUnit> = {
   ...BASE_INGREDIENT_NUTRITION,
   ...WEB_INGREDIENT_NUTRITION,
   ...GEN_INGREDIENT_NUTRITION,
   ...EXTRA_INGREDIENT_NUTRITION,
+  ...EXTRA_INGREDIENT_NUTRITION_2,
   ...BACKFILL_NUTRITION,
 };

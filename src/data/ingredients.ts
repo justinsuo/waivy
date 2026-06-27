@@ -2,6 +2,7 @@ import type { Ingredient } from "@/lib/types";
 import { WEB_INGREDIENTS } from "@/data/webIngredients";
 import { GEN_INGREDIENTS } from "@/data/genIngredients";
 import { EXTRA_INGREDIENTS } from "@/data/extraIngredients";
+import { EXTRA_INGREDIENTS_2 } from "@/data/extraIngredients2";
 
 // Prices are 2026 US grocery estimates (mid-tier chain — Kroger/Safeway/Aldi
 // blend) per the listed unit. Each row's `estimatedUnitCost` is computed
@@ -1342,6 +1343,8 @@ export const INGREDIENTS: Ingredient[] = [
 
   // ===== Comprehensive pantry expansion (common kitchen ingredients) =====
   ...EXTRA_INGREDIENTS,
+  // ===== Expansion 2 — specialty / international / long-tail ingredients =====
+  ...EXTRA_INGREDIENTS_2,
 ];
 
 // Alias map: maps alternative ingredient IDs used in macro recipe batches to the
