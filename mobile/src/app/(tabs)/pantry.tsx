@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { View, ScrollView, InteractionManager } from "react-native";
+import { View, ScrollView, InteractionManager, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -21,7 +21,7 @@ import { matchIngredientByName } from "@/lib/nutritionEngine";
 import { rankPantryCatalog } from "~/lib/catalog";
 import { groupPantryResults, recommendSmartBuys } from "@/lib/recipeScoring";
 import { rankIngredients } from "~/lib/ingredientSearch";
-import { recognizeIngredientsFromImage, isAiEnabled } from "@/lib/anthropic";
+import { recognizeIngredientsFromImage, recognizeIngredientsFromReceipt, isAiEnabled } from "@/lib/anthropic";
 
 const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "canned", "frozen", "condiment", "spice", "snack"];
 
@@ -40,6 +40,13 @@ export default function PantryScreen() {
   const [itemQuery, setItemQuery] = useState("");
   const [pasteText, setPasteText] = useState("");
   const [busy, setBusy] = useState(false);
+  // Results of a fridge/receipt scan, shown in a review sheet so the user
+  // confirms (and can deselect mis-reads) before anything hits the pantry.
+  const [scan, setScan] = useState<{ kind: "fridge" | "receipt"; items: { id: string; name: string }[]; unrecognized: string[] } | null>(null);
+  const [scanPicked, setScanPicked] = useState<Set<string>>(new Set());
+  // Which scan is in flight — doubles as the per-button spinner key and the
+  // re-entrancy guard so a second scan can't launch over a running one.
+  const [scanning, setScanning] = useState<"fridge" | "receipt" | null>(null);
   const activePantry = pantries.find((p) => p.id === active);
 
   const catTone = makeCategoryTone(colors);
@@ -137,28 +144,87 @@ export default function PantryScreen() {
     toast(added ? `Added ${added} item${added === 1 ? "" : "s"}` : "Couldn't match those — try typing them", added ? "success" : "info");
   }
 
-  async function handlePhoto() {
-    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!perm.granted) { toast("Photo permission needed", "error"); return; }
-    const res = await ImagePicker.launchImageLibraryAsync({ base64: true, quality: 0.6, mediaTypes: ["images"] });
-    if (res.canceled || !res.assets?.[0]?.base64) return;
+  // Snap-to-add: take/choose a photo of the fridge or a grocery receipt and let
+  // the vision model pull out the ingredients. The user picks the source first.
+  function startScan(kind: "fridge" | "receipt") {
     if (!isAiEnabled()) { toast("Add an AI key in Settings to scan photos", "error"); return; }
-    setBusy(true);
+    if (scanning) return; // one scan at a time
+    setScanning(kind);
+    Alert.alert(
+      kind === "receipt" ? "Scan a receipt" : "Scan your fridge",
+      kind === "receipt"
+        ? "Snap your grocery receipt and we'll add the items you bought."
+        : "Snap your fridge, pantry, or counter and we'll spot the ingredients.",
+      [
+        { text: "Take Photo", onPress: () => runScan(kind, "camera") },
+        { text: "Choose from Library", onPress: () => runScan(kind, "library") },
+        { text: "Cancel", style: "cancel", onPress: () => setScanning(null) },
+      ],
+      { onDismiss: () => setScanning(null) },
+    );
+  }
+
+  async function runScan(kind: "fridge" | "receipt", source: "camera" | "library") {
     try {
-      const out = await recognizeIngredientsFromImage(res.assets[0].base64, res.assets[0].mimeType ?? "image/jpeg");
-      const ids: string[] = [];
+      let res: ImagePicker.ImagePickerResult;
+      if (source === "camera") {
+        const perm = await ImagePicker.requestCameraPermissionsAsync();
+        if (!perm.granted) { toast("Camera permission needed", "error"); return; }
+        try {
+          res = await ImagePicker.launchCameraAsync({ base64: true, quality: 0.6, mediaTypes: ["images"] });
+        } catch {
+          // No camera (e.g. iOS Simulator) — point them at the library instead.
+          toast("Camera isn't available here — use Choose from Library", "info");
+          return;
+        }
+      } else {
+        const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (!perm.granted) { toast("Photo permission needed", "error"); return; }
+        res = await ImagePicker.launchImageLibraryAsync({ base64: true, quality: 0.6, mediaTypes: ["images"] });
+      }
+      if (res.canceled || !res.assets?.[0]?.base64) return;
+
+      const recognize = kind === "receipt" ? recognizeIngredientsFromReceipt : recognizeIngredientsFromImage;
+      const out = await recognize(res.assets[0].base64, res.assets[0].mimeType ?? "image/jpeg");
+      // Map every hit to a catalog id (vision usually returns ids; salvage names
+      // + unrecognized labels via the offline matcher), de-duped.
+      const seen = new Set<string>();
+      const items: { id: string; name: string }[] = [];
       for (const d of out.recognized ?? []) {
         const id = INGREDIENT_MAP.has(d.id) ? d.id : matchIngredientByName(d.name);
-        if (id) ids.push(id);
+        if (id && !seen.has(id)) { seen.add(id); items.push({ id, name: ingredientLabel(id) }); }
       }
-      addMany(ids);
-      toast(ids.length ? `Found ${ids.length} ingredient${ids.length === 1 ? "" : "s"}` : "No ingredients recognized", ids.length ? "success" : "info");
-    } catch {
-      toast("Couldn't read that photo", "error");
-    } finally {
-      setBusy(false);
+      const stillUnknown: string[] = [];
+      for (const label of out.unrecognized ?? []) {
+        const id = matchIngredientByName(label);
+        if (id && !seen.has(id)) { seen.add(id); items.push({ id, name: ingredientLabel(id) }); }
+        else stillUnknown.push(label);
+      }
+      if (!items.length) {
+        toast(kind === "receipt" ? "No items found on that receipt" : "No ingredients recognized", "info");
+        return;
+      }
       setAddOpen(false);
+      setScan({ kind, items, unrecognized: stillUnknown });
+      setScanPicked(new Set(items.map((i) => i.id)));
+    } catch (e) {
+      // Surface the lib's friendly transient messages (timeout / rate-limit);
+      // never leak the raw "Request failed (status): …" body. Anything else
+      // reads as an unreadable image.
+      const msg = e instanceof Error ? e.message : "";
+      const transient = msg === "AI request timed out — try again" || msg === "AI is rate-limited — try again in a moment";
+      toast(transient ? msg : "Couldn't read that photo — try again", "error");
+    } finally {
+      setScanning(null);
     }
+  }
+
+  function toggleScanPick(id: string) {
+    setScanPicked((s) => {
+      const n = new Set(s);
+      if (n.has(id)) n.delete(id); else n.add(id);
+      return n;
+    });
   }
 
   // A pantry item, color-coded by category. The body toggles "use soon"; a
@@ -389,10 +455,14 @@ export default function PantryScreen() {
                 ))}
               </ScrollView>
             </View>
-            <Row gap={10}>
-              <Button title="Paste a list" icon="clipboard" variant="secondary" style={{ flex: 1 }} onPress={() => { setAddOpen(false); setPasteOpen(true); }} />
-              <Button title="Scan a photo" icon="camera" variant="secondary" style={{ flex: 1 }} loading={busy} onPress={handlePhoto} />
-            </Row>
+            <View>
+              <Txt variant="label" style={{ marginBottom: 8 }}>SNAP TO ADD</Txt>
+              <Row gap={10}>
+                <Button title="Scan fridge" icon="camera" variant="secondary" style={{ flex: 1 }} loading={scanning === "fridge"} disabled={!!scanning} onPress={() => startScan("fridge")} />
+                <Button title="Scan receipt" icon="file-text" variant="secondary" style={{ flex: 1 }} loading={scanning === "receipt"} disabled={!!scanning} onPress={() => startScan("receipt")} />
+              </Row>
+            </View>
+            <Button title="Paste a list" icon="clipboard" variant="secondary" full onPress={() => { setAddOpen(false); setPasteOpen(true); }} />
           </View>
         )}
       </Sheet>
@@ -431,6 +501,39 @@ export default function PantryScreen() {
         <Txt variant="caption" muted>e.g. "eggs, half a bag of frozen broccoli, old tortillas, soy sauce"</Txt>
         <Field placeholder="Type or paste a messy list…" value={pasteText} onChangeText={setPasteText} multiline style={{ minHeight: 110, textAlignVertical: "top" }} />
         <Button title={isAiEnabled() ? "Smart add with AI" : "Add (offline matching)"} icon="zap" accentKey="pantry" variant="accent" full loading={busy} onPress={handlePaste} />
+      </Sheet>
+
+      {/* ── Review what a fridge/receipt scan found before adding ─────────── */}
+      <Sheet visible={!!scan} onClose={() => setScan(null)} title={scan?.kind === "receipt" ? "Found on your receipt" : "Found in your photo"}>
+        {scan ? (
+          <View style={{ gap: space.md }}>
+            <Txt variant="caption" muted>Tap to include or skip — only the highlighted items get added.</Txt>
+            <Row gap={8} wrap>
+              {scan.items.map((it) => {
+                const on = scanPicked.has(it.id);
+                return (
+                  <Press key={it.id} haptic="selection" onPress={() => toggleScanPick(it.id)}
+                    hitSlop={6} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={it.name}
+                    style={{ flexDirection: "row", alignItems: "center", gap: 6, backgroundColor: on ? accent.pantry.tint : colors.surface, borderWidth: 1.5, borderColor: on ? accent.pantry.main : colors.border, borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 9 }}>
+                    <Feather name={on ? "check" : "plus"} size={13} color={on ? accent.pantry.shadow : colors.textMuted} />
+                    <Txt variant="caption" weight="700" color={on ? accent.pantry.shadow : colors.text}>{it.name}</Txt>
+                  </Press>
+                );
+              })}
+            </Row>
+            {scan.unrecognized.length ? (
+              <Txt variant="caption" muted>Couldn&apos;t match: {scan.unrecognized.slice(0, 10).join(", ")}</Txt>
+            ) : null}
+            <Button title={scanPicked.size ? `Add ${scanPicked.size} to pantry` : "Select items to add"} icon="check"
+              accentKey="pantry" variant="accent" full disabled={scanPicked.size === 0}
+              onPress={() => {
+                const fresh = [...scanPicked].filter((id) => !has(id));
+                addMany(fresh);
+                toast(fresh.length ? `Added ${fresh.length} item${fresh.length === 1 ? "" : "s"}` : "Those are already in your pantry", fresh.length ? "reward" : "info");
+                setScan(null);
+              }} />
+          </View>
+        ) : null}
       </Sheet>
 
       <Sheet visible={!!presetConfirm} onClose={() => setPresetConfirm(null)} title={presetConfirm?.name} scroll={false}>
