@@ -13,6 +13,7 @@ import { DRINK_RECIPE_PHOTOS } from "@/data/drinkRecipePhotos";
 import { CURATED_RECIPE_PHOTOS } from "@/data/curatedRecipePhotos";
 import { BAKING_RECIPE_PHOTOS } from "@/data/bakingRecipePhotos";
 import { BAKING_RECIPE_PHOTOS_2 } from "@/data/bakingRecipePhotos2";
+import { CORRECTED_RECIPE_PHOTOS } from "@/data/correctedRecipePhotos";
 
 /**
  * Curated real food photographs for every recipe.
@@ -2381,6 +2382,8 @@ export const RECIPE_IMAGES: Record<string, RecipeImage> = {
     attributionText: "Photo: Unsplash on Unsplash",
     verifiedMatch: true,
   },
+  // Vision-audit corrections — spread LAST so they override any wrong entry above.
+  ...CORRECTED_RECIPE_PHOTOS,
 };
 
 export function getRecipeImage(id: string): RecipeImage | undefined {
