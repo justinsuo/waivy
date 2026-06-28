@@ -153,7 +153,7 @@ export default function HomeScreen() {
 
       {/* Nourish + Pantry status row */}
       <Row gap={space.md} align="stretch" style={{ marginTop: space.xl }}>
-        <Press onPress={() => router.push("/nourish")} style={{ flex: 1 }}>
+        <Press onPress={() => router.push("/nourish")} containerStyle={{ flex: 1 }} style={{ flex: 1 }}>
           <Card style={{ alignItems: "center", gap: 8, flex: 1 }}>
             <ProgressRing size={92} stroke={10} progress={calPct} color={colors.carrot}>
               <Txt variant="subheading">{Math.round(today.totals.kcal)}</Txt>
@@ -162,7 +162,7 @@ export default function HomeScreen() {
             <Txt variant="label">Calories today</Txt>
           </Card>
         </Press>
-        <Press onPress={() => router.push("/pantry")} style={{ flex: 1 }}>
+        <Press onPress={() => router.push("/pantry")} containerStyle={{ flex: 1 }} style={{ flex: 1 }}>
           <Card style={{ flex: 1, gap: 10, justifyContent: "center" }}>
             <Feather name="archive" size={22} color={colors.basil} />
             <Txt variant="title">{pantry.length}</Txt>
