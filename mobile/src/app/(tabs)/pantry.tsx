@@ -282,13 +282,29 @@ export default function PantryScreen() {
       {/* Search-first add — the #1 action, always one tap away. */}
       <Press onPress={() => { setQuery(""); setAddOpen(true); }} haptic="light"
         accessibilityRole="button" accessibilityLabel="Add ingredients" accessibilityHint="Opens the add-ingredients search"
-        style={{ flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.md, paddingHorizontal: 14, paddingVertical: 13, marginBottom: space.lg }}>
+        style={{ flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.md, paddingHorizontal: 14, paddingVertical: 13, marginBottom: space.sm }}>
         <Feather name="search" size={18} color={colors.textFaint} />
         <Txt variant="body" color={colors.textFaint} style={{ flex: 1 }}>Add ingredients (rice, eggs, tofu…)</Txt>
         <View style={{ width: 28, height: 28, borderRadius: 14, backgroundColor: accent.pantry.tint, alignItems: "center", justifyContent: "center" }}>
           <Feather name="plus" size={16} color={accent.pantry.shadow} />
         </View>
       </Press>
+
+      {/* Snap to add — front and center so the camera flows are the first thing you reach. */}
+      <Row gap={10} style={{ marginBottom: space.lg }}>
+        <Press onPress={() => startScan("fridge")} disabled={!!scanning} haptic="light" containerStyle={{ flex: 1 }}
+          accessibilityRole="button" accessibilityLabel="Scan your fridge"
+          style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: accent.pantry.tint, borderRadius: radius.md, paddingVertical: 14, opacity: scanning && scanning !== "fridge" ? 0.55 : 1 }}>
+          <Feather name="camera" size={17} color={accent.pantry.shadow} />
+          <Txt variant="label" weight="800" color={accent.pantry.shadow}>{scanning === "fridge" ? "Scanning…" : "Scan fridge"}</Txt>
+        </Press>
+        <Press onPress={() => startScan("receipt")} disabled={!!scanning} haptic="light" containerStyle={{ flex: 1 }}
+          accessibilityRole="button" accessibilityLabel="Scan a grocery receipt"
+          style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: accent.grocery.tint, borderRadius: radius.md, paddingVertical: 14, opacity: scanning && scanning !== "receipt" ? 0.55 : 1 }}>
+          <Feather name="file-text" size={17} color={accent.grocery.shadow} />
+          <Txt variant="label" weight="800" color={accent.grocery.shadow}>{scanning === "receipt" ? "Scanning…" : "Scan receipt"}</Txt>
+        </Press>
+      </Row>
 
       {pantry.length === 0 ? (
         <EmptyState emoji="🥫" title="Your pantry is empty"
@@ -454,13 +470,6 @@ export default function PantryScreen() {
                   </Press>
                 ))}
               </ScrollView>
-            </View>
-            <View>
-              <Txt variant="label" style={{ marginBottom: 8 }}>SNAP TO ADD</Txt>
-              <Row gap={10}>
-                <Button title="Scan fridge" icon="camera" variant="secondary" style={{ flex: 1 }} loading={scanning === "fridge"} disabled={!!scanning} onPress={() => startScan("fridge")} />
-                <Button title="Scan receipt" icon="file-text" variant="secondary" style={{ flex: 1 }} loading={scanning === "receipt"} disabled={!!scanning} onPress={() => startScan("receipt")} />
-              </Row>
             </View>
             <Button title="Paste a list" icon="clipboard" variant="secondary" full onPress={() => { setAddOpen(false); setPasteOpen(true); }} />
           </View>
