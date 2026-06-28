@@ -114,6 +114,13 @@ export interface DetectedIngredient {
   id: string;
   name: string;
   confidence: number;
+  /**
+   * Approximate location in the image as [x, y, w, h], normalized 0..1
+   * (top-left origin). Present for fridge/photo scans so the UI can draw a
+   * labeled box over each detected item; omitted when the model can't localize
+   * it (and always omitted for receipt parsing). LLM-estimated, not exact.
+   */
+  box?: [number, number, number, number];
 }
 
 export interface VisionResult {
@@ -127,7 +134,7 @@ const VISION_SYSTEM = `You are a kitchen-pantry vision identifier. The user uplo
 Always respond with ONLY valid JSON in this exact schema (no markdown, no code fences, no commentary):
 {
   "recognized": [
-    {"id": "<known-ingredient-id>", "name": "<display name>", "confidence": <0..1>}
+    {"id": "<known-ingredient-id>", "name": "<display name>", "confidence": <0..1>, "box": [<x>, <y>, <w>, <h>]}
   ],
   "unrecognized": ["<short label of item that does not match the catalog>"]
 }
@@ -135,6 +142,7 @@ Always respond with ONLY valid JSON in this exact schema (no markdown, no code f
 Rules:
 - "id" must be one of the IDs from the catalog. If you cannot map an item to an ID, put it in "unrecognized" with a short human-readable label.
 - "confidence" is 0–1 reflecting how sure you are.
+- "box" locates the item in the image as [x, y, w, h], ALL normalized 0..1 as fractions of the image width/height (x,y = the box's TOP-LEFT corner; w,h = its width and height). Draw the tightest box around the item (if several of the same item are visible, box the clearest one). If you genuinely can't localize an item, omit "box" for it.
 - Skip non-food objects (cookware, cleaning supplies, etc.).
 - If an item could be multiple things (e.g. "leafy greens"), pick the closest catalog match.
 - De-duplicate (do not list the same item twice).
@@ -153,7 +161,9 @@ export async function recognizeIngredientsFromImage(
   const catalog = ingredientCatalog();
   const text = await callAnthropic({
     system: VISION_SYSTEM,
-    maxTokens: 1500,
+    // Boxes add ~4 numbers per item; bump the cap so a busy fridge/produce
+    // shelf doesn't truncate the JSON mid-array.
+    maxTokens: 2048,
     temperature: 0.1,
     messages: [
       {
@@ -270,6 +280,23 @@ export async function recognizeIngredientsFromText(
   return parseVisionJson(text);
 }
 
+/**
+ * Validate a model-supplied bounding box. Returns a clamped [x,y,w,h] in 0..1
+ * (top-left origin) or undefined if the box is missing/malformed/degenerate.
+ */
+function cleanBox(b: unknown): [number, number, number, number] | undefined {
+  if (!Array.isArray(b) || b.length !== 4) return undefined;
+  const nums = b.map(Number);
+  if (nums.some((n) => !Number.isFinite(n))) return undefined;
+  let [x, y, w, h] = nums;
+  x = Math.min(Math.max(x, 0), 1);
+  y = Math.min(Math.max(y, 0), 1);
+  w = Math.min(Math.max(w, 0), 1 - x);
+  h = Math.min(Math.max(h, 0), 1 - y);
+  if (w <= 0.01 || h <= 0.01) return undefined; // too small to be a real box
+  return [x, y, w, h];
+}
+
 function parseVisionJson(raw: string): VisionResult {
   let body = raw.trim();
   if (body.startsWith("```")) {
@@ -285,7 +312,9 @@ function parseVisionJson(raw: string): VisionResult {
       unrecognized?: string[];
     };
     return {
-      recognized: (json.recognized ?? []).filter((r) => r && r.id),
+      recognized: (json.recognized ?? [])
+        .filter((r) => r && r.id)
+        .map((r) => ({ ...r, box: cleanBox((r as { box?: unknown }).box) })),
       unrecognized: json.unrecognized ?? [],
       raw,
     };

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { View, ScrollView, InteractionManager, Alert } from "react-native";
+import { View, ScrollView, InteractionManager, Alert, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -25,6 +25,55 @@ import { recognizeIngredientsFromImage, recognizeIngredientsFromReceipt, isAiEna
 
 const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "canned", "frozen", "condiment", "spice", "snack"];
 
+/**
+ * Draws the AI's estimated bounding boxes over a scanned fridge photo. Each box
+ * is labeled and tappable to include/skip that ingredient. Boxes are normalized
+ * 0..1; we measure the rendered image (onLayout) to place them in pixels.
+ */
+function DetectionOverlay({ uri, aspect, detections, picked, onToggle }: {
+  uri: string;
+  aspect?: number;
+  detections: { id: string; name: string; box?: [number, number, number, number] }[];
+  picked: Set<string>;
+  onToggle: (id: string) => void;
+}) {
+  const { colors, accent } = useTheme();
+  const [dim, setDim] = useState({ w: 0, h: 0 });
+  const boxed = detections.filter((d) => d.box);
+  return (
+    <View
+      onLayout={(e) => setDim({ w: e.nativeEvent.layout.width, h: e.nativeEvent.layout.height })}
+      style={{ width: "100%", aspectRatio: aspect && aspect > 0 ? aspect : 1, borderRadius: radius.md, overflow: "hidden", backgroundColor: colors.oat }}
+    >
+      <Image source={{ uri }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
+      {dim.w > 0 &&
+        boxed.map((d, i) => {
+          const [bx, by, bw, bh] = d.box!;
+          const on = picked.has(d.id);
+          // Anchor the label to whichever side keeps it inside the clipped
+          // container: left for left-half boxes, right for right-half ones.
+          const rightHalf = bx + bw > 0.6;
+          return (
+            <Press
+              key={`${d.id}-${i}`}
+              haptic="selection"
+              onPress={() => onToggle(d.id)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: on }}
+              accessibilityLabel={d.name}
+              containerStyle={{ position: "absolute", left: bx * dim.w, top: by * dim.h, width: bw * dim.w, height: bh * dim.h }}
+              style={{ flex: 1, borderWidth: 2, borderColor: on ? accent.pantry.main : "rgba(255,255,255,0.92)", borderRadius: 5, backgroundColor: on ? "rgba(47,191,113,0.22)" : "rgba(0,0,0,0.06)" }}
+            >
+              <View style={[{ position: "absolute", top: 0, maxWidth: 132, backgroundColor: on ? accent.pantry.main : "rgba(20,20,20,0.8)", borderRadius: 4, paddingHorizontal: 5, paddingVertical: 2 }, rightHalf ? { right: 0 } : { left: 0 }]}>
+                <Txt variant="caption" weight="800" color="#fff" numberOfLines={1} style={{ fontSize: 9.5 }}>{d.name}</Txt>
+              </View>
+            </Press>
+          );
+        })}
+    </View>
+  );
+}
+
 export default function PantryScreen() {
   const { colors, accent } = useTheme();
   const { pantry, add, addMany, remove, toggleUseSoon, clear, has } = usePantry();
@@ -42,7 +91,16 @@ export default function PantryScreen() {
   const [busy, setBusy] = useState(false);
   // Results of a fridge/receipt scan, shown in a review sheet so the user
   // confirms (and can deselect mis-reads) before anything hits the pantry.
-  const [scan, setScan] = useState<{ kind: "fridge" | "receipt"; items: { id: string; name: string }[]; unrecognized: string[] } | null>(null);
+  // `detections` keeps every hit WITH its box (duplicates included) for the
+  // image overlay; `items` is the de-duped list used for the chips + adding.
+  const [scan, setScan] = useState<{
+    kind: "fridge" | "receipt";
+    items: { id: string; name: string }[];
+    detections: { id: string; name: string; box?: [number, number, number, number] }[];
+    unrecognized: string[];
+    imageUri?: string;
+    imageAspect?: number; // width / height
+  } | null>(null);
   const [scanPicked, setScanPicked] = useState<Set<string>>(new Set());
   // Which scan is in flight — doubles as the per-button spinner key and the
   // re-entrancy guard so a second scan can't launch over a running one.
@@ -182,17 +240,23 @@ export default function PantryScreen() {
         if (!perm.granted) { toast("Photo permission needed", "error"); return; }
         res = await ImagePicker.launchImageLibraryAsync({ base64: true, quality: 0.6, mediaTypes: ["images"] });
       }
-      if (res.canceled || !res.assets?.[0]?.base64) return;
+      const asset = res.assets?.[0];
+      if (res.canceled || !asset?.base64) return;
 
       const recognize = kind === "receipt" ? recognizeIngredientsFromReceipt : recognizeIngredientsFromImage;
-      const out = await recognize(res.assets[0].base64, res.assets[0].mimeType ?? "image/jpeg");
-      // Map every hit to a catalog id (vision usually returns ids; salvage names
-      // + unrecognized labels via the offline matcher), de-duped.
+      const out = await recognize(asset.base64, asset.mimeType ?? "image/jpeg");
+      // Keep every hit (with its box) for the image overlay; build a de-duped
+      // `items` list (by catalog id) for the chips + adding. Vision usually
+      // returns ids; salvage names + unrecognized labels via the offline matcher.
       const seen = new Set<string>();
       const items: { id: string; name: string }[] = [];
+      const detections: { id: string; name: string; box?: [number, number, number, number] }[] = [];
       for (const d of out.recognized ?? []) {
         const id = INGREDIENT_MAP.has(d.id) ? d.id : matchIngredientByName(d.name);
-        if (id && !seen.has(id)) { seen.add(id); items.push({ id, name: ingredientLabel(id) }); }
+        if (!id) continue;
+        const name = ingredientLabel(id);
+        detections.push({ id, name, box: d.box });
+        if (!seen.has(id)) { seen.add(id); items.push({ id, name }); }
       }
       const stillUnknown: string[] = [];
       for (const label of out.unrecognized ?? []) {
@@ -205,7 +269,16 @@ export default function PantryScreen() {
         return;
       }
       setAddOpen(false);
-      setScan({ kind, items, unrecognized: stillUnknown });
+      const aspect = asset.width && asset.height ? asset.width / asset.height : undefined;
+      // Only the fridge scan gets the image overlay, and only when we know the
+      // photo's true aspect — the normalized box coords can't be mapped onto a
+      // cropped/guessed frame, so without a real aspect we fall back to chips.
+      const showImage = kind === "fridge" && !!aspect && aspect > 0;
+      setScan({
+        kind, items, detections, unrecognized: stillUnknown,
+        imageUri: showImage ? asset.uri : undefined,
+        imageAspect: showImage ? aspect : undefined,
+      });
       setScanPicked(new Set(items.map((i) => i.id)));
     } catch (e) {
       // Surface the lib's friendly transient messages (timeout / rate-limit);
@@ -516,7 +589,18 @@ export default function PantryScreen() {
       <Sheet visible={!!scan} onClose={() => setScan(null)} title={scan?.kind === "receipt" ? "Found on your receipt" : "Found in your photo"}>
         {scan ? (
           <View style={{ gap: space.md }}>
-            <Txt variant="caption" muted>Tap to include or skip — only the highlighted items get added.</Txt>
+            {scan.imageUri ? (
+              <>
+                <DetectionOverlay uri={scan.imageUri} aspect={scan.imageAspect} detections={scan.detections} picked={scanPicked} onToggle={toggleScanPick} />
+                <Txt variant="caption" muted>
+                  {scan.detections.some((d) => d.box)
+                    ? "Boxes are the AI's best guess at where each item is. Tap a box or a chip to include or skip."
+                    : "Tap to include or skip — only the highlighted items get added."}
+                </Txt>
+              </>
+            ) : (
+              <Txt variant="caption" muted>Tap to include or skip — only the highlighted items get added.</Txt>
+            )}
             <Row gap={8} wrap>
               {scan.items.map((it) => {
                 const on = scanPicked.has(it.id);
