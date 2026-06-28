@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { View, ScrollView } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import { View, ScrollView, InteractionManager } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -13,7 +13,7 @@ import { useTheme } from "~/theme/ThemeProvider";
 import { usePantry } from "~/lib/stores/app";
 import { usePantries } from "~/lib/stores/pantries";
 import { ingredientLabel, categoryLabel, seedToView } from "~/lib/recipes";
-import { parsePantryText, aiAvailable } from "~/lib/ai";
+import { parsePantryText } from "~/lib/ai";
 import { tap } from "~/lib/haptics";
 import { INGREDIENT_MAP, QUICK_ADD_STAPLES } from "@/data/ingredients";
 import { PANTRY_PRESETS } from "@/data/pantryPresets";
@@ -21,7 +21,7 @@ import { matchIngredientByName } from "@/lib/nutritionEngine";
 import { rankPantryCatalog } from "~/lib/catalog";
 import { groupPantryResults, recommendSmartBuys } from "@/lib/recipeScoring";
 import { rankIngredients } from "~/lib/ingredientSearch";
-import { recognizeIngredientsFromImage } from "@/lib/anthropic";
+import { recognizeIngredientsFromImage, isAiEnabled } from "@/lib/anthropic";
 
 const CATEGORY_ORDER = ["protein", "vegetable", "fruit", "dairy", "grain", "canned", "frozen", "condiment", "spice", "snack"];
 
@@ -77,9 +77,32 @@ export default function PantryScreen() {
     }
     return out;
   }, [groups]);
-  const smartBuys = useMemo(() => (pantry.length ? recommendSmartBuys(pantry) : []), [pantry]);
+  // Memoize the priced/nutrition-resolved views so seedToView only runs when the
+  // recipe set changes — not on every keystroke or sheet toggle.
+  const readyViews = useMemo(
+    () => groups.canMakeNow.slice(0, 3).map((r) => ({ id: r.recipe.id, view: seedToView(r.recipe) })),
+    [groups.canMakeNow],
+  );
+  const needFewViews = useMemo(
+    () => needFew.slice(0, 2).map((r) => ({ r, view: seedToView(r.recipe) })),
+    [needFew],
+  );
+
+  // Smart-buy is a non-critical nudge that scans the whole catalog × 15 staples,
+  // so defer it off the add→paint path: the item commits immediately and the
+  // nudge fills in a frame later instead of janking every add/remove.
+  const [smartBuys, setSmartBuys] = useState<ReturnType<typeof recommendSmartBuys>>([]);
+  useEffect(() => {
+    if (!pantry.length) {
+      setSmartBuys([]);
+      return;
+    }
+    const handle = InteractionManager.runAfterInteractions(() => setSmartBuys(recommendSmartBuys(pantry)));
+    return () => handle.cancel();
+  }, [pantry]);
   const topBuy = smartBuys.find((b) => b.unlocks > 0) ?? null;
 
+  const availableStaples = useMemo(() => QUICK_ADD_STAPLES.filter((id) => !has(id)).slice(0, 14), [pantry]);
   const searchResults = useMemo(() => rankIngredients(query, has, 12), [query, pantry]);
 
   async function handlePaste() {
@@ -119,7 +142,7 @@ export default function PantryScreen() {
     if (!perm.granted) { toast("Photo permission needed", "error"); return; }
     const res = await ImagePicker.launchImageLibraryAsync({ base64: true, quality: 0.6, mediaTypes: ["images"] });
     if (res.canceled || !res.assets?.[0]?.base64) return;
-    if (!aiAvailable()) { toast("Add an AI key in Settings to scan photos", "error"); return; }
+    if (!isAiEnabled()) { toast("Add an AI key in Settings to scan photos", "error"); return; }
     setBusy(true);
     try {
       const out = await recognizeIngredientsFromImage(res.assets[0].base64, res.assets[0].mimeType ?? "image/jpeg");
@@ -149,11 +172,12 @@ export default function PantryScreen() {
     const name = ingredientLabel(p.ingredientId);
     return (
       <View key={p.ingredientId}
-        style={{ flexDirection: "row", alignItems: "center", backgroundColor: bg, borderWidth: 1.5, borderColor: bd, borderRadius: radius.pill, paddingLeft: 12, paddingRight: 4, paddingVertical: 3 }}>
+        style={{ flexDirection: "row", alignItems: "center", maxWidth: "100%", backgroundColor: bg, borderWidth: 1.5, borderColor: bd, borderRadius: radius.pill, paddingLeft: 12, paddingRight: 4, paddingVertical: 3 }}>
         <Press haptic="selection" onPress={() => toggleUseSoon(p.ingredientId)} accessibilityLabel={`Mark ${name} use soon`}
-          style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingVertical: 6, paddingRight: 4 }}>
+          hitSlop={{ top: 8, bottom: 8 }}
+          style={{ flexDirection: "row", alignItems: "center", gap: 5, paddingVertical: 6, paddingRight: 4, flexShrink: 1 }}>
           {p.useSoon ? <Feather name="clock" size={12} color={fg} /> : null}
-          <Txt variant="caption" weight="700" color={fg}>{name}</Txt>
+          <Txt variant="caption" weight="700" color={fg} numberOfLines={1} style={{ flexShrink: 1 }}>{name}</Txt>
         </Press>
         <Press onPress={() => { remove(p.ingredientId); tap(); toast(`Removed ${name}`, "info"); }}
           accessibilityLabel={`Remove ${name}`} hitSlop={8}
@@ -176,7 +200,7 @@ export default function PantryScreen() {
     <Screen>
       {/* Compact header — pantry name is a dropdown into all pantry options. */}
       <Row justify="space-between" align="center" style={{ marginBottom: space.md }}>
-        <Press onPress={() => setOptionsOpen(true)} haptic="selection" containerStyle={{ flex: 1, marginRight: space.md }}>
+        <Press onPress={() => setOptionsOpen(true)} haptic="selection" accessibilityRole="button" accessibilityLabel="Switch or manage pantry" containerStyle={{ flex: 1, marginRight: space.md }}>
           <Txt variant="label">PANTRY</Txt>
           <Row gap={6} align="center">
             <Txt variant="title" numberOfLines={1} style={{ flexShrink: 1 }}>{activePantry?.name ?? "My Pantry"}</Txt>
@@ -185,12 +209,13 @@ export default function PantryScreen() {
         </Press>
         <Row gap={8} align="center">
           <Badge label={`${pantry.length}`} tone="pantry" icon="archive" />
-          <IconButton icon="more-horizontal" onPress={() => setOptionsOpen(true)} />
+          <IconButton icon="more-horizontal" onPress={() => setOptionsOpen(true)} accessibilityLabel="Pantry options" />
         </Row>
       </Row>
 
       {/* Search-first add — the #1 action, always one tap away. */}
       <Press onPress={() => { setQuery(""); setAddOpen(true); }} haptic="light"
+        accessibilityRole="button" accessibilityLabel="Add ingredients" accessibilityHint="Opens the add-ingredients search"
         style={{ flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.md, paddingHorizontal: 14, paddingVertical: 13, marginBottom: space.lg }}>
         <Feather name="search" size={18} color={colors.textFaint} />
         <Txt variant="body" color={colors.textFaint} style={{ flex: 1 }}>Add ingredients (rice, eggs, tofu…)</Txt>
@@ -220,7 +245,7 @@ export default function PantryScreen() {
             <View style={{ marginBottom: space.lg }}>
               <SectionHeading title={`${groups.canMakeNow.length} ready to cook now`} action="See all" onAction={() => router.push("/recipes")} />
               <View style={{ gap: space.sm }}>
-                {groups.canMakeNow.slice(0, 3).map((r) => <RecipeRow key={r.recipe.id} view={seedToView(r.recipe)} />)}
+                {readyViews.map((v) => <RecipeRow key={v.id} view={v.view} />)}
               </View>
             </View>
           ) : null}
@@ -229,9 +254,9 @@ export default function PantryScreen() {
             <View style={{ marginBottom: space.lg }}>
               <Txt variant="heading" style={{ marginBottom: space.sm }}>Almost there — need 1–2 more</Txt>
               <View style={{ gap: space.sm }}>
-                {needFew.slice(0, 2).map((r) => (
+                {needFewViews.map(({ r, view }) => (
                   <View key={r.recipe.id} style={{ gap: 4 }}>
-                    <RecipeRow view={seedToView(r.recipe)} />
+                    <RecipeRow view={view} />
                     <Row gap={5} align="center" style={{ paddingHorizontal: 4 }}>
                       <Feather name="shopping-cart" size={11} color={colors.carrotShadow} />
                       <Txt variant="caption" muted style={{ flex: 1 }}>
@@ -295,11 +320,13 @@ export default function PantryScreen() {
             );
           })}
           {shownItems.length === 0 ? <Txt variant="caption" muted center>No items match "{itemQuery.trim()}".</Txt> : null}
-          {pantry.length < 5 ? (
-            <Txt variant="caption" muted>Add a few more items (or load a Starter pack via + Add) so Waivy can match more recipes.</Txt>
-          ) : (
-            <Txt variant="caption" muted>Tap an item to flag "use soon" ⏱ · tap the ✕ to remove.</Txt>
-          )}
+          {shownItems.length > 0 ? (
+            pantry.length < 5 ? (
+              <Txt variant="caption" muted>Add a few more items (or load a Starter pack via + Add) so Waivy can match more recipes.</Txt>
+            ) : (
+              <Txt variant="caption" muted>Tap an item to flag "use soon" ⏱ · tap the ✕ to remove.</Txt>
+            )
+          ) : null}
         </>
       )}
 
@@ -334,18 +361,20 @@ export default function PantryScreen() {
           )
         ) : (
           <View style={{ gap: space.lg, marginTop: space.sm }}>
-            <View>
-              <Txt variant="label" style={{ marginBottom: 8 }}>QUICK ADD STAPLES</Txt>
-              <Row gap={8} wrap>
-                {QUICK_ADD_STAPLES.filter((id) => !has(id)).slice(0, 14).map((id) => (
-                  <Press key={id} haptic="selection" onPress={() => { add({ ingredientId: id }); tap(); toast(`Added ${ingredientLabel(id)}`); }}
-                    style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 8 }}>
-                    <Feather name="plus" size={13} color={colors.basil} />
-                    <Txt variant="caption" weight="600">{ingredientLabel(id)}</Txt>
-                  </Press>
-                ))}
-              </Row>
-            </View>
+            {availableStaples.length > 0 ? (
+              <View>
+                <Txt variant="label" style={{ marginBottom: 8 }}>QUICK ADD STAPLES</Txt>
+                <Row gap={8} wrap>
+                  {availableStaples.map((id) => (
+                    <Press key={id} haptic="selection" onPress={() => { add({ ingredientId: id }); tap(); toast(`Added ${ingredientLabel(id)}`); }}
+                      style={{ flexDirection: "row", alignItems: "center", gap: 5, backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border, borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 8 }}>
+                      <Feather name="plus" size={13} color={colors.basil} />
+                      <Txt variant="caption" weight="600">{ingredientLabel(id)}</Txt>
+                    </Press>
+                  ))}
+                </Row>
+              </View>
+            ) : null}
             <View>
               <Txt variant="label" style={{ marginBottom: 8 }}>STARTER PACKS</Txt>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingBottom: 2 }}>
@@ -401,7 +430,7 @@ export default function PantryScreen() {
       <Sheet visible={pasteOpen} onClose={() => setPasteOpen(false)} title="Paste your ingredients">
         <Txt variant="caption" muted>e.g. "eggs, half a bag of frozen broccoli, old tortillas, soy sauce"</Txt>
         <Field placeholder="Type or paste a messy list…" value={pasteText} onChangeText={setPasteText} multiline style={{ minHeight: 110, textAlignVertical: "top" }} />
-        <Button title={aiAvailable() ? "Smart add with AI" : "Add (offline matching)"} icon="zap" accentKey="pantry" variant="accent" full loading={busy} onPress={handlePaste} />
+        <Button title={isAiEnabled() ? "Smart add with AI" : "Add (offline matching)"} icon="zap" accentKey="pantry" variant="accent" full loading={busy} onPress={handlePaste} />
       </Sheet>
 
       <Sheet visible={!!presetConfirm} onClose={() => setPresetConfirm(null)} title={presetConfirm?.name} scroll={false}>
@@ -445,9 +474,10 @@ export default function PantryScreen() {
 
       {/* Floating add button — outside the scroll so it stays put. */}
       <Press onPress={() => { setQuery(""); setAddOpen(true); }} haptic="light"
+        accessibilityRole="button" accessibilityLabel="Add ingredients"
         containerStyle={{ position: "absolute", right: space.lg, bottom: 30 }}
         style={{ width: 58, height: 58, borderRadius: 29, backgroundColor: colors.basil, alignItems: "center", justifyContent: "center", shadowColor: colors.basilShadow, shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 6 }, elevation: 6 }}>
-        <Feather name="plus" size={26} color="#fff" />
+        <Feather name="plus" size={26} color="#fff" accessible={false} />
       </Press>
     </View>
   );
