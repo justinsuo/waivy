@@ -1,13 +1,13 @@
 import type { RecipeImage } from "@/lib/types";
 
 // Auto-corrected recipe photos. Spread LAST into RECIPE_IMAGES so they win over
-// the originals. Two kinds, both verified to load (HTTP 200):
-//  1. MISMATCH fixes — a vision audit found the old photo showed the wrong dish;
-//     replaced with a vision-verified Wikimedia Commons photo of the right dish.
-//  2. BROKEN-URL fixes — the curated photo URL 404/400d (Wikimedia thumb wider
-//     than the original); same intended image, repaired to its working original URL.
+// the originals. All verified to load (HTTP 200). Three groups:
+//  1. MISMATCH fixes — vision audit found the old photo showed the wrong dish.
+//  2. BROKEN-URL fixes — same intended image, repaired to its working original URL.
+//  3. OVERRIDE fixes — the jsDelivr override showed the wrong dish; corrected here
+//     AND removed from recipeImageOverrides.ts so this entry wins.
 export const CORRECTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
-  // --- mismatch fixes (wrong dish -> correct dish) ---
+  // --- 1. mismatch fixes ---
   "af-broccoli-egg-rice-bowl": {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Chinese_fried_rice_with_broccoli_and_eggs.jpg/960px-Chinese_fried_rice_with_broccoli_and_eggs.jpg",
     alt: "Photo of Crispy Broccoli and Egg Rice Bowl",
@@ -908,7 +908,7 @@ export const CORRECTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     attributionText: "Photo: Ishimochi \u2014 CC BY-SA 3.0 via Wikimedia Commons",
     verifiedMatch: true,
   },
-  // --- broken-URL fixes (same image, repaired to its working original URL) ---
+  // --- 2. broken-URL fixes ---
   "bake-yule-log": {
     src: "https://upload.wikimedia.org/wikipedia/commons/7/7a/B%C3%BBche_de_No%C3%ABl_chocolat_framboise_maison.jpg",
     alt: "Photo of Yule Log (B\u00fbche de No\u00ebl)",
@@ -1183,6 +1183,77 @@ export const CORRECTED_RECIPE_PHOTOS: Record<string, RecipeImage> = {
     license: "CC BY 2.0",
     attributionRequired: true,
     attributionText: "Photo: Singzy \u2014 CC BY 2.0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  // --- 3. override fixes (also de-listed from recipeImageOverrides.ts) ---
+  "broccoli-cheese-potato": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Dinner_at_home_-_October_2023_-_Sarah_Stierch_01.jpg/960px-Dinner_at_home_-_October_2023_-_Sarah_Stierch_01.jpg",
+    alt: "Photo of Broccoli Cheese Potato",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Dinner_at_home_-_October_2023_-_Sarah_Stierch_01.jpg",
+    license: "CC BY 4.0",
+    attributionRequired: true,
+    attributionText: "Photo: Sarah Stierch \u2014 CC BY 4.0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "cabbage-bean-stew": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/0050Cuisine_food_of_Bulacan_in_Baliuag_10.jpg/960px-0050Cuisine_food_of_Bulacan_in_Baliuag_10.jpg",
+    alt: "Photo of cabbage bean stew with white beans, chicken, and vegetables in garlicky tomato broth",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:0050Cuisine_food_of_Bulacan_in_Baliuag_10.jpg",
+    license: "CC0 (Public Domain)",
+    attributionRequired: false,
+    attributionText: "Photo: Judgefloro \u2014 CC0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "canned-salmon-rice-bowl": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Yoshinoya_Tobiko_Salmon_Flakes_Bowl.JPG/960px-Yoshinoya_Tobiko_Salmon_Flakes_Bowl.JPG",
+    alt: "Photo of Canned Salmon Rice Bowl - flaked salmon over rice with garnish in a decorative bowl",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Yoshinoya_Tobiko_Salmon_Flakes_Bowl.JPG",
+    license: "CC BY-SA 3.0",
+    attributionRequired: true,
+    attributionText: "Photo: Self-published work \u2014 CC BY-SA 3.0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "freezer-burritos": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/17/Corn%2C_beans%2C_rice_and_burrito.jpg",
+    alt: "Photo of rice, beans, corn, and a burrito on a dinner plate",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Corn,_beans,_rice_and_burrito.jpg",
+    license: "CC0 (Public Domain)",
+    attributionRequired: false,
+    attributionText: "Photo: Kurt Kaiser \u2014 CC0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "potato-cabbage-skillet": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cabbage_with_Potatoes_Curry_-_Kolkata_2011-03-05_1911.JPG/960px-Cabbage_with_Potatoes_Curry_-_Kolkata_2011-03-05_1911.JPG",
+    alt: "Photo of Potato Cabbage Skillet",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Cabbage_with_Potatoes_Curry_-_Kolkata_2011-03-05_1911.JPG",
+    license: "CC BY 3.0",
+    attributionRequired: true,
+    attributionText: "Photo: Biswarup Ganguly \u2014 CC BY 3.0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "ramen-egg-bowl": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Shoyu_Ramen.jpg/960px-Shoyu_Ramen.jpg",
+    alt: "Photo of Ramen Egg Bowl with soft-boiled eggs, noodles, and scallion",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen.jpg",
+    license: "CC BY 2.0",
+    attributionRequired: true,
+    attributionText: "Photo: Guilhem Vellut \u2014 CC BY 2.0 via Wikimedia Commons",
+    verifiedMatch: true,
+  },
+  "tortilla-tuna-crunch-wrap": {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Albacore_tuna_rice_wrap_%287000531264%29.jpg/960px-Albacore_tuna_rice_wrap_%287000531264%29.jpg",
+    alt: "Photo of Tortilla Tuna Crunch Wrap",
+    sourceName: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Albacore_tuna_rice_wrap_(7000531264).jpg",
+    license: "CC BY-SA 2.0",
+    attributionRequired: true,
+    attributionText: "Photo: Jen Arrr \u2014 CC BY-SA 2.0 via Wikimedia Commons",
     verifiedMatch: true,
   },
 };
