@@ -3,7 +3,7 @@ import React from "react";
 import { RefreshControl, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import { space } from "~/theme";
+import { space, CONTENT_MAX_WIDTH } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
 import { Txt, Row, IconButton } from "./ui";
 
@@ -53,18 +53,29 @@ export function Screen({
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
   const bg = { flex: 1, backgroundColor: colors.bg };
-  const pad = {
+  const vpad = {
     paddingTop: insets.top + space.md,
     paddingBottom: insets.bottom + 96, // clear the tab bar + FAB
+  };
+  // Centered, width-capped column so content fills phones edge-to-edge but
+  // doesn't stretch wide on iPad / large screens (cap is a no-op on phones).
+  const column = {
+    width: "100%" as const,
+    maxWidth: CONTENT_MAX_WIDTH,
+    alignSelf: "center" as const,
     paddingHorizontal: padded ? space.lg : 0,
   };
   if (!scroll) {
-    return <View style={[bg, pad, contentStyle]}>{children}</View>;
+    return (
+      <View style={[bg, vpad]}>
+        <View style={[{ flex: 1 }, column, contentStyle]}>{children}</View>
+      </View>
+    );
   }
   return (
     <ScrollView
       style={bg}
-      contentContainerStyle={[pad, contentStyle]}
+      contentContainerStyle={[vpad, { flexGrow: 1, alignItems: "center" }]}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
       automaticallyAdjustKeyboardInsets // lift the focused field/CTA above the keyboard
@@ -86,7 +97,7 @@ export function Screen({
         ) : undefined
       }
     >
-      {children}
+      <View style={[column, contentStyle]}>{children}</View>
     </ScrollView>
   );
 }

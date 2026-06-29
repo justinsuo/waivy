@@ -5,6 +5,7 @@
  * feel like one brand, but expressed as React Native style primitives (raw hex,
  * numeric spacing/radius, shadow objects) instead of Tailwind classes.
  */
+import { Dimensions } from "react-native";
 
 export const colorsLight = {
   // Surfaces
@@ -156,6 +157,18 @@ export function makeCategoryTone(c: Palette) {
 
 export type CategoryToneKey = keyof ReturnType<typeof makeCategoryTone>;
 
+// ─── Responsive scale ────────────────────────────────────────────────────────
+// The layout was tuned at ~393pt (iPhone 17). Scale spacing + type to the device
+// width so it fits smaller phones (iPhone SE / 11 Pro ~375) without ballooning on
+// big phones. iPads use a capped "large-phone" scale, and the Screen wrapper
+// additionally centers content in a max-width column so it doesn't stretch wide.
+export const SCREEN_W = Dimensions.get("window").width;
+export const IS_TABLET = SCREEN_W >= 600;
+/** Cap the column width on tablets/large screens so the phone layout stays readable. */
+export const CONTENT_MAX_WIDTH = 600;
+const _scale = Math.max(0.9, Math.min(1.06, Math.min(SCREEN_W, 430) / 393));
+const rs = (n: number) => Math.round(n * _scale);
+
 export const radius = {
   sm: 12,
   md: 16,
@@ -166,13 +179,13 @@ export const radius = {
 } as const;
 
 export const space = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 20,
-  xxl: 28,
-  xxxl: 40,
+  xs: rs(4),
+  sm: rs(8),
+  md: rs(12),
+  lg: rs(16),
+  xl: rs(20),
+  xxl: rs(28),
+  xxxl: rs(40),
 } as const;
 
 export const font = {
@@ -181,14 +194,14 @@ export const font = {
   display: "System",
   body: "System",
   sizes: {
-    xs: 12,
-    sm: 13,
-    base: 15,
-    md: 17,
-    lg: 20,
-    xl: 24,
-    xxl: 30,
-    xxxl: 38,
+    xs: rs(12),
+    sm: rs(13),
+    base: rs(15),
+    md: rs(17),
+    lg: rs(20),
+    xl: rs(24),
+    xxl: rs(30),
+    xxxl: rs(38),
   },
   weight: {
     regular: "400",
