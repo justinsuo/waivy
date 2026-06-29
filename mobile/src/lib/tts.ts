@@ -10,10 +10,26 @@
  * under "srf:elevenlabs-key". Voice: "srf:tts-voice" (defaults to a warm,
  * clear instructional voice).
  */
-import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from "expo-audio";
+import type { AudioPlayer } from "expo-audio";
 import * as FileSystem from "expo-file-system/legacy";
 import * as Speech from "expo-speech";
 import { kv } from "@shared/platform/kv";
+
+// Resolve the native audio module lazily + defensively: a build that lacks
+// ExpoAudio (or a link failure) must degrade to the OS voice, never crash the
+// whole app on import. Cached after the first attempt.
+let _audioMod: typeof import("expo-audio") | null = null;
+let _audioTried = false;
+function audioMod(): typeof import("expo-audio") | null {
+  if (_audioTried) return _audioMod;
+  _audioTried = true;
+  try {
+    _audioMod = require("expo-audio");
+  } catch {
+    _audioMod = null;
+  }
+  return _audioMod;
+}
 
 const EL_BASE = "https://api.elevenlabs.io/v1/text-to-speech";
 // flash v2.5 = lowest latency + natural — ideal for step-by-step narration.
@@ -39,7 +55,7 @@ function getVoice(): string {
 }
 /** True when a premium (ElevenLabs) voice is available; else we use the OS voice. */
 export function premiumVoiceAvailable(): boolean {
-  return getKey().length > 0;
+  return getKey().length > 0 && audioMod() != null;
 }
 
 let player: AudioPlayer | null = null;
@@ -48,10 +64,12 @@ let audioModeReady = false;
 
 async function ensureAudioMode(): Promise<void> {
   if (audioModeReady) return;
+  const A = audioMod();
+  if (!A) return;
   try {
     // Play through the speaker even when the ringer switch is silent — a cook
     // following along shouldn't have to fiddle with the mute switch.
-    await setAudioModeAsync({ playsInSilentMode: true });
+    await A.setAudioModeAsync({ playsInSilentMode: true });
     audioModeReady = true;
   } catch {}
 }
@@ -113,7 +131,8 @@ export async function speak(text: string): Promise<void> {
   if (!clean) return;
   const t = ++token;
   const key = getKey();
-  if (!key) {
+  const A = audioMod();
+  if (!key || !A) {
     speakOS(clean);
     return;
   }
@@ -136,7 +155,7 @@ export async function speak(text: string): Promise<void> {
     }
     await ensureAudioMode();
     if (t !== token) return;
-    player = createAudioPlayer({ uri: file });
+    player = A.createAudioPlayer({ uri: file });
     player.play();
   } catch {
     if (t === token) speakOS(clean);

@@ -7,7 +7,7 @@ import { Txt, Row, Spacer, EmptyState, Button, Badge, SegmentedControl } from "~
 import { RecipeCard } from "~/components/RecipeCard";
 import { useSaved } from "~/lib/stores/app";
 import { getAnyView, type RecipeView, type RecipeSource } from "~/lib/recipes";
-import { space } from "~/theme";
+import { space, CONTENT_MAX_WIDTH } from "~/theme";
 import { tap } from "~/lib/haptics";
 
 type TabValue = "all" | "seed" | "custom-ai" | "custom-user";
@@ -28,10 +28,12 @@ export default function SavedScreen() {
   const [tab, setTab] = useState<TabValue>("all");
   const { width } = useWindowDimensions();
 
-  // Two-column grid: subtract the Screen's horizontal padding (space.lg each
-  // side) and the inter-card gap, then split in half.
+  // Two-column grid: size off the centered content column (capped at
+  // CONTENT_MAX_WIDTH by Screen), not the raw window width, so cards don't
+  // overflow the column on iPad/large screens. Subtract padding + gutter.
+  const colW = Math.min(width, CONTENT_MAX_WIDTH);
   const gap = space.md;
-  const cardWidth = Math.floor((width - space.lg * 2 - gap) / 2);
+  const cardWidth = Math.floor((colW - space.lg * 2 - gap) / 2);
 
   // Resolve every saved id to a view, dropping any that no longer exist
   // (deleted custom recipes, stale ids). Keep newest-first.

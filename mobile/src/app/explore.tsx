@@ -27,7 +27,7 @@ import {
 import { Sheet } from "~/components/Sheet";
 import { toast } from "~/components/Toast";
 import { tap, selection, success } from "~/lib/haptics";
-import { space, radius, shadow, type Palette } from "~/theme";
+import { space, radius, shadow, CONTENT_MAX_WIDTH, type Palette } from "~/theme";
 import { useTheme, useThemedStyles } from "~/theme/ThemeProvider";
 import { useGrocery } from "~/lib/stores/app";
 import { useRecipeCart } from "~/lib/grocery/recipeCartStore";
@@ -178,9 +178,10 @@ export default function ExploreScreen() {
   const visible = filtered.slice(0, limit);
   const hasMore = filtered.length > visible.length;
 
-  // 2-col grid math (Screen is padded with space.lg on each side).
+  // 2-col grid math — size off the centered content column (capped by Screen),
+  // not raw window width, so cards don't overflow the column on iPad/large.
   const gutter = space.md;
-  const colW = (width - space.lg * 2 - gutter) / 2;
+  const colW = (Math.min(width, CONTENT_MAX_WIDTH) - space.lg * 2 - gutter) / 2;
 
   function openRecipe(r: ExternalRecipe) {
     tap();

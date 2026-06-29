@@ -20,7 +20,7 @@ import {
 import { RecipeCard } from "~/components/RecipeCard";
 import { allSeedViews, type RecipeView } from "~/lib/recipes";
 import { tap } from "~/lib/haptics";
-import { space, radius, font, shadow, type AccentKey } from "~/theme";
+import { space, radius, font, shadow, CONTENT_MAX_WIDTH, type AccentKey } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
 
 type FeatherName = React.ComponentProps<typeof Feather>["name"];
@@ -142,11 +142,13 @@ export default function RecipesHub() {
   const [sort, setSort] = useState<SortKey>("best");
   const [visible, setVisible] = useState(PAGE);
 
-  const screenW = Dimensions.get("window").width;
-  // Screen padding is space.lg on each side; one gutter between two columns.
+  // Content sits in a centered column capped at CONTENT_MAX_WIDTH (see Screen),
+  // so size the 2-col grid off the column width — not the raw screen width —
+  // or cards overflow the column on iPad/large screens.
+  const colW = Math.min(Dimensions.get("window").width, CONTENT_MAX_WIDTH);
   const colGap = space.md;
-  const cardW = Math.floor((screenW - space.lg * 2 - colGap) / 2);
-  const tileW = Math.floor((screenW - space.lg * 2 - space.md) / 2);
+  const cardW = Math.floor((colW - space.lg * 2 - colGap) / 2);
+  const tileW = Math.floor((colW - space.lg * 2 - space.md) / 2);
 
   function toggle(list: string[], v: string, set: (l: string[]) => void) {
     set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
