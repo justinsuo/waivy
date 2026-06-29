@@ -84,10 +84,12 @@ export function RecipeCard({ view, width }: { view: RecipeView; width?: number }
         <Txt variant="caption" muted numberOfLines={2} style={{ minHeight: 30 }}>
           {view.description}
         </Txt>
-        <Row gap={6} wrap>
+        {/* Keep all three on ONE line so every card is the same height (a
+            wrapped 2-row pill set made carousel cards uneven). */}
+        <Row gap={6}>
           <Badge label={`${view.totalTimeMinutes}m`} tone="nourish" icon="clock" />
           <Badge label={`${Math.round(view.nutrition.calories)} cal`} tone="cheap" icon="zap" />
-          <Badge label={`${Math.round(view.nutrition.protein)}g protein`} tone="ai-chef" />
+          <Badge label={`${Math.round(view.nutrition.protein)}g`} tone="ai-chef" />
         </Row>
       </View>
     </Press>
