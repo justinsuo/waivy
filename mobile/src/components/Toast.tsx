@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { radius, space, shadow, font } from "~/theme";
 import { useTheme } from "~/theme/ThemeProvider";
-import { success as hapticSuccess, warning as hapticWarning } from "~/lib/haptics";
+import { success as hapticSuccess, error as hapticError, tap as hapticTap } from "~/lib/haptics";
 
 export type ToastKind = "success" | "info" | "error" | "reward";
 
@@ -18,7 +18,8 @@ const subscribers = new Set<(t: ToastItem) => void>();
 export function toast(message: string, kind: ToastKind = "success") {
   const item = { id: ++counter, message, kind };
   if (kind === "success" || kind === "reward") hapticSuccess();
-  else if (kind === "error") hapticWarning();
+  else if (kind === "error") hapticError();
+  else hapticTap(); // info — still give a light tactile tick
   subscribers.forEach((s) => s(item));
 }
 

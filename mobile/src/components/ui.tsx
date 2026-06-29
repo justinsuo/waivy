@@ -307,7 +307,9 @@ export function Button({
             }}
             onPress={() => {
               if (isDisabled) return;
-              fireHaptic(haptic ?? (isFilled ? "medium" : "light"));
+              // Every button gives a solid, Duolingo-style "click" (medium);
+              // callers can still override per-button via the `haptic` prop.
+              fireHaptic(haptic ?? "medium");
               onPress?.();
             }}
             style={[
