@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { useKeepAwake } from "expo-keep-awake";
-import * as Speech from "expo-speech";
+import * as TTS from "~/lib/tts";
 import * as Notifications from "expo-notifications";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
@@ -76,7 +76,7 @@ export default function GuidedCookScreen() {
   }, [i, cancelTimerNotif]);
 
   // Stop narration + cancel any pending timer notification when leaving the screen.
-  useEffect(() => () => { Speech.stop(); cancelTimerNotif(); }, [cancelTimerNotif]);
+  useEffect(() => () => { TTS.stop(); cancelTimerNotif(); }, [cancelTimerNotif]);
 
   useEffect(() => {
     if (running && secsLeft != null && secsLeft > 0) {
@@ -88,7 +88,7 @@ export default function GuidedCookScreen() {
       cancelTimerNotif(); // the in-app banner fired; drop the scheduled one
       hapticSuccess();
       toast("⏰ Timer done!", "reward");
-      Speech.speak("Timer finished");
+      TTS.speak("Timer finished");
     }
   }, [running, secsLeft, cancelTimerNotif]);
 
@@ -121,7 +121,7 @@ export default function GuidedCookScreen() {
     <View style={[styles.bg, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       {/* Top bar */}
       <Row justify="space-between" style={{ paddingHorizontal: space.lg, paddingVertical: space.md }}>
-        <IconButton icon="x" onPress={() => { Speech.stop(); router.back(); }} bg={colors.surface} />
+        <IconButton icon="x" onPress={() => { TTS.stop(); router.back(); }} bg={colors.surface} />
         <View style={{ flex: 1, paddingHorizontal: space.lg }}>
           <Row gap={5} justify="center">
             {data.steps.map((_, idx) => (
@@ -130,7 +130,7 @@ export default function GuidedCookScreen() {
           </Row>
           <Txt variant="caption" muted center style={{ marginTop: 6 }}>Step {i + 1} of {total}</Txt>
         </View>
-        <IconButton icon="volume-2" onPress={() => { tap(); Speech.stop(); Speech.speak(step.instruction); }} bg={colors.surface} />
+        <IconButton icon="volume-2" onPress={() => { tap(); TTS.stop(); TTS.speak(step.instruction); }} bg={colors.surface} />
       </Row>
 
       {/* Step card — top-aligned with generous breathing room so short steps
@@ -160,7 +160,7 @@ export default function GuidedCookScreen() {
       </Animated.View>
 
       {/* Ask about step */}
-      <Press onPress={() => { Speech.stop(); router.push(`/chat?recipe=${encodeURIComponent(recipeId)}&step=${i + 1}`); }} haptic="selection"
+      <Press onPress={() => { TTS.stop(); router.push(`/chat?recipe=${encodeURIComponent(recipeId)}&step=${i + 1}`); }} haptic="selection"
         style={{ flexDirection: "row", alignItems: "center", gap: 8, alignSelf: "center", backgroundColor: accent["ai-chef"].tint, paddingHorizontal: 16, paddingVertical: 12, borderRadius: radius.pill, marginBottom: space.md }}>
         <Feather name="message-circle" size={16} color={accent["ai-chef"].shadow} />
         <Txt variant="caption" weight="700" color={accent["ai-chef"].shadow}>Ask AI Chef about this step</Txt>
@@ -168,11 +168,11 @@ export default function GuidedCookScreen() {
 
       {/* Nav */}
       <Row gap={12} style={{ paddingHorizontal: space.lg, paddingBottom: space.md }}>
-        <Button title="Back" icon="arrow-left" variant="secondary" size="lg" style={{ flex: 1 }} disabled={i === 0} onPress={() => { Speech.stop(); setI((v) => Math.max(0, v - 1)); }} />
+        <Button title="Back" icon="arrow-left" variant="secondary" size="lg" style={{ flex: 1 }} disabled={i === 0} onPress={() => { TTS.stop(); setI((v) => Math.max(0, v - 1)); }} />
         {isLast ? (
           <Button title="Done 🎉" icon="check" accentKey="pantry" variant="accent" size="lg" style={{ flex: 2 }}
             onPress={() => {
-              Speech.stop();
+              TTS.stop();
               const c = logRecipeAsMeal(data.name, data.nutrition, recipeId, { silent: true });
               const st = recordActivity();
               celebrate(st.increased && st.count > 1 ? `${st.count}-day streak! 🔥` : "Nice work! 🎉");
@@ -180,7 +180,7 @@ export default function GuidedCookScreen() {
               router.back();
             }} />
         ) : (
-          <Button title="Next step" icon="arrow-right" accentKey="ai-chef" variant="accent" size="lg" style={{ flex: 2 }} onPress={() => { Speech.stop(); setI((v) => Math.min(total - 1, v + 1)); }} />
+          <Button title="Next step" icon="arrow-right" accentKey="ai-chef" variant="accent" size="lg" style={{ flex: 2 }} onPress={() => { TTS.stop(); setI((v) => Math.min(total - 1, v + 1)); }} />
         )}
       </Row>
     </View>
